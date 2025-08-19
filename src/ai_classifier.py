@@ -15,7 +15,7 @@ from src.utils import get_prompt
 from models.models import WorkStatusValidationResponse, TranscriptionResponse, CARFormatResponse, ClientSummaryResponse
 
 
-
+ 
 def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
     """
     Transcribe audio file using OpenAI Whisper (Speech-to-Text)

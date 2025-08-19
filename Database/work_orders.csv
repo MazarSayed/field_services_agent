@@ -1,26 +1,26 @@
 id,work_order_id,tech_name,work_date,status,description,wo_type,time_type,created_at,updated_at
-1,WO-001,John Smith,2024-01-15,Pending,Inverter replacement at Solar Site A,Corrective,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
-2,WO-002,John Smith,2024-01-15,Completed,Panel cleaning and maintenance,Preventive,Work,2024-01-15 08:00:00,2024-01-15 16:00:00
-3,WO-003,John Smith,2024-01-16,Pending,Electrical connection inspection,Preventive,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
-4,WO-004,John Smith,2024-01-16,Assigned,Monitoring system upgrade,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
-5,WO-005,John Smith,2024-01-17,Pending,Emergency repair for fault code E001,Ad Hoc,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
+1,WO-001,John Smith,2025-06-17,Pending,Inverter replacement at Solar Site A,Corrective,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
+2,WO-002,John Smith,2025-06-10,Completed,Panel cleaning and maintenance,Preventive,Work,2024-01-15 08:00:00,2024-01-15 16:00:00
+3,WO-003,John Smith,2025-06-17,Pending,Electrical connection inspection,Preventive,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
+4,WO-004,John Smith,2025-06-18,Pending,Monitoring system upgrade,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
+5,WO-005,John Smith,2025-06-17,Pending,Emergency repair for fault code E001,Ad Hoc,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 6,WO-006,Sarah Johnson,2024-01-15,Completed,Solar tracker calibration,Preventive,Work,2024-01-15 08:00:00,2024-01-15 14:00:00
 7,WO-007,Sarah Johnson,2024-01-15,Pending,Battery system inspection,Preventive,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
-8,WO-008,Sarah Johnson,2024-01-16,Assigned,New panel installation,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
+8,WO-008,Sarah Johnson,2024-01-16,Pending,New panel installation,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 9,WO-009,Sarah Johnson,2024-01-16,Pending,Inverter firmware update,Corrective,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 10,WO-010,Sarah Johnson,2024-01-17,Pending,Storm damage assessment,Ad Hoc,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 11,WO-011,Michael Chen,2024-01-15,Completed,Transformer maintenance,Preventive,Work,2024-01-15 08:00:00,2024-01-15 12:00:00
 12,WO-012,Michael Chen,2024-01-15,Pending,Grid connection testing,Preventive,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
-13,WO-013,Michael Chen,2024-01-16,Assigned,Solar farm expansion,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
+13,WO-013,Michael Chen,2024-01-16,Pending,Solar farm expansion,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 14,WO-014,Michael Chen,2024-01-16,Pending,Communication system repair,Corrective,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 15,WO-015,Michael Chen,2024-01-17,Pending,Emergency shutdown procedure,Ad Hoc,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 16,WO-016,Emily Davis,2024-01-15,Completed,Weather station maintenance,Preventive,Work,2024-01-15 08:00:00,2024-01-15 10:00:00
 17,WO-017,Emily Davis,2024-01-15,Pending,Safety system inspection,Preventive,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
-18,WO-018,Emily Davis,2024-01-16,Assigned,New monitoring dashboard,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
+18,WO-018,Emily Davis,2024-01-16,Pending,New monitoring dashboard,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 19,WO-019,Emily Davis,2024-01-16,Pending,Data logger replacement,Corrective,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 20,WO-020,Emily Davis,2024-01-17,Pending,Power outage response,Ad Hoc,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 21,WO-021,David Wilson,2024-01-15,Completed,Grounding system inspection,Preventive,Work,2024-01-15 08:00:00,2024-01-15 11:00:00
 22,WO-022,David Wilson,2024-01-15,Pending,Performance optimization,Preventive,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
-23,WO-023,David Wilson,2024-01-16,Assigned,Energy storage integration,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
+23,WO-023,David Wilson,2024-01-16,Pending,Energy storage integration,Project,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 24,WO-024,David Wilson,2024-01-16,Pending,Voltage regulator repair,Corrective,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
 25,WO-025,David Wilson,2024-01-17,Pending,Equipment malfunction response,Ad Hoc,Work,2024-01-15 08:00:00,2024-01-15 08:00:00
