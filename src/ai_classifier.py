@@ -11,11 +11,11 @@ from typing import Optional
 import io
 import tempfile
 import json
-from utils import get_prompt
+from src.utils import get_prompt
 from models.models import WorkStatusValidationResponse, TranscriptionResponse, CARFormatResponse, ClientSummaryResponse
 
 
-
+ 
 def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
     """
     Transcribe audio file using OpenAI Whisper (Speech-to-Text)
