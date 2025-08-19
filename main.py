@@ -9,7 +9,7 @@ import csv
 from datetime import datetime, date
 from typing import List, Optional, Dict, Any
 from pathlib import Path
-
+from dotenv import load_dotenv
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
@@ -26,6 +26,8 @@ from models.models import (
     CARFormatResponse, 
     ClientSummaryResponse
 )
+
+load_dotenv()
 
 # Load configuration
 def load_config():

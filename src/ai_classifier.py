@@ -183,6 +183,8 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
         RESULT: [What was the outcome? Was the issue resolved? Any recommendations or follow-up needed?]
         
         Ensure all requirements above are met. If any section cannot be adequately determined from the notes.
+
+        IMPORTANT: Return the answer strictly as a **JSON object** with keys "cause", "action", and "result".
         """
         
         response = openai_client.chat.completions.create(
@@ -214,11 +216,31 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
                 }
             }],
         )
-        return CARFormatResponse(**response.choices[0].message.content) 
-        
+        # Extract JSON safely
+        try:
+            response_json = response.choices[0].message.json
+        except AttributeError:
+            import json
+            response_json = json.loads(response.choices[0].message.content)
+
+        return CARFormatResponse(
+            cause=response_json.get("cause", ""),
+            action=response_json.get("action", ""),
+            result=response_json.get("result", ""),
+            success=True
+        )
+                
     except Exception as e:
         st.error(f"Error converting to CAR format: {e}")
-        return CARFormatResponse(**response.choices[0].message.content)
+        return CARFormatResponse(
+            cause="",
+            action="",
+            result="",
+            success=False,
+            error_message=str(e)
+        )
+
+
 
 
 def convert_to_client_summary(openai_client, Conversation_tech_ai_client_table: str) -> ClientSummaryResponse:
