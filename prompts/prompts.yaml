@@ -1,0 +1,58 @@
+car_format_check: |
+  CAUSE:
+  Must describe the problem or reason for work.
+  Must have at least 5 words and include a specific component/location or event (e.g., inverter ID, tracker row, weather event, system component).
+
+  ACTION:
+  Must describe the actions taken.
+  Must have at least 5 words and include a specific component/location or event (e.g., inverter ID, tracker row, weather event, system component).
+  Must clearly describe what was done.
+  Must mention at least one specific action verb (e.g., replaced, adjusted, inspected, tested, secured, supported, installed, cleaned, documented). 
+  Must include at least one tool, method, or part used (if applicable).
+
+  RESULT:
+  Must state the outcome or current operational status.
+  Must include operational condition (e.g., producing, operational, repaired, functioning) or the status after work (e.g., fault cleared, issue unresolved, further work required).
+
+  No section of the CAR format should be empty.
+  Cause, Action, Result should each be distinct (not repeated text).
+  Must be written in past tense.
+  Must avoid placeholders like “N/A” or “TBD”.
+
+
+work_status:
+  Troubleshooting: |
+    Must describe the issue or abnormality observed.
+    Must include the diagnostic steps taken.
+    Must clearly state whether issue was resolved or escalated.
+    If unresolved, reason must be provided (e.g., waiting on parts).
+
+  Work: |
+    Must specify what task was performed (e.g., repair, replacement, cleaning, inspection).
+    Must mention the equipment/component involved.
+    Must indicate whether the task was completed successfully or is pending.
+    If no work done, must provide justification.
+
+  Warranty_Support: |
+    Must identify the warranty-covered equipment/component.
+    Must state the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
+    Must mention claim status (accepted, pending, rejected).
+    If available, must include warranty ticket/reference number.
+
+  Delay: |
+    Must specify the reason for the delay (weather, access issue, material shortage, etc.).
+    Must indicate impact (e.g., which task is delayed).
+    Must provide the new expected completion timeline (ETA).
+
+  Training: |
+    Must explain what the training was for (new equipment, refresher, safety, etc.).
+    Must mention the type of training (on-site, classroom, toolbox talk, OEM-led).
+    Must list who participated (team members count or names).
+    Must confirm that training was completed.
+
+  Others: |
+    Must clearly describe the activity.
+    Must mention why it does not fit into troubleshooting, work, warranty, delay, or training.
+    Must state the outcome of the activity.
+
+    

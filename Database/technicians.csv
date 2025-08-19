@@ -1,0 +1,6 @@
+id,tech_name,email,phone,specialization,hire_date,status,created_at,updated_at
+1,John Smith,john.smith@solartech.com,+1-555-0101,Solar Inverter Specialist,2023-01-15,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
+2,Sarah Johnson,sarah.johnson@solartech.com,+1-555-0102,Panel Installation Expert,2023-02-20,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
+3,Michael Chen,michael.chen@solartech.com,+1-555-0103,Electrical Systems Engineer,2023-03-10,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
+4,Emily Davis,emily.davis@solartech.com,+1-555-0104,Monitoring Systems Specialist,2023-04-05,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
+5,David Wilson,david.wilson@solartech.com,+1-555-0105,Preventive Maintenance Expert,2023-05-12,Active,2024-01-15 08:00:00,2024-01-15 08:00:00

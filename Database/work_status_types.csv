@@ -1,0 +1,7 @@
+id,status_type,description,requirements,created_at,updated_at
+1,Troubleshooting,Initial problem diagnosis and investigation,"Problem identification, Initial assessment, Safety check",2024-01-15 08:00:00,2024-01-15 08:00:00
+2,Work,Active work being performed,"Work description, Progress update, Time tracking",2024-01-15 08:00:00,2024-01-15 08:00:00
+3,Warranty_Support,Warranty-related work and support,"Warranty details, Issue description, Resolution steps",2024-01-15 08:00:00,2024-01-15 08:00:00
+4,Delay,Work delayed due to various reasons,"Delay reason, Expected duration, Impact assessment",2024-01-15 08:00:00,2024-01-15 08:00:00
+5,Training,Training and development activities,"Training topic, Duration, Participants",2024-01-15 08:00:00,2024-01-15 08:00:00
+6,Others,Miscellaneous activities and notes,"Activity description, Purpose, Outcome",2024-01-15 08:00:00,2024-01-15 08:00:00
