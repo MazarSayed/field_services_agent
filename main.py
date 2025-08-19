@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import openai
 
-from ai_classifier import (
+from src.ai_classifier import (
     validate_work_status_log, 
     convert_to_car_format, 
     convert_to_client_summary
@@ -184,7 +184,7 @@ def get_openai_client():
 async def get_work_orders(
     tech_name: str, 
     work_date: str,
-    openai_client: openai.OpenAI = Depends(get_openai_client)
+    # openai_client: openai.OpenAI = Depends(get_openai_client)
 ):
     """
     Extract work orders assigned to a technician on a specific date
