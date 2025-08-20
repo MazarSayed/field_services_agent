@@ -85,7 +85,7 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
         
         prompt = f"""
         Validate the following operational log against the specific requirements for {work_status} work status.
-        For the given word order descibtions: {work_order_description}
+        For the given work order description: {work_order_description}
 
         OPERATIONAL LOG:
         "{operational_log}"
@@ -98,6 +98,13 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
         {status_requirements}
         
         Please analyze if the operational log meets ALL the requirements. If it fails validation, generate 1-2 specific follow-up questions to gather the missing information.
+        
+        Respond with a JSON object in this exact format:
+        {{
+            "valid": true/false,
+            "missing": "description of what is missing (if valid is false)",
+            "follow_up_questions": ["question 1", "question 2"]
+        }}
         """
         
         response = openai_client.chat.completions.create(
@@ -105,41 +112,17 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
             messages=[{"role": "user", "content": prompt}],
             max_tokens=300,
             temperature=0.1,
-            response_format={"type": "json_object"},
-            functions=[{
-                "name": "validate_work_status",
-                "description": "Validate operational log against work status requirements",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "valid": {
-                            "type": "boolean",
-                            "description": "Whether the operational log meets all requirements"
-                        },
-                        "missing": {
-                            "type": "string",
-                            "description": "List of specific missing requirements if validation fails"
-                        },
-                        "follow_up_questions": {
-                            "type": "array",
-                            "items": {"type": "string"},
-                            "description": "List of 1-2 specific follow-up questions to gather missing information"
-                        }
-                    },
-                    "required": ["valid", "missing", "follow_up_questions"]
-                }
-            }],
-            function_call={"name": "validate_work_status"}
+            response_format={"type": "json_object"}
         )
         
-        # Extract function call response
-        function_call = response.choices[0].message.function_call
-        if function_call and function_call.name == "validate_work_status":
-            args = json.loads(function_call.arguments)
+        # Extract response content and parse JSON
+        response_content = response.choices[0].message.content
+        try:
+            args = json.loads(response_content)
             # Use Pydantic model for validation and type safety
             return WorkStatusValidationResponse(**args)
-        else:
-            return WorkStatusValidationResponse(valid=False, missing="Invalid response format", follow_up_questions=[])
+        except json.JSONDecodeError:
+            return WorkStatusValidationResponse(valid=False, missing="Invalid JSON response format", follow_up_questions=[])
         
     except Exception as e:
         st.error(f"Error validating work status log: {e}")
@@ -183,8 +166,13 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
         RESULT: [What was the outcome? Was the issue resolved? Any recommendations or follow-up needed?]
         
         Ensure all requirements above are met. If any section cannot be adequately determined from the notes.
-
-        IMPORTANT: Return the answer strictly as a **JSON object** with keys "cause", "action", and "result".
+        
+        Respond with a JSON object in this exact format:
+        {{
+            "cause": "description of what caused the need for this work",
+            "action": "description of what specific actions were taken",
+            "result": "description of what was the outcome of the work"
+        }}
         """
         
         response = openai_client.chat.completions.create(
@@ -192,55 +180,20 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
             messages=[{"role": "user", "content": prompt}],
             max_tokens=600,
             temperature=0.3,
-            response_format={"type": "json_object"},
-            functions=[{
-                "name": "convert_to_car_format",
-                "description": "Convert completion notes to CAR format",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "cause": {
-                            "type": "string",
-                            "description": "What caused the need for this work"
-                        },
-                        "action": {
-                            "type": "string",
-                            "description": "What specific actions were taken"
-                        },
-                        "result": {
-                            "type": "string",
-                            "description": "What was the outcome of the work"
-                        },
-                    },
-                    "required": ["cause", "action", "result"]
-                }
-            }],
+            response_format={"type": "json_object"}
         )
-        # Extract JSON safely
+        
+        # Extract response content and parse JSON
+        response_content = response.choices[0].message.content
         try:
-            response_json = response.choices[0].message.json
-        except AttributeError:
-            import json
-            response_json = json.loads(response.choices[0].message.content)
-
-        return CARFormatResponse(
-            cause=response_json.get("cause", ""),
-            action=response_json.get("action", ""),
-            result=response_json.get("result", ""),
-            success=True
-        )
-                
+            args = json.loads(response_content)
+            return CARFormatResponse(**args)
+        except json.JSONDecodeError:
+            return CARFormatResponse(cause="", action="", result="") 
+        
     except Exception as e:
         st.error(f"Error converting to CAR format: {e}")
-        return CARFormatResponse(
-            cause="",
-            action="",
-            result="",
-            success=False,
-            error_message=str(e)
-        )
-
-
+        return CARFormatResponse(cause="", action="", result="")
 
 
 def convert_to_client_summary(openai_client, Conversation_tech_ai_client_table: str) -> ClientSummaryResponse:
@@ -277,6 +230,12 @@ def convert_to_client_summary(openai_client, Conversation_tech_ai_client_table: 
         - If technical terms are unavoidable, explain them simply
         
         Provide a clear summary and notes that any business client would understand.
+        
+        Respond with a JSON object in this exact format:
+        {{
+            "summary": "two-line summary in plain language explaining what happened",
+            "notes": "simplified notes for basic clients in plain english language"
+        }}
         """
         
         response = openai_client.chat.completions.create(
@@ -284,43 +243,24 @@ def convert_to_client_summary(openai_client, Conversation_tech_ai_client_table: 
             messages=[{"role": "user", "content": prompt}],
             max_tokens=400,
             temperature=0.3,
-            response_format={"type": "json_object"},
-            functions=[{
-                "name": "convert_to_client_summary",
-                "description": "Convert technical conversation to client-friendly summary",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "summary": {
-                            "type": "string",
-                            "description": "Two-line summary in plain language explaining what happened"
-                        },
-                        "notes": {
-                            "type": "string",
-                            "description": "Simplified notes for basic clients in plain english language"
-                        }
-                    },
-                    "required": ["summary", "notes"]
-                }
-            }],
-            function_call={"name": "convert_to_client_summary"}
+            response_format={"type": "json_object"}
         )
         
-        # Extract function call response
-        function_call = response.choices[0].message.function_call
-        if function_call and function_call.name == "convert_to_client_summary":
-            args = json.loads(function_call.arguments)
+        # Extract response content and parse JSON
+        response_content = response.choices[0].message.content
+        try:
+            args = json.loads(response_content)
             return ClientSummaryResponse(
                 summary=args.get("summary", ""),
                 notes=args.get("notes", ""),
                 success=True
             )
-        else:
+        except json.JSONDecodeError:
             return ClientSummaryResponse(
                 summary="",
                 notes="",
                 success=False,
-                error_message="Invalid response format"
+                error_message="Invalid JSON response format"
             )
         
     except Exception as e:

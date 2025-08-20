@@ -12,7 +12,7 @@ def get_prompt(key: str) -> str:
         The prompt string or empty string if not found
     """
     try:
-        yaml_path = os.path.join(os.path.dirname(__file__), "prompts", "prompts.yaml")
+        yaml_path = os.path.join(os.path.dirname(__file__), "..", "prompts", "prompts.yaml")
         
         with open(yaml_path, 'r', encoding='utf-8') as file:
             data = yaml.safe_load(file)
