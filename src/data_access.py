@@ -27,6 +27,7 @@ class DataAccessLayer:
             'completion_notes': 'Database/completion_notes.csv',
             'technicians': 'Database/technicians.csv',
             'work_status_types': 'Database/work_status_types.csv',
+            'status_log_chat': 'Database/status_log_chat.csv'
         }
     
     def _load_config(self, config_path: str) -> Dict:
@@ -125,6 +126,31 @@ class DataAccessLayer:
             return openai.OpenAI(api_key=api_key)
         except Exception as e:
             raise ValueError(f"Error initializing OpenAI client: {str(e)}")
+
+    def get_work_order_by_id(self, work_order_id: int) -> Dict[str, Any]:
+        """Retrieve a single work order by its ID."""
+        work_orders = self.load_work_orders()
+        for row in work_orders:
+            if str(row.get("id")) == str(work_order_id):
+                return row
+        raise ValueError(f"Work order with ID {work_order_id} not found")
+    
+    def update_work_order(self, updated_work_order: dict) -> bool:
+        """Update an existing work order in the CSV by work_order_id"""
+        filename = self.csv_files['work_orders']
+        data = self.read_csv_file(filename)
+        updated = False
+
+        for i, row in enumerate(data):
+            if row.get("work_order_id") == updated_work_order.get("work_order_id"):
+                data[i] = updated_work_order
+                updated = True
+                break
+
+        if updated:
+            fieldnames = data[0].keys() if data else updated_work_order.keys()
+            return self.write_csv_file(filename, data, fieldnames)
+        return False
 
 
 # Global instance

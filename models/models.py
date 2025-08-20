@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
+from datetime import datetime
 
 class WorkStatusValidationResponse(BaseModel):
     """Schema for work status log validation response"""
@@ -42,6 +43,12 @@ class WorkOrderResponse(BaseModel):
     total_pending: int = Field(..., description="Total pending work orders")
     total_completed: int = Field(..., description="Total completed work orders")
 
+class WorkOrderUpdateResponse(BaseModel):
+    work_order_id: str
+    status: str
+    message: str
+    completed_at: Optional[datetime] = None
+
 class WorkStatusLogRequest(BaseModel):
     operational_log: str = Field(..., description="Operational log text")
     work_status: str = Field(..., description="Work status type")
@@ -58,6 +65,12 @@ class WorkStatusSubmissionRequest(BaseModel):
     notes: str = Field(..., description="Work notes")
     summary: str = Field(..., description="Work summary")
     work_order_id: Optional[str] = Field(None, description="Work order ID")
+    complete_flag: Optional[bool]
+
+class ChatSubmissionRequest(BaseModel):
+    work_order_id: Optional[str] 
+    conversation_tech_ai_client_table: Optional[str]
+    work_status: Optional[str]
 
 class WorkStatusLogs(BaseModel):
     work_status_logs: List[Dict[str, Any]] = Field(..., description="List of work status logs")
