@@ -81,7 +81,7 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
         status_requirements = get_prompt(f"work_status.{work_status.title()}")
         
         if not status_requirements:
-            return WorkStatusValidationResponse(valid=False, missing=f"Unknown work status: {work_status}", follow_up_questions=[])
+            return WorkStatusValidationResponse(valid=False, missing=f"Unknown work status: {work_status}",  follow_up_question="")
         
         prompt = f"""
         Validate the following operational log against the specific requirements for {work_status} work status.
@@ -134,18 +134,28 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
 
         print(response)
         
-        # Extract response content and parse JSON
-        response_content = response.choices[0].message.content
+        message = response.choices[0].message
+        if message.function_call and message.function_call.arguments:
+            response_content = message.function_call.arguments
+        else:
+            response_content = message.content  # fallback if no function call
+
         try:
             args = json.loads(response_content)
-            # Use Pydantic model for validation and type safety
             return WorkStatusValidationResponse(**args)
-        except json.JSONDecodeError:
-            return WorkStatusValidationResponse(valid=False, missing="Invalid JSON response format", follow_up_questions=[])
-        
+        except Exception as e:
+            return WorkStatusValidationResponse(
+                valid=False,
+                missing=f"Invalid JSON response format: {e}",
+                follow_up_question="Follow-up question could not be generated."
+            )
+            
     except Exception as e:
         st.error(f"Error validating work status log: {e}")
-        return WorkStatusValidationResponse(valid=False, missing=f"Error: {str(e)}", follow_up_questions=[])
+        return WorkStatusValidationResponse(
+            valid=False, 
+            missing=f"Error: {str(e)}", 
+            follow_up_question="Follow-up question could not be generated.")
 
 
 def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_notes_table: str, work_order_description: str) -> CARFormatResponse:
