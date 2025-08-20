@@ -11,7 +11,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from models.models import (
     WorkOrderResponse, WorkStatusValidationResponse, CARFormatResponse, 
     ClientSummaryResponse, WorkStatusLogRequest, WorkStatusSubmissionRequest,
-    CompletionNotesRequest, ClientSummaryRequest, WorkStatusLogs
+    CompletionNotesRequest, ClientSummaryRequest, WorkStatusLogs, WorkOrderUpdateResponse, 
+    ChatSubmissionRequest
 )
 from src.field_services import get_field_services
 
@@ -67,6 +68,26 @@ async def get_all_work_orders_for_tech(tech_name: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting work orders: {str(e)}")
 
+@app.put("/work-orders/{work_order_id}/complete", response_model=WorkOrderUpdateResponse)
+async def complete_work_order(work_order_id: str):
+    """Update a work order's status to Completed"""
+    try:
+        updated = service.update_work_order_status(work_order_id, "Completed")
+        if not updated:
+            raise HTTPException(status_code=404, detail=f"Work order {work_order_id} not found")
+        
+        return WorkOrderUpdateResponse(
+            work_order_id=work_order_id,
+            status="Completed",
+            message="Work order marked as completed successfully"
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error updating work order: {str(e)}")
+
+
+
 # Endpoint 2: Validate work status log
 @app.post("/validate-work-status", response_model=WorkStatusValidationResponse)
 async def validate_work_status(request: WorkStatusLogRequest):
@@ -98,7 +119,8 @@ async def submit_work_status(request: WorkStatusSubmissionRequest):
             time_spent=request.time_spent,
             notes=request.notes,
             summary=request.summary,
-            work_order_id=request.work_order_id
+            work_order_id=request.work_order_id,
+            complete_flag=request.complete_flag,
         )
         return result
     except ValueError as e:
@@ -118,6 +140,22 @@ async def get_work_status_logs(work_order_id: str):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting work status logs: {str(e)}")
+
+# Endpoint: Submit conversation table to CSV database
+@app.post("/submit-chat")
+async def submit_chat(request: ChatSubmissionRequest):
+    try:
+        response = service.save_conversation(
+            request.conversation_tech_ai_client_table,
+            request.work_order_id,
+            request.work_status,
+        )
+        if response:
+            return {"success": True, "message": "Conversation saved successfully."}
+        else:
+            raise HTTPException(status_code=500, detail="Failed to save conversation.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # Endpoint 4: Convert completion notes to CAR format

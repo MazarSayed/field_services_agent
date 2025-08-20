@@ -7,6 +7,7 @@ from datetime import datetime
 from typing import List, Dict, Any, Optional
 from src.data_access import get_data_access
 from src.ai_classifier import validate_work_status_log, convert_to_car_format, convert_to_client_summary
+import json
 
 
 class FieldServicesService:
@@ -85,6 +86,23 @@ class FieldServicesService:
             "total_completed": total_completed
         }
     
+    def update_work_order_status(self, work_order_id: str, new_status: str) -> bool:
+        """
+        Update the status of a work order in CSV.
+        Returns True if updated, False if work order not found.
+        """
+        work_order = self.data_access.get_work_order_by_id(work_order_id)
+        if not work_order:
+            return False
+        
+        # Update the dictionary keys
+        work_order['status'] = new_status
+        work_order['updated_at'] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # Save back to CSV
+        self.data_access.update_work_order(work_order)
+        return True
+
     def validate_work_status(self, operational_log: str, work_status: str, 
                            work_order_description: str, tech_name: str, 
                            work_date: str, follow_up_questions_answers: str = "") -> Dict[str, Any]:
@@ -101,7 +119,7 @@ class FieldServicesService:
     
     def submit_work_status(self, tech_name: str, work_date: str, work_status: str,
                           time_spent: float, notes: str, summary: str, 
-                          work_order_id: str = None) -> Dict[str, Any]:
+                          work_order_id: str = None, complete_flag: bool = False) -> Dict[str, Any]:
         """Submit work status to database"""
         # Validate date format
         try:
@@ -122,6 +140,7 @@ class FieldServicesService:
             'notes': notes,
             'summary': summary,
             'work_order_id': work_order_id or '',
+            'complete_flag': complete_flag,
             'created_at': datetime.now().isoformat(),
             'updated_at': datetime.now().isoformat()
         }
@@ -129,7 +148,7 @@ class FieldServicesService:
         # Define fieldnames
         fieldnames = [
             'id', 'tech_name', 'work_date', 'work_status', 'time_spent',
-            'notes', 'summary', 'work_order_id', 'created_at', 'updated_at'
+            'notes', 'summary', 'work_order_id', 'complete_flag', 'created_at', 'updated_at'
         ]
         
         # Save to database
@@ -206,6 +225,44 @@ class FieldServicesService:
             "database": {"type": "csv"},
             "openai": {"model": self.data_access.config.get("openai", {}).get("model")}
         }
+
+
+    def parse_conversation_table(self, conversation_str: str) -> dict:
+        """Parse pipe-separated conversation string into dict, ignoring header row."""
+        conversation_dict = {}
+        lines = conversation_str.strip().split("\n")
+        
+        for i, line in enumerate(lines):
+            if "|" in line:
+                speaker, message = line.split("|", 1)
+                speaker = speaker.strip()
+                message = message.strip()
+                
+                # Skip the first line if it looks like a header (e.g., contains speaker names)
+                if i == 0 and message.lower() in ["ai", "tech"]:
+                    continue
+                
+                conversation_dict.setdefault(speaker, []).append(message)
+        
+        return conversation_dict
+
+    
+    def save_conversation(self, conversation_table: str, work_order_id: str, work_status: str) -> bool:
+        conversation_dict = self.parse_conversation_table(conversation_table)
+
+        chat_data = {
+            "work_order_id": work_order_id,
+            "conversation": json.dumps(conversation_dict), 
+            "work_status": work_status,
+        }
+        
+        fieldnames = ["work_order_id", "work_status", "conversation"]
+
+        return self.data_access.append_to_csv_file(
+            self.data_access.csv_files["status_log_chat"], 
+            chat_data, 
+            fieldnames
+        )
 
 
 # Global service instance

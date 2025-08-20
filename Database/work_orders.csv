@@ -2472,7 +2472,7 @@ id,work_order_id,tech_name,work_date,status,description,wo_type,time_type,create
 2471,WO-1062570,Eric Bowen,2025-04-02,Pending,GT 2 - Inverter 4 Year PM,Preventive,Work,2025-04-02 08:00:00,2025-04-02 08:00:00
 2472,WO-1062570,Kyle Foley,2025-04-02,Pending,GT 2 - Inverter 4 Year PM,Preventive,Work,2025-04-02 08:00:00,2025-04-02 08:00:00
 2473,WO-1062570,Eric Bowen,2025-04-02,Pending,GT 2 - Inverter 4 Year PM,Preventive,Work,2025-04-02 08:00:00,2025-04-02 08:00:00
-2474,WO-1070616,William Boyd,2025-08-04,Pending,Escalante - GENERAL INSPECTION- MONTHLY,Preventive,Work,2025-08-04 08:00:00,2025-08-04 08:00:00
+2474,WO-1070616,William Boyd,2025-08-04,Completed,Escalante - GENERAL INSPECTION- MONTHLY,Preventive,Work,2025-08-04 08:00:00,2025-08-20 12:00:14
 2475,WO-1070616,William Boyd,2025-08-04,Pending,Escalante - GENERAL INSPECTION- MONTHLY,Preventive,Work,2025-08-04 08:00:00,2025-08-04 08:00:00
 2476,WO-1070780,William Boyd,2025-08-04,Pending,Monthly SPCC Inspection,Preventive,Work,2025-08-04 08:00:00,2025-08-04 08:00:00
 2477,WO-1070711,Virgil Brumbelow,2025-08-08,Pending,Escalante - Block Inspection,Preventive,Work,2025-08-08 08:00:00,2025-08-08 08:00:00
