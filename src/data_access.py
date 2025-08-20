@@ -8,12 +8,8 @@ import os
 import yaml
 from typing import List, Dict, Any, Optional
 from pathlib import Path
-
-try:
-    import openai
-    OPENAI_AVAILABLE = True
-except ImportError:
-    OPENAI_AVAILABLE = False
+from dotenv import load_dotenv
+import openai
 
 
 class DataAccessLayer:
@@ -21,6 +17,9 @@ class DataAccessLayer:
     
     def __init__(self, config_path: str = "config.yaml"):
         """Initialize with configuration"""
+        # Load environment variables from .env file
+        load_dotenv()
+        
         self.config = self._load_config(config_path)
         self.csv_files = {
             'work_orders': 'Database/work_orders.csv',
@@ -116,10 +115,9 @@ class DataAccessLayer:
     
     def get_openai_client(self):
         """Get OpenAI client instance"""
-        if not OPENAI_AVAILABLE:
-            raise ValueError("OpenAI package not available")
-            
+        print("Getting OpenAI client")
         api_key = os.getenv("OPENAI_API_KEY")
+        print(f"DEBUG: API key found: {'Yes' if api_key else 'No'}")
         if not api_key:
             raise ValueError("OpenAI API key not configured")
         

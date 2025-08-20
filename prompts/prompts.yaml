@@ -33,7 +33,7 @@ work_status:
     Must indicate whether the task was completed successfully or is pending.
     If no work done, must provide justification.
 
-  Warranty_Support: |
+  Warrantysupport: |
     Must identify the warranty-covered equipment/component.
     Must state the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
     Must mention claim status (accepted, pending, rejected).
