@@ -11,7 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from models.models import (
     WorkOrderResponse, WorkStatusValidationResponse, CARFormatResponse, 
     ClientSummaryResponse, WorkStatusLogRequest, WorkStatusSubmissionRequest,
-    CompletionNotesRequest, ClientSummaryRequest
+    CompletionNotesRequest, ClientSummaryRequest, WorkStatusLogs
 )
 from src.field_services import get_field_services
 
@@ -107,6 +107,18 @@ async def submit_work_status(request: WorkStatusSubmissionRequest):
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error submitting work status: {str(e)}")
+
+# Endpoint: Get work status logs
+@app.get("/work-status-logs/{work_order_id}", response_model=WorkStatusLogs)
+async def get_work_status_logs(work_order_id: str):
+    try:
+        result = service.get_work_status_logs(work_order_id)
+        return WorkStatusLogs(**result)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error extracting work status logs: {str(e)}")
+
 
 # Endpoint 4: Convert completion notes to CAR format
 @app.post("/convert-to-car", response_model=CARFormatResponse)

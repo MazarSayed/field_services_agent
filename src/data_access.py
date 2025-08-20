@@ -110,6 +110,10 @@ class DataAccessLayer:
         """Load work status types from CSV"""
         return self.read_csv_file(self.csv_files['work_status_types'])
     
+    def load_work_status_logs(self) -> List[Dict[str, Any]]:
+        """Load work status logs from CSV"""
+        return self.read_csv_file(self.csv_files['work_status_logs'])
+    
     def get_openai_client(self):
         """Get OpenAI client instance"""
         if not OPENAI_AVAILABLE:

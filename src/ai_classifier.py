@@ -14,7 +14,7 @@ import json
 from src.utils import get_prompt
 from models.models import WorkStatusValidationResponse, TranscriptionResponse, CARFormatResponse, ClientSummaryResponse
 
-
+load_dotenv()
  
 def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
     """
@@ -78,14 +78,14 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
 
     try:
         # Get work status requirements
-        status_requirements = get_prompt(f"work_status.{work_status}")
+        status_requirements = get_prompt(f"work_status.{work_status.title()}")
         
         if not status_requirements:
             return WorkStatusValidationResponse(valid=False, missing=f"Unknown work status: {work_status}", follow_up_questions=[])
         
         prompt = f"""
         Validate the following operational log against the specific requirements for {work_status} work status.
-        For the given word order descibtions: {work_order_description}
+        For the given word order descriptions: {work_order_description}
 
         OPERATIONAL LOG:
         "{operational_log}"
@@ -97,7 +97,8 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
         REQUIREMENTS FOR {work_status.upper()}:
         {status_requirements}
         
-        Please analyze if the operational log meets ALL the requirements. If it fails validation, generate 1-2 specific follow-up questions to gather the missing information.
+        Please analyze if the operational log meets ALL the requirements. If it fails validation, generate 1 specific follow-up questions to gather the missing information.
+        IMPORTANT: Return the answer strictly as a **JSON object**.
         """
         
         response = openai_client.chat.completions.create(
@@ -120,17 +121,18 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
                             "type": "string",
                             "description": "List of specific missing requirements if validation fails"
                         },
-                        "follow_up_questions": {
-                            "type": "array",
-                            "items": {"type": "string"},
-                            "description": "List of 1-2 specific follow-up questions to gather missing information"
+                        "follow_up_question": {
+                            "type": "string",
+                            "description": "1 specific follow-up questions to gather missing information"
                         }
                     },
-                    "required": ["valid", "missing", "follow_up_questions"]
+                    "required": ["valid", "missing", "follow_up_question"]
                 }
             }],
             function_call={"name": "validate_work_status"}
         )
+
+        print(response)
         
         # Extract function call response
         function_call = response.choices[0].message.function_call
@@ -165,7 +167,7 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
         Given below is each work status and notes from the field tech on each task.
         Work Order Description: {work_order_description}
 
-        Work Status | Work Sttus Notes
+        Work Status | Work Status Notes
         {wo_status_and_notes_table}
 
         Final Completion Notes from Field Tech:
@@ -216,19 +218,27 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
                 }
             }],
         )
-        # Extract JSON safely
-        try:
-            response_json = response.choices[0].message.json
-        except AttributeError:
-            import json
-            response_json = json.loads(response.choices[0].message.content)
+        msg = response.choices[0].message
 
+        if hasattr(msg, "parsed") and msg.parsed is not None:
+            # Newer SDK
+            response_json = msg.parsed
+        elif msg.function_call and msg.function_call.arguments:
+            # Older SDK using function calling
+            response_json = json.loads(msg.function_call.arguments)
+        elif msg.content:
+            # Raw JSON in content (fallback)
+            response_json = json.loads(msg.content)
+        else:
+            raise ValueError(f"No JSON returned by model: {msg}")
+        
         return CARFormatResponse(
-            cause=response_json.get("cause", ""),
-            action=response_json.get("action", ""),
-            result=response_json.get("result", ""),
+            cause=response_json.get("cause", "") if response_json else "",
+            action=response_json.get("action", "") if response_json else "",
+            result=response_json.get("result", "") if response_json else "",
             success=True
         )
+
                 
     except Exception as e:
         st.error(f"Error converting to CAR format: {e}")
@@ -277,6 +287,8 @@ def convert_to_client_summary(openai_client, Conversation_tech_ai_client_table: 
         - If technical terms are unavoidable, explain them simply
         
         Provide a clear summary and notes that any business client would understand.
+
+        IMPORTANT: Return the answer strictly as a **JSON object**.
         """
         
         response = openai_client.chat.completions.create(

@@ -170,6 +170,26 @@ class FieldServicesService:
             Conversation_tech_ai_client_table=conversation_table
         )
     
+    def get_work_status_logs(self, work_order_id: str) -> Dict[str, Any]:
+        """Get work status logs for a specific work order"""
+        work_status_logs = self.data_access.load_work_status_logs()
+        
+        if not work_status_logs:
+            return {"work_status_logs": []}
+        
+        # Filter by technician and date
+        filtered_status_logs = [
+            log for log in work_status_logs
+            if log.get('work_order_id') == work_order_id
+        ]
+        
+        if not filtered_status_logs:
+            return {"work_status_logs": []}
+        
+        return {
+            "work_status_logs": filtered_status_logs
+        }
+    
     def get_technicians(self) -> List[Dict[str, Any]]:
         """Get all technicians"""
         return self.data_access.load_technicians()

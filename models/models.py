@@ -4,8 +4,8 @@ from typing import List, Optional, Dict, Any
 class WorkStatusValidationResponse(BaseModel):
     """Schema for work status log validation response"""
     valid: bool = Field(description="Whether the operational log meets all requirements")
-    missing: str = Field(description="List of specific missing requirements if validation fails")
-    follow_up_questions: List[str] = Field(description="List of 1-2 specific follow-up questions to gather missing information")
+    missing: str = Field(description="Specific missing requirements if validation fails")
+    follow_up_question: str = Field(description="A single specific follow-up question to gather missing information")
 
 
 class TranscriptionResponse(BaseModel):
@@ -58,6 +58,9 @@ class WorkStatusSubmissionRequest(BaseModel):
     notes: str = Field(..., description="Work notes")
     summary: str = Field(..., description="Work summary")
     work_order_id: Optional[str] = Field(None, description="Work order ID")
+
+class WorkStatusLogs(BaseModel):
+    work_status_logs: List[Dict[str, Any]] = Field(..., description="List of work status logs")
 
 class CompletionNotesRequest(BaseModel):
     completion_notes: str = Field(..., description="Completion notes text")

@@ -12,7 +12,14 @@ def get_prompt(key: str) -> str:
         The prompt string or empty string if not found
     """
     try:
-        yaml_path = os.path.join(os.path.dirname(__file__), "prompts", "prompts.yaml")
+        current_dir = os.path.dirname(__file__)
+        
+        parent_dir = os.path.dirname(current_dir)
+        yaml_path = os.path.join(parent_dir, "prompts", "prompts.yaml")
+        
+        if not os.path.exists(yaml_path):
+            print(f"Error: YAML file not found at {yaml_path}")
+            return ""
         
         with open(yaml_path, 'r', encoding='utf-8') as file:
             data = yaml.safe_load(file)
