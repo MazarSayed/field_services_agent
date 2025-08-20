@@ -87,7 +87,7 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
         Validate the following operational log against the specific requirements for {work_status} work status.
         For the given word order descriptions: {work_order_description}
 
-        OPERATIONAL LOG:
+        USER'S OPERATIONAL LOG:
         "{operational_log}"
 
         Any Previous Follow up questions and answers:
@@ -97,7 +97,8 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
         REQUIREMENTS FOR {work_status.upper()}:
         {status_requirements}
         
-        Please analyze if the operational log meets ALL the requirements. If it fails validation, generate 1 specific follow-up questions to gather the missing information.
+        Please analyze USER'S OPERATIONAL LOG and the requirements for {work_status.upper()} and determine if the USER'S OPERATIONAL LOG meets the requirements.
+        If it does not meet the requirements, generate 1 specific follow-up questions to gather the missing information.
         IMPORTANT: Return the answer strictly as a **JSON object**.
         """
         
