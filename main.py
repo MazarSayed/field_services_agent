@@ -45,7 +45,7 @@ def get_service():
     return service
 
 # Endpoint 1: Extract work orders for a tech on a specific date
-@app.get("/work-orders/{tech_name}/{work_date}", response_model=WorkOrderResponse)
+@app.get("/work-orders/{config[defaults][tech_name]}/{work_date}", response_model=WorkOrderResponse)
 async def get_work_orders(tech_name: str, work_date: str):
     """Extract work orders assigned to a technician on a specific date"""
     try:
@@ -57,10 +57,12 @@ async def get_work_orders(tech_name: str, work_date: str):
         raise HTTPException(status_code=500, detail=f"Error extracting work orders: {str(e)}")
 
 # Endpoint 1b: Get all work orders for a technician (no date filter)
-@app.get("/work-orders/{tech_name}", response_model=WorkOrderResponse)
-async def get_all_work_orders_for_tech(tech_name: str):
+@app.get("/work-orders", response_model=WorkOrderResponse)
+async def get_all_work_orders_for_tech():
     """Extract all work orders assigned to a technician regardless of date"""
     try:
+        tech_name = config['defaults']['tech_name']
+        print(tech_name)
         result = service.get_all_work_orders_for_tech(tech_name)
         return WorkOrderResponse(**result)
     except ValueError as e:

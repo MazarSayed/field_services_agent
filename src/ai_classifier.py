@@ -84,22 +84,32 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
             return WorkStatusValidationResponse(valid=False, missing=f"Unknown work status: {work_status}",  follow_up_question="")
         
         prompt = f"""
-        Validate the following operational log against the specific requirements for {work_status} work status.
-        For the given word order descriptions: {work_order_description}
+        You are validating an operational log for work status: {work_status}.
+        The work order description is: "{work_order_description}".
 
         USER'S OPERATIONAL LOG:
         "{operational_log}"
 
-        Any Previous Follow up questions and answers:
-        Questions | Answers
+        Previous Follow-up Question and Answers:
         {follow_up_questions_answers_table}
-        
-        REQUIREMENTS FOR {work_status.upper()}:
+
+        REQUIREMENTS (guidelines, not strict rules):
         {status_requirements}
         
-        Please analyze USER'S OPERATIONAL LOG and the requirements for {work_status.upper()} and determine if the USER'S OPERATIONAL LOG meets the requirements.
-        If it does not meet the requirements, generate 1 specific follow-up questions to gather the missing information.
-        IMPORTANT: Return the answer strictly as a **JSON object**.
+        INSTRUCTIONS:
+            1. Check if the OPERATIONAL LOG covers the majority of the REQUIREMENTS. These are the critical elements. If they are present or reasonably implied, validation should PASS.
+            2. Do not require every single detail (like tools, exact wording, or formal structure).
+            **IMPORTANT: Treat the combination of the USER'S OPERATIONAL LOG and the previous follow-up Q&A as the complete context. Do not require the final line alone to restate all details.**
+            3. Only mark invalid if important details are clearly missing.
+            4. If invalid, generate ONE concise follow-up question that:
+                - Asks for the missing information in a natural, conversational way
+                - Avoids repeating the same phrasing as before
+                - Is tailored to what’s missing
+
+            Return the result strictly as JSON with fields:
+            - valid (boolean)
+            - missing (string with explanation of what’s missing, or "" if nothing)
+            - follow_up_question (string with 1 specific follow-up question to gather missing information)
         """
         
         response = openai_client.chat.completions.create(
@@ -124,7 +134,7 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
                         },
                         "follow_up_question": {
                             "type": "string",
-                            "description": "1 specific follow-up questions to gather missing information"
+                            "description": "1 specific follow-up question to gather missing information"
                         }
                     },
                     "required": ["valid", "missing", "follow_up_question"]

@@ -28,9 +28,9 @@ work_status:
     If unresolved, reason must be provided (e.g., waiting on parts).
 
   Work: |
-    Must specify what task was performed (e.g., repair, replacement, cleaning, inspection).
-    Must mention the equipment/component involved.
-    Must indicate whether the task was completed successfully or is pending.
+    Specify what task was performed (e.g., repair, replacement, cleaning, inspection).
+    Mention the equipment/component involved.
+    Indicate whether the task was completed successfully or is pending.
     If no work done, must provide justification.
 
   Warrantysupport: |
