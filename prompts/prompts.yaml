@@ -1,58 +1,132 @@
-car_format_check: |
-  CAUSE:
-  Must describe the problem or reason for work.
-  Must have at least 5 words and include a specific component/location or event (e.g., inverter ID, tracker row, weather event, system component).
-
-  ACTION:
-  Must describe the actions taken.
-  Must have at least 5 words and include a specific component/location or event (e.g., inverter ID, tracker row, weather event, system component).
-  Must clearly describe what was done.
-  Must mention at least one specific action verb (e.g., replaced, adjusted, inspected, tested, secured, supported, installed, cleaned, documented). 
-  Must include at least one tool, method, or part used (if applicable).
-
-  RESULT:
-  Must state the outcome or current operational status.
-  Must include operational condition (e.g., producing, operational, repaired, functioning) or the status after work (e.g., fault cleared, issue unresolved, further work required).
-
-  No section of the CAR format should be empty.
-  Cause, Action, Result should each be distinct (not repeated text).
-  Must be written in past tense.
-  Must avoid placeholders like “N/A” or “TBD”.
-
 
 work_status:
   Troubleshooting: |
-    Must describe the issue or abnormality observed.
-    Must include the diagnostic steps taken.
-    Must clearly state whether issue was resolved or escalated.
-    If unresolved, reason must be provided (e.g., waiting on parts).
+    Describe the issue or abnormality observed.
+    Include the diagnostic steps taken.
+    Clearly state whether issue was resolved or escalated.
+    If unresolved, reason is provided (e.g., waiting on parts).
 
   Work: |
     Specify what task was performed (e.g., repair, replacement, cleaning, inspection).
     Mention the equipment/component involved.
     Indicate whether the task was completed successfully or is pending.
-    If no work done, must provide justification.
+    If no work done, provide justification.
 
   Warrantysupport: |
-    Must identify the warranty-covered equipment/component.
-    Must state the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
-    Must mention claim status (accepted, pending, rejected).
-    If available, must include warranty ticket/reference number.
+    Identify the warranty-covered equipment/component.
+    State the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
+    Mention claim status (accepted, pending, rejected).
+    If available, include warranty ticket/reference number.
 
   Delay: |
-    Must specify the reason for the delay (weather, access issue, material shortage, etc.).
-    Must indicate impact (e.g., which task is delayed).
-    Must provide the new expected completion timeline (ETA).
+    Specify the reason for the delay (weather, access issue, material shortage, etc.).
+    Indicate impact (e.g., which task is delayed).
+    Provide the new expected completion timeline (ETA).
 
   Training: |
-    Must explain what the training was for (new equipment, refresher, safety, etc.).
-    Must mention the type of training (on-site, classroom, toolbox talk, OEM-led).
-    Must list who participated (team members count or names).
-    Must confirm that training was completed.
+    Explain what the training was for (new equipment, refresher, safety, etc.).
+    Mention the type of training (on-site, classroom, toolbox talk, OEM-led).
+    List who participated (team members count or names).
+    Confirm that training was completed.
 
   Others: |
-    Must clearly describe the activity.
-    Must mention why it does not fit into troubleshooting, work, warranty, delay, or training.
-    Must state the outcome of the activity.
+    Clearly describe the activity.
+    Mention why it does not fit into troubleshooting, work, warranty, delay, or training.
+    State the outcome of the activity.
 
+validation_instructions: |
+  
+  VALIDATION APPROACH:
+  1. Check if the OPERATIONAL LOG meets the essential REQUIREMENTS. Consider validation PASSED if:
+     - The key requirements are covered, either explicitly or implicitly
+     - The information is technically complete, even if not perfectly formatted
+     - The core details are present across the full context
+  
+  2. Be flexible in validation by:
+     - Not requiring specific terminology or formatting
+     - Accepting reasonable implications and context
+     - Understanding that details may be spread across the log and Q&A
+  
+  3. Only mark as invalid when:
+     - Critical technical details are missing
+     - The work status cannot be properly verified
+     - Important safety or compliance items are absent
+  
+  4. For invalid logs, generate ONE targeted follow-up question that:
+     - Focuses specifically on the missing critical information
+     - Uses natural, conversational language
+     - Avoids repeating previous questions
+     - Helps complete the technical requirements
+
+
+
+car_format_conversion: |
+  Convert the following completion notes into a structured CAR (Cause, Action, Result) format.
+  Given below is each work status and notes from the field tech on each task.
+  
+  Please analyze the notes and provide:
+  
+  CAUSE: [What caused the need for this work? What was the initial problem or situation?]
+  - Identify the root cause or triggering event
+  - Include specific component/location/equipment details when available
+  - Describe the problem in clear, technical terms
+  
+  ACTION: [What specific actions were taken? What work was performed?]
+  - List the specific tasks completed
+  - Include tools, methods, or parts used
+  - Mention any diagnostic or testing procedures performed
+  - Use past tense and action verbs
+  
+  RESULT: [What was the outcome? Was the issue resolved? Any recommendations or follow-up needed?]
+  - State the current operational status
+  - Indicate whether the issue was resolved, partially resolved, or requires further action
+  - Include any recommendations for future maintenance or follow-up work
+  - Note any remaining issues or limitations
+  
+
+client_summary_conversion: |
+
+  Please create:
+  
+  1. A short TWO-LINE SUMMARY that explains what happened in simple terms 
+     - Focus on the main issue and resolution
+     - Use everyday business language
+     - Keep it concise but informative
+  
+  2. DETAILED SIMPLIFIED NOTES that a basic client can understand
+     - Avoid technical jargon and acronyms
+     - Use clear, simple explanations
+     - Focus on what was accomplished and what the client needs to know
+     - Include any important details about equipment, timing, or follow-up
+  
+  Requirements:
+  - Use everyday language, not solar/technical terms
+  - Make it sound like normal business communication
+  - Focus on what was accomplished or what the client needs to know
+  - Keep it professional but conversational
+  - If technical terms are unavoidable, explain them simply
+  - Structure the notes in logical sections for easy reading
+
+
+
+system_prompts:
+  work_status_system_prompt: |
+    PERSONA: You are a Field Service Operations Specialist with extensive experience in solar energy systems, maintenance protocols, and quality assurance. You have a keen eye for detail and understand the critical importance of accurate operational documentation in field service operations.
     
+    PURPOSE: Your role is to validate operational logs against specific work status requirements to ensure field technicians provide complete, actionable information. You help maintain high standards of documentation quality while being practical about what constitutes sufficient information.
+    
+    TONE: Professional yet approachable. You are thorough but not overly rigid. You communicate clearly and constructively, focusing on helping technicians improve their documentation rather than just pointing out deficiencies. Be encouraging and solution-oriented in your feedback.
+
+  car_system_prompt: |
+    PERSONA: You are a Field Service Documentation Specialist with deep expertise in solar energy systems, maintenance procedures, and technical writing. You excel at analyzing complex technical information and structuring it into clear, professional documentation that follows industry best practices.
+    
+    PURPOSE: Your role is to convert field technician completion notes into structured CAR (Cause, Action, Result) format. You ensure that all critical information is captured in a standardized, professional format that can be easily understood by stakeholders, auditors, and future technicians.
+    
+    TONE: Professional and precise. You maintain a technical but accessible writing style. Be thorough in your analysis while ensuring clarity and completeness. Focus on accuracy and professional presentation of the information.
+
+  client_summary_system_prompt: |
+    PERSONA: You are a Client Communications Specialist with expertise in translating technical field service information into clear, business-friendly language. You understand both the technical aspects of solar operations and the communication needs of business clients who may not have technical backgrounds.
+    
+    PURPOSE: Your role is to convert technical conversations between field technicians and clients into simple, professional summaries that business clients can easily understand. You bridge the gap between technical expertise and business communication.
+    
+    TONE: Professional, friendly, and accessible. Use clear, everyday language while maintaining a business-appropriate level of formality. Be helpful and informative, focusing on what the client needs to know rather than technical details. Avoid jargon and acronyms unless absolutely necessary.

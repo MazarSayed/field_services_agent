@@ -11,10 +11,22 @@ from typing import Optional
 import io
 import tempfile
 import json
+import instructor
 from src.utils import get_prompt
-from models.models import WorkStatusValidationResponse, TranscriptionResponse, CARFormatResponse, ClientSummaryResponse
+from models.models import (
+    WorkStatusValidationResponse, 
+    TranscriptionResponse, 
+    CARFormatResponse, 
+    ClientSummaryResponse
+)
 
 load_dotenv()
+
+# Patch the OpenAI client to enable Pydantic response models
+def get_patched_client():
+    """Get OpenAI client patched with instructor for Pydantic response models"""
+    client = openai.OpenAI()
+    return instructor.patch(client)
  
 def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
     """
@@ -24,8 +36,8 @@ def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
     This is different from TTS (Text-to-Speech) - we need STT to convert voice to text
     
     Args:
-        audio_file: Audio file from st.audio_input (UploadedFile object)
         openai_client: OpenAI client instance
+        audio_file: Audio file from st.audio_input (UploadedFile object)
         
     Returns:
         TranscriptionResponse object with transcript and status
@@ -64,13 +76,16 @@ def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
             error_message=str(e)
         )
 
-def validate_work_status_log(openai_client,operational_log: str, work_status: str, work_order_description: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
+def validate_work_status_log(openai_client, operational_log: str, work_status: str, work_order_description: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
     """
     Validate operational log against work status requirements and generate follow-up questions if needed
     
     Args:
+        openai_client: OpenAI client instance
         operational_log: The operational log to validate
         work_status: The work status type (Troubleshooting, Work, Warranty_Support, Delay, Training, Others)
+        work_order_description: Description of the work order for context
+        follow_up_questions_answers_table: Previous follow-up questions and answers
         
     Returns:
         WorkStatusValidationResponse object with validation result and follow-up questions
@@ -81,7 +96,11 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
         status_requirements = get_prompt(f"work_status.{work_status.title()}")
         
         if not status_requirements:
-            return WorkStatusValidationResponse(valid=False, missing=f"Unknown work status: {work_status}",  follow_up_question="")
+            return WorkStatusValidationResponse(valid=False, missing=f"Unknown work status: {work_status}", follow_up_question="")
+        
+        # Get validation instructions and system prompt
+        validation_instructions = get_prompt("validation_instructions")
+        work_status_system_prompt = get_prompt("system_prompts.work_status_system_prompt")
         
         prompt = f"""
         You are validating an operational log for work status: {work_status}.
@@ -96,77 +115,33 @@ def validate_work_status_log(openai_client,operational_log: str, work_status: st
         REQUIREMENTS (guidelines, not strict rules):
         {status_requirements}
         
-        INSTRUCTIONS:
-            1. Check if the OPERATIONAL LOG covers the majority of the REQUIREMENTS. These are the critical elements. If they are present or reasonably implied, validation should PASS.
-            2. Do not require every single detail (like tools, exact wording, or formal structure).
-            **IMPORTANT: Treat the combination of the USER'S OPERATIONAL LOG and the previous follow-up Q&A as the complete context. Do not require the final line alone to restate all details.**
-            3. Only mark invalid if important details are clearly missing.
-            4. If invalid, generate ONE concise follow-up question that:
-                - Asks for the missing information in a natural, conversational way
-                - Avoids repeating the same phrasing as before
-                - Is tailored to what’s missing
-
-            Return the result strictly as JSON with fields:
-            - valid (boolean)
-            - missing (string with explanation of what’s missing, or "" if nothing)
-            - follow_up_question (string with 1 specific follow-up question to gather missing information)
+        {validation_instructions}
         """
         
-        response = openai_client.chat.completions.create(
-            model="gpt-4o",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=300,
-            temperature=0.1,
-            response_format={"type": "json_object"},
-            functions=[{
-                "name": "validate_work_status",
-                "description": "Validate operational log against work status requirements",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "valid": {
-                            "type": "boolean",
-                            "description": "Whether the operational log meets all requirements"
-                        },
-                        "missing": {
-                            "type": "string",
-                            "description": "List of specific missing requirements if validation fails"
-                        },
-                        "follow_up_question": {
-                            "type": "string",
-                            "description": "1 specific follow-up question to gather missing information"
-                        }
-                    },
-                    "required": ["valid", "missing", "follow_up_question"]
-                }
-            }],
-            function_call={"name": "validate_work_status"}
-        )
-
-        print(response)
+        # Use instructor patched client for Pydantic response model
+        patched_client = get_patched_client()
         
-        message = response.choices[0].message
-        if message.function_call and message.function_call.arguments:
-            response_content = message.function_call.arguments
-        else:
-            response_content = message.content  # fallback if no function call
-
-        try:
-            args = json.loads(response_content)
-            return WorkStatusValidationResponse(**args)
-        except Exception as e:
-            return WorkStatusValidationResponse(
-                valid=False,
-                missing=f"Invalid JSON response format: {e}",
-                follow_up_question="Follow-up question could not be generated."
-            )
+        response = patched_client.chat.completions.create(
+            model="gpt-4o",
+            response_model=WorkStatusValidationResponse,
+            messages=[
+                {"role": "system", "content": work_status_system_prompt}, 
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=300,
+            temperature=0.1
+        )
+        
+        # Return the validated Pydantic model directly
+        return response
             
     except Exception as e:
         st.error(f"Error validating work status log: {e}")
         return WorkStatusValidationResponse(
             valid=False, 
             missing=f"Error: {str(e)}", 
-            follow_up_question="Follow-up question could not be generated.")
+            follow_up_question="Follow-up question could not be generated."
+        )
 
 
 def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_notes_table: str, work_order_description: str) -> CARFormatResponse:
@@ -174,18 +149,23 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
     Convert completion notes to CAR (Cause, Action, Result) format using gpt-4o-mini
     
     Args:
-        completion_notes: Original completion notes
-        wo_status_and_notes_table: Work order description for context
+        openai_client: OpenAI client instance
+        completion_notes: Original completion notes from field tech
+        wo_status_and_notes_table: Table of work status and notes for each task
+        work_order_description: Work order description for context
         
     Returns:
         CARFormatResponse object with structured CAR format data
     """
 
-    
     try:
+        # Get CAR format conversion prompt and system prompt
+        car_prompt = get_prompt("car_format_conversion")
+        car_system_prompt = get_prompt("system_prompts.car_system_prompt")
+        
         prompt = f"""
-        Convert the following completion notes into a structured CAR (Cause, Action, Result) format.
-        Given below is each work status and notes from the field tech on each task.
+        {car_prompt}
+        
         Work Order Description: {work_order_description}
 
         Work Status | Work Status Notes
@@ -193,124 +173,77 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
 
         Final Completion Notes from Field Tech:
         {completion_notes}
-        
-        GLOBAL CAR FORMAT REQUIREMENTS:
-        {get_prompt("car_format_check")}
-        
-        Please analyze the notes and provide:
-        
-        CAUSE: [What caused the need for this work? What was the initial problem or situation?]
-        
-        ACTION: [What specific actions were taken? What work was performed?]
-        
-        RESULT: [What was the outcome? Was the issue resolved? Any recommendations or follow-up needed?]
-        
-        Ensure all requirements above are met. If any section cannot be adequately determined from the notes.
-        
-        Respond with a JSON object in this exact format:
-        {{
-            "cause": "description of what caused the need for this work",
-            "action": "description of what specific actions were taken",
-            "result": "description of what was the outcome of the work"
-        }}
         """
         
-        response = openai_client.chat.completions.create(
-            model="gpt-4o",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=600,
-            temperature=0.3,
-            response_format={"type": "json_object"}
-        )
-        msg = response.choices[0].message
-
-        if hasattr(msg, "parsed") and msg.parsed is not None:
-            # Newer SDK
-            response_json = msg.parsed
-        elif msg.function_call and msg.function_call.arguments:
-            # Older SDK using function calling
-            response_json = json.loads(msg.function_call.arguments)
-        elif msg.content:
-            # Raw JSON in content (fallback)
-            response_json = json.loads(msg.content)
-        else:
-            raise ValueError(f"No JSON returned by model: {msg}")
+        # Use instructor patched client for Pydantic response model
+        patched_client = get_patched_client()
         
-        return CARFormatResponse(
-            cause=response_json.get("cause", "") if response_json else "",
-            action=response_json.get("action", "") if response_json else "",
-            result=response_json.get("result", "") if response_json else "",
-            success=True
+        response = patched_client.chat.completions.create(
+            model="gpt-4o-mini",
+            response_model=CARFormatResponse,
+            messages=[
+                {"role": "system", "content": car_system_prompt}, 
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=800,
+            temperature=0.3
         )
-
+        
+        # Return the validated Pydantic model directly
+        return response
                 
     except Exception as e:
         st.error(f"Error converting to CAR format: {e}")
-        return CARFormatResponse(cause="", action="", result="")
+        return CARFormatResponse(
+            cause="",
+            action="",
+            result="",
+            success=False,
+            error_message=str(e)
+        )
 
 
-def convert_to_client_summary(openai_client, Conversation_tech_ai_client_table: str) -> ClientSummaryResponse:
+def convert_to_client_summary(openai_client, conversation_tech_ai_client_table: str) -> ClientSummaryResponse:
     """
     Convert AI and human messages into a client-friendly summary and notes
     
     Args:
-        ai_message: The AI's response or technical message
-        human_message: The human's question or input
+        openai_client: OpenAI client instance
+        conversation_tech_ai_client_table: Table of conversation between tech, AI, and client
         
     Returns:
         ClientSummaryResponse object with summary and notes
     """
 
-    
     try:
+        # Get client summary conversion prompt and system prompt
+        summary_prompt = get_prompt("client_summary_conversion")
+        client_summary_system_prompt = get_prompt("system_prompts.client_summary_system_prompt")
+        
         prompt = f"""
-        Convert the following technical conversation into a simple, client-friendly format.
+        {summary_prompt}
         
         Conversation between Field Tech and Client:
         Tech | Client
-        {Conversation_tech_ai_client_table}
-        
-        Please create:
-        
-        1. A TWO-LINE SUMMARY that explains what happened in simple terms
-        2. SIMPLIFIED NOTES that a basic client can understand (avoid technical jargon)
-        
-        Requirements:
-        - Use everyday language, not solar/technical terms
-        - Make it sound like normal business communication
-        - Focus on what was accomplished or what the client needs to know
-        - Keep it professional but conversational
-        - If technical terms are unavoidable, explain them simply
-        
-        Provide a clear summary and notes that any business client would understand.
-
-        IMPORTANT: Return the answer strictly as a **JSON object**.
+        {conversation_tech_ai_client_table}
         """
         
-        response = openai_client.chat.completions.create(
-            model="gpt-4o",
-            messages=[{"role": "user", "content": prompt}],
+        # Use instructor patched client for Pydantic response model
+        patched_client = get_patched_client()
+        
+        response = patched_client.chat.completions.create(
+            model="gpt-4o-mini",
+            response_model=ClientSummaryResponse,
+            messages=[
+                {"role": "system", "content": client_summary_system_prompt}, 
+                {"role": "user", "content": prompt}
+            ],
             max_tokens=400,
-            temperature=0.3,
-            response_format={"type": "json_object"}
+            temperature=0.3
         )
         
-        # Extract response content and parse JSON
-        response_content = response.choices[0].message.content
-        try:
-            args = json.loads(response_content)
-            return ClientSummaryResponse(
-                summary=args.get("summary", ""),
-                notes=args.get("notes", ""),
-                success=True
-            )
-        except json.JSONDecodeError:
-            return ClientSummaryResponse(
-                summary="",
-                notes="",
-                success=False,
-                error_message="Invalid JSON response format"
-            )
+        # Return the validated Pydantic model directly
+        return response
         
     except Exception as e:
         st.error(f"Error converting to client summary: {e}")
