@@ -62,7 +62,7 @@ async def get_all_work_orders_for_tech():
     """Extract all work orders assigned to a technician regardless of date"""
     try:
         tech_name = config['defaults']['tech_name']
-        print(tech_name)
+        # print(tech_name)
         result = service.get_all_work_orders_for_tech(tech_name)
         return WorkOrderResponse(**result)
     except ValueError as e:
