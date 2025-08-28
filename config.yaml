@@ -27,3 +27,8 @@ openai:
   max_tokens: 600
   temperature: 0.3
 
+Work_Order_Type:
+  Corrective:
+    - Troubleshooting
+    - Repairwork
+    - Warrantysupport
