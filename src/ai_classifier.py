@@ -76,14 +76,14 @@ def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
             error_message=str(e)
         )
 
-def validate_work_status_log(openai_client, operational_log: str, work_status: str, work_order_description: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
+def validate_work_status_log(operational_log: str, work_status:dict, work_order_description: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
     """
     Validate operational log against work status requirements and generate follow-up questions if needed
     
     Args:
         openai_client: OpenAI client instance
         operational_log: The operational log to validate
-        work_status: The work status type (Troubleshooting, Work, Warranty_Support, Delay, Training, Others)
+        work_status: The work status types and along with their percentage of occurance
         work_order_description: Description of the work order for context
         follow_up_questions_answers_table: Previous follow-up questions and answers
         
@@ -93,8 +93,10 @@ def validate_work_status_log(openai_client, operational_log: str, work_status: s
 
     try:
         # Get work status requirements
-        status_requirements = get_prompt(f"work_status.{work_status.title()}")
-        
+        status_requirements = ""
+        for work_status_type, percentage in work_status.items():
+            status_requirements += get_prompt(f"work_status.{work_status_type}") + f"Percentage of allocated time for the work status: {percentage}"
+            
         if not status_requirements:
             return WorkStatusValidationResponse(valid=False, missing=f"Unknown work status: {work_status}", follow_up_question="")
         
@@ -105,6 +107,7 @@ def validate_work_status_log(openai_client, operational_log: str, work_status: s
         prompt = f"""
         You are validating an operational log for work status: {work_status}.
         The work order description is: "{work_order_description}".
+    
 
         USER'S OPERATIONAL LOG:
         "{operational_log}"

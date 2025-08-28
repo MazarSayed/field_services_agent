@@ -17,6 +17,13 @@ work_status:
     State the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
     Mention claim status (accepted, pending, rejected).
     If available, include warranty ticket/reference number.
+ 
+  Repairwork: |
+    Identify the defective/damaged equipment or component.
+    Describe the repair action performed (e.g., welding, rewiring, calibration).
+    Mention if parts/tools were required or replaced.
+    Confirm whether repair restored functionality or if further action is needed.
+    Provide repair completion date/time if available.
 
   Delay: |
     Specify the reason for the delay (weather, access issue, material shortage, etc.).
@@ -42,7 +49,9 @@ validation_instructions: |
      - The information is technically complete, even if not perfectly formatted
      - The core details are present across the full context
   
-  2. Be flexible in validation by:
+  2. Be flexible in validation based on the percentage of allocated time for the work status:
+     - If the percentage of allocated time is high, then the validation is more strict
+     - If the percentage of allocated time is low, then the validation is more lenient
      - Not requiring specific terminology or formatting
      - Accepting reasonable implications and context
      - Understanding that details may be spread across the log and Q&A
@@ -53,7 +62,7 @@ validation_instructions: |
      - Important safety or compliance items are absent
   
   4. For invalid logs, generate ONE targeted follow-up question that:
-     - Focuses specifically on the missing critical information
+     - Focuses specifically on the missing critical information based on the percentage of allocated time for the work status
      - Uses natural, conversational language
      - Avoids repeating previous questions
      - Helps complete the technical requirements
