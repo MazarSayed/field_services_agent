@@ -98,7 +98,7 @@ class WorkOrderUpdateResponse(BaseModel):
 class WorkStatusLogRequest(BaseModel):
     """Request model for work status log operations"""
     operational_log: str = Field(..., description="Operational log text")
-    work_status: str = Field(..., description="Work status type")
+    work_status: dict = Field(..., description="Work status type and assigned percentage")
     work_order_description: str = Field(..., description="Work order description")
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
@@ -109,7 +109,7 @@ class WorkStatusSubmissionRequest(BaseModel):
     """Request model for work status submissions"""
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
-    work_status: str = Field(..., description="Work status type")
+    work_status: dict = Field(..., description="Work status type and assigned percentage")
     time_spent: float = Field(..., description="Time spent in hours")
     notes: str = Field(..., description="Work notes")
     summary: str = Field(..., description="Work summary")

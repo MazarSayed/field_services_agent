@@ -103,21 +103,20 @@ class FieldServicesService:
         self.data_access.update_work_order(work_order)
         return True
 
-    def validate_work_status(self, operational_log: str, work_status: str, 
+    def validate_work_status(self, operational_log: str, work_status: dict, 
                            work_order_description: str, tech_name: str, 
                            work_date: str, follow_up_questions_answers: str = "") -> Dict[str, Any]:
         """Validate work status log using AI"""
         openai_client = self.data_access.get_openai_client()
         
         return validate_work_status_log(
-            openai_client=openai_client,
             operational_log=operational_log,
             work_status=work_status,
             work_order_description=work_order_description,
             follow_up_questions_answers_table=follow_up_questions_answers
         )
     
-    def submit_work_status(self, tech_name: str, work_date: str, work_status: str,
+    def submit_work_status(self, tech_name: str, work_date: str, work_status: dict,
                           time_spent: float, notes: str, summary: str, 
                           work_order_id: str = None, complete_flag: bool = False) -> Dict[str, Any]:
         """Submit work status to database"""
@@ -182,11 +181,9 @@ class FieldServicesService:
     
     def convert_to_client_summary(self, conversation_table: str) -> Dict[str, Any]:
         """Convert conversation to client summary"""
-        openai_client = self.data_access.get_openai_client()
         
         return convert_to_client_summary(
-            openai_client=openai_client,
-            Conversation_tech_ai_client_table=conversation_table
+            conversation_tech_ai_client_table=conversation_table
         )
     
     def get_work_status_logs(self, work_order_id: str) -> Dict[str, Any]:

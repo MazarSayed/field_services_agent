@@ -206,12 +206,11 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
         )
 
 
-def convert_to_client_summary(openai_client, conversation_tech_ai_client_table: str) -> ClientSummaryResponse:
+def convert_to_client_summary(conversation_tech_ai_client_table: str) -> ClientSummaryResponse:
     """
     Convert AI and human messages into a client-friendly summary and notes
     
     Args:
-        openai_client: OpenAI client instance
         conversation_tech_ai_client_table: Table of conversation between tech, AI, and client
         
     Returns:
