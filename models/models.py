@@ -60,7 +60,7 @@ class CARFormatResponse(BaseModel):
 
 class ClientSummaryResponse(BaseModel):
     """Response model for client summary conversion"""
-    summary: str = Field(description="Two-line summary in plain language")
+    summary: str = Field(description="One-line summary in plain language under 10 words")
     notes: str = Field(description="Simplified notes for basic clients")
     success: bool = Field(description="Whether conversion was successful")
     error_message: Optional[str] = Field(default=None, description="Error message if conversion failed")
