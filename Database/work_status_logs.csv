@@ -1,605 +1,650 @@
-id,tech_name,work_date,work_status,time_spent,notes,summary,work_order_id,complete_flag,created_at,updated_at
-1,Eric Bowen,2024-09-13,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-2,Eric Bowen,2024-09-12,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-3,Eric Bowen,2024-09-11,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-4,Eric Bowen,2024-09-10,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
-5,Eric Bowen,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-6,Ty Herchenhahn,2024-09-13,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-7,Ty Herchenhahn,2024-09-12,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-8,Ty Herchenhahn,2024-09-11,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-9,Ty Herchenhahn,2024-09-10,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
-10,Ty Herchenhahn,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-11,Hunter Owens,2024-09-10,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
-12,Hunter Owens,2024-09-12,Work,1.5,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-13,Hunter Owens,2024-09-13,Work,1.5,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-14,Hunter Owens,2024-09-09,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-15,Hunter Owens,2024-09-11,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-16,Kyle Foley,2024-09-13,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-17,Eric Bowen,2024-09-13,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-18,Ty Herchenhahn,2024-09-13,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-19,Kyle Foley,2024-09-11,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-20,Eric Bowen,2024-09-11,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-21,Ty Herchenhahn,2024-09-10,Work,3.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
-22,Hunter Owens,2024-09-10,Work,8.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
-23,Eric Bowen,2024-09-10,Work,8.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
-24,Ty Herchenhahn,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-25,Kyle Foley,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-26,Eric Bowen,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-27,Kyle Foley,2024-09-13,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-28,Kyle Foley,2024-09-13,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-29,Kyle Foley,2024-09-12,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-30,Kyle Foley,2024-09-11,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-31,Kyle Foley,2024-09-12,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-32,Kyle Foley,2024-09-10,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
-33,Kyle Foley,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-34,Ty Herchenhahn,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-35,Kyle Foley,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-36,Eric Bowen,2024-09-09,Work,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
-37,Jonathan Hawkins,2024-07-18,Work,4.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
-38,Jonathan Hawkins,2024-07-18,Work,4.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
-39,William Boyd,2024-07-18,Work,3.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
-40,William Boyd,2024-07-18,Work,3.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
-41,Michael Lewis,2024-07-18,Work,6.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
-42,Martin Lopez,2025-06-02,Work,0.5,"Performed annual inverter PM.
+id,tech_name,work_date,work_status,start_time,end_time,time_spent,notes,summary,work_order_id,complete_flag,created_at,updated_at
+1,Eric Bowen,2024-09-13,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+2,Eric Bowen,2024-09-12,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+3,Eric Bowen,2024-09-11,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+4,Eric Bowen,2024-09-10,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
+5,Eric Bowen,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+6,Ty Herchenhahn,2024-09-13,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+7,Ty Herchenhahn,2024-09-12,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+8,Ty Herchenhahn,2024-09-11,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+9,Ty Herchenhahn,2024-09-10,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
+10,Ty Herchenhahn,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+11,Hunter Owens,2024-09-10,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
+12,Hunter Owens,2024-09-12,Work,,,1.5,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+13,Hunter Owens,2024-09-13,Work,,,1.5,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+14,Hunter Owens,2024-09-09,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+15,Hunter Owens,2024-09-11,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+16,Kyle Foley,2024-09-13,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+17,Eric Bowen,2024-09-13,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+18,Ty Herchenhahn,2024-09-13,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+19,Kyle Foley,2024-09-11,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+20,Eric Bowen,2024-09-11,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+21,Ty Herchenhahn,2024-09-10,Work,,,3.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
+22,Hunter Owens,2024-09-10,Work,,,8.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
+23,Eric Bowen,2024-09-10,Work,,,8.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
+24,Ty Herchenhahn,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+25,Kyle Foley,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+26,Eric Bowen,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+27,Kyle Foley,2024-09-13,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+28,Kyle Foley,2024-09-13,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+29,Kyle Foley,2024-09-12,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+30,Kyle Foley,2024-09-11,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+31,Kyle Foley,2024-09-12,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+32,Kyle Foley,2024-09-10,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
+33,Kyle Foley,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+34,Ty Herchenhahn,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+35,Kyle Foley,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+36,Eric Bowen,2024-09-09,Work,,,1.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-09 08:00:00,2024-09-09 08:00:00
+37,Jonathan Hawkins,2024-07-18,Work,,,4.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
+38,Jonathan Hawkins,2024-07-18,Work,,,4.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
+39,William Boyd,2024-07-18,Work,,,3.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
+40,William Boyd,2024-07-18,Work,,,3.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
+41,Michael Lewis,2024-07-18,Work,,,6.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
+42,Martin Lopez,2025-06-02,Work,,,0.5,"Performed annual inverter PM.
 Performed LOTO
 No issues found. Inverter online.",Completed work order WO-1067507,WO-1067507,,2025-06-02 08:00:00,2025-06-02 08:00:00
-43,Virgil Brumbelow,2025-01-09,Work,3.0,completed 6month pm on inverter 4B1,Completed work order WO-1059969,WO-1059969,,2025-01-09 08:00:00,2025-01-09 08:00:00
-44,William Boyd,2025-01-09,Work,3.0,completed 6month pm on inverter 4B1,Completed work order WO-1059969,WO-1059969,,2025-01-09 08:00:00,2025-01-09 08:00:00
-45,Jackie Torrez,2025-01-09,Work,3.0,completed 6month pm on inverter 4B1,Completed work order WO-1059969,WO-1059969,,2025-01-09 08:00:00,2025-01-09 08:00:00
-46,William Boyd,2024-12-11,Work,3.0,"Notified ROC, applied LOTO, performed LDL, cleaned modules, removed LOTO, started inverter, notified ROC back online.",Completed work order WO-1058817,WO-1058817,,2024-12-11 08:00:00,2024-12-11 08:00:00
-47,Virgil Brumbelow,2024-12-12,Work,0.0,"Notified ROC, applied LOTO, performed LDL, cleaned modules, removed LOTO, started inverter, notified ROC back online.",Completed work order WO-1058817,WO-1058817,,2024-12-12 08:00:00,2024-12-12 08:00:00
-48,Jackie Torrez,2024-12-13,Work,3.0,Completed 6month PM. Cleaned all cabinets and inspected all required points.,Completed work order WO-1058813,WO-1058813,,2024-12-13 08:00:00,2024-12-13 08:00:00
-49,Virgil Brumbelow,2024-12-13,Work,3.0,Completed 6month PM. Cleaned all cabinets and inspected all required points.,Completed work order WO-1058813,WO-1058813,,2024-12-13 08:00:00,2024-12-13 08:00:00
-50,Jackie Torrez,2024-12-12,Work,0.0,Completed 6month PM. Cleaned all cabinets and inspected all required points.,Completed work order WO-1058813,WO-1058813,,2024-12-12 08:00:00,2024-12-12 08:00:00
-51,William Boyd,2024-12-12,Work,0.0,Completed 6month PM. Cleaned all cabinets and inspected all required points.,Completed work order WO-1058813,WO-1058813,,2024-12-12 08:00:00,2024-12-12 08:00:00
-52,Kyle Foley,2024-09-11,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-53,Eric Bowen,2024-09-11,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-54,Ty Herchenhahn,2024-09-11,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-55,Kyle Foley,2024-09-12,Work,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-56,Ty Herchenhahn,2024-09-12,Work,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-57,Eric Bowen,2024-09-12,Work,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-58,Ty Herchenhahn,2024-09-13,Work,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-59,Kyle Foley,2024-09-13,Work,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-60,Eric Bowen,2024-09-13,Work,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
-61,Ty Herchenhahn,2024-09-11,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
-62,Kyle Foley,2024-09-12,Work,3.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-63,Ty Herchenhahn,2024-09-12,Work,3.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-64,Eric Bowen,2024-09-12,Work,3.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
-65,Ty Herchenhahn,2024-09-10,Work,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
-66,Ty Herchenhahn,2025-05-05,Work,1.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-05 08:00:00,2025-05-05 08:00:00
-67,Layla Ashtiyany,2025-05-05,Work,1.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-05 08:00:00,2025-05-05 08:00:00
-68,Layla Ashtiyany,2025-05-09,Work,1.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-09 08:00:00,2025-05-09 08:00:00
-69,Martin Lopez,2025-06-30,Work,1.0,"Performed annual inverter PM.
+43,Virgil Brumbelow,2025-01-09,Work,,,3.0,completed 6month pm on inverter 4B1,Completed work order WO-1059969,WO-1059969,,2025-01-09 08:00:00,2025-01-09 08:00:00
+44,William Boyd,2025-01-09,Work,,,3.0,completed 6month pm on inverter 4B1,Completed work order WO-1059969,WO-1059969,,2025-01-09 08:00:00,2025-01-09 08:00:00
+45,Jackie Torrez,2025-01-09,Work,,,3.0,completed 6month pm on inverter 4B1,Completed work order WO-1059969,WO-1059969,,2025-01-09 08:00:00,2025-01-09 08:00:00
+46,William Boyd,2024-12-11,Work,,,3.0,"Notified ROC, applied LOTO, performed LDL, cleaned modules, removed LOTO, started inverter, notified ROC back online.",Completed work order WO-1058817,WO-1058817,,2024-12-11 08:00:00,2024-12-11 08:00:00
+47,Virgil Brumbelow,2024-12-12,Work,,,0.0,"Notified ROC, applied LOTO, performed LDL, cleaned modules, removed LOTO, started inverter, notified ROC back online.",Completed work order WO-1058817,WO-1058817,,2024-12-12 08:00:00,2024-12-12 08:00:00
+48,Jackie Torrez,2024-12-13,Work,,,3.0,Completed 6month PM. Cleaned all cabinets and inspected all required points.,Completed work order WO-1058813,WO-1058813,,2024-12-13 08:00:00,2024-12-13 08:00:00
+49,Virgil Brumbelow,2024-12-13,Work,,,3.0,Completed 6month PM. Cleaned all cabinets and inspected all required points.,Completed work order WO-1058813,WO-1058813,,2024-12-13 08:00:00,2024-12-13 08:00:00
+50,Jackie Torrez,2024-12-12,Work,,,0.0,Completed 6month PM. Cleaned all cabinets and inspected all required points.,Completed work order WO-1058813,WO-1058813,,2024-12-12 08:00:00,2024-12-12 08:00:00
+51,William Boyd,2024-12-12,Work,,,0.0,Completed 6month PM. Cleaned all cabinets and inspected all required points.,Completed work order WO-1058813,WO-1058813,,2024-12-12 08:00:00,2024-12-12 08:00:00
+52,Kyle Foley,2024-09-11,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+53,Eric Bowen,2024-09-11,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+54,Ty Herchenhahn,2024-09-11,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+55,Kyle Foley,2024-09-12,Work,,,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+56,Ty Herchenhahn,2024-09-12,Work,,,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+57,Eric Bowen,2024-09-12,Work,,,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+58,Ty Herchenhahn,2024-09-13,Work,,,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+59,Kyle Foley,2024-09-13,Work,,,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+60,Eric Bowen,2024-09-13,Work,,,4.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-13 08:00:00,2024-09-13 08:00:00
+61,Ty Herchenhahn,2024-09-11,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-11 08:00:00,2024-09-11 08:00:00
+62,Kyle Foley,2024-09-12,Work,,,3.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+63,Ty Herchenhahn,2024-09-12,Work,,,3.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+64,Eric Bowen,2024-09-12,Work,,,3.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-12 08:00:00,2024-09-12 08:00:00
+65,Ty Herchenhahn,2024-09-10,Work,,,2.0,Weekly Ad Hoc Complete,Completed work order WO-1055431,WO-1055431,,2024-09-10 08:00:00,2024-09-10 08:00:00
+66,Ty Herchenhahn,2025-05-05,Work,,,1.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-05 08:00:00,2025-05-05 08:00:00
+67,Layla Ashtiyany,2025-05-05,Work,,,1.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-05 08:00:00,2025-05-05 08:00:00
+68,Layla Ashtiyany,2025-05-09,Work,,,1.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-09 08:00:00,2025-05-09 08:00:00
+69,Martin Lopez,2025-06-30,Work,,,1.0,"Performed annual inverter PM.
 Performed LOTO
 No issues found. Inverter online.",Completed work order WO-1067507,WO-1067507,,2025-06-30 08:00:00,2025-06-30 08:00:00
-70,William Boyd,2025-06-30,Work,1.0,"Performed annual inverter PM.
+70,William Boyd,2025-06-30,Work,,,1.0,"Performed annual inverter PM.
 Performed LOTO
 No issues found. Inverter online.",Completed work order WO-1067507,WO-1067507,,2025-06-30 08:00:00,2025-06-30 08:00:00
-71,William Boyd,2025-04-10,Work,1.0,"Cause: Inverter annual and six month PM.
+71,William Boyd,2025-04-10,Work,,,1.0,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-10 08:00:00,2025-04-10 08:00:00
-72,Martin Lopez,2025-04-10,Work,1.0,"Cause: Inverter annual and six month PM.
+72,Martin Lopez,2025-04-10,Work,,,1.0,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-10 08:00:00,2025-04-10 08:00:00
-73,William Boyd,2025-04-07,Work,1.0,"Cause: Inverter 1B8 due for annual PM.
+73,William Boyd,2025-04-07,Work,,,1.0,"Cause: Inverter 1B8 due for annual PM.
 
 Action: Performed inspection and cleaned inverter 1B8.
 
 Status: No issues found. Inverter 1B8 is online.",Completed work order WO-1063163,WO-1063163,,2025-04-07 08:00:00,2025-04-07 08:00:00
-74,Martin Lopez,2025-04-07,Work,1.0,"Cause: Inverter 1B8 due for annual PM.
+74,Martin Lopez,2025-04-07,Work,,,1.0,"Cause: Inverter 1B8 due for annual PM.
 
 Action: Performed inspection and cleaned inverter 1B8.
 
 Status: No issues found. Inverter 1B8 is online.",Completed work order WO-1063163,WO-1063163,,2025-04-07 08:00:00,2025-04-07 08:00:00
-75,Martin Lopez,2025-06-30,Work,1.0,"Performed annual inverter PM.
+75,Martin Lopez,2025-06-30,Work,,,1.0,"Performed annual inverter PM.
 Performed LOTO
 No issues found. Inverter online.",Completed work order WO-1067507,WO-1067507,,2025-06-30 08:00:00,2025-06-30 08:00:00
-76,William Boyd,2025-06-30,Work,1.0,"Performed annual inverter PM.
+76,William Boyd,2025-06-30,Work,,,1.0,"Performed annual inverter PM.
 Performed LOTO
 No issues found. Inverter online.",Completed work order WO-1067507,WO-1067507,,2025-06-30 08:00:00,2025-06-30 08:00:00
-77,William Boyd,2025-04-10,Work,1.0,"Cause: Inverter annual and six month PM.
+77,William Boyd,2025-04-10,Work,,,1.0,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-10 08:00:00,2025-04-10 08:00:00
-78,Martin Lopez,2025-04-10,Work,1.0,"Cause: Inverter annual and six month PM.
+78,Martin Lopez,2025-04-10,Work,,,1.0,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-10 08:00:00,2025-04-10 08:00:00
-79,Jackie Torrez,2025-04-10,Work,1.0,"Cause: Inverter annual and six month PM.
+79,Jackie Torrez,2025-04-10,Work,,,1.0,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-10 08:00:00,2025-04-10 08:00:00
-80,Martin Lopez,2025-04-10,Work,1.0,"Cause: Inverter annual and six month PM.
+80,Martin Lopez,2025-04-10,Work,,,1.0,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-10 08:00:00,2025-04-10 08:00:00
-81,William Boyd,2025-04-10,Work,1.0,"Cause: Inverter annual and six month PM.
+81,William Boyd,2025-04-10,Work,,,1.0,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-10 08:00:00,2025-04-10 08:00:00
-82,Jackie Torrez,2025-04-10,Work,1.0,"Cause: Inverter annual and six month PM.
+82,Jackie Torrez,2025-04-10,Work,,,1.0,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-10 08:00:00,2025-04-10 08:00:00
-83,William Boyd,2025-04-07,Work,1.0,"Cause: Inverter 1B8 due for annual PM.
+83,William Boyd,2025-04-07,Work,,,1.0,"Cause: Inverter 1B8 due for annual PM.
 
 Action: Performed inspection and cleaned inverter 1B8.
 
 Status: No issues found. Inverter 1B8 is online.",Completed work order WO-1063163,WO-1063163,,2025-04-07 08:00:00,2025-04-07 08:00:00
-84,Martin Lopez,2025-04-07,Work,1.0,"Cause: Inverter 1B8 due for annual PM.
+84,Martin Lopez,2025-04-07,Work,,,1.0,"Cause: Inverter 1B8 due for annual PM.
 
 Action: Performed inspection and cleaned inverter 1B8.
 
 Status: No issues found. Inverter 1B8 is online.",Completed work order WO-1063163,WO-1063163,,2025-04-07 08:00:00,2025-04-07 08:00:00
-85,Virgil Brumbelow,2024-12-11,Work,1.0,"Notified ROC, applied LOTO, performed LDL, cleaned modules, removed LOTO, started inverter, notified ROC back online.",Completed work order WO-1058817,WO-1058817,,2024-12-11 08:00:00,2024-12-11 08:00:00
-86,William Boyd,2024-07-03,Work,1.0,walk around inspection looked good. faults noted with serial number,Completed work order WO-1053147,WO-1053147,,2024-07-03 08:00:00,2024-07-03 08:00:00
-87,Jonathan Hawkins,2024-07-03,Work,1.0,walk around inspection looked good. faults noted with serial number,Completed work order WO-1053147,WO-1053147,,2024-07-03 08:00:00,2024-07-03 08:00:00
-88,Michael Lewis,2024-07-03,Work,1.0,Completed inspection on inverter 2A1 photos uploaded and area checked for trash,Completed work order WO-1053129,WO-1053129,,2024-07-03 08:00:00,2024-07-03 08:00:00
-89,Michael Lewis,2024-07-03,Work,1.0,Photos uploaded and inspection completed on 1B8,Completed work order WO-1053116,WO-1053116,,2024-07-03 08:00:00,2024-07-03 08:00:00
-90,Michael Lewis,2024-07-19,Work,1.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-19 08:00:00,2024-07-19 08:00:00
-91,Michael Lewis,2024-07-18,Work,1.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
-92,Michael Lewis,2024-07-18,Work,1.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
-93,Jonathan Hawkins,2024-06-27,Work,1.0,"Completed break in oil change. drained oil, removed oil filter, installed new WIX 51394 oil filter, refilled with fresh 5w-40 mobil one oil, reset maintenance light. Next service at 100 hrs. Unit currently at 31 hrs.",Completed work order WO-1052715,WO-1052715,,2024-06-27 08:00:00,2024-06-27 08:00:00
-94,Michael Lewis,2024-06-27,Work,1.0,"Completed break in oil change. drained oil, removed oil filter, installed new WIX 51394 oil filter, refilled with fresh 5w-40 mobil one oil, reset maintenance light. Next service at 100 hrs. Unit currently at 31 hrs.",Completed work order WO-1052715,WO-1052715,,2024-06-27 08:00:00,2024-06-27 08:00:00
-95,William Boyd,2024-06-27,Work,1.0,"Completed break in oil change. drained oil, removed oil filter, installed new WIX 51394 oil filter, refilled with fresh 5w-40 mobil one oil, reset maintenance light. Next service at 100 hrs. Unit currently at 31 hrs.",Completed work order WO-1052715,WO-1052715,,2024-06-27 08:00:00,2024-06-27 08:00:00
-96,Martin Lopez,2025-06-30,Work,2.0,"Performed annual inverter PM.
+85,Virgil Brumbelow,2024-12-11,Work,,,1.0,"Notified ROC, applied LOTO, performed LDL, cleaned modules, removed LOTO, started inverter, notified ROC back online.",Completed work order WO-1058817,WO-1058817,,2024-12-11 08:00:00,2024-12-11 08:00:00
+86,William Boyd,2024-07-03,Work,,,1.0,walk around inspection looked good. faults noted with serial number,Completed work order WO-1053147,WO-1053147,,2024-07-03 08:00:00,2024-07-03 08:00:00
+87,Jonathan Hawkins,2024-07-03,Work,,,1.0,walk around inspection looked good. faults noted with serial number,Completed work order WO-1053147,WO-1053147,,2024-07-03 08:00:00,2024-07-03 08:00:00
+88,Michael Lewis,2024-07-03,Work,,,1.0,Completed inspection on inverter 2A1 photos uploaded and area checked for trash,Completed work order WO-1053129,WO-1053129,,2024-07-03 08:00:00,2024-07-03 08:00:00
+89,Michael Lewis,2024-07-03,Work,,,1.0,Photos uploaded and inspection completed on 1B8,Completed work order WO-1053116,WO-1053116,,2024-07-03 08:00:00,2024-07-03 08:00:00
+90,Michael Lewis,2024-07-19,Work,,,1.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-19 08:00:00,2024-07-19 08:00:00
+91,Michael Lewis,2024-07-18,Work,,,1.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
+92,Michael Lewis,2024-07-18,Work,,,1.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-18 08:00:00,2024-07-18 08:00:00
+93,Jonathan Hawkins,2024-06-27,Work,,,1.0,"Completed break in oil change. drained oil, removed oil filter, installed new WIX 51394 oil filter, refilled with fresh 5w-40 mobil one oil, reset maintenance light. Next service at 100 hrs. Unit currently at 31 hrs.",Completed work order WO-1052715,WO-1052715,,2024-06-27 08:00:00,2024-06-27 08:00:00
+94,Michael Lewis,2024-06-27,Work,,,1.0,"Completed break in oil change. drained oil, removed oil filter, installed new WIX 51394 oil filter, refilled with fresh 5w-40 mobil one oil, reset maintenance light. Next service at 100 hrs. Unit currently at 31 hrs.",Completed work order WO-1052715,WO-1052715,,2024-06-27 08:00:00,2024-06-27 08:00:00
+95,William Boyd,2024-06-27,Work,,,1.0,"Completed break in oil change. drained oil, removed oil filter, installed new WIX 51394 oil filter, refilled with fresh 5w-40 mobil one oil, reset maintenance light. Next service at 100 hrs. Unit currently at 31 hrs.",Completed work order WO-1052715,WO-1052715,,2024-06-27 08:00:00,2024-06-27 08:00:00
+96,Martin Lopez,2025-06-30,Work,,,2.0,"Performed annual inverter PM.
 Performed LOTO
 No issues found. Inverter online.",Completed work order WO-1067507,WO-1067507,,2025-06-30 08:00:00,2025-06-30 08:00:00
-97,William Boyd,2025-06-30,Work,2.0,"Performed annual inverter PM.
+97,William Boyd,2025-06-30,Work,,,2.0,"Performed annual inverter PM.
 Performed LOTO
 No issues found. Inverter online.",Completed work order WO-1067507,WO-1067507,,2025-06-30 08:00:00,2025-06-30 08:00:00
-98,Jackie Torrez,2024-12-11,Work,2.0,"Notified ROC, applied LOTO, performed LDL, cleaned modules, removed LOTO, started inverter, notified ROC back online.",Completed work order WO-1058817,WO-1058817,,2024-12-11 08:00:00,2024-12-11 08:00:00
-99,Michael Lewis,2024-07-22,Work,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
-100,Michael Lewis,2024-07-22,Work,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
-101,Jonathan Hawkins,2024-07-22,Work,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
-102,Jonathan Hawkins,2024-07-22,Work,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
-103,William Boyd,2024-07-22,Work,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
-104,William Boyd,2024-07-22,Work,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
-105,Virgil Brumbelow,2025-04-08,Work,0.5,"Cause: Inverter annual and six month PM.
+98,Jackie Torrez,2024-12-11,Work,,,2.0,"Notified ROC, applied LOTO, performed LDL, cleaned modules, removed LOTO, started inverter, notified ROC back online.",Completed work order WO-1058817,WO-1058817,,2024-12-11 08:00:00,2024-12-11 08:00:00
+99,Michael Lewis,2024-07-22,Work,,,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
+100,Michael Lewis,2024-07-22,Work,,,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
+101,Jonathan Hawkins,2024-07-22,Work,,,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
+102,Jonathan Hawkins,2024-07-22,Work,,,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
+103,William Boyd,2024-07-22,Work,,,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
+104,William Boyd,2024-07-22,Work,,,2.0,Block  Inspection completed,Completed work order WO-1053077,WO-1053077,,2024-07-22 08:00:00,2024-07-22 08:00:00
+105,Virgil Brumbelow,2025-04-08,Work,,,0.5,"Cause: Inverter annual and six month PM.
 Action: Performed PM.
 Status: PM complete. Inverter back on line.",Completed work order WO-1064415,WO-1064415,,2025-04-08 08:00:00,2025-04-08 08:00:00
-106,Virgil Brumbelow,2025-03-11,Work,0.5,"Cause: Inverter 1B8 due for annual PM.
+106,Virgil Brumbelow,2025-03-11,Work,,,0.5,"Cause: Inverter 1B8 due for annual PM.
 
 Action: Performed inspection and cleaned inverter 1B8.
 
 Status: No issues found. Inverter 1B8 is online.",Completed work order WO-1063163,WO-1063163,,2025-03-11 08:00:00,2025-03-11 08:00:00
-107,William Boyd,2025-04-07,Work,0.5,"Cause: Inverter 1B8 due for annual PM.
+107,William Boyd,2025-04-07,Work,,,0.5,"Cause: Inverter 1B8 due for annual PM.
 
 Action: Performed inspection and cleaned inverter 1B8.
 
 Status: No issues found. Inverter 1B8 is online.",Completed work order WO-1063163,WO-1063163,,2025-04-07 08:00:00,2025-04-07 08:00:00
-108,Martin Lopez,2025-04-07,Work,0.5,"Cause: Inverter 1B8 due for annual PM.
+108,Martin Lopez,2025-04-07,Work,,,0.5,"Cause: Inverter 1B8 due for annual PM.
 
 Action: Performed inspection and cleaned inverter 1B8.
 
 Status: No issues found. Inverter 1B8 is online.",Completed work order WO-1063163,WO-1063163,,2025-04-07 08:00:00,2025-04-07 08:00:00
-109,Eric Bowen,2025-06-17,Work,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
-110,Kyle Foley,2025-06-17,Work,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
-111,Kyle Foley,2025-06-17,Work,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
-112,Eric Bowen,2025-06-17,Work,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
-113,Eric Bowen,2025-06-17,Work,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
-114,Kyle Foley,2025-06-17,Work,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
-115,Jamarquis Jefferson,2025-03-27,Work,8.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-27 08:00:00,2025-03-27 08:00:00
-116,Jamarquis Jefferson,2025-03-20,Work,8.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-20 08:00:00,2025-03-20 08:00:00
-117,Jamarquis Jefferson,2025-01-02,Work,1.05,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-02 08:00:00,2025-01-02 08:00:00
-118,Jacob Collins,2025-03-10,Work,7.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-10 08:00:00,2025-03-10 08:00:00
-119,Ty Herchenhahn,2024-10-31,Work,6.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-10-31 08:00:00,2024-10-31 08:00:00
-120,Eric Bowen,2024-10-31,Work,6.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-10-31 08:00:00,2024-10-31 08:00:00
-121,Eric Bowen,2024-10-30,Work,6.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-10-30 08:00:00,2024-10-30 08:00:00
-122,Ty Herchenhahn,2024-10-30,Work,6.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-10-30 08:00:00,2024-10-30 08:00:00
-123,Hunter Owens,2024-09-23,Work,0.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
-124,Ty Herchenhahn,2024-09-25,Work,0.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-125,Randall Hampton,2024-09-03,Work,0.0,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
-126,Ty Herchenhahn,2024-09-03,Work,2.25,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
-127,Jacob Collins,2025-06-18,Work,1.5,"completed inpection via checklist provided, pictures for reference located in notes and attachments",Completed work order WO-1067585,WO-1067585,,2025-06-18 08:00:00,2025-06-18 08:00:00
-128,Layla Ashtiyany,2025-06-18,Work,1.5,"completed inpection via checklist provided, pictures for reference located in notes and attachments",Completed work order WO-1067585,WO-1067585,,2025-06-18 08:00:00,2025-06-18 08:00:00
-129,Ty Herchenhahn,2025-05-08,Work,4.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-08 08:00:00,2025-05-08 08:00:00
-130,Eric Bowen,2025-01-09,Work,4.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-09 08:00:00,2025-01-09 08:00:00
-131,Jamarquis Jefferson,2025-01-02,Work,4.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-02 08:00:00,2025-01-02 08:00:00
-132,Kyle Foley,2024-11-15,Work,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-15 08:00:00,2024-11-15 08:00:00
-133,Eric Bowen,2024-11-15,Work,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-15 08:00:00,2024-11-15 08:00:00
-134,Ty Herchenhahn,2024-11-13,Work,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-13 08:00:00,2024-11-13 08:00:00
-135,Ty Herchenhahn,2024-11-01,Work,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-01 08:00:00,2024-11-01 08:00:00
-136,Eric Bowen,2024-11-01,Work,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-01 08:00:00,2024-11-01 08:00:00
-137,Jamarquis Jefferson,2025-03-13,Work,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-13 08:00:00,2025-03-13 08:00:00
-138,Jamarquis Jefferson,2024-12-18,Work,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-18 08:00:00,2024-12-18 08:00:00
-139,Kyle Foley,2024-11-05,Work,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-11-05 08:00:00,2024-11-05 08:00:00
-140,Ty Herchenhahn,2024-11-05,Work,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-11-05 08:00:00,2024-11-05 08:00:00
-141,Jacob Collins,2025-07-23,Work,2.0,"PM completed via checklist provided, inverter cleaned and returned to full operation.",Completed work order WO-1069225,WO-1069225,,2025-07-23 08:00:00,2025-07-23 08:00:00
-142,David Morrison,2025-07-23,Work,2.0,"PM completed via checklist provided, inverter cleaned and returned to full operation.",Completed work order WO-1069225,WO-1069225,,2025-07-23 08:00:00,2025-07-23 08:00:00
-143,Jacob Collins,2025-06-06,Work,2.0,completed inspections via checklist provided. pictures for reference located in notes and attachments.,Completed work order WO-1067573,WO-1067573,,2025-06-06 08:00:00,2025-06-06 08:00:00
-144,Eric Bowen,2025-06-06,Work,2.0,completed inspections via checklist provided. pictures for reference located in notes and attachments.,Completed work order WO-1067573,WO-1067573,,2025-06-06 08:00:00,2025-06-06 08:00:00
-145,Ty Herchenhahn,2025-04-14,Work,2.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-04-14 08:00:00,2025-04-14 08:00:00
-146,Jacob Collins,2025-06-30,Work,2.0,completed PM via checklist provided. pictures for reference located in notes and attachments.,Completed work order WO-1069235,WO-1069235,,2025-06-30 08:00:00,2025-06-30 08:00:00
-147,Kyle Foley,2025-01-30,Work,2.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-01-30 08:00:00,2025-01-30 08:00:00
-148,Eric Bowen,2025-01-30,Work,2.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-01-30 08:00:00,2025-01-30 08:00:00
-149,Kyle Foley,2025-01-09,Work,2.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-09 08:00:00,2025-01-09 08:00:00
-150,Eric Bowen,2025-01-07,Work,2.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-07 08:00:00,2025-01-07 08:00:00
-151,Kyle Foley,2025-01-07,Work,2.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-07 08:00:00,2025-01-07 08:00:00
-152,Jamarquis Jefferson,2024-11-21,Work,2.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
-153,Jamarquis Jefferson,2024-11-21,Work,2.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
-154,Eric Bowen,2024-09-24,Work,2.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-24 08:00:00,2024-09-24 08:00:00
-155,Kyle Foley,2024-09-24,Work,2.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-24 08:00:00,2024-09-24 08:00:00
-156,Hunter Owens,2024-09-03,Work,2.0,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
-157,Eric Bowen,2024-09-03,Work,2.0,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
-158,Kyle Foley,2024-09-03,Work,2.0,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
-159,Hunter Owens,2024-08-27,Work,0.5,Cleaned inverter filter while inverter was offline,Completed work order WO-1054853,WO-1054853,,2024-08-27 08:00:00,2024-08-27 08:00:00
-160,Eric Bowen,2024-08-27,Work,0.5,Cleaned inverter filter while inverter was offline,Completed work order WO-1054853,WO-1054853,,2024-08-27 08:00:00,2024-08-27 08:00:00
-161,Ty Herchenhahn,2024-08-27,Work,0.5,Cleaned inverter filter while inverter was offline,Completed work order WO-1054853,WO-1054853,,2024-08-27 08:00:00,2024-08-27 08:00:00
-162,Kyle Foley,2024-08-27,Work,0.5,Cleaned inverter filter while inverter was offline,Completed work order WO-1054853,WO-1054853,,2024-08-27 08:00:00,2024-08-27 08:00:00
-163,Kyle Foley,2025-03-19,Work,1.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-03-19 08:00:00,2025-03-19 08:00:00
-164,Jamarquis Jefferson,2025-03-19,Work,1.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-03-19 08:00:00,2025-03-19 08:00:00
-165,Kyle Foley,2025-01-23,Work,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-23 08:00:00,2025-01-23 08:00:00
-166,Kyle Foley,2025-01-23,Work,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-23 08:00:00,2025-01-23 08:00:00
-167,Kyle Foley,2025-01-23,Work,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-23 08:00:00,2025-01-23 08:00:00
-168,Kyle Foley,2025-01-23,Work,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-23 08:00:00,2025-01-23 08:00:00
-169,Jamarquis Jefferson,2025-01-22,Work,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-22 08:00:00,2025-01-22 08:00:00
-170,Jamarquis Jefferson,2025-01-15,Work,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-15 08:00:00,2025-01-15 08:00:00
-171,Jamarquis Jefferson,2025-01-24,Work,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-24 08:00:00,2025-01-24 08:00:00
-172,Jamarquis Jefferson,2024-11-21,Work,1.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
-173,Jamarquis Jefferson,2024-11-21,Work,1.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
-174,Jamarquis Jefferson,2024-11-21,Work,1.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
-175,Kyle Foley,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-176,Ty Herchenhahn,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-177,Eric Bowen,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-178,Eric Bowen,2024-09-23,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
-179,Eric Bowen,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-180,Kyle Foley,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-181,Hunter Owens,2024-09-23,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
-182,Eric Bowen,2024-09-23,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
-183,Kyle Foley,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-184,Eric Bowen,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-185,Ty Herchenhahn,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-186,Hunter Owens,2024-09-23,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
-187,Eric Bowen,2024-09-23,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
-188,Eric Bowen,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-189,Ty Herchenhahn,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-190,Kyle Foley,2024-09-25,Work,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-191,Kyle Foley,2025-04-03,Work,1.0,annual Inverter PM completed.,Completed work order WO-1064715,WO-1064715,,2025-04-03 08:00:00,2025-04-03 08:00:00
-192,Eric Bowen,2025-04-03,Work,1.0,annual Inverter PM completed.,Completed work order WO-1064715,WO-1064715,,2025-04-03 08:00:00,2025-04-03 08:00:00
-193,Jonathan Hawkins,2024-07-05,Work,0.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-05 08:00:00,2024-07-05 08:00:00
-194,Jonathan Hawkins,2024-07-02,Work,4.5,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-02 08:00:00,2024-07-02 08:00:00
-195,Ty Herchenhahn,2025-08-05,Work,5.0,Blank,Completed work order WO-1071028,WO-1071028,,2025-08-05 08:00:00,2025-08-05 08:00:00
-196,David Morrison,2025-08-05,Work,2.0,Blank,Completed work order WO-1071028,WO-1071028,,2025-08-05 08:00:00,2025-08-05 08:00:00
-197,Ty Herchenhahn,2025-08-11,Work,2.0,Blank,Completed work order WO-1070315,WO-1070315,,2025-08-11 08:00:00,2025-08-11 08:00:00
-198,David Morrison,2025-08-13,Work,2.0,Blank,Completed work order WO-1070315,WO-1070315,,2025-08-13 08:00:00,2025-08-13 08:00:00
-199,Ashton Meyers,2025-08-13,Work,2.0,Blank,Completed work order WO-1070315,WO-1070315,,2025-08-13 08:00:00,2025-08-13 08:00:00
-200,Ty Herchenhahn,2025-08-13,Work,2.0,Blank,Completed work order WO-1070315,WO-1070315,,2025-08-13 08:00:00,2025-08-13 08:00:00
-201,Ty Herchenhahn,2024-08-23,Work,0.25,Checked SPC and found that the antenna was lose. We then tightened the antenna and reset the SPC But it did not start tracking.,Completed work order WO-1054463,WO-1054463,,2024-08-23 08:00:00,2024-08-23 08:00:00
-202,Ty Herchenhahn,2024-08-14,Work,0.5,Checked SPC and found that the antenna was lose. We then tightened the antenna and reset the SPC But it did not start tracking.,Completed work order WO-1054463,WO-1054463,,2024-08-14 08:00:00,2024-08-14 08:00:00
-203,Eric Bowen,2024-08-14,Work,0.5,Checked SPC and found that the antenna was lose. We then tightened the antenna and reset the SPC But it did not start tracking.,Completed work order WO-1054463,WO-1054463,,2024-08-14 08:00:00,2024-08-14 08:00:00
-204,Virgil Brumbelow,2025-08-08,Work,0.5,Blank,Completed work order WO-1070703,WO-1070703,,2025-08-08 08:00:00,2025-08-08 08:00:00
-205,William Boyd,2025-01-07,Work,3.0,Blank,Completed work order WO-1060035,WO-1060035,,2025-01-07 08:00:00,2025-01-07 08:00:00
-206,Jackie Torrez,2025-01-07,Work,3.0,Blank,Completed work order WO-1060035,WO-1060035,,2025-01-07 08:00:00,2025-01-07 08:00:00
-207,Virgil Brumbelow,2025-01-07,Work,3.0,Blank,Completed work order WO-1060035,WO-1060035,,2025-01-07 08:00:00,2025-01-07 08:00:00
-208,Hunter Owens,2024-03-27,Work,2.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-27 08:00:00,2024-03-27 08:00:00
-209,Elisha Capley,2024-03-27,Work,2.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-27 08:00:00,2024-03-27 08:00:00
-210,Elisha Capley,2024-03-26,Work,3.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-26 08:00:00,2024-03-26 08:00:00
-211,Hunter Owens,2024-03-26,Work,3.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-26 08:00:00,2024-03-26 08:00:00
-212,Elisha Capley,2024-03-25,Work,4.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-25 08:00:00,2024-03-25 08:00:00
-213,Hunter Owens,2024-03-25,Work,4.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-25 08:00:00,2024-03-25 08:00:00
-214,Elisha Capley,2024-03-22,Work,6.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-22 08:00:00,2024-03-22 08:00:00
-215,Hunter Owens,2024-03-22,Work,6.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-22 08:00:00,2024-03-22 08:00:00
-216,Elisha Capley,2024-03-20,Work,3.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-20 08:00:00,2024-03-20 08:00:00
-217,Hunter Owens,2024-03-20,Work,3.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-20 08:00:00,2024-03-20 08:00:00
-218,David Morrison,2025-08-01,Work,1.0,Completed PM per task sheet,Completed work order WO-1070821,WO-1070821,,2025-08-01 08:00:00,2025-08-01 08:00:00
-219,Jacob Collins,2025-08-01,Work,1.0,Completed PM per task sheet,Completed work order WO-1070821,WO-1070821,,2025-08-01 08:00:00,2025-08-01 08:00:00
-220,David Morrison,2025-08-04,Work,1.0,Completed PM per task sheet,Completed work order WO-1070815,WO-1070815,,2025-08-04 08:00:00,2025-08-04 08:00:00
-221,Jacob Collins,2025-08-04,Work,1.0,Completed PM per task sheet,Completed work order WO-1070815,WO-1070815,,2025-08-04 08:00:00,2025-08-04 08:00:00
-222,Layla Ashtiyany,2025-05-06,Work,1.0,"PM complete, zero errors found",Completed work order WO-1065912,WO-1065912,,2025-05-06 08:00:00,2025-05-06 08:00:00
-223,Jacob Collins,2025-05-06,Work,1.0,"PM complete, zero errors found",Completed work order WO-1065912,WO-1065912,,2025-05-06 08:00:00,2025-05-06 08:00:00
-224,Layla Ashtiyany,2025-05-06,Work,1.0,"PM complete, zero errors found",Completed work order WO-1065911,WO-1065911,,2025-05-06 08:00:00,2025-05-06 08:00:00
-225,Jacob Collins,2025-05-06,Work,1.0,"PM complete, zero errors found",Completed work order WO-1065911,WO-1065911,,2025-05-06 08:00:00,2025-05-06 08:00:00
-226,Kyle Foley,2025-05-05,Work,1.0,Monthly PM complete,Completed work order WO-1065849,WO-1065849,,2025-05-05 08:00:00,2025-05-05 08:00:00
-227,Eric Bowen,2025-05-05,Work,1.0,Monthly PM complete,Completed work order WO-1065849,WO-1065849,,2025-05-05 08:00:00,2025-05-05 08:00:00
-228,Eric Bowen,2025-05-05,Work,1.0,Monthly MET PM completed,Completed work order WO-1065846,WO-1065846,,2025-05-05 08:00:00,2025-05-05 08:00:00
-229,Kyle Foley,2025-05-05,Work,1.0,Monthly MET PM completed,Completed work order WO-1065846,WO-1065846,,2025-05-05 08:00:00,2025-05-05 08:00:00
-230,Hunter Owens,2024-12-05,Work,1.0,MET 4 Monthly PM complete,Completed work order WO-1058557,WO-1058557,,2024-12-05 08:00:00,2024-12-05 08:00:00
-231,Ty Herchenhahn,2024-12-05,Work,1.0,MET 4 Monthly PM complete,Completed work order WO-1058557,WO-1058557,,2024-12-05 08:00:00,2024-12-05 08:00:00
-232,William Boyd,2025-08-07,Work,1.0,"Performed monthly PM on met station 5. No issues found. Can not use 10 foot ladder to level globes. No engineered tie off points, No fall protection harness.",Completed work order WO-1070613,WO-1070613,,2025-08-07 08:00:00,2025-08-07 08:00:00
-233,Martin Lopez,2025-08-07,Work,1.0,"Performed monthly PM on met station 5. No issues found. Can not use 10 foot ladder to level globes. No engineered tie off points, No fall protection harness.",Completed work order WO-1070613,WO-1070613,,2025-08-07 08:00:00,2025-08-07 08:00:00
-234,Hunter Owens,2025-06-26,Work,1.0,Monthly PM Completed.,Completed work order WO-1067376,WO-1067376,,2025-06-26 08:00:00,2025-06-26 08:00:00
-235,Kyle Foley,2025-06-26,Work,1.0,Monthly PM Completed.,Completed work order WO-1067376,WO-1067376,,2025-06-26 08:00:00,2025-06-26 08:00:00
-236,Eric Bowen,2025-06-26,Work,1.0,Monthly PM Completed.,Completed work order WO-1067376,WO-1067376,,2025-06-26 08:00:00,2025-06-26 08:00:00
-237,Jonathan Hawkins,2024-05-01,Work,1.0,"Cleaned Met Station Pyronometer Lenses with distilled water.   Inspected cabinet and battery, no issues.  Cleaned module pyronometers.",Completed work order WO-1049983,WO-1049983,,2024-05-01 08:00:00,2024-05-01 08:00:00
-238,Michael Lewis,2024-05-01,Work,1.0,"Cleaned Met Station Pyronometer Lenses with distilled water.   Inspected cabinet and battery, no issues.  Cleaned module pyronometers.",Completed work order WO-1049983,WO-1049983,,2024-05-01 08:00:00,2024-05-01 08:00:00
-239,William Boyd,2024-05-01,Work,1.0,"Cleaned Met Station Pyronometer Lenses with distilled water.   Inspected cabinet and battery, no issues.  Cleaned module pyronometers.",Completed work order WO-1049983,WO-1049983,,2024-05-01 08:00:00,2024-05-01 08:00:00
-240,Virgil Brumbelow,2024-05-01,Work,1.0,"Cleaned Met Station Pyronometer Lenses with distilled water.   Inspected cabinet and battery, no issues.  Cleaned module pyronometers.",Completed work order WO-1049983,WO-1049983,,2024-05-01 08:00:00,2024-05-01 08:00:00
-241,Ty Herchenhahn,2025-06-03,Work,1.0,PM complete,Completed work order WO-1067580,WO-1067580,,2025-06-03 08:00:00,2025-06-03 08:00:00
-242,Jonathan Hawkins,2024-08-01,Work,1.0,all steps are complete and vegetation trimmed,Completed work order WO-1054040,WO-1054040,,2024-08-01 08:00:00,2024-08-01 08:00:00
-243,William Boyd,2025-05-06,Work,2.0,Monthly MET station PM due. PM complete,Completed work order WO-1065853,WO-1065853,,2025-05-06 08:00:00,2025-05-06 08:00:00
-244,Martin Lopez,2025-05-05,Work,2.0,Monthly MET station PM due. PM complete,Completed work order WO-1065853,WO-1065853,,2025-05-05 08:00:00,2025-05-05 08:00:00
-245,Kyle Foley,2025-06-17,Work,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
-246,Eric Bowen,2025-06-17,Work,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
-247,Hunter Owens,2024-09-07,Work,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
-248,Randall Hampton,2024-09-07,Work,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
-249,Ty Herchenhahn,2024-09-05,Work,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
-250,Kyle Foley,2024-09-05,Work,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
-251,Eric Bowen,2024-09-05,Work,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
-252,Ty Herchenhahn,2024-09-04,Work,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
-253,Kyle Foley,2024-09-04,Work,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
-254,Eric Bowen,2024-09-04,Work,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
-255,Ty Herchenhahn,2025-06-23,Work,3.0,"Cause: Ground fault caused by a cut string on Row 20 in Section A.
+109,Eric Bowen,2025-06-17,Work,,,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
+110,Kyle Foley,2025-06-17,Work,,,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
+111,Kyle Foley,2025-06-17,Work,,,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
+112,Eric Bowen,2025-06-17,Work,,,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
+113,Eric Bowen,2025-06-17,Work,,,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
+114,Kyle Foley,2025-06-17,Work,,,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
+115,Jamarquis Jefferson,2025-03-27,Work,,,8.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-27 08:00:00,2025-03-27 08:00:00
+116,Jamarquis Jefferson,2025-03-20,Work,,,8.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-20 08:00:00,2025-03-20 08:00:00
+117,Jamarquis Jefferson,2025-01-02,Work,,,1.05,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-02 08:00:00,2025-01-02 08:00:00
+118,Jacob Collins,2025-03-10,Work,,,7.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-10 08:00:00,2025-03-10 08:00:00
+119,Ty Herchenhahn,2024-10-31,Work,,,6.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-10-31 08:00:00,2024-10-31 08:00:00
+120,Eric Bowen,2024-10-31,Work,,,6.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-10-31 08:00:00,2024-10-31 08:00:00
+121,Eric Bowen,2024-10-30,Work,,,6.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-10-30 08:00:00,2024-10-30 08:00:00
+122,Ty Herchenhahn,2024-10-30,Work,,,6.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-10-30 08:00:00,2024-10-30 08:00:00
+123,Hunter Owens,2024-09-23,Work,,,0.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
+124,Ty Herchenhahn,2024-09-25,Work,,,0.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+125,Randall Hampton,2024-09-03,Work,,,0.0,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
+126,Ty Herchenhahn,2024-09-03,Work,,,2.25,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
+127,Jacob Collins,2025-06-18,Work,,,1.5,"completed inpection via checklist provided, pictures for reference located in notes and attachments",Completed work order WO-1067585,WO-1067585,,2025-06-18 08:00:00,2025-06-18 08:00:00
+128,Layla Ashtiyany,2025-06-18,Work,,,1.5,"completed inpection via checklist provided, pictures for reference located in notes and attachments",Completed work order WO-1067585,WO-1067585,,2025-06-18 08:00:00,2025-06-18 08:00:00
+129,Ty Herchenhahn,2025-05-08,Work,,,4.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-08 08:00:00,2025-05-08 08:00:00
+130,Eric Bowen,2025-01-09,Work,,,4.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-09 08:00:00,2025-01-09 08:00:00
+131,Jamarquis Jefferson,2025-01-02,Work,,,4.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-02 08:00:00,2025-01-02 08:00:00
+132,Kyle Foley,2024-11-15,Work,,,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-15 08:00:00,2024-11-15 08:00:00
+133,Eric Bowen,2024-11-15,Work,,,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-15 08:00:00,2024-11-15 08:00:00
+134,Ty Herchenhahn,2024-11-13,Work,,,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-13 08:00:00,2024-11-13 08:00:00
+135,Ty Herchenhahn,2024-11-01,Work,,,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-01 08:00:00,2024-11-01 08:00:00
+136,Eric Bowen,2024-11-01,Work,,,4.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-01 08:00:00,2024-11-01 08:00:00
+137,Jamarquis Jefferson,2025-03-13,Work,,,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-13 08:00:00,2025-03-13 08:00:00
+138,Jamarquis Jefferson,2024-12-18,Work,,,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-18 08:00:00,2024-12-18 08:00:00
+139,Kyle Foley,2024-11-05,Work,,,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-11-05 08:00:00,2024-11-05 08:00:00
+140,Ty Herchenhahn,2024-11-05,Work,,,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-11-05 08:00:00,2024-11-05 08:00:00
+141,Jacob Collins,2025-07-23,Work,,,2.0,"PM completed via checklist provided, inverter cleaned and returned to full operation.",Completed work order WO-1069225,WO-1069225,,2025-07-23 08:00:00,2025-07-23 08:00:00
+142,David Morrison,2025-07-23,Work,,,2.0,"PM completed via checklist provided, inverter cleaned and returned to full operation.",Completed work order WO-1069225,WO-1069225,,2025-07-23 08:00:00,2025-07-23 08:00:00
+143,Jacob Collins,2025-06-06,Work,,,2.0,completed inspections via checklist provided. pictures for reference located in notes and attachments.,Completed work order WO-1067573,WO-1067573,,2025-06-06 08:00:00,2025-06-06 08:00:00
+144,Eric Bowen,2025-06-06,Work,,,2.0,completed inspections via checklist provided. pictures for reference located in notes and attachments.,Completed work order WO-1067573,WO-1067573,,2025-06-06 08:00:00,2025-06-06 08:00:00
+145,Ty Herchenhahn,2025-04-14,Work,,,2.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-04-14 08:00:00,2025-04-14 08:00:00
+146,Jacob Collins,2025-06-30,Work,,,2.0,completed PM via checklist provided. pictures for reference located in notes and attachments.,Completed work order WO-1069235,WO-1069235,,2025-06-30 08:00:00,2025-06-30 08:00:00
+147,Kyle Foley,2025-01-30,Work,,,2.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-01-30 08:00:00,2025-01-30 08:00:00
+148,Eric Bowen,2025-01-30,Work,,,2.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-01-30 08:00:00,2025-01-30 08:00:00
+149,Kyle Foley,2025-01-09,Work,,,2.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-09 08:00:00,2025-01-09 08:00:00
+150,Eric Bowen,2025-01-07,Work,,,2.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-07 08:00:00,2025-01-07 08:00:00
+151,Kyle Foley,2025-01-07,Work,,,2.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-07 08:00:00,2025-01-07 08:00:00
+152,Jamarquis Jefferson,2024-11-21,Work,,,2.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
+153,Jamarquis Jefferson,2024-11-21,Work,,,2.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
+154,Eric Bowen,2024-09-24,Work,,,2.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-24 08:00:00,2024-09-24 08:00:00
+155,Kyle Foley,2024-09-24,Work,,,2.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-24 08:00:00,2024-09-24 08:00:00
+156,Hunter Owens,2024-09-03,Work,,,2.0,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
+157,Eric Bowen,2024-09-03,Work,,,2.0,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
+158,Kyle Foley,2024-09-03,Work,,,2.0,Oil sample was pulled and sent in for testing,Completed work order WO-1055281,WO-1055281,,2024-09-03 08:00:00,2024-09-03 08:00:00
+159,Hunter Owens,2024-08-27,Work,,,0.5,Cleaned inverter filter while inverter was offline,Completed work order WO-1054853,WO-1054853,,2024-08-27 08:00:00,2024-08-27 08:00:00
+160,Eric Bowen,2024-08-27,Work,,,0.5,Cleaned inverter filter while inverter was offline,Completed work order WO-1054853,WO-1054853,,2024-08-27 08:00:00,2024-08-27 08:00:00
+161,Ty Herchenhahn,2024-08-27,Work,,,0.5,Cleaned inverter filter while inverter was offline,Completed work order WO-1054853,WO-1054853,,2024-08-27 08:00:00,2024-08-27 08:00:00
+162,Kyle Foley,2024-08-27,Work,,,0.5,Cleaned inverter filter while inverter was offline,Completed work order WO-1054853,WO-1054853,,2024-08-27 08:00:00,2024-08-27 08:00:00
+163,Kyle Foley,2025-03-19,Work,,,1.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-03-19 08:00:00,2025-03-19 08:00:00
+164,Jamarquis Jefferson,2025-03-19,Work,,,1.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-03-19 08:00:00,2025-03-19 08:00:00
+165,Kyle Foley,2025-01-23,Work,,,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-23 08:00:00,2025-01-23 08:00:00
+166,Kyle Foley,2025-01-23,Work,,,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-23 08:00:00,2025-01-23 08:00:00
+167,Kyle Foley,2025-01-23,Work,,,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-23 08:00:00,2025-01-23 08:00:00
+168,Kyle Foley,2025-01-23,Work,,,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-23 08:00:00,2025-01-23 08:00:00
+169,Jamarquis Jefferson,2025-01-22,Work,,,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-22 08:00:00,2025-01-22 08:00:00
+170,Jamarquis Jefferson,2025-01-15,Work,,,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-15 08:00:00,2025-01-15 08:00:00
+171,Jamarquis Jefferson,2025-01-24,Work,,,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-24 08:00:00,2025-01-24 08:00:00
+172,Jamarquis Jefferson,2024-11-21,Work,,,1.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
+173,Jamarquis Jefferson,2024-11-21,Work,,,1.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
+174,Jamarquis Jefferson,2024-11-21,Work,,,1.0,"There is a lot of erosion and debris still left behind in each block in GT2. A clean up punch list has been made for RES to complete, and vegetation crew will do follow up to make sure everything is being picked up. All Equipment is up to date on maintenance.",Completed work order WO-1057575,WO-1057575,,2024-11-21 08:00:00,2024-11-21 08:00:00
+175,Kyle Foley,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+176,Ty Herchenhahn,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+177,Eric Bowen,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+178,Eric Bowen,2024-09-23,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
+179,Eric Bowen,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+180,Kyle Foley,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+181,Hunter Owens,2024-09-23,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
+182,Eric Bowen,2024-09-23,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
+183,Kyle Foley,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+184,Eric Bowen,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+185,Ty Herchenhahn,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+186,Hunter Owens,2024-09-23,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
+187,Eric Bowen,2024-09-23,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-23 08:00:00,2024-09-23 08:00:00
+188,Eric Bowen,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+189,Ty Herchenhahn,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+190,Kyle Foley,2024-09-25,Work,,,1.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+191,Kyle Foley,2025-04-03,Work,,,1.0,annual Inverter PM completed.,Completed work order WO-1064715,WO-1064715,,2025-04-03 08:00:00,2025-04-03 08:00:00
+192,Eric Bowen,2025-04-03,Work,,,1.0,annual Inverter PM completed.,Completed work order WO-1064715,WO-1064715,,2025-04-03 08:00:00,2025-04-03 08:00:00
+193,Jonathan Hawkins,2024-07-05,Work,,,0.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-05 08:00:00,2024-07-05 08:00:00
+194,Jonathan Hawkins,2024-07-02,Work,,,4.5,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-02 08:00:00,2024-07-02 08:00:00
+195,Ty Herchenhahn,2025-08-05,Work,,,5.0,Blank,Completed work order WO-1071028,WO-1071028,,2025-08-05 08:00:00,2025-08-05 08:00:00
+196,David Morrison,2025-08-05,Work,,,2.0,Blank,Completed work order WO-1071028,WO-1071028,,2025-08-05 08:00:00,2025-08-05 08:00:00
+197,Ty Herchenhahn,2025-08-11,Work,,,2.0,Blank,Completed work order WO-1070315,WO-1070315,,2025-08-11 08:00:00,2025-08-11 08:00:00
+198,David Morrison,2025-08-13,Work,,,2.0,Blank,Completed work order WO-1070315,WO-1070315,,2025-08-13 08:00:00,2025-08-13 08:00:00
+199,Ashton Meyers,2025-08-13,Work,,,2.0,Blank,Completed work order WO-1070315,WO-1070315,,2025-08-13 08:00:00,2025-08-13 08:00:00
+200,Ty Herchenhahn,2025-08-13,Work,,,2.0,Blank,Completed work order WO-1070315,WO-1070315,,2025-08-13 08:00:00,2025-08-13 08:00:00
+201,Ty Herchenhahn,2024-08-23,Work,,,0.25,Checked SPC and found that the antenna was lose. We then tightened the antenna and reset the SPC But it did not start tracking.,Completed work order WO-1054463,WO-1054463,,2024-08-23 08:00:00,2024-08-23 08:00:00
+202,Ty Herchenhahn,2024-08-14,Work,,,0.5,Checked SPC and found that the antenna was lose. We then tightened the antenna and reset the SPC But it did not start tracking.,Completed work order WO-1054463,WO-1054463,,2024-08-14 08:00:00,2024-08-14 08:00:00
+203,Eric Bowen,2024-08-14,Work,,,0.5,Checked SPC and found that the antenna was lose. We then tightened the antenna and reset the SPC But it did not start tracking.,Completed work order WO-1054463,WO-1054463,,2024-08-14 08:00:00,2024-08-14 08:00:00
+204,Virgil Brumbelow,2025-08-08,Work,,,0.5,Blank,Completed work order WO-1070703,WO-1070703,,2025-08-08 08:00:00,2025-08-08 08:00:00
+205,William Boyd,2025-01-07,Work,,,3.0,Blank,Completed work order WO-1060035,WO-1060035,,2025-01-07 08:00:00,2025-01-07 08:00:00
+206,Jackie Torrez,2025-01-07,Work,,,3.0,Blank,Completed work order WO-1060035,WO-1060035,,2025-01-07 08:00:00,2025-01-07 08:00:00
+207,Virgil Brumbelow,2025-01-07,Work,,,3.0,Blank,Completed work order WO-1060035,WO-1060035,,2025-01-07 08:00:00,2025-01-07 08:00:00
+208,Hunter Owens,2024-03-27,Work,,,2.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-27 08:00:00,2024-03-27 08:00:00
+209,Elisha Capley,2024-03-27,Work,,,2.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-27 08:00:00,2024-03-27 08:00:00
+210,Elisha Capley,2024-03-26,Work,,,3.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-26 08:00:00,2024-03-26 08:00:00
+211,Hunter Owens,2024-03-26,Work,,,3.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-26 08:00:00,2024-03-26 08:00:00
+212,Elisha Capley,2024-03-25,Work,,,4.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-25 08:00:00,2024-03-25 08:00:00
+213,Hunter Owens,2024-03-25,Work,,,4.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-25 08:00:00,2024-03-25 08:00:00
+214,Elisha Capley,2024-03-22,Work,,,6.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-22 08:00:00,2024-03-22 08:00:00
+215,Hunter Owens,2024-03-22,Work,,,6.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-22 08:00:00,2024-03-22 08:00:00
+216,Elisha Capley,2024-03-20,Work,,,3.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-20 08:00:00,2024-03-20 08:00:00
+217,Hunter Owens,2024-03-20,Work,,,3.0,NERC Winter Weather Checklist is complete,Completed work order WO-1049428,WO-1049428,,2024-03-20 08:00:00,2024-03-20 08:00:00
+218,David Morrison,2025-08-01,Work,,,1.0,Completed PM per task sheet,Completed work order WO-1070821,WO-1070821,,2025-08-01 08:00:00,2025-08-01 08:00:00
+219,Jacob Collins,2025-08-01,Work,,,1.0,Completed PM per task sheet,Completed work order WO-1070821,WO-1070821,,2025-08-01 08:00:00,2025-08-01 08:00:00
+220,David Morrison,2025-08-04,Work,,,1.0,Completed PM per task sheet,Completed work order WO-1070815,WO-1070815,,2025-08-04 08:00:00,2025-08-04 08:00:00
+221,Jacob Collins,2025-08-04,Work,,,1.0,Completed PM per task sheet,Completed work order WO-1070815,WO-1070815,,2025-08-04 08:00:00,2025-08-04 08:00:00
+222,Layla Ashtiyany,2025-05-06,Work,,,1.0,"PM complete, zero errors found",Completed work order WO-1065912,WO-1065912,,2025-05-06 08:00:00,2025-05-06 08:00:00
+223,Jacob Collins,2025-05-06,Work,,,1.0,"PM complete, zero errors found",Completed work order WO-1065912,WO-1065912,,2025-05-06 08:00:00,2025-05-06 08:00:00
+224,Layla Ashtiyany,2025-05-06,Work,,,1.0,"PM complete, zero errors found",Completed work order WO-1065911,WO-1065911,,2025-05-06 08:00:00,2025-05-06 08:00:00
+225,Jacob Collins,2025-05-06,Work,,,1.0,"PM complete, zero errors found",Completed work order WO-1065911,WO-1065911,,2025-05-06 08:00:00,2025-05-06 08:00:00
+226,Kyle Foley,2025-05-05,Work,,,1.0,Monthly PM complete,Completed work order WO-1065849,WO-1065849,,2025-05-05 08:00:00,2025-05-05 08:00:00
+227,Eric Bowen,2025-05-05,Work,,,1.0,Monthly PM complete,Completed work order WO-1065849,WO-1065849,,2025-05-05 08:00:00,2025-05-05 08:00:00
+228,Eric Bowen,2025-05-05,Work,,,1.0,Monthly MET PM completed,Completed work order WO-1065846,WO-1065846,,2025-05-05 08:00:00,2025-05-05 08:00:00
+229,Kyle Foley,2025-05-05,Work,,,1.0,Monthly MET PM completed,Completed work order WO-1065846,WO-1065846,,2025-05-05 08:00:00,2025-05-05 08:00:00
+230,Hunter Owens,2024-12-05,Work,,,1.0,MET 4 Monthly PM complete,Completed work order WO-1058557,WO-1058557,,2024-12-05 08:00:00,2024-12-05 08:00:00
+231,Ty Herchenhahn,2024-12-05,Work,,,1.0,MET 4 Monthly PM complete,Completed work order WO-1058557,WO-1058557,,2024-12-05 08:00:00,2024-12-05 08:00:00
+232,William Boyd,2025-08-07,Work,,,1.0,"Performed monthly PM on met station 5. No issues found. Can not use 10 foot ladder to level globes. No engineered tie off points, No fall protection harness.",Completed work order WO-1070613,WO-1070613,,2025-08-07 08:00:00,2025-08-07 08:00:00
+233,Martin Lopez,2025-08-07,Work,,,1.0,"Performed monthly PM on met station 5. No issues found. Can not use 10 foot ladder to level globes. No engineered tie off points, No fall protection harness.",Completed work order WO-1070613,WO-1070613,,2025-08-07 08:00:00,2025-08-07 08:00:00
+234,Hunter Owens,2025-06-26,Work,,,1.0,Monthly PM Completed.,Completed work order WO-1067376,WO-1067376,,2025-06-26 08:00:00,2025-06-26 08:00:00
+235,Kyle Foley,2025-06-26,Work,,,1.0,Monthly PM Completed.,Completed work order WO-1067376,WO-1067376,,2025-06-26 08:00:00,2025-06-26 08:00:00
+236,Eric Bowen,2025-06-26,Work,,,1.0,Monthly PM Completed.,Completed work order WO-1067376,WO-1067376,,2025-06-26 08:00:00,2025-06-26 08:00:00
+237,Jonathan Hawkins,2024-05-01,Work,,,1.0,"Cleaned Met Station Pyronometer Lenses with distilled water.   Inspected cabinet and battery, no issues.  Cleaned module pyronometers.",Completed work order WO-1049983,WO-1049983,,2024-05-01 08:00:00,2024-05-01 08:00:00
+238,Michael Lewis,2024-05-01,Work,,,1.0,"Cleaned Met Station Pyronometer Lenses with distilled water.   Inspected cabinet and battery, no issues.  Cleaned module pyronometers.",Completed work order WO-1049983,WO-1049983,,2024-05-01 08:00:00,2024-05-01 08:00:00
+239,William Boyd,2024-05-01,Work,,,1.0,"Cleaned Met Station Pyronometer Lenses with distilled water.   Inspected cabinet and battery, no issues.  Cleaned module pyronometers.",Completed work order WO-1049983,WO-1049983,,2024-05-01 08:00:00,2024-05-01 08:00:00
+240,Virgil Brumbelow,2024-05-01,Work,,,1.0,"Cleaned Met Station Pyronometer Lenses with distilled water.   Inspected cabinet and battery, no issues.  Cleaned module pyronometers.",Completed work order WO-1049983,WO-1049983,,2024-05-01 08:00:00,2024-05-01 08:00:00
+241,Ty Herchenhahn,2025-06-03,Work,,,1.0,PM complete,Completed work order WO-1067580,WO-1067580,,2025-06-03 08:00:00,2025-06-03 08:00:00
+242,Jonathan Hawkins,2024-08-01,Work,,,1.0,all steps are complete and vegetation trimmed,Completed work order WO-1054040,WO-1054040,,2024-08-01 08:00:00,2024-08-01 08:00:00
+243,William Boyd,2025-05-06,Work,,,2.0,Monthly MET station PM due. PM complete,Completed work order WO-1065853,WO-1065853,,2025-05-06 08:00:00,2025-05-06 08:00:00
+244,Martin Lopez,2025-05-05,Work,,,2.0,Monthly MET station PM due. PM complete,Completed work order WO-1065853,WO-1065853,,2025-05-05 08:00:00,2025-05-05 08:00:00
+245,Kyle Foley,2025-06-17,Work,,,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
+246,Eric Bowen,2025-06-17,Work,,,0.25,Annual Block Pm completed. All photos located on notes and attachments. All inspection forms are completed,Completed work order WO-1065939,WO-1065939,,2025-06-17 08:00:00,2025-06-17 08:00:00
+247,Hunter Owens,2024-09-07,Work,,,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
+248,Randall Hampton,2024-09-07,Work,,,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
+249,Ty Herchenhahn,2024-09-05,Work,,,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
+250,Kyle Foley,2024-09-05,Work,,,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
+251,Eric Bowen,2024-09-05,Work,,,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
+252,Ty Herchenhahn,2024-09-04,Work,,,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
+253,Kyle Foley,2024-09-04,Work,,,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
+254,Eric Bowen,2024-09-04,Work,,,2.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
+255,Ty Herchenhahn,2025-06-23,Work,,,3.0,"Cause: Ground fault caused by a cut string on Row 20 in Section A.
 
 Action: Origis cut out the damaged wire section and spliced the wire using an MC4 connector.
 
 Result: Ground fault cleared; inverter is now operational.",Completed work order WO-1068475,WO-1068475,,2025-06-23 08:00:00,2025-06-23 08:00:00
-256,David Morrison,2025-06-23,Work,3.0,"Cause: Ground fault caused by a cut string on Row 20 in Section A.
+256,David Morrison,2025-06-23,Work,,,3.0,"Cause: Ground fault caused by a cut string on Row 20 in Section A.
 
 Action: Origis cut out the damaged wire section and spliced the wire using an MC4 connector.
 
 Result: Ground fault cleared; inverter is now operational.",Completed work order WO-1068475,WO-1068475,,2025-06-23 08:00:00,2025-06-23 08:00:00
-257,Layla Ashtiyany,2025-06-09,Work,3.0,"Cause: Unknown
+257,Layla Ashtiyany,2025-06-09,Work,,,3.0,"Cause: Unknown
 Action: Drove to Each NCU and hard reset the NCU.
 Result: all NCu are now operational",Completed work order WO-1068149,WO-1068149,,2025-06-09 08:00:00,2025-06-09 08:00:00
-258,Randall Hampton,2024-09-05,Work,3.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
-259,Hunter Owens,2024-09-05,Work,3.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
-260,Jamarquis Jefferson,2025-01-08,Work,5.0,"see 
+258,Randall Hampton,2024-09-05,Work,,,3.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
+259,Hunter Owens,2024-09-05,Work,,,3.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-05 08:00:00,2024-09-05 08:00:00
+260,Jamarquis Jefferson,2025-01-08,Work,,,5.0,"see 
 Operating Log
 20250108-19662",Completed work order WO-1060261,WO-1060261,,2025-01-08 08:00:00,2025-01-08 08:00:00
-261,Eric Bowen,2025-01-08,Work,5.0,"see 
+261,Eric Bowen,2025-01-08,Work,,,5.0,"see 
 Operating Log
 20250108-19662",Completed work order WO-1060261,WO-1060261,,2025-01-08 08:00:00,2025-01-08 08:00:00
-262,Hunter Owens,2024-09-11,Work,1.5,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-11 08:00:00,2024-09-11 08:00:00
-263,Eric Bowen,2024-09-07,Work,1.5,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
-264,Hunter Owens,2024-09-04,Work,5.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
-265,Kyle Foley,2024-09-07,Work,1.5,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
-266,Ty Herchenhahn,2024-09-07,Work,1.5,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
-267,Randall Hampton,2024-09-04,Work,4.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
-268,Hunter Owens,2024-07-15,Work,0.25,"RES able to accomplish the equipment swap on Wednesday 3, July, successfully changing the Field Switch and RSW Fiber Module.  However, they didnt see immediate results upon replacing the fiber module, it did take a restart of the switch and then the Spanning Tree issues were resolved.",Completed work order WO-1052790,WO-1052790,,2024-07-15 08:00:00,2024-07-15 08:00:00
-269,Jacob Collins,2025-06-09,Work,7.0,"Cause: Unknown
+262,Hunter Owens,2024-09-11,Work,,,1.5,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-11 08:00:00,2024-09-11 08:00:00
+263,Eric Bowen,2024-09-07,Work,,,1.5,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
+264,Hunter Owens,2024-09-04,Work,,,5.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
+265,Kyle Foley,2024-09-07,Work,,,1.5,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
+266,Ty Herchenhahn,2024-09-07,Work,,,1.5,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-07 08:00:00,2024-09-07 08:00:00
+267,Randall Hampton,2024-09-04,Work,,,4.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-04 08:00:00,2024-09-04 08:00:00
+268,Hunter Owens,2024-07-15,Work,,,0.25,"RES able to accomplish the equipment swap on Wednesday 3, July, successfully changing the Field Switch and RSW Fiber Module.  However, they didnt see immediate results upon replacing the fiber module, it did take a restart of the switch and then the Spanning Tree issues were resolved.",Completed work order WO-1052790,WO-1052790,,2024-07-15 08:00:00,2024-07-15 08:00:00
+269,Jacob Collins,2025-06-09,Work,,,7.0,"Cause: Unknown
 Action: Drove to Each NCU and hard reset the NCU.
 Result: all NCu are now operational",Completed work order WO-1068149,WO-1068149,,2025-06-09 08:00:00,2025-06-09 08:00:00
-270,Ty Herchenhahn,2025-06-09,Work,5.0,"Cause: Unknown
+270,Ty Herchenhahn,2025-06-09,Work,,,5.0,"Cause: Unknown
 Action: Drove to Each NCU and hard reset the NCU.
 Result: all NCu are now operational",Completed work order WO-1068149,WO-1068149,,2025-06-09 08:00:00,2025-06-09 08:00:00
-271,Jacob Collins,2025-06-02,Work,7.0,"Cause: Repeaters needed to be installed and configured. 
+271,Jacob Collins,2025-06-02,Work,,,7.0,"Cause: Repeaters needed to be installed and configured. 
 
 action: Origis assisted RES in configuring repeaters. 
 
 result: After Communicating with NEXTracker. the repeaters are now operational.",Completed work order WO-1067725,WO-1067725,,2025-06-02 08:00:00,2025-06-02 08:00:00
-272,Ty Herchenhahn,2025-06-02,Work,7.0,"Cause: Repeaters needed to be installed and configured. 
+272,Ty Herchenhahn,2025-06-02,Work,,,7.0,"Cause: Repeaters needed to be installed and configured. 
 
 action: Origis assisted RES in configuring repeaters. 
 
 result: After Communicating with NEXTracker. the repeaters are now operational.",Completed work order WO-1067725,WO-1067725,,2025-06-02 08:00:00,2025-06-02 08:00:00
-273,Jacob Collins,2025-05-01,Work,4.0,Updated firm ware and pushed new parameters,Completed work order WO-1066224,WO-1066224,,2025-05-01 08:00:00,2025-05-01 08:00:00
-274,Ty Herchenhahn,2025-05-01,Work,4.0,Updated firm ware and pushed new parameters,Completed work order WO-1066224,WO-1066224,,2025-05-01 08:00:00,2025-05-01 08:00:00
-275,Jackie Torrez,2025-06-13,Work,1.0,"Cause: thermal damage discovered during block walk
+273,Jacob Collins,2025-05-01,Work,,,4.0,Updated firm ware and pushed new parameters,Completed work order WO-1066224,WO-1066224,,2025-05-01 08:00:00,2025-05-01 08:00:00
+274,Ty Herchenhahn,2025-05-01,Work,,,4.0,Updated firm ware and pushed new parameters,Completed work order WO-1066224,WO-1066224,,2025-05-01 08:00:00,2025-05-01 08:00:00
+275,Jackie Torrez,2025-06-13,Work,,,1.0,"Cause: thermal damage discovered during block walk
 
 Action: Replaced damaged modules, reviewed strings to make sure they were strung correctly.
 
 Result: Damaged module has been replaced, and strings are functioning properly",Completed work order WO-1067144,WO-1067144,,2025-06-13 08:00:00,2025-06-13 08:00:00
-276,Martin Lopez,2025-06-13,Work,1.0,"Cause: thermal damage discovered during block walk
+276,Martin Lopez,2025-06-13,Work,,,1.0,"Cause: thermal damage discovered during block walk
 
 Action: Replaced damaged modules, reviewed strings to make sure they were strung correctly.
 
 Result: Damaged module has been replaced, and strings are functioning properly",Completed work order WO-1067144,WO-1067144,,2025-06-13 08:00:00,2025-06-13 08:00:00
-277,Michael Lewis,2024-08-12,Work,1.0,Replaced Broken Module on 1A6 row 23,Completed work order WO-1054293,WO-1054293,,2024-08-12 08:00:00,2024-08-12 08:00:00
-278,Jonathan Hawkins,2024-08-12,Work,1.0,Replaced Broken Module on 1A6 row 23,Completed work order WO-1054293,WO-1054293,,2024-08-12 08:00:00,2024-08-12 08:00:00
-279,William Boyd,2024-06-27,Work,1.0,INV 4B6 was showing LBD 18 offline checking LBD 18 and LBD was turned off. Notified ROC. Turned LBD 18 on and checked amps 4B6 online,Completed work order WO-1052467,WO-1052467,,2024-06-27 08:00:00,2024-06-27 08:00:00
-280,Michael Lewis,2024-06-27,Work,1.0,INV 4B6 was showing LBD 18 offline checking LBD 18 and LBD was turned off. Notified ROC. Turned LBD 18 on and checked amps 4B6 online,Completed work order WO-1052467,WO-1052467,,2024-06-27 08:00:00,2024-06-27 08:00:00
-281,William Boyd,2025-05-19,Work,0.5,"Cause: High winds caused driveline to become detached.
+277,Michael Lewis,2024-08-12,Work,,,1.0,Replaced Broken Module on 1A6 row 23,Completed work order WO-1054293,WO-1054293,,2024-08-12 08:00:00,2024-08-12 08:00:00
+278,Jonathan Hawkins,2024-08-12,Work,,,1.0,Replaced Broken Module on 1A6 row 23,Completed work order WO-1054293,WO-1054293,,2024-08-12 08:00:00,2024-08-12 08:00:00
+279,William Boyd,2024-06-27,Work,,,1.0,INV 4B6 was showing LBD 18 offline checking LBD 18 and LBD was turned off. Notified ROC. Turned LBD 18 on and checked amps 4B6 online,Completed work order WO-1052467,WO-1052467,,2024-06-27 08:00:00,2024-06-27 08:00:00
+280,Michael Lewis,2024-06-27,Work,,,1.0,INV 4B6 was showing LBD 18 offline checking LBD 18 and LBD was turned off. Notified ROC. Turned LBD 18 on and checked amps 4B6 online,Completed work order WO-1052467,WO-1052467,,2024-06-27 08:00:00,2024-06-27 08:00:00
+281,William Boyd,2025-05-19,Work,,,0.5,"Cause: High winds caused driveline to become detached.
 Action: Reinstalled driveline.
 Results: Tracking system now working correctly.",Completed work order WO-1066846,WO-1066846,,2025-05-19 08:00:00,2025-05-19 08:00:00
-282,Martin Lopez,2025-05-19,Work,0.5,"Cause: High winds caused driveline to become detached.
+282,Martin Lopez,2025-05-19,Work,,,0.5,"Cause: High winds caused driveline to become detached.
 Action: Reinstalled driveline.
 Results: Tracking system now working correctly.",Completed work order WO-1066846,WO-1066846,,2025-05-19 08:00:00,2025-05-19 08:00:00
-283,Virgil Brumbelow,2024-10-30,Work,0.5,Driveline fell off. Reattached driveline at splined coupler. No further issues.,Completed work order WO-1057646,WO-1057646,,2024-10-30 08:00:00,2024-10-30 08:00:00
-284,William Boyd,2024-10-30,Work,0.5,Driveline fell off. Reattached driveline at splined coupler. No further issues.,Completed work order WO-1057646,WO-1057646,,2024-10-30 08:00:00,2024-10-30 08:00:00
-285,Virgil Brumbelow,2024-06-17,Work,0.5,Verified that indication has been resolved with ROC.,Completed work order WO-1052202,WO-1052202,,2024-06-17 08:00:00,2024-06-17 08:00:00
-286,Virgil Brumbelow,2024-12-26,Work,2.0,Comms issue has self reset.   No fault codes in inverter.  Comms issues for several inverters 12/24.,Completed work order WO-1059597,WO-1059597,,2024-12-26 08:00:00,2024-12-26 08:00:00
-287,Jackie Torrez,2024-12-26,Work,2.0,Comms issue has self reset.   No fault codes in inverter.  Comms issues for several inverters 12/24.,Completed work order WO-1059597,WO-1059597,,2024-12-26 08:00:00,2024-12-26 08:00:00
-288,Michael Lewis,2024-10-03,Work,2.0,"ROC notified site that 4B2 module 2 was not running. We shut module 1 down and performed a complete reset/restart after letting capacitors discharge. Unit is now online with both modules  running, Notified ROC 4B2 is back online.",Completed work order WO-1056418,WO-1056418,,2024-10-03 08:00:00,2024-10-03 08:00:00
-289,William Boyd,2024-10-03,Work,2.0,"ROC notified site that 4B2 module 2 was not running. We shut module 1 down and performed a complete reset/restart after letting capacitors discharge. Unit is now online with both modules  running, Notified ROC 4B2 is back online.",Completed work order WO-1056418,WO-1056418,,2024-10-03 08:00:00,2024-10-03 08:00:00
-290,Virgil Brumbelow,2024-09-27,Work,2.0,Found no issues. Underperformance is believed to be due to array being on north facing slope.,Completed work order WO-1056070,WO-1056070,,2024-09-27 08:00:00,2024-09-27 08:00:00
-291,William Boyd,2024-09-27,Work,2.0,Found no issues. Underperformance is believed to be due to array being on north facing slope.,Completed work order WO-1056070,WO-1056070,,2024-09-27 08:00:00,2024-09-27 08:00:00
-292,Jackie Torrez,2025-03-06,Work,2.0,"Cause: New server installation initiated by Chris Tran.
+283,Virgil Brumbelow,2024-10-30,Work,,,0.5,Driveline fell off. Reattached driveline at splined coupler. No further issues.,Completed work order WO-1057646,WO-1057646,,2024-10-30 08:00:00,2024-10-30 08:00:00
+284,William Boyd,2024-10-30,Work,,,0.5,Driveline fell off. Reattached driveline at splined coupler. No further issues.,Completed work order WO-1057646,WO-1057646,,2024-10-30 08:00:00,2024-10-30 08:00:00
+285,Virgil Brumbelow,2024-06-17,Work,,,0.5,Verified that indication has been resolved with ROC.,Completed work order WO-1052202,WO-1052202,,2024-06-17 08:00:00,2024-06-17 08:00:00
+286,Virgil Brumbelow,2024-12-26,Work,,,2.0,Comms issue has self reset.   No fault codes in inverter.  Comms issues for several inverters 12/24.,Completed work order WO-1059597,WO-1059597,,2024-12-26 08:00:00,2024-12-26 08:00:00
+287,Jackie Torrez,2024-12-26,Work,,,2.0,Comms issue has self reset.   No fault codes in inverter.  Comms issues for several inverters 12/24.,Completed work order WO-1059597,WO-1059597,,2024-12-26 08:00:00,2024-12-26 08:00:00
+288,Michael Lewis,2024-10-03,Work,,,2.0,"ROC notified site that 4B2 module 2 was not running. We shut module 1 down and performed a complete reset/restart after letting capacitors discharge. Unit is now online with both modules  running, Notified ROC 4B2 is back online.",Completed work order WO-1056418,WO-1056418,,2024-10-03 08:00:00,2024-10-03 08:00:00
+289,William Boyd,2024-10-03,Work,,,2.0,"ROC notified site that 4B2 module 2 was not running. We shut module 1 down and performed a complete reset/restart after letting capacitors discharge. Unit is now online with both modules  running, Notified ROC 4B2 is back online.",Completed work order WO-1056418,WO-1056418,,2024-10-03 08:00:00,2024-10-03 08:00:00
+290,Virgil Brumbelow,2024-09-27,Work,,,2.0,Found no issues. Underperformance is believed to be due to array being on north facing slope.,Completed work order WO-1056070,WO-1056070,,2024-09-27 08:00:00,2024-09-27 08:00:00
+291,William Boyd,2024-09-27,Work,,,2.0,Found no issues. Underperformance is believed to be due to array being on north facing slope.,Completed work order WO-1056070,WO-1056070,,2024-09-27 08:00:00,2024-09-27 08:00:00
+292,Jackie Torrez,2025-03-06,Work,,,2.0,"Cause: New server installation initiated by Chris Tran.
 
 Action: Installation of Nexalis server. We moved existing server down to create from for the new server, we then installed the new server and ran cables as specfied by Chris Tran. We then verified with Chris that it was done correctly.
 
 Status: Server is pingable and visible. Ready for next steps of commissioning",Completed work order WO-1063134,WO-1063134,,2025-03-06 08:00:00,2025-03-06 08:00:00
-293,William Boyd,2025-03-06,Work,2.0,"Cause: New server installation initiated by Chris Tran.
+293,William Boyd,2025-03-06,Work,,,2.0,"Cause: New server installation initiated by Chris Tran.
 
 Action: Installation of Nexalis server. We moved existing server down to create from for the new server, we then installed the new server and ran cables as specfied by Chris Tran. We then verified with Chris that it was done correctly.
 
 Status: Server is pingable and visible. Ready for next steps of commissioning",Completed work order WO-1063134,WO-1063134,,2025-03-06 08:00:00,2025-03-06 08:00:00
-294,Martin Lopez,2025-03-06,Work,2.0,"Cause: New server installation initiated by Chris Tran.
+294,Martin Lopez,2025-03-06,Work,,,2.0,"Cause: New server installation initiated by Chris Tran.
 
 Action: Installation of Nexalis server. We moved existing server down to create from for the new server, we then installed the new server and ran cables as specfied by Chris Tran. We then verified with Chris that it was done correctly.
 
 Status: Server is pingable and visible. Ready for next steps of commissioning",Completed work order WO-1063134,WO-1063134,,2025-03-06 08:00:00,2025-03-06 08:00:00
-295,Martin Lopez,2025-03-03,Work,2.0,Installed cable from Firewall 2 to Substation Switch per Gridsecurity and OT,Completed work order WO-1060481,WO-1060481,,2025-03-03 08:00:00,2025-03-03 08:00:00
-296,William Boyd,2025-03-03,Work,2.0,Installed cable from Firewall 2 to Substation Switch per Gridsecurity and OT,Completed work order WO-1060481,WO-1060481,,2025-03-03 08:00:00,2025-03-03 08:00:00
-297,Virgil Brumbelow,2025-02-13,Work,2.0,Installed cable from Firewall 2 to Substation Switch per Gridsecurity and OT,Completed work order WO-1060481,WO-1060481,,2025-02-13 08:00:00,2025-02-13 08:00:00
-298,William Boyd,2024-07-09,Work,2.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-09 08:00:00,2024-07-09 08:00:00
-299,Michael Lewis,2024-07-09,Work,2.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-09 08:00:00,2024-07-09 08:00:00
-300,Michael Lewis,2024-07-02,Work,2.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-02 08:00:00,2024-07-02 08:00:00
-301,Jonathan Hawkins,2024-06-10,Work,2.0,Verified that indication has been resolved with ROC.,Completed work order WO-1052202,WO-1052202,,2024-06-10 08:00:00,2024-06-10 08:00:00
-302,Virgil Brumbelow,2024-07-05,Work,4.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-05 08:00:00,2024-07-05 08:00:00
-303,Virgil Brumbelow,2025-03-03,Work,1.5,Installed cable from Firewall 2 to Substation Switch per Gridsecurity and OT,Completed work order WO-1060481,WO-1060481,,2025-03-03 08:00:00,2025-03-03 08:00:00
-304,William Boyd,2025-03-13,Work,3.0,"Cause: New server installation initiated by Chris Tran.
+295,Martin Lopez,2025-03-03,Work,,,2.0,Installed cable from Firewall 2 to Substation Switch per Gridsecurity and OT,Completed work order WO-1060481,WO-1060481,,2025-03-03 08:00:00,2025-03-03 08:00:00
+296,William Boyd,2025-03-03,Work,,,2.0,Installed cable from Firewall 2 to Substation Switch per Gridsecurity and OT,Completed work order WO-1060481,WO-1060481,,2025-03-03 08:00:00,2025-03-03 08:00:00
+297,Virgil Brumbelow,2025-02-13,Work,,,2.0,Installed cable from Firewall 2 to Substation Switch per Gridsecurity and OT,Completed work order WO-1060481,WO-1060481,,2025-02-13 08:00:00,2025-02-13 08:00:00
+298,William Boyd,2024-07-09,Work,,,2.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-09 08:00:00,2024-07-09 08:00:00
+299,Michael Lewis,2024-07-09,Work,,,2.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-09 08:00:00,2024-07-09 08:00:00
+300,Michael Lewis,2024-07-02,Work,,,2.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-02 08:00:00,2024-07-02 08:00:00
+301,Jonathan Hawkins,2024-06-10,Work,,,2.0,Verified that indication has been resolved with ROC.,Completed work order WO-1052202,WO-1052202,,2024-06-10 08:00:00,2024-06-10 08:00:00
+302,Virgil Brumbelow,2024-07-05,Work,,,4.0,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-05 08:00:00,2024-07-05 08:00:00
+303,Virgil Brumbelow,2025-03-03,Work,,,1.5,Installed cable from Firewall 2 to Substation Switch per Gridsecurity and OT,Completed work order WO-1060481,WO-1060481,,2025-03-03 08:00:00,2025-03-03 08:00:00
+304,William Boyd,2025-03-13,Work,,,3.0,"Cause: New server installation initiated by Chris Tran.
 
 Action: Installation of Nexalis server. We moved existing server down to create from for the new server, we then installed the new server and ran cables as specfied by Chris Tran. We then verified with Chris that it was done correctly.
 
 Status: Server is pingable and visible. Ready for next steps of commissioning",Completed work order WO-1063134,WO-1063134,,2025-03-13 08:00:00,2025-03-13 08:00:00
-305,Jackie Torrez,2025-03-13,Work,3.0,"Cause: New server installation initiated by Chris Tran.
+305,Jackie Torrez,2025-03-13,Work,,,3.0,"Cause: New server installation initiated by Chris Tran.
 
 Action: Installation of Nexalis server. We moved existing server down to create from for the new server, we then installed the new server and ran cables as specfied by Chris Tran. We then verified with Chris that it was done correctly.
 
 Status: Server is pingable and visible. Ready for next steps of commissioning",Completed work order WO-1063134,WO-1063134,,2025-03-13 08:00:00,2025-03-13 08:00:00
-306,Martin Lopez,2025-03-13,Work,3.0,"Cause: New server installation initiated by Chris Tran.
+306,Martin Lopez,2025-03-13,Work,,,3.0,"Cause: New server installation initiated by Chris Tran.
 
 Action: Installation of Nexalis server. We moved existing server down to create from for the new server, we then installed the new server and ran cables as specfied by Chris Tran. We then verified with Chris that it was done correctly.
 
 Status: Server is pingable and visible. Ready for next steps of commissioning",Completed work order WO-1063134,WO-1063134,,2025-03-13 08:00:00,2025-03-13 08:00:00
-307,William Boyd,2025-07-09,Work,6.0,"Cause: Thermal damage found well doing block walks
+307,William Boyd,2025-07-09,Work,,,6.0,"Cause: Thermal damage found well doing block walks
 
 Action: Thermal damaged modules were replaced, strings were tested for voltage and wire/MC4s checked for integrity.
 
 Result: damaged modules have been repaired. and strings are functioning",Completed work order WO-1067614,WO-1067614,,2025-07-09 08:00:00,2025-07-09 08:00:00
-308,Jackie Torrez,2025-07-09,Work,6.0,"Cause: Thermal damage found well doing block walks
+308,Jackie Torrez,2025-07-09,Work,,,6.0,"Cause: Thermal damage found well doing block walks
 
 Action: Thermal damaged modules were replaced, strings were tested for voltage and wire/MC4s checked for integrity.
 
 Result: damaged modules have been repaired. and strings are functioning",Completed work order WO-1067614,WO-1067614,,2025-07-09 08:00:00,2025-07-09 08:00:00
-309,Jamarquis Jefferson,2025-03-27,Work,8.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-27 08:00:00,2025-03-27 08:00:00
-310,Jamarquis Jefferson,2025-03-20,Work,8.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-20 08:00:00,2025-03-20 08:00:00
-311,Kyle Foley,2025-07-09,Work,1.0,"Cause: Lightning storm
+309,Jamarquis Jefferson,2025-03-27,Work,,,8.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-27 08:00:00,2025-03-27 08:00:00
+310,Jamarquis Jefferson,2025-03-20,Work,,,8.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2025-03-20 08:00:00,2025-03-20 08:00:00
+311,Kyle Foley,2025-07-09,Work,,,1.0,"Cause: Lightning storm
 Action: Reset of inverter 
 Result: Inverter operational",Completed work order WO-1069610,WO-1069610,,2025-07-09 08:00:00,2025-07-09 08:00:00
-312,Eric Bowen,2025-07-09,Work,1.0,"Cause: Lightning storm
+312,Eric Bowen,2025-07-09,Work,,,1.0,"Cause: Lightning storm
 Action: Reset of inverter 
 Result: Inverter operational",Completed work order WO-1069610,WO-1069610,,2025-07-09 08:00:00,2025-07-09 08:00:00
-313,Ty Herchenhahn,2025-08-12,Work,1.0,"Cause: blown branch fuse 
+313,Ty Herchenhahn,2025-08-12,Work,,,1.0,"Cause: blown branch fuse 
 Acton: Replaced blown fuse 
 Result: LBD is now operational",Completed work order WO-1071091,WO-1071091,,2025-08-12 08:00:00,2025-08-12 08:00:00
-314,David Morrison,2025-08-13,Work,1.0,"Cause: blown branch fuse 
+314,David Morrison,2025-08-13,Work,,,1.0,"Cause: blown branch fuse 
 Acton: Replaced blown fuse 
 Result: LBD is now operational",Completed work order WO-1071091,WO-1071091,,2025-08-13 08:00:00,2025-08-13 08:00:00
-315,Ashton Meyers,2025-08-13,Work,1.0,"Cause: blown branch fuse 
+315,Ashton Meyers,2025-08-13,Work,,,1.0,"Cause: blown branch fuse 
 Acton: Replaced blown fuse 
 Result: LBD is now operational",Completed work order WO-1071091,WO-1071091,,2025-08-13 08:00:00,2025-08-13 08:00:00
-316,Eric Bowen,2025-03-10,Work,1.0,"See 
+316,Eric Bowen,2025-03-10,Work,,,1.0,"See 
 Operating Log
 20250311-21227",Completed work order WO-1063439,WO-1063439,,2025-03-10 08:00:00,2025-03-10 08:00:00
-317,Kyle Foley,2025-03-10,Work,1.0,"See 
+317,Kyle Foley,2025-03-10,Work,,,1.0,"See 
 Operating Log
 20250311-21227",Completed work order WO-1063439,WO-1063439,,2025-03-10 08:00:00,2025-03-10 08:00:00
-318,Eric Bowen,2025-02-25,Work,1.0,"see 
+318,Eric Bowen,2025-02-25,Work,,,1.0,"see 
 Operating Log
 20250108-19662",Completed work order WO-1060261,WO-1060261,,2025-02-25 08:00:00,2025-02-25 08:00:00
-319,Kyle Foley,2024-09-10,Work,1.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-10 08:00:00,2024-09-10 08:00:00
-320,Kyle Foley,2024-09-09,Work,1.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-09 08:00:00,2024-09-09 08:00:00
-321,Hunter Owens,2024-06-17,Work,0.5,INV 1 started cycling with a 6502 Overtemperature Power Unit on 6/14/24. RES cleaned the inverter filters. Inverter stopped cycling. Origis Services continued to monitor to ensure fault was resolved. Inverter 1 never faulted again.,Completed work order WO-1052434,WO-1052434,,2024-06-17 08:00:00,2024-06-17 08:00:00
-322,Ty Herchenhahn,2025-04-01,Work,0.5,"Drove to location. Looked for Tracker issue, no issue was found. Trackers are all operational.",Completed work order WO-1064611,WO-1064611,,2025-04-01 08:00:00,2025-04-01 08:00:00
-323,Jacob Collins,2025-04-01,Work,0.5,"Drove to location. Looked for Tracker issue, no issue was found. Trackers are all operational.",Completed work order WO-1064611,WO-1064611,,2025-04-01 08:00:00,2025-04-01 08:00:00
-324,Layla Ashtiyany,2025-04-01,Work,0.5,"Drove to location. Looked for Tracker issue, no issue was found. Trackers are all operational.",Completed work order WO-1064611,WO-1064611,,2025-04-01 08:00:00,2025-04-01 08:00:00
-325,Eric Bowen,2025-03-06,Work,0.5,no issues found,Completed work order WO-1062327,WO-1062327,,2025-03-06 08:00:00,2025-03-06 08:00:00
-326,Jacob Collins,2025-07-15,Work,2.0,"Cause: The Rework accidentally installed 2 wires backwards and caused the Unit and the remaining units in a series to lose comms. 
+319,Kyle Foley,2024-09-10,Work,,,1.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-10 08:00:00,2024-09-10 08:00:00
+320,Kyle Foley,2024-09-09,Work,,,1.0,Trouble shot and repaired ground fault on LBD 10.7 and returned it to service,Completed work order WO-1055310,WO-1055310,,2024-09-09 08:00:00,2024-09-09 08:00:00
+321,Hunter Owens,2024-06-17,Work,,,0.5,INV 1 started cycling with a 6502 Overtemperature Power Unit on 6/14/24. RES cleaned the inverter filters. Inverter stopped cycling. Origis Services continued to monitor to ensure fault was resolved. Inverter 1 never faulted again.,Completed work order WO-1052434,WO-1052434,,2024-06-17 08:00:00,2024-06-17 08:00:00
+322,Ty Herchenhahn,2025-04-01,Work,,,0.5,"Drove to location. Looked for Tracker issue, no issue was found. Trackers are all operational.",Completed work order WO-1064611,WO-1064611,,2025-04-01 08:00:00,2025-04-01 08:00:00
+323,Jacob Collins,2025-04-01,Work,,,0.5,"Drove to location. Looked for Tracker issue, no issue was found. Trackers are all operational.",Completed work order WO-1064611,WO-1064611,,2025-04-01 08:00:00,2025-04-01 08:00:00
+324,Layla Ashtiyany,2025-04-01,Work,,,0.5,"Drove to location. Looked for Tracker issue, no issue was found. Trackers are all operational.",Completed work order WO-1064611,WO-1064611,,2025-04-01 08:00:00,2025-04-01 08:00:00
+325,Eric Bowen,2025-03-06,Work,,,0.5,no issues found,Completed work order WO-1062327,WO-1062327,,2025-03-06 08:00:00,2025-03-06 08:00:00
+326,Jacob Collins,2025-07-15,Work,,,2.0,"Cause: The Rework accidentally installed 2 wires backwards and caused the Unit and the remaining units in a series to lose comms. 
 
 Action: Blackteal Swaped the wires back to the correct positions and remediated the problem.
 
 Result: The Inverter is now operational.",Completed work order WO-1069817,WO-1069817,,2025-07-15 08:00:00,2025-07-15 08:00:00
-327,Layla Ashtiyany,2025-07-15,Work,2.0,"Cause: The Rework accidentally installed 2 wires backwards and caused the Unit and the remaining units in a series to lose comms. 
+327,Layla Ashtiyany,2025-07-15,Work,,,2.0,"Cause: The Rework accidentally installed 2 wires backwards and caused the Unit and the remaining units in a series to lose comms. 
 
 Action: Blackteal Swaped the wires back to the correct positions and remediated the problem.
 
 Result: The Inverter is now operational.",Completed work order WO-1069817,WO-1069817,,2025-07-15 08:00:00,2025-07-15 08:00:00
-328,Eric Bowen,2025-08-02,Work,2.0,"cause: Inverter faulted offline after storm
+328,Eric Bowen,2025-08-02,Work,,,2.0,"cause: Inverter faulted offline after storm
 Action: inspected inverter for damages and reset
 Result: Inverter Producing",Completed work order WO-1070913,WO-1070913,,2025-08-02 08:00:00,2025-08-02 08:00:00
-329,Kyle Foley,2025-08-02,Work,2.0,"cause: Inverter faulted offline after storm
+329,Kyle Foley,2025-08-02,Work,,,2.0,"cause: Inverter faulted offline after storm
 Action: inspected inverter for damages and reset
 Result: Inverter Producing",Completed work order WO-1070913,WO-1070913,,2025-08-02 08:00:00,2025-08-02 08:00:00
-330,Hunter Owens,2025-08-02,Work,2.0,"cause: Inverter faulted offline after storm
+330,Hunter Owens,2025-08-02,Work,,,2.0,"cause: Inverter faulted offline after storm
 Action: inspected inverter for damages and reset
 Result: Inverter Producing",Completed work order WO-1070913,WO-1070913,,2025-08-02 08:00:00,2025-08-02 08:00:00
-331,Hunter Owens,2025-08-02,Work,2.0,"cause: Inverter faulted offline after storm
+331,Hunter Owens,2025-08-02,Work,,,2.0,"cause: Inverter faulted offline after storm
 Action: inspected inverter for damages and reset
 Result: Inverter Producing",Completed work order WO-1070912,WO-1070912,,2025-08-02 08:00:00,2025-08-02 08:00:00
-332,Eric Bowen,2025-08-02,Work,2.0,"cause: Inverter faulted offline after storm
+332,Eric Bowen,2025-08-02,Work,,,2.0,"cause: Inverter faulted offline after storm
 Action: inspected inverter for damages and reset
 Result: Inverter Producing",Completed work order WO-1070912,WO-1070912,,2025-08-02 08:00:00,2025-08-02 08:00:00
-333,Kyle Foley,2025-08-02,Work,2.0,"cause: Inverter faulted offline after storm
+333,Kyle Foley,2025-08-02,Work,,,2.0,"cause: Inverter faulted offline after storm
 Action: inspected inverter for damages and reset
 Result: Inverter Producing",Completed work order WO-1070912,WO-1070912,,2025-08-02 08:00:00,2025-08-02 08:00:00
-334,David Morrison,2025-08-13,Work,2.0,"Cause: blown branch fuse 
+334,David Morrison,2025-08-13,Work,,,2.0,"Cause: blown branch fuse 
 Acton: Replaced blown fuse 
 Result: LBD is now operational",Completed work order WO-1071091,WO-1071091,,2025-08-13 08:00:00,2025-08-13 08:00:00
-335,Ashton Meyers,2025-08-13,Work,2.0,"Cause: blown branch fuse 
+335,Ashton Meyers,2025-08-13,Work,,,2.0,"Cause: blown branch fuse 
 Acton: Replaced blown fuse 
 Result: LBD is now operational",Completed work order WO-1071091,WO-1071091,,2025-08-13 08:00:00,2025-08-13 08:00:00
-336,Ty Herchenhahn,2025-08-13,Work,2.0,"Cause: blown branch fuse 
+336,Ty Herchenhahn,2025-08-13,Work,,,2.0,"Cause: blown branch fuse 
 Acton: Replaced blown fuse 
 Result: LBD is now operational",Completed work order WO-1071091,WO-1071091,,2025-08-13 08:00:00,2025-08-13 08:00:00
-337,Jacob Collins,2025-05-02,Work,2.0,Updated firm ware and pushed new parameters,Completed work order WO-1066224,WO-1066224,,2025-05-02 08:00:00,2025-05-02 08:00:00
-338,Ty Herchenhahn,2025-05-02,Work,2.0,Updated firm ware and pushed new parameters,Completed work order WO-1066224,WO-1066224,,2025-05-02 08:00:00,2025-05-02 08:00:00
-339,Eric Bowen,2025-03-11,Work,2.0,"See 
+337,Jacob Collins,2025-05-02,Work,,,2.0,Updated firm ware and pushed new parameters,Completed work order WO-1066224,WO-1066224,,2025-05-02 08:00:00,2025-05-02 08:00:00
+338,Ty Herchenhahn,2025-05-02,Work,,,2.0,Updated firm ware and pushed new parameters,Completed work order WO-1066224,WO-1066224,,2025-05-02 08:00:00,2025-05-02 08:00:00
+339,Eric Bowen,2025-03-11,Work,,,2.0,"See 
 Operating Log
 20250311-21227",Completed work order WO-1063439,WO-1063439,,2025-03-11 08:00:00,2025-03-11 08:00:00
-340,Jacob Collins,2025-03-11,Work,2.0,"See 
+340,Jacob Collins,2025-03-11,Work,,,2.0,"See 
 Operating Log
 20250311-21227",Completed work order WO-1063439,WO-1063439,,2025-03-11 08:00:00,2025-03-11 08:00:00
-341,Kyle Foley,2025-03-11,Work,2.0,"See 
+341,Kyle Foley,2025-03-11,Work,,,2.0,"See 
 Operating Log
 20250311-21227",Completed work order WO-1063439,WO-1063439,,2025-03-11 08:00:00,2025-03-11 08:00:00
-342,Ty Herchenhahn,2024-08-23,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-23 08:00:00,2024-08-23 08:00:00
-343,Sammie Rice,2024-08-21,Work,8.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-21 08:00:00,2024-08-21 08:00:00
-344,Ty Herchenhahn,2024-08-21,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-21 08:00:00,2024-08-21 08:00:00
-345,Sammie Rice,2024-08-20,Work,8.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-20 08:00:00,2024-08-20 08:00:00
-346,Kyle Foley,2024-08-20,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-20 08:00:00,2024-08-20 08:00:00
-347,Eric Bowen,2024-08-20,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-20 08:00:00,2024-08-20 08:00:00
-348,Ty Herchenhahn,2024-08-16,Work,3.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-16 08:00:00,2024-08-16 08:00:00
-349,Kyle Foley,2024-08-16,Work,3.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-16 08:00:00,2024-08-16 08:00:00
-350,Kyle Foley,2024-08-15,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-15 08:00:00,2024-08-15 08:00:00
-351,Ty Herchenhahn,2024-08-15,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-15 08:00:00,2024-08-15 08:00:00
-352,Eric Bowen,2024-08-14,Work,1.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-14 08:00:00,2024-08-14 08:00:00
-353,Eric Bowen,2024-08-13,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-13 08:00:00,2024-08-13 08:00:00
-354,Ty Herchenhahn,2024-08-13,Work,1.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-13 08:00:00,2024-08-13 08:00:00
-355,Kyle Foley,2024-08-09,Work,4.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-09 08:00:00,2024-08-09 08:00:00
-356,Ty Herchenhahn,2024-08-09,Work,4.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-09 08:00:00,2024-08-09 08:00:00
-357,Kyle Foley,2024-08-08,Work,1.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-08 08:00:00,2024-08-08 08:00:00
-358,Ty Herchenhahn,2024-08-08,Work,1.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-08 08:00:00,2024-08-08 08:00:00
-359,Ty Herchenhahn,2024-08-07,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-07 08:00:00,2024-08-07 08:00:00
-360,Eric Bowen,2024-08-07,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-07 08:00:00,2024-08-07 08:00:00
-361,Kyle Foley,2024-08-07,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-07 08:00:00,2024-08-07 08:00:00
-362,Kyle Foley,2024-08-06,Work,1.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-06 08:00:00,2024-08-06 08:00:00
-363,Ty Herchenhahn,2024-08-06,Work,1.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-06 08:00:00,2024-08-06 08:00:00
-364,Ty Herchenhahn,2024-08-05,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-05 08:00:00,2024-08-05 08:00:00
-365,Kyle Foley,2024-08-05,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-05 08:00:00,2024-08-05 08:00:00
-366,Ty Herchenhahn,2024-08-02,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
-367,Kyle Foley,2024-08-01,Work,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
-368,Kyle Foley,2024-08-02,Work,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
-369,Eric Bowen,2024-08-01,Work,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
-370,Ty Herchenhahn,2024-08-02,Work,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
-371,Kyle Foley,2024-08-01,Work,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
-372,Ty Herchenhahn,2024-08-01,Work,1.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
-373,Eric Bowen,2024-08-01,Work,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
-374,Kyle Foley,2024-08-01,Work,1.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
-375,Ty Herchenhahn,2024-08-02,Work,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
-376,Kyle Foley,2024-08-02,Work,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
-377,Eric Bowen,2024-07-03,Work,0.25,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Completed work order WO-1053002,WO-1053002,,2024-07-03 08:00:00,2024-07-03 08:00:00
-378,Hunter Owens,2024-07-01,Work,1.5,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Completed work order WO-1053002,WO-1053002,,2024-07-01 08:00:00,2024-07-01 08:00:00
-379,Eric Bowen,2024-07-01,Work,1.5,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Completed work order WO-1053002,WO-1053002,,2024-07-01 08:00:00,2024-07-01 08:00:00
-380,Ty Herchenhahn,2024-07-01,Work,1.5,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Completed work order WO-1053002,WO-1053002,,2024-07-01 08:00:00,2024-07-01 08:00:00
-381,William Boyd,2024-10-09,Work,2.0,Work Order Completed.  Switching and LOTO performed with no issues.,Completed work order WO-1056659,WO-1056659,,2024-10-09 08:00:00,2024-10-09 08:00:00
-382,William Boyd,2024-10-10,Work,1.0,Work Order Completed.  Switching and LOTO performed with no issues.,Completed work order WO-1056659,WO-1056659,,2024-10-10 08:00:00,2024-10-10 08:00:00
-383,Michael Lewis,2024-10-10,Work,1.0,Work Order Completed.  Switching and LOTO performed with no issues.,Completed work order WO-1056659,WO-1056659,,2024-10-10 08:00:00,2024-10-10 08:00:00
-384,Virgil Brumbelow,2024-10-09,Work,4.0,Work Order Completed.  Switching and LOTO performed with no issues.,Completed work order WO-1056659,WO-1056659,,2024-10-09 08:00:00,2024-10-09 08:00:00
-385,Virgil Brumbelow,2024-07-02,Work,5.5,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-02 08:00:00,2024-07-02 08:00:00
-386,Eric Bowen,2025-03-06,Work,0.5,no issues found,Completed work order WO-1062327,WO-1062327,,2025-03-06 08:00:00,2025-03-06 08:00:00
-387,Eric Bowen,2025-03-06,Work,0.5,no issues found,Completed work order WO-1062327,WO-1062327,,2025-03-06 08:00:00,2025-03-06 08:00:00
-388,Eric Bowen,2025-02-25,Work,1.0,"see 
+342,Ty Herchenhahn,2024-08-23,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-23 08:00:00,2024-08-23 08:00:00
+343,Sammie Rice,2024-08-21,Work,,,8.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-21 08:00:00,2024-08-21 08:00:00
+344,Ty Herchenhahn,2024-08-21,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-21 08:00:00,2024-08-21 08:00:00
+345,Sammie Rice,2024-08-20,Work,,,8.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-20 08:00:00,2024-08-20 08:00:00
+346,Kyle Foley,2024-08-20,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-20 08:00:00,2024-08-20 08:00:00
+347,Eric Bowen,2024-08-20,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-20 08:00:00,2024-08-20 08:00:00
+348,Ty Herchenhahn,2024-08-16,Work,,,3.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-16 08:00:00,2024-08-16 08:00:00
+349,Kyle Foley,2024-08-16,Work,,,3.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-16 08:00:00,2024-08-16 08:00:00
+350,Kyle Foley,2024-08-15,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-15 08:00:00,2024-08-15 08:00:00
+351,Ty Herchenhahn,2024-08-15,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-15 08:00:00,2024-08-15 08:00:00
+352,Eric Bowen,2024-08-14,Work,,,1.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-14 08:00:00,2024-08-14 08:00:00
+353,Eric Bowen,2024-08-13,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-13 08:00:00,2024-08-13 08:00:00
+354,Ty Herchenhahn,2024-08-13,Work,,,1.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-13 08:00:00,2024-08-13 08:00:00
+355,Kyle Foley,2024-08-09,Work,,,4.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-09 08:00:00,2024-08-09 08:00:00
+356,Ty Herchenhahn,2024-08-09,Work,,,4.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-09 08:00:00,2024-08-09 08:00:00
+357,Kyle Foley,2024-08-08,Work,,,1.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-08 08:00:00,2024-08-08 08:00:00
+358,Ty Herchenhahn,2024-08-08,Work,,,1.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-08 08:00:00,2024-08-08 08:00:00
+359,Ty Herchenhahn,2024-08-07,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-07 08:00:00,2024-08-07 08:00:00
+360,Eric Bowen,2024-08-07,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-07 08:00:00,2024-08-07 08:00:00
+361,Kyle Foley,2024-08-07,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-07 08:00:00,2024-08-07 08:00:00
+362,Kyle Foley,2024-08-06,Work,,,1.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-06 08:00:00,2024-08-06 08:00:00
+363,Ty Herchenhahn,2024-08-06,Work,,,1.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-06 08:00:00,2024-08-06 08:00:00
+364,Ty Herchenhahn,2024-08-05,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-05 08:00:00,2024-08-05 08:00:00
+365,Kyle Foley,2024-08-05,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-05 08:00:00,2024-08-05 08:00:00
+366,Ty Herchenhahn,2024-08-02,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
+367,Kyle Foley,2024-08-01,Work,,,2.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
+368,Kyle Foley,2024-08-02,Work,,,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
+369,Eric Bowen,2024-08-01,Work,,,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
+370,Ty Herchenhahn,2024-08-02,Work,,,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
+371,Kyle Foley,2024-08-01,Work,,,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
+372,Ty Herchenhahn,2024-08-01,Work,,,1.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
+373,Eric Bowen,2024-08-01,Work,,,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
+374,Kyle Foley,2024-08-01,Work,,,1.0,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-01 08:00:00,2024-08-01 08:00:00
+375,Ty Herchenhahn,2024-08-02,Work,,,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
+376,Kyle Foley,2024-08-02,Work,,,0.5,Monthly inspection is complete,Completed work order WO-1054072,WO-1054072,,2024-08-02 08:00:00,2024-08-02 08:00:00
+377,Eric Bowen,2024-07-03,Work,,,0.25,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Completed work order WO-1053002,WO-1053002,,2024-07-03 08:00:00,2024-07-03 08:00:00
+378,Hunter Owens,2024-07-01,Work,,,1.5,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Completed work order WO-1053002,WO-1053002,,2024-07-01 08:00:00,2024-07-01 08:00:00
+379,Eric Bowen,2024-07-01,Work,,,1.5,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Completed work order WO-1053002,WO-1053002,,2024-07-01 08:00:00,2024-07-01 08:00:00
+380,Ty Herchenhahn,2024-07-01,Work,,,1.5,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Completed work order WO-1053002,WO-1053002,,2024-07-01 08:00:00,2024-07-01 08:00:00
+381,William Boyd,2024-10-09,Work,,,2.0,Work Order Completed.  Switching and LOTO performed with no issues.,Completed work order WO-1056659,WO-1056659,,2024-10-09 08:00:00,2024-10-09 08:00:00
+382,William Boyd,2024-10-10,Work,,,1.0,Work Order Completed.  Switching and LOTO performed with no issues.,Completed work order WO-1056659,WO-1056659,,2024-10-10 08:00:00,2024-10-10 08:00:00
+383,Michael Lewis,2024-10-10,Work,,,1.0,Work Order Completed.  Switching and LOTO performed with no issues.,Completed work order WO-1056659,WO-1056659,,2024-10-10 08:00:00,2024-10-10 08:00:00
+384,Virgil Brumbelow,2024-10-09,Work,,,4.0,Work Order Completed.  Switching and LOTO performed with no issues.,Completed work order WO-1056659,WO-1056659,,2024-10-09 08:00:00,2024-10-09 08:00:00
+385,Virgil Brumbelow,2024-07-02,Work,,,5.5,Site tripped off line.   Tri State opened 230 kV breaker in PEGS switchyard causing Escalante Solar to trip off.,Completed work order WO-1053120,WO-1053120,,2024-07-02 08:00:00,2024-07-02 08:00:00
+386,Eric Bowen,2025-03-06,Work,,,0.5,no issues found,Completed work order WO-1062327,WO-1062327,,2025-03-06 08:00:00,2025-03-06 08:00:00
+387,Eric Bowen,2025-03-06,Work,,,0.5,no issues found,Completed work order WO-1062327,WO-1062327,,2025-03-06 08:00:00,2025-03-06 08:00:00
+388,Eric Bowen,2025-02-25,Work,,,1.0,"see 
 Operating Log
 20250108-19662",Completed work order WO-1060261,WO-1060261,,2025-02-25 08:00:00,2025-02-25 08:00:00
-389,Ty Herchenhahn,2025-05-08,Work,0.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-08 08:00:00,2025-05-08 08:00:00
-390,Eric Bowen,2025-01-30,Work,2.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-01-30 08:00:00,2025-01-30 08:00:00
-391,Sammie Rice,2024-09-25,Work,8.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
-392,Jamarquis Jefferson,2025-01-22,Work,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-22 08:00:00,2025-01-22 08:00:00
-393,Jamarquis Jefferson,2025-01-02,Work,1.05,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-02 08:00:00,2025-01-02 08:00:00
-394,Jamarquis Jefferson,2025-01-02,Work,1.05,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-02 08:00:00,2025-01-02 08:00:00
-395,Jamarquis Jefferson,2024-12-31,Work,4.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-31 08:00:00,2024-12-31 08:00:00
-396,Jamarquis Jefferson,2024-12-31,Work,4.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-31 08:00:00,2024-12-31 08:00:00
-397,Jamarquis Jefferson,2024-12-18,Work,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-18 08:00:00,2024-12-18 08:00:00
-398,Jamarquis Jefferson,2024-12-18,Work,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-18 08:00:00,2024-12-18 08:00:00
-399,Hunter Owens,2025-03-04,Work,1.0,"See 
+389,Ty Herchenhahn,2025-05-08,Work,,,0.0,Completed inv pm,Completed work order WO-1065030,WO-1065030,,2025-05-08 08:00:00,2025-05-08 08:00:00
+390,Eric Bowen,2025-01-30,Work,,,2.0,Block 22 annual inspection completed.,Completed work order WO-1061283,WO-1061283,,2025-01-30 08:00:00,2025-01-30 08:00:00
+391,Sammie Rice,2024-09-25,Work,,,8.0,Block 7 inspection is now complete. Origis found 6 broken panels throughout the block and flagged them for repair. The remainder of the inspection was satisfactory.,Completed work order WO-1055935,WO-1055935,,2024-09-25 08:00:00,2024-09-25 08:00:00
+392,Jamarquis Jefferson,2025-01-22,Work,,,1.0,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-22 08:00:00,2025-01-22 08:00:00
+393,Jamarquis Jefferson,2025-01-02,Work,,,1.05,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-02 08:00:00,2025-01-02 08:00:00
+394,Jamarquis Jefferson,2025-01-02,Work,,,1.05,General Inspection completed,Completed work order WO-1059871,WO-1059871,,2025-01-02 08:00:00,2025-01-02 08:00:00
+395,Jamarquis Jefferson,2024-12-31,Work,,,4.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-31 08:00:00,2024-12-31 08:00:00
+396,Jamarquis Jefferson,2024-12-31,Work,,,4.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-31 08:00:00,2024-12-31 08:00:00
+397,Jamarquis Jefferson,2024-12-18,Work,,,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-18 08:00:00,2024-12-18 08:00:00
+398,Jamarquis Jefferson,2024-12-18,Work,,,3.0,RES has completed clean up punchlist,Completed work order WO-1057651,WO-1057651,,2024-12-18 08:00:00,2024-12-18 08:00:00
+399,Hunter Owens,2025-03-04,Work,,,1.0,"See 
 Operating Log
 20250304-21020",Completed work order WO-1060745,WO-1060745,,2025-03-04 08:00:00,2025-03-04 08:00:00
-400,Kyle Foley,2025-03-04,Work,2.0,"See 
+400,Kyle Foley,2025-03-04,Work,,,2.0,"See 
 Operating Log
 20250304-21020",Completed work order WO-1060745,WO-1060745,,2025-03-04 08:00:00,2025-03-04 08:00:00
-401,Eric Bowen,2025-03-04,Work,2.0,"See 
+401,Eric Bowen,2025-03-04,Work,,,2.0,"See 
 Operating Log
 20250304-21020",Completed work order WO-1060745,WO-1060745,,2025-03-04 08:00:00,2025-03-04 08:00:00
-402,Eric Bowen,2024-10-03,Work,4.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-10-03 08:00:00,2024-10-03 08:00:00
-403,Ty Herchenhahn,2024-10-03,Work,4.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-10-03 08:00:00,2024-10-03 08:00:00
-404,Hunter Owens,2024-10-03,Work,4.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-10-03 08:00:00,2024-10-03 08:00:00
-405,Kyle Foley,2024-10-03,Work,4.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-10-03 08:00:00,2024-10-03 08:00:00
-406,Hunter Owens,2024-09-20,Work,8.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-09-20 08:00:00,2024-09-20 08:00:00
-407,Kyle Foley,2024-09-20,Work,6.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-09-20 08:00:00,2024-09-20 08:00:00
-408,Eric Bowen,2024-09-20,Work,6.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-09-20 08:00:00,2024-09-20 08:00:00
-409,Elisha Capley,2024-03-21,Work,2.0,"SMA requested that the Origis O&M team replace a DST board on INV 10. The technicians de-energized the inverter, replaced the DST board, and Re-energized the inverter. SMA and RES will resume responsibility for the remaining work.",Completed work order WO-1049464,WO-1049464,,2024-03-21 08:00:00,2024-03-21 08:00:00
-410,Hunter Owens,2024-03-21,Work,2.0,"SMA requested that the Origis O&M team replace a DST board on INV 10. The technicians de-energized the inverter, replaced the DST board, and Re-energized the inverter. SMA and RES will resume responsibility for the remaining work.",Completed work order WO-1049464,WO-1049464,,2024-03-21 08:00:00,2024-03-21 08:00:00
-411,Eric Bowen,2025-08-29,"{'Troubleshooting': 15, 'Repair Work': 64, 'Warranty Support': 21}",0.0,"During the maintenance of the MET station, the technician confirmed that the work was finished. However, they did not share any information about problems that may have been found or how they were resolved. It's important to follow up with the technician for a detailed report if you need more insights into the maintenance performed. No immediate actions are required from your side at this moment, but staying informed about the maintenance details can help in future planning.",The technician completed the scheduled maintenance for the MET station but did not provide specific details about any issues encountered or repairs made.,10,False,2025-08-29T10:46:15.425704,2025-08-29T10:46:15.425704
-412,Eric Bowen,2025-08-29,"{'Troubleshooting': 66, 'Repair Work': 31, 'Warranty Support': 2}",0.0,"**Maintenance Overview:** The technician performed the scheduled monthly maintenance on the MET station, which is essential for ensuring accurate performance.  
+402,Eric Bowen,2024-10-03,Work,,,4.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-10-03 08:00:00,2024-10-03 08:00:00
+403,Ty Herchenhahn,2024-10-03,Work,,,4.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-10-03 08:00:00,2024-10-03 08:00:00
+404,Hunter Owens,2024-10-03,Work,,,4.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-10-03 08:00:00,2024-10-03 08:00:00
+405,Kyle Foley,2024-10-03,Work,,,4.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-10-03 08:00:00,2024-10-03 08:00:00
+406,Hunter Owens,2024-09-20,Work,,,8.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-09-20 08:00:00,2024-09-20 08:00:00
+407,Kyle Foley,2024-09-20,Work,,,6.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-09-20 08:00:00,2024-09-20 08:00:00
+408,Eric Bowen,2024-09-20,Work,,,6.0,"Technicians found multiple modules on fire, they quickly opened the circut at each LBD and hit the fast stop on the Inverter. Later the technicians replaced the modules. Block is now fully operational.",Completed work order WO-1055778,WO-1055778,,2024-09-20 08:00:00,2024-09-20 08:00:00
+409,Elisha Capley,2024-03-21,Work,,,2.0,"SMA requested that the Origis O&M team replace a DST board on INV 10. The technicians de-energized the inverter, replaced the DST board, and Re-energized the inverter. SMA and RES will resume responsibility for the remaining work.",Completed work order WO-1049464,WO-1049464,,2024-03-21 08:00:00,2024-03-21 08:00:00
+410,Hunter Owens,2024-03-21,Work,,,2.0,"SMA requested that the Origis O&M team replace a DST board on INV 10. The technicians de-energized the inverter, replaced the DST board, and Re-energized the inverter. SMA and RES will resume responsibility for the remaining work.",Completed work order WO-1049464,WO-1049464,,2024-03-21 08:00:00,2024-03-21 08:00:00
+411,Eric Bowen,2025-08-29,"{'Troubleshooting': 15, 'Repair Work': 64, 'Warranty Support': 21}",,,0.0,"During the maintenance of the MET station, the technician confirmed that the work was finished. However, they did not share any information about problems that may have been found or how they were resolved. It's important to follow up with the technician for a detailed report if you need more insights into the maintenance performed. No immediate actions are required from your side at this moment, but staying informed about the maintenance details can help in future planning.",The technician completed the scheduled maintenance for the MET station but did not provide specific details about any issues encountered or repairs made.,10,False,2025-08-29T10:46:15.425704,2025-08-29T10:46:15.425704
+412,Eric Bowen,2025-08-29,"{'Troubleshooting': 66, 'Repair Work': 31, 'Warranty Support': 2}",,,0.0,"**Maintenance Overview:** The technician performed the scheduled monthly maintenance on the MET station, which is essential for ensuring accurate performance.  
 
 **Issue Reporting:** During the maintenance, the technician did not report any specific problems or concerns.  
 
 **Next Steps:** Since no issues were identified, no immediate follow-up is required. However, if you notice any irregularities in the system's performance, please reach out for further assistance.  
 
 **Reminder:** Regular maintenance checks help keep the equipment running smoothly and can prevent future issues. If you have any questions or need further clarification, feel free to ask!",The technician completed the monthly maintenance check but was unable to provide details about any issues encountered. No further action is needed at this time.,10,False,2025-08-29T12:36:44.485820,2025-08-29T12:36:44.485820
+413,Eric Bowen,2025-08-29,"{'Troubleshooting': 14, 'Repair Work': 12, 'Warranty Support': 74}",,,0.0,"**Maintenance Overview:**
+- The technician performed the routine maintenance on the MET station, which is essential for ensuring accurate weather data collection.
+
+**Findings:**
+- During the inspection, no specific problems were detected.
+- The equipment was checked thoroughly, and everything was found to be operating normally.
+
+**Next Steps:**
+- No immediate follow-up actions are required since the equipment is functioning well.
+- If you notice any irregularities in the future, please reach out for further assistance.
+
+**Timing:**
+- The maintenance was completed as scheduled, ensuring that your operations continue smoothly without interruptions.",The technician completed the scheduled maintenance but could not identify any specific issues during the inspection. No further actions were necessary as everything appeared to be functioning normally.,10,False,2025-08-29T14:21:51.737945,2025-08-29T14:21:51.737945
+414,Eric Bowen,2025-08-29,"{'Troubleshooting': 53, 'Repair Work': 23, 'Warranty Support': 24}",,,1.0,"During the scheduled maintenance of the MET station, the technician confirmed that the work was completed. However, there were no specific issues or abnormalities reported. This means that everything appears to be functioning normally at this time. If you have any further questions or need additional information, please feel free to reach out. Regular maintenance helps ensure the equipment operates efficiently, so we recommend keeping up with these checks in the future.",The technician completed the maintenance check on the MET station but was unable to provide details on any issues encountered. No specific problems were reported during the service.,10,False,2025-08-29T14:23:18.160783,2025-08-29T14:23:18.160783
+415,Eric Bowen,2025-08-29,"{'Troubleshooting': 19, 'Repair Work': 65, 'Warranty Support': 15}",,,0.0,"- The maintenance work has been successfully completed.
+- The technician did not identify any issues during the service.
+- No further actions or follow-up are required at this time.
+- The system is operating normally, and you can continue to use it without concerns.
+- If you notice any problems in the future, please reach out for assistance.","The technician completed the maintenance work but did not report any issues or actions taken during the process. There were no problems noted, and everything is functioning as expected.",10,False,2025-08-29T14:30:24.707335,2025-08-29T14:30:24.707335
+416,Eric Bowen,2025-08-29,"{'Troubleshooting': 18, 'Repair Work': 48, 'Warranty Support': 34}",3:26 PM,3:26 PM,0.0,"**Maintenance Overview:**
+- The scheduled maintenance was carried out without any reported problems.
+
+**Key Points:**
+- The technician checked all systems and confirmed they are operating normally.
+- No follow-up actions are needed at this time, as everything is in good condition.
+
+**Next Steps:**
+- Regular monitoring is recommended to ensure continued performance.
+- If any issues arise in the future, please reach out for assistance.
+
+Thank you for your attention, and feel free to contact us if you have any questions!","The maintenance was completed successfully, but no specific issues were reported during the process. The technician confirmed that everything is functioning as expected.",10,False,2025-08-29T15:27:33.687993,2025-08-29T15:27:33.687993
+417,Eric Bowen,2025-08-29,"{'Troubleshooting': 33, 'Repair Work': 33, 'Warranty support': 34}",3:00 PM,3:27 PM,0.5,"During the maintenance of the MET station, the technician confirmed that the work was finished. However, they did not share any information about what was checked or if there were any problems. It’s important to follow up for more details if needed, especially regarding the equipment's performance and any potential concerns that may need attention in the future.",The field technician completed the scheduled maintenance for the MET station but did not provide specific details about any issues or checks performed.,10,False,2025-08-29T15:28:19.073785,2025-08-29T15:28:19.073785
+418,Eric Bowen,2025-08-12,"{'Troubleshooting': 33, 'Repair Work': 33, 'Warranty support': 34}",3:28 PM,7:28 PM,4.0,"**Maintenance Overview:**
+- The technician performed routine maintenance on the MET station, which is essential for monitoring solar energy production.
+
+**Tasks Completed:**
+- All scheduled checks and services were carried out without any problems.
+
+**Current Status:**
+- The MET station is operating normally, and no further action is required at this time.
+
+**Next Steps:**
+- Regular monitoring will continue, and the next maintenance check is scheduled as per the usual timeline.
+
+If you have any questions or need further assistance, please feel free to reach out!","The technician completed the scheduled maintenance on the MET station and confirmed that all tasks were successfully finished. There were no issues reported during the process, and everything is functioning as expected.",10,False,2025-08-29T15:29:15.363572,2025-08-29T15:29:15.363572

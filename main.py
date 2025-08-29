@@ -118,6 +118,8 @@ async def submit_work_status(request: WorkStatusSubmissionRequest):
             tech_name=request.tech_name,
             work_date=request.work_date,
             work_status=request.work_status,
+            start_time=request.start_time,
+            end_time=request.end_time,
             time_spent=request.time_spent,
             notes=request.notes,
             summary=request.summary,

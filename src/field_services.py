@@ -116,7 +116,7 @@ class FieldServicesService:
             follow_up_questions_answers_table=follow_up_questions_answers
         )
     
-    def submit_work_status(self, tech_name: str, work_date: str, work_status: dict,
+    def submit_work_status(self, tech_name: str, work_date: str, work_status: dict, start_time: str, end_time: str,
                           time_spent: float, notes: str, summary: str, 
                           work_order_id: str = None, complete_flag: bool = False) -> Dict[str, Any]:
         """Submit work status to database"""
@@ -135,6 +135,8 @@ class FieldServicesService:
             'tech_name': tech_name,
             'work_date': work_date,
             'work_status': work_status,
+            'start_time': start_time,
+            'end_time': end_time,
             'time_spent': time_spent,
             'notes': notes,
             'summary': summary,
@@ -146,7 +148,7 @@ class FieldServicesService:
         
         # Define fieldnames
         fieldnames = [
-            'id', 'tech_name', 'work_date', 'work_status', 'time_spent',
+            'id', 'tech_name', 'work_date', 'work_status', 'start_time', 'end_time', 'time_spent',
             'notes', 'summary', 'work_order_id', 'complete_flag', 'created_at', 'updated_at'
         ]
         

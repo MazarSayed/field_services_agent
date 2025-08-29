@@ -110,6 +110,8 @@ class WorkStatusSubmissionRequest(BaseModel):
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
     work_status: dict = Field(..., description="Work status type and assigned percentage")
+    start_time: str = Field(..., description="Timestamp work started")
+    end_time: str = Field(..., description="Timestamp work ended")
     time_spent: float = Field(..., description="Time spent in hours")
     notes: str = Field(..., description="Work notes")
     summary: str = Field(..., description="Work summary")
