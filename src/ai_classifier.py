@@ -210,12 +210,11 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
             follow_up_question="Follow-up question could not be generated."
         )
 
-def convert_to_car_format(openai_client, work_order_type: str, final_completion_notes: str, wo_status_and_notes_with_hours_table: str, work_order_description: str) -> CARFormatResponse:
+def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_status_and_notes_with_hours_table: str, work_order_description: str) -> CARFormatResponse:
     """
     Convert completion notes to CAR (Cause, Action, Result) format using gpt-4o-mini
     
     Args:
-        openai_client: OpenAI client instance
         work_order_type: Work order type
         final_completion_notes: Original completion notes from field tech
         wo_status_and_notes_with_hours_table: Table of work status and notes for each task with hours

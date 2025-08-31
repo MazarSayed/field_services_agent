@@ -22,22 +22,6 @@ from src.data_access import get_data_access
 data_access = get_data_access()
 config = data_access.config
 
-# Initialize FastAPI app
-app = FastAPI(
-    title="Field Services Agent API",
-    description="API for managing solar work orders and field services",
-    version="1.0.0"
-)
-
-# Add CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 # Helper functions for data access
 def get_work_orders_for_tech(tech_name: str, work_date: str):
     """Get work orders for a technician on a specific date"""
@@ -62,7 +46,7 @@ def get_work_orders_for_tech(tech_name: str, work_date: str):
     total_pending = len([wo for wo in filtered_orders 
                        if wo.get('status', '').lower() in pending_statuses])
     total_completed = len([wo for wo in filtered_orders 
-                         if wo.get('status', '').lower() in completed_statuses])
+                          if wo.get('status', '').lower() in completed_statuses])
     
     return {
         "work_orders": filtered_orders,
@@ -93,7 +77,7 @@ def get_all_work_orders_for_tech(tech_name: str):
     total_pending = len([wo for wo in filtered_orders 
                        if wo.get('status', '').lower() in pending_statuses])
     total_completed = len([wo for wo in filtered_orders 
-                         if wo.get('status', '').lower() in completed_statuses])
+                          if wo.get('status', '').lower() in completed_statuses])
     
     return {
         "work_orders": filtered_orders,
@@ -223,10 +207,24 @@ def parse_conversation_table(conversation_str: str) -> dict:
     
     return conversation_dict
 
-# API Endpoints
+# Initialize FastAPI app
+app = FastAPI(
+    title="Field Services Agent API",
+    description="API for managing solar work orders and field services",
+    version="1.0.0"
+)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Endpoint 1: Extract work orders for a tech on a specific date
-@app.get("/work-orders/{tech_name}/{work_date}", response_model=WorkOrderResponse)
+@app.get("/work-orders/{config[defaults][tech_name]}/{work_date}", response_model=WorkOrderResponse)
 async def get_work_orders(tech_name: str, work_date: str):
     """Extract work orders assigned to a technician on a specific date"""
     try:
@@ -243,6 +241,7 @@ async def get_all_work_orders_for_tech():
     """Extract all work orders assigned to a technician regardless of date"""
     try:
         tech_name = config['defaults']['tech_name']
+        # print(tech_name)
         result = get_all_work_orders_for_tech(tech_name)
         return WorkOrderResponse(**result)
     except ValueError as e:
@@ -267,6 +266,8 @@ async def complete_work_order(work_order_id: str):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error updating work order: {str(e)}")
+
+
 
 # Endpoint 2: Validate work status log
 @app.post("/validate-work-status", response_model=WorkStatusValidationResponse)
@@ -313,8 +314,6 @@ async def submit_work_status_endpoint(request: WorkStatusSubmissionRequest):
             tech_name=request.tech_name,
             work_date=request.work_date,
             work_status=request.work_status,
-            start_time=request.start_time,
-            end_time=request.end_time,
             time_spent=request.time_spent,
             notes=request.notes,
             summary=request.summary,
@@ -329,9 +328,7 @@ async def submit_work_status_endpoint(request: WorkStatusSubmissionRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error submitting work status: {str(e)}")
 
-
-
-# Endpoint: Get work status logs for specific work order
+# Endpoint: Get work status logs
 @app.get("/work-status-logs/{work_order_id}", response_model=WorkStatusLogs)
 async def get_work_status_logs_endpoint(work_order_id: str):
     try:
@@ -341,18 +338,6 @@ async def get_work_status_logs_endpoint(work_order_id: str):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting work status logs: {str(e)}")
-
-@app.get("/all-status-logs", response_model=WorkStatusLogs)
-async def get_all_work_status_logs():
-    try:
-        tech_name = config['defaults']['tech_name']
-        result = service.get_all_work_status_logs(tech_name)
-        return WorkStatusLogs(**result)
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error extracting work status logs: {str(e)}")
-
 
 # Endpoint: Submit conversation table to CSV database
 @app.post("/submit-chat")
@@ -370,16 +355,13 @@ async def submit_chat(request: ChatSubmissionRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 # Endpoint 4: Convert completion notes to CAR format
 @app.post("/convert-to-car", response_model=CARFormatResponse)
 async def convert_completion_notes_to_car(request: CompletionNotesRequest):
     """Convert completion notes to CAR format"""
     try:
-        # Get OpenAI client from data access
-        openai_client = data_access.get_openai_client()
-        
         result = convert_to_car_format(
-            openai_client=openai_client,
             work_order_type="",  # Default empty string since not provided in current interface
             final_completion_notes=request.completion_notes,
             wo_status_and_notes_with_hours_table=request.wo_status_and_notes_table,
