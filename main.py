@@ -118,6 +118,8 @@ async def submit_work_status(request: WorkStatusSubmissionRequest):
             tech_name=request.tech_name,
             work_date=request.work_date,
             work_status=request.work_status,
+            start_time=request.start_time,
+            end_time=request.end_time,
             time_spent=request.time_spent,
             notes=request.notes,
             summary=request.summary,
@@ -132,7 +134,9 @@ async def submit_work_status(request: WorkStatusSubmissionRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error submitting work status: {str(e)}")
 
-# Endpoint: Get work status logs
+
+
+# Endpoint: Get work status logs for specific work order
 @app.get("/work-status-logs/{work_order_id}", response_model=WorkStatusLogs)
 async def get_work_status_logs(work_order_id: str):
     try:
@@ -142,6 +146,18 @@ async def get_work_status_logs(work_order_id: str):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting work status logs: {str(e)}")
+
+@app.get("/all-status-logs", response_model=WorkStatusLogs)
+async def get_all_work_status_logs():
+    try:
+        tech_name = config['defaults']['tech_name']
+        result = service.get_all_work_status_logs(tech_name)
+        return WorkStatusLogs(**result)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error extracting work status logs: {str(e)}")
+
 
 # Endpoint: Submit conversation table to CSV database
 @app.post("/submit-chat")
