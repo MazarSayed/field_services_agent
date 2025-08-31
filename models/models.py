@@ -42,6 +42,15 @@ class WorkStatusValidationResponse(BaseModel):
     follow_up_question: str = Field(description="A single specific follow-up question to gather missing information")
 
 
+class HoldReasonValidationResponse(BaseModel):
+    """Response model for hold reason validation"""
+    valid: bool = Field(description="Whether the hold reason meets all requirements")
+    missing: str = Field(description="Specific missing requirements if validation fails")
+    follow_up_question: str = Field(description="A single specific follow-up question to gather missing information")
+    hold_reason_analysis: str = Field(description="Analysis of the hold reason and its validity")
+    recommended_actions: str = Field(description="Recommended actions to resolve the hold")
+
+
 class TranscriptionResponse(BaseModel):
     """Response model for audio transcription"""
     transcript: str = Field(description="Transcribed text from audio file")
@@ -103,6 +112,15 @@ class WorkStatusLogRequest(BaseModel):
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
     follow_up_questions_answers_table: str = Field(..., description="Table of previous follow-up questions and answers")
+
+
+class HoldReasonValidationRequest(BaseModel):
+    """Request model for hold reason validation"""
+    hold_reason: str = Field(..., description="The hold reason to validate")
+    work_order_type: str = Field(..., description="Work order type")
+    work_order_description: str = Field(..., description="Work order description")
+    wo_status_and_notes_with_hours_table: str = Field(..., description="Table of work status and notes with hours")
+    follow_up_questions_answers_table: str = Field(..., description="Previous follow-up questions and answers")
 
 
 class WorkStatusSubmissionRequest(BaseModel):

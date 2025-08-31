@@ -101,6 +101,33 @@ Validate operational log against work status requirements.
 }
 ```
 
+### 2b. Validate Reason for Hold
+**POST** `/validate-reason-for-hold`
+
+Validate hold reason against work order requirements.
+
+**Request Body:**
+```json
+{
+  "hold_reason": "Waiting for parts delivery from supplier",
+  "work_order_type": "Corrective",
+  "work_order_description": "Inverter replacement at solar site",
+  "wo_status_and_notes_with_hours_table": "Previous work status and notes with hours table",
+  "follow_up_questions_answers_table": "Previous follow-up questions and answers"
+}
+```
+
+**Response:**
+```json
+{
+  "valid": true,
+  "missing": "",
+  "follow_up_question": "When is the expected delivery date for the parts?",
+  "hold_reason_analysis": "The hold reason is valid as it indicates a legitimate delay due to parts unavailability.",
+  "recommended_actions": "Contact supplier for delivery timeline, inform client of expected delay, and schedule follow-up once parts arrive."
+}
+```
+
 ### 3. Submit Work Status
 **POST** `/submit-work-status`
 

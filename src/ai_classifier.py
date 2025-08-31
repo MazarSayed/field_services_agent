@@ -17,7 +17,8 @@ from models.models import (
     WorkStatusValidationResponse, 
     TranscriptionResponse, 
     CARFormatResponse, 
-    ClientSummaryResponse
+    ClientSummaryResponse,
+    HoldReasonValidationResponse
 )
 
 load_dotenv()
@@ -76,7 +77,7 @@ def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
             error_message=str(e)
         )
 
-def validate_work_status_log(operational_log: str, work_status:dict, work_order_description: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
+def validate_work_status_log(operational_log: str, work_status:dict, work_order_description: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
     """
     Validate operational log against work status requirements and generate follow-up questions if needed
     
@@ -85,6 +86,7 @@ def validate_work_status_log(operational_log: str, work_status:dict, work_order_
         operational_log: The operational log to validate
         work_status: The work status types and along with their percentage of occurance
         work_order_description: Description of the work order for context
+        wo_status_and_notes_with_hours_table: Table of work status and notes with hours
         follow_up_questions_answers_table: Previous follow-up questions and answers
         
     Returns:
@@ -107,9 +109,11 @@ def validate_work_status_log(operational_log: str, work_status:dict, work_order_
         prompt = f"""
         You are validating an operational log for work status: {work_status}.
         The work order description is: "{work_order_description}".
-    
+        User's Previous work status and notes with hours for extra context: 
+        {wo_status_and_notes_with_hours_table}
 
-        USER'S OPERATIONAL LOG:
+
+        Mainly rely on the current USER'S OPERATIONAL LOG:
         "{operational_log}"
 
         Previous Follow-up Question and Answers:
@@ -146,15 +150,75 @@ def validate_work_status_log(operational_log: str, work_status:dict, work_order_
             follow_up_question="Follow-up question could not be generated."
         )
 
+def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_description: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> HoldReasonValidationResponse:
+    """
+    Validate hold reason against work order requirements and generate follow-up questions if needed
+    
+    Args:
+        hold_reason: The hold reason to validate
+        work_order_type: Work order type
+        work_order_description: Description of the work order for context
+        wo_status_and_notes_with_hours_table: Table of work status and notes with hours
+        follow_up_questions_answers_table: Previous follow-up questions and answers
+        
+    Returns:
+        HoldReasonValidationResponse object with validation result and follow-up questions
+    """
 
-def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_notes_table: str, work_order_description: str) -> CARFormatResponse:
+    try:
+
+        # Get validation instructions and system prompt
+        hold_reason_validation_instructions = get_prompt("hold_reason_validation_instructions")
+        hold_reason_system_prompt = get_prompt("system_prompts.hold_reason_system_prompt")
+        
+        prompt = f"""
+        Work Order Type: "{work_order_type}".
+        The work order description is: "{work_order_description}".
+
+        User's Previous work status and notes with hours for extra context: 
+        {wo_status_and_notes_with_hours_table}
+
+        Mainly rely on the hold reason from User's HOLD REASON: "{hold_reason}".
+        The previous follow-up questions and answers are: "{follow_up_questions_answers_table}".
+
+        Validation Guidelines:
+        {hold_reason_validation_instructions}
+        """
+        
+        # Use instructor patched client for Pydantic response model
+        patched_client = get_patched_client()
+        
+        response = patched_client.chat.completions.create(
+            model="gpt-4o",
+            response_model=HoldReasonValidationResponse,
+            messages=[
+                {"role": "system", "content": hold_reason_system_prompt}, 
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=300,
+            temperature=0.1
+        )
+        
+        # Return the validated Pydantic model directly
+        return response
+            
+    except Exception as e:
+        st.error(f"Error validating work status log: {e}")
+        return HoldReasonValidationResponse(
+            valid=False, 
+            missing=f"Error: {str(e)}", 
+            follow_up_question="Follow-up question could not be generated."
+        )
+
+def convert_to_car_format(openai_client, work_order_type: str, final_completion_notes: str, wo_status_and_notes_with_hours_table: str, work_order_description: str) -> CARFormatResponse:
     """
     Convert completion notes to CAR (Cause, Action, Result) format using gpt-4o-mini
     
     Args:
         openai_client: OpenAI client instance
-        completion_notes: Original completion notes from field tech
-        wo_status_and_notes_table: Table of work status and notes for each task
+        work_order_type: Work order type
+        final_completion_notes: Original completion notes from field tech
+        wo_status_and_notes_with_hours_table: Table of work status and notes for each task with hours
         work_order_description: Work order description for context
         
     Returns:
@@ -167,15 +231,17 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
         car_system_prompt = get_prompt("system_prompts.car_system_prompt")
         
         prompt = f"""
-        {car_prompt}
-        
+       
+        Work Order Type: {work_order_type}
         Work Order Description: {work_order_description}
 
-        Work Status | Work Status Notes
-        {wo_status_and_notes_table}
+        Work Status | Work Status Notes with hours
+        {wo_status_and_notes_with_hours_table}
+
+        {car_prompt}
 
         Final Completion Notes from Field Tech:
-        {completion_notes}
+        {final_completion_notes}
         """
         
         # Use instructor patched client for Pydantic response model
@@ -206,12 +272,12 @@ def convert_to_car_format(openai_client, completion_notes: str, wo_status_and_no
         )
 
 
-def convert_to_client_summary(conversation_tech_ai_client_table: str) -> ClientSummaryResponse:
+def convert_to_client_summary(conversation_table: str) -> ClientSummaryResponse:
     """
     Convert AI and human messages into a client-friendly summary and notes
     
     Args:
-        conversation_tech_ai_client_table: Table of conversation between tech, AI, and client
+        conversation_table: Conversation between Tech and AI
         
     Returns:
         ClientSummaryResponse object with summary and notes
@@ -219,15 +285,17 @@ def convert_to_client_summary(conversation_tech_ai_client_table: str) -> ClientS
 
     try:
         # Get client summary conversion prompt and system prompt
-        summary_prompt = get_prompt("client_summary_conversion")
+        user_prompt = get_prompt("client_summary_conversion")
         client_summary_system_prompt = get_prompt("system_prompts.client_summary_system_prompt")
         
         prompt = f"""
-        {summary_prompt}
         
-        Conversation between Field Tech and Client:
-        Tech | Client
-        {conversation_tech_ai_client_table}
+        {user_prompt}
+
+        Conversation between Tech and AI:
+        Person | chat message
+        {conversation_table}
+
         """
         
         # Use instructor patched client for Pydantic response model
