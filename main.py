@@ -329,7 +329,7 @@ async def validate_work_status(request: WorkStatusLogRequest):
 
 # Endpoint 2b: Validate reason for hold
 @app.post("/validate-reason-for-hold", response_model=HoldReasonValidationResponse)
-async def validate_reason_for_hold(request: HoldReasonValidationRequest):
+async def validate_reason_hold(request: HoldReasonValidationRequest):
     """Validate hold reason against work order requirements"""
     try:
         result = validate_reason_for_hold(

@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 id,work_order_id,tech_name,work_date,status,description,wo_type,time_type,asset_description,asset_id,plant,created_at,updated_at
 1,WO-1070315,Ashton Meyers,2025-08-13,Completed,INV 36 MOD 1 clipping around 225kWs.,Corrective,Work,INV036,3037.01.005.BLK04.PAD08.INV01,MS5 - Golden Triangle I (PV),2025-08-13 08:00:00,2025-08-13 08:00:00
 2,WO-1071091,Ashton Meyers,2025-08-13,Completed,INV 33 CMB 15 indicating offline,Corrective,Work,Blank,3037.01.005.BLK04.PAD05.INV01.CMB15,MS5 - Golden Triangle I (PV),2025-08-13 08:00:00,2025-08-13 08:00:00
@@ -175,35 +174,3 @@ id,work_order_id,tech_name,work_date,status,description,wo_type,time_type,asset_
 173,WO-1060554,William Boyd,2025-02-06,Pending,INV 1A7 Mod 1 offline with AC Circuit breaker state,OEM Repair Work,Work,MODINV01 - 1A7,3037.01.004.BLK01.PAD07.INV01.MODINV01,Escalante,2025-02-06 08:00:00,2025-02-06 08:00:00
 174,WO-1060703,William Boyd,2025-01-21,Pending,INV 4B2 Mod 1 AC Circuit Breaker,OEM Repair Work,Work,INVERTER 4B2,3037.01.004.BLK08.PAD02.INV01,Escalante,2025-01-21 08:00:00,2025-01-21 08:00:00
 175,WO-1064868,William Boyd,2025-04-09,Pending,Replace PT Board Inverter 2B7 for Comms Issues,OEM Repair Work,Work,Escalante,3037.01.004.Plant,Escalante,2025-04-09 08:00:00,2025-04-09 08:00:00
-=======
-id,work_order_id,tech_name,work_date,status,description,wo_type,time_type,asset_description,asset_id,plant,hours,car_flag,day_name,is_weekend,created_at,updated_at
-1,WO-1064723,Kyle Foley,2025-06-05,Completed,Annual PM completed.,Preventive,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001iUme2AE,MS6 - Golden Triangle II (PV/BESS),5.5,,Thursday,Weekday,2025-06-05 08:00:00,2025-06-05 08:00:00
-2,WO-1064722,Kyle Foley,2025-06-05,Completed,Annual PM completed.,Preventive,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001iUmd2AE,MS6 - Golden Triangle II (PV/BESS),4.5,,Thursday,Weekday,2025-06-05 08:00:00,2025-06-05 08:00:00
-3,WO-1064721,Kyle Foley,2025-06-05,Completed,Annual PM completed.,Preventive,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001iUmc2AE,MS6 - Golden Triangle II (PV/BESS),4.5,,Thursday,Weekday,2025-06-05 08:00:00,2025-06-05 08:00:00
-4,WO-1053005,Eric Bowen,2024-07-03,Completed,Monthly MET Station PM is complete. All equipment was in correct working condition. See inspection form for details.,Preventive,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000000tMRJ2A2,MS6 - Golden Triangle II (PV/BESS),2.75,,Wednesday,Weekday,2024-07-03 08:00:00,2024-07-03 08:00:00
-5,WO-1053004,Eric Bowen,2024-07-03,Completed,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Preventive,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000000tMOo2AM,MS6 - Golden Triangle II (PV/BESS),2.75,,Wednesday,Weekday,2024-07-03 08:00:00,2024-07-03 08:00:00
-6,WO-1053000,Eric Bowen,2024-07-30,Completed,Inspected all enclosers and cleaned all sensors at Met 1. no issues found and all POAs were leveled,Preventive,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000000tMOk2AM,MS6 - Golden Triangle II (PV/BESS),5.0,,Tuesday,Weekday,2024-07-30 08:00:00,2024-07-30 08:00:00
-7,WO-1057728,Eric Bowen,2024-11-14,Completed,"After LOTO was performed on inv 19, we then removed the old AC contactor from inverter 19. we then installed the new contactor. After contactor replacement we removed LOTO and restored inverter to service",Corrective,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001HXF72AO,MS6 - Golden Triangle II (PV/BESS),14.0,,Thursday,Weekday,2024-11-14 08:00:00,2024-11-14 08:00:00
-8,WO-1054251,William Boyd,2024-09-13,Completed,all steps of inspection sheet are completed,Preventive,Work,Escalante,a1JQU0000010vk52AA,Escalante,7.0,,Friday,Weekday,2024-09-13 08:00:00,2024-09-13 08:00:00
-9,WO-1058810,William Boyd,2024-12-09,Completed,"Took 4A8 offline, applied LOTO and performed LDL. Opened inverter and removed panels. Cleaned modules and screens, checked for corrosion. Reinstalled panels and removed LOTO. Brought inverter back online.",Preventive,Work,Escalante,a1JQU000001LmVn2AK,Escalante,12.0,,Monday,Weekday,2024-12-09 08:00:00,2024-12-09 08:00:00
-10,WO-1055815,William Boyd,2024-10-01,Completed,"Completed block inspection  on 2A1, all steps completed and no issues found.",Preventive,Work,Escalante,a1JQU0000018Zfx2AE,Escalante,16.0,,Tuesday,Weekday,2024-10-01 08:00:00,2024-10-01 08:00:00
-11,WO-1062317,Kyle Foley,2025-03-06,Pending,Troubleshot LBD for low production.,Corrective,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001beSX2AY,MS6 - Golden Triangle II (PV/BESS),1.0,Not C.A.R. Format,Thursday,Weekday,2025-03-06 08:00:00,2025-03-06 08:00:00
-12,WO-1062276,Kyle Foley,2025-02-26,Pending,Trouble shot LBD 41-5 and every string on the LBD and found no issues.,Corrective,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001bOlx2AE,MS6 - Golden Triangle II (PV/BESS),1.0,Not C.A.R. Format,Wednesday,Weekday,2025-02-26 08:00:00,2025-02-26 08:00:00
-13,WO-1065439,Kyle Foley,2025-04-22,Pending,"Inverter down for ground fault, Fault not active, replaced fuse and returned inverter to service",Corrective,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001mDDh2AM,MS6 - Golden Triangle II (PV/BESS),2.0,Not C.A.R. Format,Tuesday,Weekday,2025-04-22 08:00:00,2025-04-22 08:00:00
-14,WO-1062957,Eric Bowen,2025-03-06,Pending,see ops log 20250306-21105,Corrective,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001cSdp2AE,MS6 - Golden Triangle II (PV/BESS),11.5,Not C.A.R. Format,Thursday,Weekday,2025-03-06 08:00:00,2025-03-06 08:00:00
-15,WO-1060457,Eric Bowen,2025-08-04,Pending,"Cause: SPC not tracking or communicating with the NCU_x000D_
-_x000D_
-Action: Replace SPC, NEXTracker assisted with connectivity_x000D_
-_x000D_
-Result: SPC is tracking and back in produciton",Corrective,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000001T1Px2AK,MS6 - Golden Triangle II (PV/BESS),17.5,C.A.R. Format,Monday,Weekday,2025-08-04 08:00:00,2025-08-04 08:00:00
-16,WO-1052496,Eric Bowen,2024-06-24,Pending,Weekly Ad Hoc WO complete.,Ad Hoc,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000000qaMD2AY,MS6 - Golden Triangle II (PV/BESS),59.5,Not C.A.R. Format,Monday,Weekday,2024-06-24 08:00:00,2024-06-24 08:00:00
-17,WO-1052248,Eric Bowen,2024-09-04,Pending,GT 1 has been energized and no longer need to have the desiccants replaced.,Project,Work,MS6 - Golden Triangle II (PV/BESS),a1JQU000000p9m12AA,MS6 - Golden Triangle II (PV/BESS),36.75,Not C.A.R. Format,Wednesday,Weekday,2024-09-04 08:00:00,2024-09-04 08:00:00
-18,WO-1066442,William Boyd,,Pending,nan,Corrective,Work,Escalante,a1JQU000001qwAb2AI,Escalante,56.5,Not C.A.R. Format,nan,Weekday,,
-19,WO-1056719,William Boyd,2024-10-15,Pending,Feeder 4 offline due to 4A5 fatal fault alarm.,Corrective,Work,Escalante,a1JQU000001CeHF2A0,Escalante,0.5,Not C.A.R. Format,Tuesday,Weekday,2024-10-15 08:00:00,2024-10-15 08:00:00
-20,WO-1063225,William Boyd,2025-04-04,Pending,"Cause:  Power Factors calculated LBD producing equivalent of 1 string offline._x000D_
-_x000D_
-Action:   Field verified that all strings are producing equal  amps._x000D_
-_x000D_
-Result:  All strings verified online.   Power Factors indicated 96.4% production on 3/25/3035.",Corrective,Work,Escalante,a1JQU000001dSbl2AE,Escalante,2.0,C.A.R. Format,Friday,Weekday,2025-04-04 08:00:00,2025-04-04 08:00:00
-21,WO-1060554,William Boyd,2025-02-27,Pending,Inverter offline with a AC circuit breaker fault. First we changed out the contactor and the inverter worked for 2 days before going offline with the same fault. We then changed out the AC breaker and is back online.,OEM Repair Work,Work,Escalante,a1JQU000001Tn3B2AS,Escalante,24.0,Not C.A.R. Format,Thursday,Weekday,2025-02-27 08:00:00,2025-02-27 08:00:00
->>>>>>> Stashed changes
