@@ -99,7 +99,7 @@ def update_work_order_status(work_order_id: str, new_status: str):
     data_access.update_work_order(work_order)
     return True
 
-def submit_work_status(tech_name: str, work_date: str, work_status: dict,
+def submit_work_status(tech_name: str, work_date: str, work_status: dict, start_time: str, end_time: str,
                       time_spent: float, notes: str, summary: str, 
                       work_order_id: str = None, complete_flag: bool = False):
     """Submit work status to database"""
@@ -118,6 +118,8 @@ def submit_work_status(tech_name: str, work_date: str, work_status: dict,
         'tech_name': tech_name,
         'work_date': work_date,
         'work_status': work_status,
+        'start_time': start_time,
+        'end_time': end_time,
         'time_spent': time_spent,
         'notes': notes,
         'summary': summary,
@@ -129,7 +131,7 @@ def submit_work_status(tech_name: str, work_date: str, work_status: dict,
     
     # Define fieldnames
     fieldnames = [
-        'id', 'tech_name', 'work_date', 'work_status', 'time_spent',
+        'id', 'tech_name', 'work_date', 'work_status', 'start_time', 'end_time', 'time_spent',
         'notes', 'summary', 'work_order_id', 'complete_flag', 'created_at', 'updated_at'
     ]
     
@@ -171,33 +173,41 @@ def get_work_status_logs(work_order_id: str):
     }
 
 def get_all_work_status_logs(tech_name):
-        """Get work status logs for a specific work order"""
-        work_status_logs = data_access.load_work_status_logs()
-        
-        if not work_status_logs:
-            return {"work_status_logs": []}
-        
-        today = date.today()
-        print(tech_name)
-        # Filter by technician and today's date
-        filtered_status_logs = []
-        for log in work_status_logs:
-            if log.get('tech_name') != tech_name:
-                continue
-            
-            log_date_str = log.get('work_date')
-            print(log_date_str)
+    work_status_logs = data_access.load_work_status_logs()
+    
+    if not work_status_logs:
+        return {"work_status_logs": []}
+    
+    today = date.today()
+    print("Today:", today)
+    print("Looking for tech:", tech_name)
+
+    filtered_status_logs = []
+    for log in work_status_logs:
+        print("Raw log:", log)  # always print to see what’s happening
+
+        if log.get("tech_name") != tech_name:
+            continue
+
+        log_date_str = log.get("work_date")
+        print("Found log date:", log_date_str)
+
+        try:
+            # support both YYYY-MM-DD and MM/DD/YYYY
             try:
                 log_date = datetime.strptime(log_date_str, "%m/%d/%Y").date()
-            except (ValueError, TypeError):
-                continue 
-            
-            if log_date == today:
-                filtered_status_logs.append(log)
-        
-        return {
-            "work_status_logs": filtered_status_logs
-        }
+            except ValueError:
+                log_date = datetime.strptime(log_date_str, "%Y-%m-%d").date()
+        except (ValueError, TypeError):
+            print("Skipping invalid date:", log_date_str)
+            continue 
+
+        if log_date == today:
+            filtered_status_logs.append(log)
+            print("✅ Matched log:", log)
+    
+    return {"work_status_logs": filtered_status_logs}
+
 
 def save_conversation(conversation_table: str, work_order_id: str, work_status: str):
     """Save conversation to CSV database"""
@@ -315,6 +325,7 @@ async def validate_work_status(request: WorkStatusLogRequest):
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error validating work status: {str(e)}")
+    
 
 # Endpoint 2b: Validate reason for hold
 @app.post("/validate-reason-for-hold", response_model=HoldReasonValidationResponse)
@@ -333,6 +344,7 @@ async def validate_reason_for_hold(request: HoldReasonValidationRequest):
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error validating hold reason: {str(e)}")
+    
 
 # Endpoint 3: Submit work status details to CSV database
 @app.post("/submit-work-status")
@@ -343,6 +355,8 @@ async def submit_work_status_endpoint(request: WorkStatusSubmissionRequest):
             tech_name=request.tech_name,
             work_date=request.work_date,
             work_status=request.work_status,
+            start_time=request.start_time,
+            end_time=request.end_time,
             time_spent=request.time_spent,
             notes=request.notes,
             summary=request.summary,

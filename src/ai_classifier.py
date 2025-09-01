@@ -7,7 +7,7 @@ import os
 import openai
 import streamlit as st
 from dotenv import load_dotenv
-from typing import Optional
+from typing import Optional, Union
 import io
 import tempfile
 import json
@@ -77,7 +77,7 @@ def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
             error_message=str(e)
         )
 
-def validate_work_status_log(operational_log: str, work_status:dict, work_order_description: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
+def validate_work_status_log(operational_log: str, work_status: Union[str, dict], work_order_description: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
     """
     Validate operational log against work status requirements and generate follow-up questions if needed
     
@@ -94,14 +94,13 @@ def validate_work_status_log(operational_log: str, work_status:dict, work_order_
     """
 
     try:
-        # Get work status requirements
+        if isinstance(work_status, str):
+            work_status = {work_status: 100}  
+
         status_requirements = ""
         for work_status_type, percentage in work_status.items():
             status_requirements += get_prompt(f"work_status.{work_status_type}") + f"Percentage of allocated time for the work status: {percentage}"
             
-        if not status_requirements:
-            return WorkStatusValidationResponse(valid=False, missing=f"Unknown work status: {work_status}", follow_up_question="")
-        
         # Get validation instructions and system prompt
         validation_instructions = get_prompt("validation_instructions")
         work_status_system_prompt = get_prompt("system_prompts.work_status_system_prompt")
@@ -149,6 +148,7 @@ def validate_work_status_log(operational_log: str, work_status:dict, work_order_
             missing=f"Error: {str(e)}", 
             follow_up_question="Follow-up question could not be generated."
         )
+
 
 def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_description: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> HoldReasonValidationResponse:
     """

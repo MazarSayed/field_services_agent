@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Union
 from datetime import datetime
 
 # ============================================================================
@@ -107,7 +107,10 @@ class WorkOrderUpdateResponse(BaseModel):
 class WorkStatusLogRequest(BaseModel):
     """Request model for work status log operations"""
     operational_log: str = Field(..., description="Operational log text")
-    work_status: dict = Field(..., description="Work status type and assigned percentage")
+    work_status: Optional[Union[str, dict]] = Field(
+        None,
+        description="Work status type (string) or type/percentage mapping (dict)"
+    )
     work_order_description: str = Field(..., description="Work order description")
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
