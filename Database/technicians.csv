@@ -1,22 +1,4 @@
 id,tech_name,email,phone,specialization,hire_date,status,created_at,updated_at
-1,Kyle Foley,kyle.foley@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-2,Randall Hampton,randall.hampton@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-3,Elisha Capley,elisha.capley@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-4,Jamarquis Jefferson,jamarquis.jefferson@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-5,Michael Lewis,michael.lewis@origisservices.com,+1-555-0000,Escalante Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-6,William Boyd,william.boyd@origisservices.com,+1-555-0000,Escalante Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-7,Layla Ashtiyany,layla.ashtiyany@origisservices.com,+1-555-0000,MS5 - Golden Triangle I (PV) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-8,Virgil Brumbelow,virgil.brumbelow@origisservices.com,+1-555-0000,Escalante Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-9,Hunter Owens,hunter.owens@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-10,Ashton Meyers,ashton.meyers@origisservices.com,+1-555-0000,MS5 - Golden Triangle I (PV) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-11,Ty Herchenhahn,ty.herchenhahn@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-12,David Morrison,david.morrison@origisservices.com,+1-555-0000,MS5 - Golden Triangle I (PV) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-13,Jackie Torrez,jackie.torrez@origisservices.com,+1-555-0000,Escalante Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-14,Chad Nelson,chad.nelson@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-15,Jonathan Hawkins,jonathan.hawkins@origisservices.com,+1-555-0000,Escalante Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-16,Sammie Rice,sammie.rice@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-17,Eric Bowen,eric.bowen@origisservices.com,+1-555-0000,MS6 - Golden Triangle II (PV/BESS) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-18,Jacob Collins,jacob.collins@origisservices.com,+1-555-0000,MS5 - Golden Triangle I (PV) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-19,Jose Mares,jose.mares@origisservices.com,+1-555-0000,Escalante Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-20,Tommy Rodriguez,tommy.rodriguez@origisservices.com,+1-555-0000,MS5 - Golden Triangle I (PV) Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
-21,Martin Lopez,martin.lopez@origisservices.com,+1-555-0000,Escalante Field Service Technician,2023-01-01,Active,2024-01-15 08:00:00,2024-01-15 08:00:00
+1,Kyle Foley,kyle.foley@origisservices.com,,,,Active,,
+2,Eric Bowen,eric.bowen@origisservices.com,,,,Active,,
+3,William Boyd,william.boyd@origisservices.com,,,,Active,,
