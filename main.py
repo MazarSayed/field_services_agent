@@ -3,7 +3,7 @@ Field Services Agent API
 FastAPI application for managing solar work orders and field services
 """
 
-from datetime import datetime
+from datetime import datetime, date
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import json
@@ -170,6 +170,35 @@ def get_work_status_logs(work_order_id: str):
         "work_status_logs": filtered_status_logs
     }
 
+def get_all_work_status_logs(tech_name):
+        """Get work status logs for a specific work order"""
+        work_status_logs = data_access.load_work_status_logs()
+        
+        if not work_status_logs:
+            return {"work_status_logs": []}
+        
+        today = date.today()
+        print(tech_name)
+        # Filter by technician and today's date
+        filtered_status_logs = []
+        for log in work_status_logs:
+            if log.get('tech_name') != tech_name:
+                continue
+            
+            log_date_str = log.get('work_date')
+            print(log_date_str)
+            try:
+                log_date = datetime.strptime(log_date_str, "%m/%d/%Y").date()
+            except (ValueError, TypeError):
+                continue 
+            
+            if log_date == today:
+                filtered_status_logs.append(log)
+        
+        return {
+            "work_status_logs": filtered_status_logs
+        }
+
 def save_conversation(conversation_table: str, work_order_id: str, work_status: str):
     """Save conversation to CSV database"""
     conversation_dict = parse_conversation_table(conversation_table)
@@ -237,7 +266,7 @@ async def get_work_orders(tech_name: str, work_date: str):
 
 # Endpoint 1b: Get all work orders for a technician (no date filter)
 @app.get("/work-orders", response_model=WorkOrderResponse)
-async def get_all_work_orders_for_tech():
+async def get_all_work_orders_tech():
     """Extract all work orders assigned to a technician regardless of date"""
     try:
         tech_name = config['defaults']['tech_name']
@@ -338,6 +367,18 @@ async def get_work_status_logs_endpoint(work_order_id: str):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting work status logs: {str(e)}")
+    
+@app.get("/all-status-logs", response_model=WorkStatusLogs)
+async def get_work_status_logs_all():
+    try:
+        tech_name = config['defaults']['tech_name']
+        result = get_all_work_status_logs(tech_name)
+        return WorkStatusLogs(**result)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error extracting work status logs: {str(e)}")
+
 
 # Endpoint: Submit conversation table to CSV database
 @app.post("/submit-chat")

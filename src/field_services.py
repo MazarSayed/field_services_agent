@@ -108,7 +108,6 @@ class FieldServicesService:
                            work_order_description: str, tech_name: str, 
                            work_date: str, follow_up_questions_answers: str = "") -> Dict[str, Any]:
         """Validate work status log using AI"""
-        openai_client = self.data_access.get_openai_client()
         
         return validate_work_status_log(
             operational_log=operational_log,
