@@ -239,6 +239,31 @@ class FieldServicesAPIClient:
         """
         return self._make_request("GET", "/config")
 
+    def validate_reason_for_hold(self, hold_reason: str, work_order_type: str, 
+                               work_order_description: str, wo_status_and_notes_with_hours_table: str, 
+                               follow_up_questions_answers_table: str) -> Optional[Dict]:
+        """
+        Validate hold reason
+        
+        Args:
+            hold_reason: The hold reason to validate
+            work_order_type: Work order type
+            work_order_description: Work order description
+            wo_status_and_notes_with_hours_table: Table of work status and notes with hours
+            follow_up_questions_answers_table: Previous follow-up questions and answers
+            
+        Returns:
+            Validation response or None if failed
+        """
+        data = {
+            "hold_reason": hold_reason,
+            "work_order_type": work_order_type,
+            "work_order_description": work_order_description,
+            "wo_status_and_notes_with_hours_table": wo_status_and_notes_with_hours_table,
+            "follow_up_questions_answers_table": follow_up_questions_answers_table
+        }
+        return self._make_request("POST", "/validate-reason-for-hold", data)
+
 # Global API client instance
 @st.cache_resource
 def get_api_client() -> FieldServicesAPIClient:

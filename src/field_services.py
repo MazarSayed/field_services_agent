@@ -3,10 +3,11 @@ Field Services Business Logic
 Simplified service layer for handling field services operations
 """
 
-from datetime import datetime, date
+from datetime import datetime
 from typing import List, Dict, Any, Optional
 from src.data_access import get_data_access
-from src.ai_classifier import validate_work_status_log, convert_to_car_format, convert_to_client_summary
+from src.ai_classifier import validate_work_status_log, validate_reason_for_hold, convert_to_car_format, convert_to_client_summary
+from models.models import HoldReasonValidationResponse
 import json
 
 
@@ -113,10 +114,23 @@ class FieldServicesService:
             operational_log=operational_log,
             work_status=work_status,
             work_order_description=work_order_description,
+            wo_status_and_notes_with_hours_table=follow_up_questions_answers,
             follow_up_questions_answers_table=follow_up_questions_answers
         )
     
-    def submit_work_status(self, tech_name: str, work_date: str, work_status: dict, start_time: str, end_time: str,
+    def validate_reason_for_hold(self, hold_reason: str, work_order_type: str, 
+                               work_order_description: str, wo_status_and_notes_with_hours_table: str, 
+                               follow_up_questions_answers_table: str) -> HoldReasonValidationResponse:
+        """Validate hold reason using AI"""
+        return validate_reason_for_hold(
+            hold_reason=hold_reason,
+            work_order_type=work_order_type,
+            work_order_description=work_order_description,
+            wo_status_and_notes_with_hours_table=wo_status_and_notes_with_hours_table,
+            follow_up_questions_answers_table=follow_up_questions_answers_table
+        )
+    
+    def submit_work_status(self, tech_name: str, work_date: str, work_status: dict,
                           time_spent: float, notes: str, summary: str, 
                           work_order_id: str = None, complete_flag: bool = False) -> Dict[str, Any]:
         """Submit work status to database"""
@@ -135,8 +149,6 @@ class FieldServicesService:
             'tech_name': tech_name,
             'work_date': work_date,
             'work_status': work_status,
-            'start_time': start_time,
-            'end_time': end_time,
             'time_spent': time_spent,
             'notes': notes,
             'summary': summary,
@@ -148,7 +160,7 @@ class FieldServicesService:
         
         # Define fieldnames
         fieldnames = [
-            'id', 'tech_name', 'work_date', 'work_status', 'start_time', 'end_time', 'time_spent',
+            'id', 'tech_name', 'work_date', 'work_status', 'time_spent',
             'notes', 'summary', 'work_order_id', 'complete_flag', 'created_at', 'updated_at'
         ]
         
@@ -176,8 +188,9 @@ class FieldServicesService:
         
         return convert_to_car_format(
             openai_client=openai_client,
-            completion_notes=completion_notes,
-            wo_status_and_notes_table=wo_status_and_notes_table,
+            work_order_type="",  # Default empty string since not provided in current interface
+            final_completion_notes=completion_notes,
+            wo_status_and_notes_with_hours_table=wo_status_and_notes_table,
             work_order_description=work_order_description
         )
     
@@ -185,7 +198,7 @@ class FieldServicesService:
         """Convert conversation to client summary"""
         
         return convert_to_client_summary(
-            conversation_tech_ai_client_table=conversation_table
+            conversation_table=conversation_table
         )
     
     def get_work_status_logs(self, work_order_id: str) -> Dict[str, Any]:
@@ -203,35 +216,6 @@ class FieldServicesService:
         
         if not filtered_status_logs:
             return {"work_status_logs": []}
-        
-        return {
-            "work_status_logs": filtered_status_logs
-        }
-    
-    def get_all_work_status_logs(self, tech_name) -> Dict[str, Any]:
-        """Get work status logs for a specific work order"""
-        work_status_logs = self.data_access.load_work_status_logs()
-        
-        if not work_status_logs:
-            return {"work_status_logs": []}
-        
-        today = date.today()
-        print(tech_name)
-        # Filter by technician and today's date
-        filtered_status_logs = []
-        for log in work_status_logs:
-            if log.get('tech_name') != tech_name:
-                continue
-            
-            log_date_str = log.get('work_date')
-            print(log_date_str)
-            try:
-                log_date = datetime.strptime(log_date_str, "%m/%d/%Y").date()
-            except (ValueError, TypeError):
-                continue  # skip malformed dates
-            
-            if log_date == today:
-                filtered_status_logs.append(log)
         
         return {
             "work_status_logs": filtered_status_logs

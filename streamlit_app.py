@@ -694,7 +694,9 @@ if st.session_state.selected_work_order:
                             )
                             
                             if car_result:
-                                st.session_state.car_formatted_notes = car_result.get('car_formatted_notes', '')
+                                # Format the CAR response into a readable format
+                                car_formatted = f"CAUSE: {car_result.get('cause', '')}\n\nACTION: {car_result.get('action', '')}\n\nRESULT: {car_result.get('result', '')}"
+                                st.session_state.car_formatted_notes = car_formatted
                                 st.success("✅ CAR format generated!")
                                 st.rerun()
                             else:
@@ -710,7 +712,7 @@ if st.session_state.selected_work_order:
                 client_summary_result = api_client.convert_to_client_summary(conversation_table)
                 
                 if client_summary_result:
-                    st.session_state.client_summary = client_summary_result.get('client_summary', '')
+                    st.session_state.client_summary = client_summary_result.get('summary', '')
                     st.success("✅ Client summary generated!")
                     st.rerun()
                 else:
