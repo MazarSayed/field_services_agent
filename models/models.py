@@ -112,6 +112,7 @@ class WorkStatusLogRequest(BaseModel):
         description="Work status type (string) or type/percentage mapping (dict)"
     )
     work_order_description: str = Field(..., description="Work order description")
+    plant: str = Field(..., description="Plant description")
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
     follow_up_questions_answers_table: str = Field(..., description="Table of previous follow-up questions and answers")
@@ -122,6 +123,7 @@ class HoldReasonValidationRequest(BaseModel):
     hold_reason: str = Field(..., description="The hold reason to validate")
     work_order_type: str = Field(..., description="Work order type")
     work_order_description: str = Field(..., description="Work order description")
+    plant: str = Field(..., description="Plant description")
     wo_status_and_notes_with_hours_table: str = Field(..., description="Table of work status and notes with hours")
     follow_up_questions_answers_table: str = Field(..., description="Previous follow-up questions and answers")
 
@@ -131,6 +133,7 @@ class WorkStatusSubmissionRequest(BaseModel):
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
     work_status: dict = Field(..., description="Work status type and assigned percentage")
+    plant: str = Field(..., description="Plant description")
     start_time: str = Field(..., description="Timestamp work started")
     end_time: str = Field(..., description="Timestamp work ended")
     time_spent: float = Field(..., description="Time spent in hours")

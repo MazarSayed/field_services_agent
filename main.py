@@ -99,7 +99,7 @@ def update_work_order_status(work_order_id: str, new_status: str):
     data_access.update_work_order(work_order)
     return True
 
-def submit_work_status(tech_name: str, work_date: str, work_status: dict, start_time: str, end_time: str,
+def submit_work_status(tech_name: str, work_date: str, work_status: dict, plant: str, start_time: str, end_time: str,
                       time_spent: float, notes: str, summary: str, 
                       work_order_id: str = None, complete_flag: bool = False):
     """Submit work status to database"""
@@ -118,6 +118,7 @@ def submit_work_status(tech_name: str, work_date: str, work_status: dict, start_
         'tech_name': tech_name,
         'work_date': work_date,
         'work_status': work_status,
+        'plant_description': plant,
         'start_time': start_time,
         'end_time': end_time,
         'time_spent': time_spent,
@@ -131,7 +132,7 @@ def submit_work_status(tech_name: str, work_date: str, work_status: dict, start_
     
     # Define fieldnames
     fieldnames = [
-        'id', 'tech_name', 'work_date', 'work_status', 'start_time', 'end_time', 'time_spent',
+        'id', 'tech_name', 'work_date', 'work_status', 'plant_description', 'start_time', 'end_time', 'time_spent',
         'notes', 'summary', 'work_order_id', 'complete_flag', 'created_at', 'updated_at'
     ]
     
@@ -317,6 +318,7 @@ async def validate_work_status(request: WorkStatusLogRequest):
             operational_log=request.operational_log,
             work_status=request.work_status,
             work_order_description=request.work_order_description,
+            plant=request.plant,
             wo_status_and_notes_with_hours_table=request.follow_up_questions_answers_table,
             follow_up_questions_answers_table=request.follow_up_questions_answers_table
         )
@@ -336,6 +338,7 @@ async def validate_reason_hold(request: HoldReasonValidationRequest):
             hold_reason=request.hold_reason,
             work_order_type=request.work_order_type,
             work_order_description=request.work_order_description,
+            plant=request.plant,
             wo_status_and_notes_with_hours_table=request.wo_status_and_notes_with_hours_table,
             follow_up_questions_answers_table=request.follow_up_questions_answers_table
         )
@@ -355,6 +358,7 @@ async def submit_work_status_endpoint(request: WorkStatusSubmissionRequest):
             tech_name=request.tech_name,
             work_date=request.work_date,
             work_status=request.work_status,
+            plant=request.plant,
             start_time=request.start_time,
             end_time=request.end_time,
             time_spent=request.time_spent,

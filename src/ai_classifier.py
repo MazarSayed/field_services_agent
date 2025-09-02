@@ -77,7 +77,7 @@ def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
             error_message=str(e)
         )
 
-def validate_work_status_log(operational_log: str, work_status: Union[str, dict], work_order_description: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
+def validate_work_status_log(operational_log: str, work_status: Union[str, dict], work_order_description: str, plant: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
     """
     Validate operational log against work status requirements and generate follow-up questions if needed
     
@@ -108,6 +108,7 @@ def validate_work_status_log(operational_log: str, work_status: Union[str, dict]
         prompt = f"""
         You are validating an operational log for work status: {work_status}.
         The work order description is: "{work_order_description}".
+        The plant is: "{plant}".
         User's Previous work status and notes with hours for extra context: 
         {wo_status_and_notes_with_hours_table}
 
@@ -150,7 +151,7 @@ def validate_work_status_log(operational_log: str, work_status: Union[str, dict]
         )
 
 
-def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_description: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> HoldReasonValidationResponse:
+def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_description: str, plant: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> HoldReasonValidationResponse:
     """
     Validate hold reason against work order requirements and generate follow-up questions if needed
     
@@ -174,6 +175,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         prompt = f"""
         Work Order Type: "{work_order_type}".
         The work order description is: "{work_order_description}".
+        The plant is: "{plant}".
 
         User's Previous work status and notes with hours for extra context: 
         {wo_status_and_notes_with_hours_table}
