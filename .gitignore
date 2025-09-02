@@ -1,4 +1,5 @@
 *.env
+env
 *.venv
 *.pycache
 *.pycache/*
@@ -6,3 +7,4 @@
 *.pycache/
 *.DS_Store
 *.pyc
+.env
