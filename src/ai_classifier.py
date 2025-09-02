@@ -207,10 +207,13 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
     except Exception as e:
         st.error(f"Error validating work status log: {e}")
         return HoldReasonValidationResponse(
-            valid=False, 
-            missing=f"Error: {str(e)}", 
-            follow_up_question="Follow-up question could not be generated."
+            valid=False,
+            missing=f"Error: {str(e)}",
+            follow_up_question="Follow-up question could not be generated.",
+            hold_reason_analysis="Analysis could not be generated due to error.",
+            recommended_actions="Please review the hold reason manually."
         )
+
 
 def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_status_and_notes_with_hours_table: str, work_order_description: str) -> CARFormatResponse:
     """

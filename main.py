@@ -347,7 +347,26 @@ async def validate_reason_hold(request: HoldReasonValidationRequest):
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error validating hold reason: {str(e)}")
-    
+
+
+@app.put("/work-orders/{work_order_id}/hold", response_model=WorkOrderUpdateResponse)
+async def hold_work_order(work_order_id: str):
+    """Update a work order's status to Hold"""
+    try:
+        updated = update_work_order_status(work_order_id, "On Hold")
+        if not updated:
+            raise HTTPException(status_code=404, detail=f"Work order {work_order_id} not found")
+        
+        return WorkOrderUpdateResponse(
+            work_order_id=work_order_id,
+            status="On Hold",
+            message="Work order marked as on hold successfully"
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error updating work order: {str(e)}")
+
 
 # Endpoint 3: Submit work status details to CSV database
 @app.post("/submit-work-status")
