@@ -319,7 +319,7 @@ async def validate_work_status(request: WorkStatusLogRequest):
             work_status=request.work_status,
             work_order_description=request.work_order_description,
             plant=request.plant,
-            wo_status_and_notes_with_hours_table=request.follow_up_questions_answers_table,
+            wo_status_and_notes_with_hours_table=request.wo_status_and_notes_with_hours_table,
             follow_up_questions_answers_table=request.follow_up_questions_answers_table
         )
         return result

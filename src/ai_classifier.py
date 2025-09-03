@@ -98,25 +98,32 @@ def validate_work_status_log(operational_log: str, work_status: Union[str, dict]
             work_status = {work_status: 100}  
 
         status_requirements = ""
-        for work_status_type, percentage in work_status.items():
-            status_requirements += get_prompt(f"work_status.{work_status_type}") + f"Percentage of allocated time for the work status: {percentage}"
+        for work_status_type, values in work_status.items():
+            pct = values["percentage"] if isinstance(values, dict) else values
+            status_requirements += (
+                get_prompt(f"work_status.{work_status_type}")
+                + f" Percentage of allocated time for the work status: {pct}%\n"
+            )
             
         # Get validation instructions and system prompt
         validation_instructions = get_prompt("validation_instructions")
         work_status_system_prompt = get_prompt("system_prompts.work_status_system_prompt")
+        log_notes_guidelines=get_prompt("log_notes_guidelines")
         
         prompt = f"""
         You are validating an operational log for work status: {work_status}.
         The work order description is: "{work_order_description}".
         The plant is: "{plant}".
+
         User's Previous work status and notes with hours for extra context: 
         {wo_status_and_notes_with_hours_table}
 
-
-        Mainly rely on the current USER'S OPERATIONAL LOG:
+        Mainly rely on the USER'S LOG NOTES which describes the work done:
         "{operational_log}"
+        Guidelines for good log notes:
+        {log_notes_guidelines}
 
-        Previous Follow-up Question and Answers:
+        Any previous Follow-up Question and Answers are:
         {follow_up_questions_answers_table}
 
         REQUIREMENTS (guidelines, not strict rules):
