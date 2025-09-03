@@ -451,6 +451,7 @@ async def convert_completion_notes_to_car(request: CompletionNotesRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error converting to CAR format: {str(e)}")
 
+
 # Endpoint 5: Convert conversation to client summary
 @app.post("/convert-to-client-summary", response_model=ClientSummaryResponse)
 async def convert_conversation_to_summary(request: ClientSummaryRequest):

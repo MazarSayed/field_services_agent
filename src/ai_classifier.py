@@ -261,9 +261,16 @@ def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_
             max_tokens=800,
             temperature=0.3
         )
-        
-        # Return the validated Pydantic model directly
-        return response
+        response_obj = CARFormatResponse(
+            cause=response.cause or "",
+            action=response.action or "",
+            result=response.result or "",
+            success=True,  
+            error_message=None
+        )
+
+        return response_obj
+
                 
     except Exception as e:
         st.error(f"Error converting to CAR format: {e}")
