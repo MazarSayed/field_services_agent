@@ -109,12 +109,13 @@ class WorkStatusLogRequest(BaseModel):
     operational_log: str = Field(..., description="Operational log text")
     work_status: Optional[Union[str, dict]] = Field(
         None,
-        description="Work status type (string) or type/percentage mapping (dict)"
+        description="Work status type (string) or type/percentage/hours mapping (dict)"
     )
     work_order_description: str = Field(..., description="Work order description")
     plant: str = Field(..., description="Plant description")
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
+    wo_status_and_notes_with_hours_table: str = Field(..., description="Table of work status and notes with hours")
     follow_up_questions_answers_table: str = Field(..., description="Table of previous follow-up questions and answers")
 
 

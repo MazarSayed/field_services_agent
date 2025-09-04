@@ -327,7 +327,7 @@ async def validate_work_status(request: WorkStatusLogRequest):
             work_status=request.work_status,
             work_order_description=request.work_order_description,
             plant=request.plant,
-            wo_status_and_notes_with_hours_table=request.follow_up_questions_answers_table,
+            wo_status_and_notes_with_hours_table=request.wo_status_and_notes_with_hours_table,
             follow_up_questions_answers_table=request.follow_up_questions_answers_table
         )
         return result
@@ -458,6 +458,7 @@ async def convert_completion_notes_to_car(request: CompletionNotesRequest):
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error converting to CAR format: {str(e)}")
+
 
 # Endpoint 5: Convert conversation to client summary
 @app.post("/convert-to-client-summary", response_model=ClientSummaryResponse)
