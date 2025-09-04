@@ -1,4 +1,4 @@
-id,tech_name,email,phone,specialization,hire_date,status,created_at,updated_at
-1,Kyle Foley,kyle.foley@origisservices.com,,,,Active,,
-2,Eric Bowen,eric.bowen@origisservices.com,,,,Active,,
-3,William Boyd,william.boyd@origisservices.com,,,,Active,,
+id,tech_name,owner_id,email,phone,specialization,hire_date,status,created_at,updated_at
+1,Kyle Foley,005QU000003eO0HYAU,,,,,Active,,
+2,Eric Bowen,005QU000007CfLBYA0,,,,,Active,,
+3,Martin Lopez,005QU000001BnjBYAS,,,,,Active,,

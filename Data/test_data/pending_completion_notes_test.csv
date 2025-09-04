@@ -1,15 +1,36 @@
 id,work_order_id,tech_name,work_date,completion_notes,wo_type,time_type,description,asset_description,asset_id,plant,created_at
-1,WO-1062317,Kyle Foley,2025-03-06,Troubleshot LBD for low production.,Corrective,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1062317,MS6 - Golden Triangle II (PV/BESS),2025-03-06 16:00:00
-2,WO-1062276,Kyle Foley,2025-02-26,Trouble shot LBD 41-5 and every string on the LBD and found no issues.,Corrective,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1062276,MS6 - Golden Triangle II (PV/BESS),2025-02-26 19:00:00
-3,WO-1065439,Kyle Foley,2025-04-21,"Inverter down for ground fault, Fault not active, replaced fuse and returned inverter to service",Corrective,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1065439,MS6 - Golden Triangle II (PV/BESS),2025-04-21 19:00:00
-4,WO-1062957,Eric Bowen,2025-03-06,see ops log 20250306-21105,Corrective,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1062957,MS6 - Golden Triangle II (PV/BESS),2025-03-06 18:00:00
-5,WO-1052496,Eric Bowen,2024-06-17,Weekly Ad Hoc Wo complete.,Ad Hoc,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1052496,MS6 - Golden Triangle II (PV/BESS),2024-06-17 13:00:00
-6,WO-1052248,Eric Bowen,2024-06-14,GT 1 has been energized and no longer need to have the desiccants replaced.,Project,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1052248,MS6 - Golden Triangle II (PV/BESS),2024-06-14 17:00:00
-7,WO-1066442,William Boyd,2025-05-08,nan,Corrective,Work,,Escalante,WO-1066442,Escalante,2025-05-08 16:00:00
-8,WO-1056719,William Boyd,2024-10-06,Feeder 4 offline due to 4A5 fatal fault alarm.,Corrective,Work,,Escalante,WO-1056719,Escalante,2024-10-06 16:00:00
-9,WO-1063225,William Boyd,2025-03-11,"Cause:  Power Factors calculated LBD producing equivalent of 1 string offline._x000D_
+1,WO-1052113,Kyle Foley,2024-06-04,Inverter (#39) Lost communications on (05/31/24). RES submitted warranty claim on (06/04/24). SMA replaced the comm board on (06/25/24). Communications were restored and Inverter (#39) is back in service.,Corrective,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1052113,MS6 - Golden Triangle II (PV/BESS),2024-06-04 08:00:00
+2,WO-1052496,Kyle Foley,2024-06-17,Weekly Ad Hoc WO complete.,Ad Hoc,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1052496,MS6 - Golden Triangle II (PV/BESS),2024-06-17 08:00:00
+3,WO-1056717,Martin Lopez,2024-10-12,Feeder 4 shut off due to 4A5 fatal trip alarms,Corrective,Work,,LBD-4B5-02,WO-1056717,Escalante,2024-10-12 08:00:00
+4,WO-1062226,Kyle Foley,2025-02-24,"Found SPC not tracking. no light on spc, reconnected MC4 for SPC to charging module. tracked row to east to charge and returned inverter to service",Corrective,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1062226,MS6 - Golden Triangle II (PV/BESS),2025-02-24 08:00:00
+5,WO-1063215,Martin Lopez,2025-03-08,"Cause:  Power Factors calculated low production, equivalent to 1 string offline._x000D_
 _x000D_
-Action:   Field verified that all strings are producing equal  amps._x000D_
+Action:  Field verified by checking amps on strings.   All strings measured equal, therefore all strings are producing._x000D_
 _x000D_
-Result:  All strings verified online.   Power Factors indicated 96.4% production on 3/25/3035.",Corrective,Work,,Escalante,WO-1063225,Escalante,2025-03-11 16:00:00
-10,WO-1060554,William Boyd,2025-02-04,Inverter offline with a AC circuit breaker fault. First we changed out the contactor and the inverter worked for 2 days before going offline with the same fault. We then changed out the AC breaker and is back online.,OEM Repair Work,Work,,Escalante,WO-1060554,Escalante,2025-02-04 14:00:00
+Result:  No strings are offline.   DC outage for 1B1 LBD15 on 3/14/2025 is greater than 100%",Corrective,Work,,LBD-1B1-15,WO-1063215,Escalante,2025-03-08 08:00:00
+6,WO-1063223,Martin Lopez,2025-03-08,"Cause:  Power Factors calculated low production on the LBD equivalent to 1 string offline._x000D_
+_x000D_
+Action:  Field verified that all strings are producing equal amps._x000D_
+_x000D_
+Result:  Verified in Power Factors that all LBD met 99.4% on 3/14/2025.",Corrective,Work,,LBD-2B4-12,WO-1063223,Escalante,2025-03-08 08:00:00
+7,WO-1060627,Eric Bowen,2025-01-20,"Live dead live the Inverter, removed the old DC switch then replaced it with the new DC switch. INV 32 is back up and running correctly.",Corrective,Work,,INV032,WO-1060627,MS6 - Golden Triangle II (PV/BESS),2025-01-20 08:00:00
+8,WO-1068545,Kyle Foley,2025-06-20,"Cause:_x000D_
+Inverter tripped due to an insulation fault caused by a broken module._x000D_
+_x000D_
+Action:_x000D_
+Walked the array, found and isolated the broken module, then reset the inverter._x000D_
+_x000D_
+Result:_x000D_
+The inverter is now producing.",Corrective,Work,,INV022,WO-1068545,MS6 - Golden Triangle II (PV/BESS),2025-06-20 08:00:00
+9,WO-1060554,Martin Lopez,2025-01-19,Inverter offline with a AC circuit breaker fault. First we changed out the contactor and the inverter worked for 2 days before going offline with the same fault. We then changed out the AC breaker and is back online.,OEM Repair Work,Work,,MODINV01 - 1A7,WO-1060554,Escalante,2025-01-19 08:00:00
+10,WO-1061463,Eric Bowen,2025-02-01,Amp clamped every string on LBD and found no outage,Corrective,Work,,LBD 039-03,WO-1061463,MS6 - Golden Triangle II (PV/BESS),2025-02-01 08:00:00
+11,WO-1052248,Kyle Foley,2024-06-10,GT 1 has been energized and no longer need to have the desiccants replaced.,Project,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1052248,MS6 - Golden Triangle II (PV/BESS),2024-06-10 08:00:00
+12,WO-1066442,Martin Lopez,2025-05-07,nan,Corrective,Work,,INVERTER 1B2,WO-1066442,Escalante,2025-05-07 08:00:00
+13,WO-1062258,Eric Bowen,2025-02-26,Trouble shot LBD 1-14 and every string on the LBD and found no issues.,Corrective,Work,,LBD 001-14,WO-1062258,MS6 - Golden Triangle II (PV/BESS),2025-02-26 08:00:00
+14,WO-1062265,Eric Bowen,2025-02-26,Trouble shot LBD 1-2 and every string on the LBD and found no issues.,Corrective,Work,,LBD 001-02,WO-1062265,MS6 - Golden Triangle II (PV/BESS),2025-02-26 08:00:00
+15,WO-1063212,Martin Lopez,2025-03-08,"Cause:  Power Factors calculated low production equivalent to a string offline._x000D_
+_x000D_
+Action:   Field verified production by checking string Amps.  all strings producing approximately the same._x000D_
+_x000D_
+Result:  Verified over several days in Power Factors DC Outage screen that the strings do meet full production, i.e. 3/13/2025.",Corrective,Work,,LBD-1A6-02,WO-1063212,Escalante,2025-03-08 08:00:00
+16,WO-1063668,Kyle Foley,2025-03-14,String outage. MC4 replaced and Damper replaced,Corrective,Work,,MS6 - Golden Triangle II (PV/BESS),WO-1063668,MS6 - Golden Triangle II (PV/BESS),2025-03-14 08:00:00

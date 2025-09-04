@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Enhanced Database Update Script
-Extracts work orders from Origis Data Excel file and updates the database files
+Extracts work orders from Origis Data 1 Excel file and updates the database files
 with the following logic:
 - Select top 3 technicians based on log activity
 - For each technician, select work orders from 5 types: Preventive, Corrective, Ad Hoc, Project, OEM Repair Work
@@ -10,6 +10,7 @@ with the following logic:
 - Move pending work order logs and completion notes to test data
 - Keep completed work order logs in the main database
 - Sort operating logs by date/time within each work order x technician combination
+- Uses updated column structure from Origis Data 1.xlsx
 """
 
 import pandas as pd
@@ -41,12 +42,12 @@ def parse_date(date_str: str) -> str:
         return ""
 
 def extract_work_orders_by_type():
-    """Extract work orders of different types from Origis Data Excel file"""
-    print("Reading Origis Data Excel file...")
+    """Extract work orders of different types from Origis Data 1 Excel file"""
+    print("Reading Origis Data 1 Excel file...")
     
     # Read the Excel file with both sheets
-    work_orders_df = pd.read_excel("Data/Origis_Data (2).xlsx", sheet_name='Work Order')
-    operating_logs_df = pd.read_excel("Data/Origis_Data (2).xlsx", sheet_name='Operating Logs')
+    work_orders_df = pd.read_excel("Data/Origis_Data 1.xlsx", sheet_name='Work Orders')
+    operating_logs_df = pd.read_excel("Data/Origis_Data 1.xlsx", sheet_name='Operating logs')
     
     print(f"Work Orders sheet: {work_orders_df.shape}")
     print(f"Operating Logs sheet: {operating_logs_df.shape}")
@@ -58,34 +59,54 @@ def extract_work_orders_by_type():
     print(f"Found {len(filtered_wo)} work orders of main types")
     print(f"Work order types: {filtered_wo['pffsm__WO_Type__c'].value_counts().to_dict()}")
     
-    # Get top 3 technicians by log activity
-    top_technicians = operating_logs_df['User FSM.Name'].value_counts().head(3)
-    print(f"Top 3 technicians: {top_technicians.to_dict()}")
+    # Create OwnerId to technician name mapping
+    owner_mapping = operating_logs_df[['OwnerId', 'Work Order.pffsm__Assigned_User_Name_Text__c']].dropna()
+    owner_mapping = owner_mapping.drop_duplicates()
+    owner_to_name = dict(zip(owner_mapping['OwnerId'], owner_mapping['Work Order.pffsm__Assigned_User_Name_Text__c']))
     
-    # Filter operating logs for top 3 technicians
-    filtered_logs = operating_logs_df[operating_logs_df['User FSM.Name'].isin(top_technicians.index)]
+    print(f"Created OwnerId to name mapping for {len(owner_to_name)} technicians")
+    
+    # Get top 3 technicians by log activity using OwnerId
+    top_owner_ids = operating_logs_df['OwnerId'].value_counts().head(3)
+    print(f"Top 3 OwnerIds by activity: {top_owner_ids.to_dict()}")
+    
+    # Get technician names for top OwnerIds
+    top_technician_names = {}
+    for owner_id in top_owner_ids.index:
+        if owner_id in owner_to_name:
+            top_technician_names[owner_to_name[owner_id]] = owner_id
+        else:
+            # If no name mapping, use OwnerId as name
+            top_technician_names[owner_id] = owner_id
+    
+    print(f"Top 3 technicians: {top_technician_names}")
+    
+    # Filter operating logs for top 3 OwnerIds
+    filtered_logs = operating_logs_df[operating_logs_df['OwnerId'].isin(top_owner_ids.index)]
     
     # Get work orders that have logs from our top 3 technicians
-    wo_with_logs = filtered_logs['Work Order'].unique()
+    wo_with_logs = filtered_logs['Work Order.Name'].unique()
     final_work_orders = filtered_wo[filtered_wo['Name'].isin(wo_with_logs)]
     
     print(f"Work orders with logs from top 3 technicians: {len(final_work_orders)}")
     
-    return final_work_orders, filtered_logs, top_technicians
+    return final_work_orders, filtered_logs, top_owner_ids, owner_to_name
 
-def select_work_orders_per_employee(work_orders_df: pd.DataFrame, operating_logs_df: pd.DataFrame, top_technicians: pd.Series) -> Dict[str, List[Dict]]:
-    """Select work orders per employee based on their operating logs"""
+def select_work_orders_per_employee(work_orders_df: pd.DataFrame, operating_logs_df: pd.DataFrame, top_owner_ids: pd.Series, owner_to_name: dict) -> Dict[str, List[Dict]]:
+    """Select work orders per employee based on their operating logs using OwnerId"""
     print("Selecting work orders per employee...")
     
     employee_work_orders = {}
     
-    # For each top technician, get their work orders from operating logs
-    for tech_name in top_technicians.index:
-        print(f"\nProcessing employee: {tech_name}")
+    # For each top OwnerId, get their work orders from operating logs
+    for owner_id in top_owner_ids.index:
+        # Get technician name from OwnerId
+        tech_name = owner_to_name.get(owner_id, owner_id)
+        print(f"\nProcessing employee: {tech_name} (OwnerId: {owner_id})")
         
-        # Get work orders this technician has logs for
-        tech_logs = operating_logs_df[operating_logs_df['User FSM.Name'] == tech_name]
-        tech_work_orders = tech_logs['Work Order'].unique()
+        # Get work orders this technician has logs for using OwnerId
+        tech_logs = operating_logs_df[operating_logs_df['OwnerId'] == owner_id]
+        tech_work_orders = tech_logs['Work Order.Name'].unique()
         
         print(f"  Found {len(tech_work_orders)} work orders with logs")
         
@@ -98,11 +119,11 @@ def select_work_orders_per_employee(work_orders_df: pd.DataFrame, operating_logs
         for wo_type in ['Preventive', 'Corrective', 'Ad Hoc', 'Project', 'OEM Repair Work']:
             type_orders = tech_wo_details[tech_wo_details['pffsm__WO_Type__c'] == wo_type]
             
-            if len(type_orders) >= 3:
-                # Randomly select 3
-                selected = type_orders.sample(n=3, random_state=42)
+            if len(type_orders) >= 5:
+                # Randomly select 5
+                selected = type_orders.sample(n=5, random_state=42)
                 selected_orders.extend(selected.to_dict('records'))
-                print(f"    Selected 3 {wo_type} work orders")
+                print(f"    Selected 5 {wo_type} work orders")
             elif len(type_orders) > 0:
                 # Take all available
                 selected_orders.extend(type_orders.to_dict('records'))
@@ -157,7 +178,7 @@ def update_work_orders(completed_orders: Dict[str, List[Dict]], pending_orders: 
     for tech_name, orders in completed_orders.items():
         for order in orders:
             # Use actual completion date from data
-            completion_date = order.get('pffsm__Completion_Date__c', '')
+            completion_date = order.get('CreatedDate', '')
             if pd.isna(completion_date) or completion_date == '':
                 work_date = ''
             else:
@@ -167,17 +188,15 @@ def update_work_orders(completed_orders: Dict[str, List[Dict]], pending_orders: 
                 'id': id_counter,
                 'work_order_id': order['Name'],
                 'tech_name': tech_name,
-                'status': order.get('pffsm__Status__c', ''),
+                'status': 'Completed',  # Default status for completed orders
                 'work_date': work_date,
-                'description': "",
+                'description': order.get('pffsm__Description__c', ''),
                 'wo_type': order.get('pffsm__WO_Type__c', ''),
                 'time_type': 'Work',
-                'asset_description': order.get('pffsm__Plant__c', ''),
-                'asset_id': order.get('Id', ''),
+                'asset_description': order.get('pffsm__Equip_Description__c', ''),
+                'asset_id': order.get('pffsm__Asset_ID_Text__c', ''),
                 'plant': order.get('pffsm__Plant__c', ''),
                 'hours': order.get('pffsm__Total_Actual_Labor_Hours__c', ''),
-                'day_name': order.get('Day Name', ''),
-                'is_weekend': order.get('IsWeekend', ''),
                 'created_at': work_date + ' 08:00:00' if work_date else '',
                 'updated_at': work_date + ' 08:00:00' if work_date else ''
             }
@@ -189,7 +208,7 @@ def update_work_orders(completed_orders: Dict[str, List[Dict]], pending_orders: 
     for tech_name, orders in pending_orders.items():
         for order in orders:
             # Use actual data from work order
-            completion_date = order.get('pffsm__Completion_Date__c', '')
+            completion_date = order.get('CreatedDate', '')
             if pd.isna(completion_date) or completion_date == '':
                 work_date = ''
             else:
@@ -201,16 +220,13 @@ def update_work_orders(completed_orders: Dict[str, List[Dict]], pending_orders: 
                 'tech_name': tech_name,
                 'status': 'Pending',  # Override status for pending
                 'work_date': work_date,
-                'description': "",
+                'description': order.get('pffsm__Description__c', ''),
                 'wo_type': order.get('pffsm__WO_Type__c', ''),
                 'time_type': 'Work',
-                'asset_description': order.get('pffsm__Plant__c', ''),
-                'asset_id': order.get('Id', ''),
+                'asset_description': order.get('pffsm__Equip_Description__c', ''),
+                'asset_id': order.get('pffsm__Asset_ID_Text__c', ''),
                 'plant': order.get('pffsm__Plant__c', ''),
                 'hours': order.get('pffsm__Total_Actual_Labor_Hours__c', ''),
-                'car_flag': order.get('CAR_Flag', ''),
-                'day_name': order.get('Day Name', ''),
-                'is_weekend': order.get('IsWeekend', ''),
                 'created_at': work_date + ' 08:00:00' if work_date else '',
                 'updated_at': work_date + ' 08:00:00' if work_date else ''
             }
@@ -221,7 +237,7 @@ def update_work_orders(completed_orders: Dict[str, List[Dict]], pending_orders: 
     # Write to CSV
     fieldnames = ['id', 'work_order_id', 'tech_name', 'work_date', 'status', 'description', 
                   'wo_type', 'time_type', 'asset_description', 'asset_id', 'plant', 'hours',
-                  'car_flag', 'day_name', 'is_weekend', 'created_at', 'updated_at']
+                  'created_at', 'updated_at']
     
     with open('Database/work_orders.csv', 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -231,8 +247,8 @@ def update_work_orders(completed_orders: Dict[str, List[Dict]], pending_orders: 
     print(f"Updated work_orders.csv with {len(work_orders)} entries")
     return work_orders
 
-def update_technicians(completed_orders: Dict[str, List[Dict]], pending_orders: Dict[str, List[Dict]], operating_logs_df: pd.DataFrame):
-    """Update technicians.csv with technician data using actual data from operating logs"""
+def update_technicians(completed_orders: Dict[str, List[Dict]], pending_orders: Dict[str, List[Dict]], operating_logs_df: pd.DataFrame, owner_to_name: dict):
+    """Update technicians.csv with technician data using OwnerId mapping"""
     print("Updating technicians.csv...")
     
     # Get all unique technicians
@@ -242,30 +258,39 @@ def update_technicians(completed_orders: Dict[str, List[Dict]], pending_orders: 
     id_counter = 1
     
     for tech_name in all_techs:
-        # Get actual data for this technician from operating logs
-        tech_logs = operating_logs_df[operating_logs_df['User FSM.Name'] == tech_name]
+        # Find OwnerId for this technician name
+        owner_id = None
+        for oid, name in owner_to_name.items():
+            if name == tech_name:
+                owner_id = oid
+                break
         
-        if len(tech_logs) > 0:
-            # Get actual email from the data
-            email = tech_logs['User FSM.Email'].iloc[0] if not pd.isna(tech_logs['User FSM.Email'].iloc[0]) else ''
+        if owner_id:
+            # Get actual data for this technician from operating logs using OwnerId
+            tech_logs = operating_logs_df[operating_logs_df['OwnerId'] == owner_id]
             
-            technician = {
-                'id': id_counter,
-                'tech_name': tech_name,
-                'email': email,
-                'phone': '',  # Not available in data
-                'specialization': '',  # Not available in data
-                'hire_date': '',  # Not available in data
-                'status': 'Active',
-                'created_at': '',
-                'updated_at': ''
-            }
-            
-            technicians.append(technician)
-            id_counter += 1
+            if len(tech_logs) > 0:
+                # Get actual email from the data (not available in new structure, so leave empty)
+                email = ''
+                
+                technician = {
+                    'id': id_counter,
+                    'tech_name': tech_name,
+                    'owner_id': owner_id,  # Add OwnerId for reference
+                    'email': email,
+                    'phone': '',  # Not available in data
+                    'specialization': '',  # Not available in data
+                    'hire_date': '',  # Not available in data
+                    'status': 'Active',
+                    'created_at': '',
+                    'updated_at': ''
+                }
+                
+                technicians.append(technician)
+                id_counter += 1
     
     # Write to CSV
-    fieldnames = ['id', 'tech_name', 'email', 'phone', 'specialization', 'hire_date', 'status', 'created_at', 'updated_at']
+    fieldnames = ['id', 'tech_name', 'owner_id', 'email', 'phone', 'specialization', 'hire_date', 'status', 'created_at', 'updated_at']
     
     with open('Database/technicians.csv', 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -275,7 +300,7 @@ def update_technicians(completed_orders: Dict[str, List[Dict]], pending_orders: 
     print(f"Updated technicians.csv with {len(technicians)} entries")
     return technicians
 
-def create_test_data_files(pending_orders: Dict[str, List[Dict]], operating_logs_df: pd.DataFrame):
+def create_test_data_files(pending_orders: Dict[str, List[Dict]], operating_logs_df: pd.DataFrame, work_orders_df: pd.DataFrame, owner_to_name: dict):
     """Create test data files for pending work orders using only actual data"""
     print("Creating test data files for pending work orders...")
     
@@ -287,52 +312,56 @@ def create_test_data_files(pending_orders: Dict[str, List[Dict]], operating_logs
     
     print(f"Pending work order IDs: {pending_wo_ids}")
     
-    # Filter operating logs for pending work orders
-    pending_logs = operating_logs_df[operating_logs_df['Work Order'].isin(pending_wo_ids)]
+    # Filter operating logs for pending work orders using correct column name
+    pending_logs = operating_logs_df[operating_logs_df['Work Order.Name'].isin(pending_wo_ids)]
     
-    # Sort logs by work order, technician, and log time
-    pending_logs = pending_logs.sort_values(['Work Order', 'User FSM.Name', 'Log Time'])
+    # Sort logs by work order, OwnerId, and log time using correct column names
+    pending_logs = pending_logs.sort_values(['Work Order.Name', 'OwnerId', 'pffsm__Log_Time__c'])
+
+    print(f"Pending logs: {pending_logs.shape}")
+    # Remove duplicates based on work_order_id + owner_id + work_date + notes using correct column names
+    pending_logs = pending_logs.drop_duplicates(subset=['Work Order.Name', 'OwnerId', 'pffsm__Log_Time__c', 'pffsm__Log_Note__c'], keep='first')
     
-    # Remove duplicates based on work_order_id + tech_name + work_date + notes
-    pending_logs = pending_logs.drop_duplicates(subset=['Work Order', 'User FSM.Name', 'Log Time', 'Log Note'], keep='first')
+    print(f"Pending logs after duplicates: {pending_logs.shape}")
     
     # Create test work status logs using only actual data
     test_work_status_logs = []
     id_counter = 1
     
     for _, row in pending_logs.iterrows():
-        tech_name = row.get('User FSM.Name', '')
-        if pd.isna(tech_name) or tech_name == '':
+        owner_id = row.get('OwnerId', '')
+        tech_name = owner_to_name.get(owner_id, owner_id)  # Get name from OwnerId mapping
+        if pd.isna(owner_id) or owner_id == '':
             continue
         
         # Use actual log time
-        log_time = row.get('Log Time', '')
+        log_time = row.get('pffsm__Log_Time__c', '')
         if pd.isna(log_time):
             continue
         
         work_date = str(log_time)[:10]  # Extract YYYY-MM-DD
         log_datetime = str(log_time)
         
-        # Use only actual data from operating logs
+        # Use only actual data from operating logs with new column names
         work_status_log = {
             'id': id_counter,
-            'work_order_id': row.get('Work Order', ''),
+            'work_order_id': row.get('Work Order.Name', ''),
             'tech_name': tech_name,
             'work_date': work_date,
-            'work_status': row.get('Status', ''),
+            'work_status': row.get('pffsm__Status__c', ''),
             'time_spent': '',  # Not available in operating logs
-            'notes': row.get('Log Note', ''),
+            'notes': str(row.get('pffsm__Log_Note__c', '')) + " with details: " + str(row.get('Log_Details__c', '')),
             'summary': "",
-            'description': row.get('Log Note', ''),
+            'description': row.get('pffsm__Log_Note__c', ''),
             'wo_type': row.get('Work Order.pffsm__WO_Type__c', ''),
-            'asset_description': row.get('Plant Description', ''),
-            'asset_id': row.get('Work Order', ''),
-            'plant': row.get('Plant Description', ''),
-            'email': row.get('Email', ''),
-            'is_weekend': row.get('IsWeekend', ''),
-            'wo_status': row.get('Work Order.pffsm__WO_Status__c', ''),
-            'user_resource': row.get('Task Labor.pffsm__User_Resource__c', ''),
-            'user_fsm_email': row.get('User FSM.Email', ''),
+            'asset_description': row.get('pffsm__Plant_Description__c', ''),
+            'asset_id': row.get('Work Order.Name', ''),
+            'plant': row.get('Work Order.pffsm__Plant__c', ''),
+            'email': '',  # Not available in new structure
+            'is_weekend': '',  # Not available in new structure
+            'wo_status': row.get('Work Order.pffsm__Status__c', ''),
+            'user_resource': '',  # Not available in new structure
+            'user_fsm_email': '',  # Not available in new structure
             'created_at': log_datetime,
             'updated_at': log_datetime
         }
@@ -344,34 +373,43 @@ def create_test_data_files(pending_orders: Dict[str, List[Dict]], operating_logs
     with open('Data/test_data/pending_work_status_logs_test.csv', 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['id', 'work_order_id', 'tech_name', 'work_date', 'work_status', 'time_spent', 'notes', 
                      'summary', 'description', 'wo_type', 'asset_description', 'asset_id', 'plant', 'email',
-                     'car_flag', 'is_weekend', 'wo_status', 'user_resource', 'user_fsm_email',
+                     'is_weekend', 'wo_status', 'user_resource', 'user_fsm_email',
                      'created_at', 'updated_at']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(test_work_status_logs)
     
-    # Create test completion notes using only actual data
+    # Create test completion notes using work order data for completion comments
     test_completion_notes = []
     id_counter = 1
     
-    # Group by work order to get one completion note per work order
-    for work_order_id in pending_wo_ids:
-        wo_logs = pending_logs[pending_logs['Work Order'] == work_order_id]
-        if len(wo_logs) == 0:
-            continue
+    # Get work order data for pending work orders
+    pending_wo_data = work_orders_df[work_orders_df['Name'].isin(pending_wo_ids)]
+    
+    for _, wo_row in pending_wo_data.iterrows():
+        work_order_id = wo_row.get('Name', '')
         
-        # Get the first log entry for this work order
-        first_log = wo_logs.iloc[0]
-        tech_name = first_log.get('User FSM.Name', '')
-        completion_notes = first_log.get('Work Order: Completion Notes', '')
+        # Get technician name from the first log entry for this work order
+        wo_logs = pending_logs[pending_logs['Work Order.Name'] == work_order_id]
+        if len(wo_logs) > 0:
+            first_log = wo_logs.iloc[0]
+            owner_id = first_log.get('OwnerId', '')
+            tech_name = owner_to_name.get(owner_id, owner_id)
+        else:
+            # If no logs, try to get from work order assigned user
+            tech_name = wo_row.get('pffsm__Assigned_User_Name_Text__c', '')
+            if pd.isna(tech_name) or tech_name == '':
+                continue
         
-        # Use actual log time
-        log_time = first_log.get('Log Time', '')
-        if pd.isna(log_time):
-            continue
+        # Use completion notes from work order table
+        completion_notes = wo_row.get('pffsm__Completion_Notes__c', '')
         
-        work_date = str(log_time)[:10]  # Extract YYYY-MM-DD
-        log_datetime = str(log_time)
+        # Use creation date from work order
+        creation_date = wo_row.get('CreatedDate', '')
+        if pd.isna(creation_date) or creation_date == '':
+            work_date = ''
+        else:
+            work_date = str(creation_date)[:10]  # Extract YYYY-MM-DD
         
         completion_note = {
             'id': id_counter,
@@ -379,13 +417,13 @@ def create_test_data_files(pending_orders: Dict[str, List[Dict]], operating_logs
             'tech_name': tech_name,
             'work_date': work_date,
             'completion_notes': completion_notes,
-            'wo_type': first_log.get('Work Order.pffsm__WO_Type__c', ''),
+            'wo_type': wo_row.get('pffsm__WO_Type__c', ''),  # Use correct WO type from work orders
             'time_type': 'Work',
             'description': "",
-            'asset_description': first_log.get('Plant Description', ''),
+            'asset_description': wo_row.get('pffsm__Equip_Description__c', ''),
             'asset_id': work_order_id,
-            'plant': first_log.get('Plant Description', ''),
-            'created_at': log_datetime
+            'plant': wo_row.get('pffsm__Plant__c', ''),
+            'created_at': work_date + ' 08:00:00' if work_date else ''
         }
         
         test_completion_notes.append(completion_note)
@@ -405,7 +443,7 @@ def create_test_data_files(pending_orders: Dict[str, List[Dict]], operating_logs
     print(f"  - All data sourced directly from Excel file")
     print(f"  - Logs sorted by work order, technician, and log time")
 
-def update_work_status_logs(completed_orders: Dict[str, List[Dict]], operating_logs_df: pd.DataFrame):
+def update_work_status_logs(completed_orders: Dict[str, List[Dict]], operating_logs_df: pd.DataFrame, owner_to_name: dict):
     """Update work_status_logs.csv with completed work orders only using actual data"""
     print("Updating work_status_logs.csv with completed work orders...")
     
@@ -415,25 +453,26 @@ def update_work_status_logs(completed_orders: Dict[str, List[Dict]], operating_l
         for order in orders:
             completed_wo_ids.append(order['Name'])
     
-    # Filter operating logs for completed work orders only
-    completed_logs = operating_logs_df[operating_logs_df['Work Order'].isin(completed_wo_ids)]
+    # Filter operating logs for completed work orders only using correct column name
+    completed_logs = operating_logs_df[operating_logs_df['Work Order.Name'].isin(completed_wo_ids)]
     
-    # Sort logs by work order, technician, and log time
-    completed_logs = completed_logs.sort_values(['Work Order', 'User FSM.Name', 'Log Time'])
+    # Sort logs by work order, OwnerId, and log time using correct column names
+    completed_logs = completed_logs.sort_values(['Work Order.Name', 'OwnerId', 'pffsm__Log_Time__c'])
     
-    # Remove duplicates based on work_order_id + tech_name + work_date + notes
-    completed_logs = completed_logs.drop_duplicates(subset=['Work Order', 'User FSM.Name', 'Log Time', 'Log Note'], keep='first')
+    # Remove duplicates based on work_order_id + owner_id + work_date + notes using correct column names
+    completed_logs = completed_logs.drop_duplicates(subset=['Work Order.Name', 'OwnerId', 'pffsm__Log_Time__c', 'pffsm__Log_Note__c'], keep='first')
     
     work_status_logs = []
     id_counter = 1
     
     for _, row in completed_logs.iterrows():
-        tech_name = row.get('User FSM.Name', '')
-        if pd.isna(tech_name) or tech_name == '':
+        owner_id = row.get('OwnerId', '')
+        tech_name = owner_to_name.get(owner_id, owner_id)  # Get name from OwnerId mapping
+        if pd.isna(owner_id) or owner_id == '':
             continue
         
         # Use actual log time
-        log_time = row.get('Log Time', '')
+        log_time = row.get('pffsm__Log_Time__c', '')
         if pd.isna(log_time):
             continue
         
@@ -444,21 +483,21 @@ def update_work_status_logs(completed_orders: Dict[str, List[Dict]], operating_l
             'id': id_counter,
             'tech_name': tech_name,
             'work_date': work_date,
-            'work_status': row.get('Status', ''),
+            'work_status': row.get('pffsm__Status__c', ''),
             'time_spent': '',  # Not available in operating logs
-            'notes': str(row.get('Log Note', '')) + " with details: " + str(row.get('Log Details', '')),
+            'notes': str(row.get('pffsm__Log_Note__c', '')) + " with details: " + str(row.get('Log_Details__c', '')),
             'summary': "",
-            'work_order_id': row.get('Work Order', ''),
-            'email': row.get('Email', ''),
-            'plant_description': row.get('Plant Description', ''),
-            'day_name': row.get('Day Name', ''),
-            'operating_log_id': row.get('Operating Log: Operating Log ID', ''),
-            'car_flag': row.get('CAR_Flag', ''),
-            'is_weekend': row.get('IsWeekend', ''),
-            'wo_status': row.get('Work Order.pffsm__WO_Status__c', ''),
+            'work_order_id': row.get('Work Order.Name', ''),
+            'email': '',  # Not available in new structure
+            'plant_description': row.get('pffsm__Plant_Description__c', ''),
+            'day_name': '',  # Not available in new structure
+            'operating_log_id': row.get('Id', ''),
+            'car_flag': '',  # Not available in new structure
+            'is_weekend': '',  # Not available in new structure
+            'wo_status': row.get('Work Order.pffsm__Status__c', ''),
             'wo_type': row.get('Work Order.pffsm__WO_Type__c', ''),
-            'user_resource': row.get('Task Labor.pffsm__User_Resource__c', ''),
-            'user_fsm_email': row.get('User FSM.Email', ''),
+            'user_resource': '',  # Not available in new structure
+            'user_fsm_email': '',  # Not available in new structure
             'created_at': log_datetime,
             'updated_at': log_datetime
         }
@@ -493,26 +532,25 @@ def update_completion_notes(completed_orders: Dict[str, List[Dict]], work_orders
     # Filter work orders for completed work orders only
     completed_wo_data = work_orders_df[work_orders_df['Name'].isin(completed_wo_ids)]
     
-    # Remove duplicates based on work_order_id + tech_name + work_date + notes
-    # For completion notes, we'll use work_order_id + work_date + completion_notes since tech_name is not available
-    completed_wo_data = completed_wo_data.drop_duplicates(subset=['Name', 'pffsm__Completion_Date__c', 'pffsm__Completion_Notes__c'], keep='first')
+    # Remove duplicates based on work_order_id + work_date + completion_notes using new column names
+    completed_wo_data = completed_wo_data.drop_duplicates(subset=['Name', 'CreatedDate', 'pffsm__Completion_Comments__c'], keep='first')
     
     completion_notes = []
     id_counter = 1
     
     for _, row in completed_wo_data.iterrows():
-        # Use actual completion date
-        completion_date = row.get('pffsm__Completion_Date__c', '')
-        if pd.isna(completion_date) or completion_date == '':
+        # Use actual creation date
+        creation_date = row.get('CreatedDate', '')
+        if pd.isna(creation_date) or creation_date == '':
             work_date = ''
         else:
-            work_date = str(completion_date)[:10]  # Extract YYYY-MM-DD
+            work_date = str(creation_date)[:10]  # Extract YYYY-MM-DD
         
         # Use actual completion notes
         notes = row.get('pffsm__Completion_Notes__c', '')
         
-        # Use actual technician name from the work order data (if available)
-        tech_name = ''  # Not directly available in work orders sheet
+        # Use actual technician name from the work order data
+        tech_name = row.get('pffsm__Assigned_User_Name_Text__c', '')
         
         completion_note = {
             'id': id_counter,
@@ -524,10 +562,10 @@ def update_completion_notes(completed_orders: Dict[str, List[Dict]], work_orders
             'work_date': work_date,
             'plant': row.get('pffsm__Plant__c', ''),
             'hours': row.get('pffsm__Total_Actual_Labor_Hours__c', ''),
-            'status': row.get('pffsm__Status__c', ''),
-            'car_flag': row.get('CAR_Flag', ''),
-            'day_name': row.get('Day Name', ''),
-            'is_weekend': row.get('IsWeekend', ''),
+            'status': 'Completed',  # Default status for completed orders
+            'car_flag': '',  # Not available in new structure
+            'day_name': '',  # Not available in new structure
+            'is_weekend': '',  # Not available in new structure
             'created_at': work_date + ' 08:00:00' if work_date else ''
         }
         
@@ -594,18 +632,18 @@ def check_and_remove_duplicates():
 
 def main():
     """Main function to update all database files with new logic"""
-    print("Starting enhanced database update with Origis Data Excel file...")
+    print("Starting enhanced database update with Origis Data 1 Excel file...")
     
     try:
         # Extract work orders by type from Excel file
-        work_orders_df, operating_logs_df, top_technicians = extract_work_orders_by_type()
+        work_orders_df, operating_logs_df, top_owner_ids, owner_to_name = extract_work_orders_by_type()
         
         if len(work_orders_df) == 0:
             print("No work orders found!")
             return
         
-        # Select work orders per employee (3 from each type if available, otherwise keep available amount)
-        employee_work_orders = select_work_orders_per_employee(work_orders_df, operating_logs_df, top_technicians)
+        # Select work orders per employee (5 from each type if available, otherwise keep available amount)
+        employee_work_orders = select_work_orders_per_employee(work_orders_df, operating_logs_df, top_owner_ids, owner_to_name)
         
         if not employee_work_orders:
             print("No work orders selected for any employee!")
@@ -616,12 +654,12 @@ def main():
         
         # Update all database files
         work_orders = update_work_orders(completed_orders, pending_orders)
-        technicians = update_technicians(completed_orders, pending_orders, operating_logs_df)
-        work_status_logs = update_work_status_logs(completed_orders, operating_logs_df)
+        technicians = update_technicians(completed_orders, pending_orders, operating_logs_df, owner_to_name)
+        work_status_logs = update_work_status_logs(completed_orders, operating_logs_df, owner_to_name)
         completion_notes = update_completion_notes(completed_orders, work_orders_df)
         
         # Create test data files for pending work orders
-        create_test_data_files(pending_orders, operating_logs_df)
+        create_test_data_files(pending_orders, operating_logs_df, work_orders_df, owner_to_name)
         
         # Check and remove any remaining duplicates from all database files
         check_and_remove_duplicates()
@@ -641,8 +679,9 @@ def main():
         print(f"     * Pending (moved to test data): {total_pending}")
         print(f"   - Work Order Types: Preventive, Corrective, Ad Hoc, Project, OEM Repair Work")
         print(f"   - Split Strategy: 50% completed, 50% pending per employee")
-        print(f"   - Top 3 Technicians: {list(top_technicians.index)}")
-        print(f"   - Operating logs sorted by work order, technician, and log time")
+        print(f"   - Top 3 OwnerIds: {list(top_owner_ids.index)}")
+        print(f"   - Operating logs sorted by work order, OwnerId, and log time")
+        print(f"   - Using Origis Data 1.xlsx with OwnerId-based technician identification")
         
     except Exception as e:
         print(f"❌ Error updating database: {e}")

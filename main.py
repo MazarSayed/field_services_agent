@@ -112,28 +112,36 @@ def submit_work_status(tech_name: str, work_date: str, work_status: dict, plant:
     # Get next ID
     next_id = data_access.get_next_id(data_access.csv_files['work_status_logs'])
     
-    # Prepare data
+    # Prepare data - match current database schema
     work_status_data = {
         'id': next_id,
         'tech_name': tech_name,
         'work_date': work_date,
         'work_status': work_status,
-        'plant_description': plant,
-        'start_time': start_time,
-        'end_time': end_time,
         'time_spent': time_spent,
         'notes': notes,
         'summary': summary,
         'work_order_id': work_order_id or '',
-        'complete_flag': complete_flag,
+        'email': '',  # Not provided in API request
+        'plant_description': plant,
+        'day_name': '',  # Not provided in API request
+        'operating_log_id': '',  # Not provided in API request
+        'car_flag': '',  # Not provided in API request
+        'is_weekend': '',  # Not provided in API request
+        'wo_status': '',  # Not provided in API request
+        'wo_type': '',  # Not provided in API request
+        'user_resource': '',  # Not provided in API request
+        'user_fsm_email': '',  # Not provided in API request
         'created_at': datetime.now().isoformat(),
         'updated_at': datetime.now().isoformat()
     }
-    
-    # Define fieldnames
+
+    # Define fieldnames to match current database schema
     fieldnames = [
-        'id', 'tech_name', 'work_date', 'work_status', 'plant_description', 'start_time', 'end_time', 'time_spent',
-        'notes', 'summary', 'work_order_id', 'complete_flag', 'created_at', 'updated_at'
+        'id', 'tech_name', 'work_date', 'work_status', 'time_spent', 'notes', 'summary', 
+        'work_order_id', 'email', 'plant_description', 'day_name', 'operating_log_id', 
+        'car_flag', 'is_weekend', 'wo_status', 'wo_type', 'user_resource', 'user_fsm_email', 
+        'created_at', 'updated_at'
     ]
     
     # Save to database
