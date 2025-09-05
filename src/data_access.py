@@ -65,29 +65,16 @@ class DataAccessLayer:
             return False
     
     def append_to_csv_file(self, filename: str, data: Dict[str, Any], fieldnames: List[str]) -> bool:
-        """Append single row to CSV file while preserving existing schema"""
+        """Append single row to CSV file"""
         try:
             # Read existing data
             existing_data = self.read_csv_file(filename)
             
-            # Get existing fieldnames if file exists and has data
-            existing_fieldnames = []
-            if existing_data:
-                existing_fieldnames = list(existing_data[0].keys())
-            
-            # Merge fieldnames: existing + new (preserve order: existing first, then new)
-            all_fieldnames = existing_fieldnames + [f for f in fieldnames if f not in existing_fieldnames]
-            
-            # Ensure new data has all fields (fill missing with empty string)
-            complete_data = {}
-            for field in all_fieldnames:
-                complete_data[field] = data.get(field, '')
-            
             # Add new row
-            existing_data.append(complete_data)
+            existing_data.append(data)
             
-            # Write back to file with merged fieldnames
-            return self.write_csv_file(filename, existing_data, all_fieldnames)
+            # Write back to file
+            return self.write_csv_file(filename, existing_data, fieldnames)
         except Exception as e:
             print(f"Error appending to {filename}: {e}")
             return False
@@ -140,13 +127,13 @@ class DataAccessLayer:
         except Exception as e:
             raise ValueError(f"Error initializing OpenAI client: {str(e)}")
 
-    def get_work_order_by_id(self, work_order_id: str) -> Dict[str, Any]:
-        """Retrieve a single work order by its work_order_id (e.g., WO-1064723)."""
+    def get_work_order_by_id(self, work_order_id: str) -> Optional[Dict[str, Any]]:
+        """Retrieve a single work order by its work_order_id."""
         work_orders = self.load_work_orders()
         for row in work_orders:
-            if row.get("work_order_id") == work_order_id:
+            if str(row.get("work_order_id")) == str(work_order_id):
                 return row
-        raise ValueError(f"Work order with ID {work_order_id} not found")
+        return None
     
     def update_work_order(self, updated_work_order: dict) -> bool:
         """Update an existing work order in the CSV by work_order_id"""

@@ -10,7 +10,7 @@ import json
 
 # Import models and AI functions directly
 from models.models import (
-    WorkOrderResponse, WorkStatusValidationResponse, CARFormatResponse, 
+    WorkOrderResponse, WorkStatusValidationRequest, WorkStatusValidationResponse, CARFormatResponse, 
     ClientSummaryResponse, WorkStatusLogRequest, WorkStatusSubmissionRequest,
     CompletionNotesRequest, ClientSummaryRequest, WorkStatusLogs, WorkOrderUpdateResponse, 
     ChatSubmissionRequest, HoldReasonValidationRequest, HoldReasonValidationResponse
@@ -98,6 +98,42 @@ def update_work_order_status(work_order_id: str, new_status: str):
     # Save back to CSV
     data_access.update_work_order(work_order)
     return True
+
+def get_existing_work_logs(work_order_id: str) -> str:
+    """Get existing work status logs for a work order"""
+    try:
+        work_logs = data_access.load_work_status_logs()
+        filtered_logs = [log for log in work_logs if log.get('work_order_id') == work_order_id]
+        
+        if not filtered_logs:
+            return "No previous work logs found for this work order."
+        
+        # Format the logs as a table with correct column names
+        log_table = "Tech Name | Time allocation | Notes | Summary\n"
+        for log in filtered_logs:
+            tech_name = log.get('tech_name', '')
+            time_allocation = log.get('work_status', '')
+            notes = log.get('notes', '')
+            summary = log.get('summary', '')
+            log_table += f"{tech_name} | {time_allocation} | {notes} | {summary}\n"
+        
+        return log_table
+    except Exception as e:
+        print(f"Error fetching work logs: {e}")
+        return "Error fetching previous work logs."
+
+def get_first_user_input(messages: list[dict]) -> str:
+    """Get the first user message from the conversation."""
+    for message in messages:
+        if message.get("role") == "user":
+            return message.get("content", "")
+    return ""
+
+def get_conversation_history(messages: list[dict]) -> list[dict]:
+    """Get all messages except the first user input."""
+    if not messages:
+        return []
+    return messages[1:]  # Skip first message
 
 def submit_work_status(tech_name: str, work_date: str, work_status: dict, plant: str, start_time: str, end_time: str,
                       time_spent: float, notes: str, summary: str, 
@@ -218,15 +254,22 @@ def get_all_work_status_logs(tech_name):
     return {"work_status_logs": filtered_status_logs}
 
 
-def save_conversation(conversation_table: str, work_order_id: str, work_status: str):
+def save_conversation(conversation_table: list[dict], work_order_id: str, work_status: str):
     """Save conversation to CSV database"""
-    conversation_dict = parse_conversation_table(conversation_table)
+    print(f"DEBUG: conversation_table: {conversation_table}")
+    print(f"DEBUG: work_order_id: {work_order_id}")
+    print(f"DEBUG: work_status: {work_status}")
+    
+    conversation_dict = parse_conversation_messages(conversation_table)
+    print(f"DEBUG: conversation_dict: {conversation_dict}")
     
     chat_data = {
         "work_order_id": work_order_id,
         "conversation": json.dumps(conversation_dict), 
         "work_status": work_status,
     }
+    
+    print(f"DEBUG: chat_data: {chat_data}")
     
     fieldnames = ["work_order_id", "work_status", "conversation"]
     
@@ -236,23 +279,49 @@ def save_conversation(conversation_table: str, work_order_id: str, work_status: 
         fieldnames
     )
 
+def parse_conversation_messages(messages: list[dict]) -> dict:
+    """Parse conversation messages list into dict"""
+    conversation_dict = {}
+    
+    print(f"DEBUG: Parsing conversation with {len(messages)} messages")
+    
+    for i, message in enumerate(messages):
+        role = message.get("role", "unknown")
+        content = message.get("content", "")
+        
+        print(f"DEBUG: Message {i}: role={repr(role)}, content={repr(content)}")
+        
+        conversation_dict.setdefault(role, []).append(content)
+    
+    print(f"DEBUG: Final conversation_dict: {conversation_dict}")
+    return conversation_dict
+
 def parse_conversation_table(conversation_str: str) -> dict:
     """Parse pipe-separated conversation string into dict, ignoring header row"""
     conversation_dict = {}
     lines = conversation_str.strip().split("\n")
     
+    print(f"DEBUG: Parsing conversation with {len(lines)} lines")
+    
     for i, line in enumerate(lines):
+        print(f"DEBUG: Line {i}: {repr(line)}")
         if "|" in line:
             speaker, message = line.split("|", 1)
             speaker = speaker.strip()
             message = message.strip()
             
+            print(f"DEBUG: Speaker: {repr(speaker)}, Message: {repr(message)}")
+            
             # Skip the first line if it looks like a header (e.g., contains speaker names)
             if i == 0 and message.lower() in ["ai", "tech"]:
+                print("DEBUG: Skipping header line")
                 continue
             
             conversation_dict.setdefault(speaker, []).append(message)
+        else:
+            print(f"DEBUG: Skipping line without pipe separator: {repr(line)}")
     
+    print(f"DEBUG: Final conversation_dict: {conversation_dict}")
     return conversation_dict
 
 # Initialize FastAPI app
@@ -319,18 +388,39 @@ async def complete_work_order(work_order_id: str):
 
 # Endpoint 2: Validate work status log
 @app.post("/validate-work-status", response_model=WorkStatusValidationResponse)
-async def validate_work_status(request: WorkStatusLogRequest):
+async def validate_work_status(request: WorkStatusValidationRequest):
     """Validate operational log against work status requirements"""
     try:
+        # Fetch work order details from database
+        work_order = data_access.get_work_order_by_id(request.work_order_id)
+        if not work_order:
+            raise HTTPException(status_code=404, detail=f"Work order {request.work_order_id} not found")
+        
+        # Extract tech name and plant from work order
+        tech_name = work_order.get('tech_name', '')
+        plant = work_order.get('plant', '')
+        work_order_description = work_order.get('description', '')
+        work_order_type = work_order.get('wo_type', '')
+        
+        # Get existing work logs for context
+        existing_logs = get_existing_work_logs(request.work_order_id)
+        
+        # Extract operational log and follow-up conversation
+        operational_log = get_first_user_input(request.follow_up_questions_answers_table)
+        follow_up_conversation = get_conversation_history(request.follow_up_questions_answers_table)
+        
         result = validate_work_status_log(
-            operational_log=request.operational_log,
+            operational_log=operational_log,
+            work_order_type=work_order_type,
             work_status=request.work_status,
-            work_order_description=request.work_order_description,
-            plant=request.plant,
-            wo_status_and_notes_with_hours_table=request.wo_status_and_notes_with_hours_table,
-            follow_up_questions_answers_table=request.follow_up_questions_answers_table
+            work_order_description=work_order_description,
+            plant=plant,
+            wo_status_and_notes_with_time_allocation_table=existing_logs,
+            follow_up_questions_answers_table=follow_up_conversation
         )
         return result
+    except HTTPException:
+        raise
     except ValueError as e:
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:

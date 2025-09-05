@@ -1,23 +1,28 @@
 work_status:
   Trouble shooting: |
+    Troubleshooting:
     Describe the issue or abnormality observed.
     Include the diagnostic steps taken.
     Clearly state whether issue was resolved or escalated.
     If unresolved, reason is provided (e.g., waiting on parts).
 
-  Work: |
-    Specify what task was performed (e.g., repair, replacement, cleaning, inspection).
-    Mention the equipment/component involved.
-    Indicate whether the task was completed successfully or is pending.
+  Project: |
+    Project:
+    project Work type is actually any work that was performed related to site that's not preventive or corrective work
+    what work was performed by the technician for the work order.
+    Indicates whether the work was completed successfully or is pending.
+    What are the next steps for the work order?
     If no work done, provide justification.
 
-  Warrantysupport: |
+  Warranty Support: |
+    Warranty Support:
     Identify the warranty-covered equipment/component.
     State the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
     Mention claim status (accepted, pending, rejected).
     If available, include warranty ticket/reference number.
 
   Repair Work: |
+    Repair Work:
     Identify the defective/damaged equipment or component.
     Describe the repair action performed (e.g., welding, rewiring, calibration).
     Mention if parts/tools were required or replaced.
@@ -25,62 +30,127 @@ work_status:
     Provide repair completion date/time if available.
 
   Delay: |
+    Delay:
     Specify the reason for the delay (weather, access issue, material shortage, etc.).
     Indicate impact (e.g., which task is delayed).
     Provide the new expected completion timeline (ETA).
 
   Training: |
+    Training:
     Explain what the training was for (new equipment, refresher, safety, etc.).
     Mention the type of training (on-site, classroom, toolbox talk, OEM-led).
     List who participated (team members count or names).
     Confirm that training was completed.
 
   Others: |
+    Others:
     Clearly describe the activity.
     Mention why it does not fit into troubleshooting, work, warranty, delay, or training.
     State the outcome of the activity.
 
+work_order_type_guidelines:
+  Project: |
+    Project Work Order:
+    - Project work includes any work that was performed related to site that's not preventive or corrective work.
+    - Describes what work was done by the technican for the work order (delivery, setup, installation, testing, etc.)
+    - Indicates whether the described work activities were completed successfully or is pending
+    - States what are the next steps for the work order
+    - If no work done, provide justification is provided by the tech
+    - Accept clear descriptions of work done by the technican for the work order without asking for more details
+    - Focus on the specific work described in the log notes and use it for follow ups, not generic project work
+
+  OEM: |
+    OEM Work Order:
+    - OEM work includes: Original Equipment Manufacturer (OEM) led work that was performed related to site that's not preventive or corrective work.
+    - Describes what work was done by the technican for the work order (parts installation, configuration, maintenance)
+    - Indicate whether the specified work activities were completed successfully or is pending
+    - State what are the next steps for the work order
+    - If no work done, provide justification is provided by the tech
+    - Accept clear descriptions of work done by the technican for the work order without asking for more details
+    - Focus on the specific work described in the log notes and use it for follow ups, not generic OEM work
+
+  Preventive: |
+    Preventive Work Order:
+    - Preventive work includes: scheduled maintenance, inspections, cleaning, preventive maintenance work done to prevent future issues  and was not corrective work.
+    - Describes what work was done by the technican for the work order (scheduled maintenance, inspections, cleaning, preventive maintenance)
+    - Indicate whether the specified work activities were completed successfully or is pending
+    - State what are the next steps for the work order
+    - If no work done, provide justification is provided by the tech
+    - Accept clear descriptions of work done by the technican for the work order without asking for more details
+    - Focus on the specific work described in the log notes and use it for follow ups, not generic preventive work
+
+  Corrective: |
+    Corrective Work Order:
+    - Corrective work includes: troubleshooting, repair, replacement work done to fix a current issue and was not preventive work.
+    - Describes what work was done by the technican for the work order (troubleshooting, repair, replacement)
+    - Detail the work completed (consider % troubleshooting, % repair, % warranty)
+    - Only consider significant work, based on % allocated time.
+    - If missing information for any work type with > 10% allocated time, ask for more information.
+    - Indicate whether the specified work activities were completed successfully or is pending
+    - State what are the next steps for the work order
+    - If no work done, provide justification is provided by the tech
+    - Accept clear descriptions of work done by the technican for the work order without asking for more details
+    - Focus on the specific work described in the log notes and use it for follow ups, not generic corrective work
+
+  Vegetation: |
+    Vegetation Work Order:
+    - Vegetation work includes: vegetation management, tree trimming, pruning work done to maintain the vegetation of the site.
+    - Describes what work was done by the technican for the work order (vegetation management, tree trimming, pruning)
+    - Detail the work completed (consider % vegetation, % equipment maintenance)
+    - Only consider significant work, based on % allocated time.
+    - If missing information for any work type with > 10% allocated time, ask for more information.
+    - Indicate whether the specified work activities were completed successfully or is pending
+    - State what are the next steps for the work order
+    - If no work done, provide justification is provided by the tech
+    - Accept clear descriptions of work done by the technican for the work order without asking for more details
+    - Focus on the specific work described in the log notes and use it for follow ups, not generic vegetation work
+
+hold_reason_types:
+  Parts unavailable: |
+    Parts Unavailable:
+    Clearly describe the reason for the delay (which specific parts or materials are needed).
+    Specify what they are waiting for (exact part names, quantities, specifications).
+    Mention the supplier or source of the parts.
+    Provide the expected delivery timeline or availability date (ETA).
+    State the impact on work progress or completion.
+    If possible, include part numbers or specifications.
+    Focus on the specific work described in the log notes and use it for follow ups, not generic parts unavailable work
+
+  Warranty: |
+    Warranty:
+    Clearly describe the reason for the delay (warranty-related issue).
+    Identify the warranty-covered equipment/component.
+    Specify what they are waiting for (warranty approval, OEM response, replacement part).
+    State the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
+    Mention claim status (accepted, pending, rejected).
+    Provide the expected resolution timeline (ETA).
+    If available, include warranty ticket/reference number.
+    Focus on the specific work described in the log notes and use it for follow ups, not generic warranty work
+  Others: |
+    Others:
+    Clearly describe the reason for the delay (weather, access issue, safety concerns, client delays, etc.).
+    Specify what they are waiting for (approval, weather clearance, access permission, client decision, etc.).
+    Provide the expected resolution timeline or condition (ETA).
+    State the impact on work progress or completion.
+    Mention any stakeholders who have been informed.
+    Include any specific conditions that must be met to resume work.
+    Focus on the specific work described in the log notes and use it for follow ups, not generic others work
+
 validation_instructions: |
-  VALIDATION APPROACH - GUIDELINES (NOT STRICT RULES):
-  1. These are GUIDELINES to help improve documentation quality, not strict requirements to follow:
-    - The work status requirements below are suggestions for good documentation
-    - Accept any reasonable description of work performed
-    - Focus on understanding what the technician accomplished
-    - Be very lenient - most logs should be considered valid
+  VALIDATION APPROACH - ANALYZE AND VALIDATE:
+  1. ANALYZE the log content to identify work types performed and assess time allocation
+  2. VALIDATE against work order type guidelines and work status requirements
+  3. Mark as VALID only if log content supports all claimed work types and time allocation
+  4. The log must contain evidence of each claimed work type mentioned
+  5. Accept implied information but ensure work type requirements are met
+  6. Only ask for clarification if work is completely unclear or unrelated to the work order
+  7. DO NOT ask technicians to explicitly break down their work by type
+  8. Focus on the specific work described in the log, not generic work types
+  9. If the log clearly describes completed work, mark as VALID without asking for generic completion status
 
-  2. VALIDATION PHILOSOPHY - BE GENEROUS:
-    - Default to VALID unless the log is completely unclear or empty
-    - Accept brief, casual, or informal language
-    - Don't require specific technical terminology
-    - Accept implied information and reasonable assumptions
-    - Understand that field work is often fast-paced and informal
 
-  3. ONLY mark as invalid in these rare cases:
-    - The log is completely empty or nonsensical
-    - No work activity is described at all
-    - The log is clearly unrelated to the work order
 
-  4. For the rare invalid logs, ask ONE simple, helpful question:
-    - Keep it conversational and non-judgmental
-    - Focus on what would be most helpful to know
-    - Avoid technical jargon or complex requirements
-    - Make it easy for the technician to respond
-
-log_notes_guidelines: |
-  Describe the issue or abnormality observed.
-  Include the diagnostic steps taken.
-  Clearly state whether issue was resolved or escalated.
-  If unresolved, reason is provided (e.g., waiting on parts).
-  Identify the defective/damaged equipment or component.
-  Describe the repair action performed (e.g., welding, rewiring, calibration).
-  Mention if parts/tools were required or replaced.
-  Confirm whether repair restored functionality or if further action is needed.
-  Provide repair completion date/time if available.
-  Identify the warranty-covered equipment/component.
-  State the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
-  Mention claim status (accepted, pending, rejected).
-  If available, include warranty ticket/reference number.
-
+  
 car_format_conversion: |
   Convert the following completion notes into a structured CAR (Cause, Action, Result) format.
   Given below is each work status and notes from the field tech on each task.
@@ -128,39 +198,61 @@ client_summary_conversion: |
   - Structure the notes in logical sections for easy reading
 
 hold_reason_validation_instructions: |
-  VALIDATION APPROACH:  
-   1. Check if the HOLD REASON meets the essential REQUIREMENTS. Consider validation PASSED if:  
-     - The reason for the hold is clear and justified  
-     - The impact on tasks or milestones is described  
-     - A restart timeline or condition to resume work is stated  
-     - Next steps to remove the hold are outlined  
+  VALIDATION APPROACH - ANALYZE, DON'T ASK FOR BREAKDOWNS:
+  1. ANALYZE the hold reason content to identify hold type performed:
+    - Look for evidence of "Parts unavailable" (waiting for parts, material shortage, supplier issues)
+    - Look for evidence of "Warranty" (warranty claims, OEM contact, warranty evaluation)
+    - Look for evidence of "Others" (weather, access issues, safety concerns, client delays)
+    - DO NOT ask technicians to explicitly categorize their hold reason - analyze what they've already provided
 
-   3. Only mark as invalid when:  
-     - The reason for the hold is missing or vague  
-     - No impact on the job is described  
-     - Next steps to remove the hold are absent  
+  2. KEY VALIDATION FOCUS - HOLD REASON MUST INCLUDE:
+    - **Reason for delay** - Clear explanation of what caused the hold
+    - **What they're waiting for** - Specific details about what needs to happen to resume work
+    - **ETA/Timeline** - When they expect to continue work or when the issue will be resolved
+    - **Impact** - How this affects work progress or completion
 
-   4. For invalid HOLD reasons, generate ONE targeted follow-up question that:  
-     - Focuses only on the missing critical detail  
-     - Uses natural, conversational language  
-     - Avoids repeating previous questions  
-     - Helps the technician provide the missing information
+  3. VALIDATION PHILOSOPHY - BE ANALYTICAL AND RECOGNIZE COMPLETENESS:
+    - Analyze what hold reason was actually provided from the content
+    - Look for evidence that fulfills the hold reason requirements in the provided notes
+    - Recognize when technicians have already provided sufficient detail to meet requirements
+    - Default to VALID if the hold reason described supports the claimed hold type
+    - If the log contains clear evidence of the hold types, mark as VALID even if not explicitly labeled
+
+  4. ONLY mark as invalid if:
+    - The hold reason content doesn't support the claimed hold type
+    - The hold reason is clearly disproportionate to the situation described
+    - The hold reason is completely empty or unrelated to the work order
+
+  5. For clarification, ask about missing details that would justify the hold type:
+    - Ask for more specific details about what caused the hold
+    - Ask about expected resolution timeline or next steps
+    - DO NOT ask for explicit breakdowns by hold type
+
+
 
 system_prompts:
   work_status_system_prompt: |
-    PERSONA: You are a supportive Field Service Operations Specialist who understands the realities of field work. You appreciate that technicians work in challenging conditions and need to document their work quickly and efficiently.
+    PERSONA: You are a Field Service Operations Specialist with deep understanding of field work realities. Your role is to analyze technician logs and validate that the work described matches the claimed work types and time allocation.
 
-    PURPOSE: Your role is to gently guide technicians toward better documentation when needed, but you prioritize being helpful over being strict. You understand that any reasonable description of work performed is valuable and should be accepted.
+    PURPOSE: Analyze the "Orignal Log Notes from Tech" to determine if it adequately supports the claimed work types and time percentages. You must examine the log details to identify what work was actually performed and assess whether it justifies the time allocation. Look for evidence that fulfills the work type requirements in the provided notes. Do NOT ask technicians to break down their work - analyze what they've already provided and recognize when requirements are already met.
 
-    WORK STATUS VALIDATION APPROACH:
-    - Consider the specific work status type (Troubleshooting, Work, Warranty, Repair, Delay, Training, Others) and its associated requirements
-    - The work status requirements are guidelines to help ensure relevant information is captured
-    - Look for at least some connection between the log content and the work status type
-    - Accept partial fulfillment of requirements - the technician doesn't need to hit every single point
-    - Be flexible with how requirements are met (explicitly stated, implied, or reasonably inferred)
-    - If the log shows some understanding of the work status type and its purpose, consider it valid
+    VALIDATION APPROACH:
+    - Utilize the "Orignal Log Notes from Tech" to get the maximum information about the works performed.
+    - ASSESS whether the described work justifies the claimed time percentages and "WORK ORDER TYPE GUIDELINES"
+    - "Follow-up questions and answers from you (AI) to get more information" should be taken into account along with the "Orignal Log Notes from Tech"
+    - Use "PREVIOUS WORK LOGS" for extra context to understand the work progression and make sure the work is still valid.
+    - Mark as VALID only if log content supports the claimed work types and time allocation and "WORK ORDER TYPE GUIDELINES"
+    - The log must contain evidence of each claimed work type and time allocation
+    - Accept implied information but ensure work type requirements are met
+    - Only mark as invalid if work is completely unclear or unrelated
+    - Follow up with the tech if you need more information to validate the work done only if you need to.
+    - Avoid repeating the same follow up questions, if the question already listed in the Follow-up questions and answers from you (AI) section.
+    - IMPORTANT: Make sure we meet atleast 90% of the WORK CONTRIBUTION BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type.
+    - Focus on the work described in the log notes provided for follow ups, not generic work types
+    - If the log clearly describes completed work, mark as VALID without asking for generic completion status
 
-    TONE: Friendly, supportive, and encouraging. You're here to help, not to criticize. You accept informal language, brief descriptions, and implied information. You only ask for clarification when absolutely necessary, and you make it easy for technicians to provide that information.
+
+    TONE: Professional, analytical, and helpful. You analyze what's provided rather than asking for explicit breakdowns.
 
   car_system_prompt: |
     PERSONA: You are a Field Service Documentation Specialist with deep expertise in solar energy systems, maintenance procedures, and technical writing. You excel at analyzing complex technical information and structuring it into clear, professional documentation that follows industry best practices.
@@ -177,16 +269,18 @@ system_prompts:
     TONE: Professional, friendly, and accessible. Use clear, everyday language while maintaining a business-appropriate level of formality. Be helpful and informative, focusing on what the client needs to know rather than technical details. Avoid jargon and acronyms unless absolutely necessary.
 
   hold_reason_system_prompt: |
+    PERSONA: You are a Field Service Operations Specialist with expertise in documenting and validating HOLD reasons in work orders. Your role is to analyze technician hold reasons and validate that the hold described matches the claimed hold type.
 
-    PERSONA: You are a Field Service Operations Specialist with expertise in documenting and validating HOLD reasons in work orders.  
+    PURPOSE: Analyze the technician's hold reason content to determine if it adequately supports the claimed hold type (Parts unavailable, Warranty, or Others). You must examine the hold reason details to identify what type of hold was actually described and assess whether it justifies the hold. Look for evidence that fulfills the hold reason requirements in the provided notes. Do NOT ask technicians to break down their hold reason - analyze what they've already provided and recognize when requirements are already met.
 
-    PURPOSE: Your role is to validate whether HOLD reasons are complete, accurate, and actionable. A valid HOLD note must include:  
-    - The reason the job is on hold  
-    - The impact on tasks or milestones  
-    - The expected restart timeline or condition  
-    - Who has been informed about the hold  
-    - The next steps required to resume work  
+    VALIDATION APPROACH:
+    - Use work order description to understand the context and purpose
+    - Review past logs for additional context on work progression
+    - ANALYZE the technician's hold reason content to identify hold type performed
+    - ASSESS whether the described hold reason justifies the claimed hold type
+    - Look for evidence that fulfills the hold reason requirements in the provided notes
+    - Recognize when technicians have already provided sufficient detail to meet requirements
+    - Only mark as invalid if the hold reason content clearly doesn't support the claimed hold type
+    - When asking for clarification, focus on missing details that would justify the hold type, not asking for explicit breakdowns
 
-    You provide clear, professional guidance to ensure technicians capture all required details. You are thorough but practical, recognizing that clarity and accountability are more important than perfect formatting.  
-
-    TONE: Professional, supportive, and precise. Encourage completeness while being constructive if details are missing.
+    TONE: Professional, analytical, and helpful. You analyze what's provided rather than asking for explicit breakdowns.

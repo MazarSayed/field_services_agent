@@ -14,9 +14,9 @@ class TranscriptionRequest(BaseModel):
 class WorkStatusValidationRequest(BaseModel):
     """Request model for work status log validation"""
     operational_log: str = Field(..., description="Operational log text to validate")
-    work_status: str = Field(..., description="Work status type (Troubleshooting, Work, Warranty_Support, Delay, Training, Others)")
-    work_order_description: str = Field(..., description="Work order description for context")
-    follow_up_questions_answers_table: str = Field(..., description="Table of previous follow-up questions and answers")
+    work_status: Union[str, dict] = Field(..., description="Work status type (string) or type/percentage/hours mapping (dict)")
+    work_order_id: str = Field(..., description="Work order ID to fetch tech name and plant info")
+    follow_up_questions_answers_table: list[dict] = Field(..., description="List of conversation messages with role and content")
 
 
 class CARFormatConversionRequest(BaseModel):
@@ -28,7 +28,7 @@ class CARFormatConversionRequest(BaseModel):
 
 class ClientSummaryConversionRequest(BaseModel):
     """Request model for client summary conversion"""
-    conversation_tech_ai_client_table: str = Field(..., description="Table of conversation between tech, AI, and client")
+    conversation_tech_ai_client_table: list[dict] = Field(..., description="List of conversation messages with role and content")
 
 
 # ============================================================================
@@ -37,16 +37,16 @@ class ClientSummaryConversionRequest(BaseModel):
 
 class WorkStatusValidationResponse(BaseModel):
     """Response model for work status log validation"""
-    valid: bool = Field(description="Whether the operational log meets all requirements")
-    missing: str = Field(description="Specific missing requirements if validation fails")
-    follow_up_question: str = Field(description="A single specific follow-up question to gather missing information")
+    valid: bool = Field(description="Whether the operational log meets all guidlines provided")
+    missing: str = Field(description="Specific missing requirements if validation fails the guidlines provided")
+    follow_up_question: str = Field(description="A single specific follow-up question to gather missing information based on log notes provided")
 
 
 class HoldReasonValidationResponse(BaseModel):
     """Response model for hold reason validation"""
     valid: bool = Field(description="Whether the hold reason meets all requirements")
     missing: str = Field(description="Specific missing requirements if validation fails")
-    follow_up_question: str = Field(description="A single specific follow-up question to gather missing information")
+    follow_up_question: str = Field(description="A single specific follow-up question to gather missing information based on log notes provided")
     hold_reason_analysis: str = Field(description="Analysis of the hold reason and its validity")
     recommended_actions: str = Field(description="Recommended actions to resolve the hold")
 
@@ -115,8 +115,8 @@ class WorkStatusLogRequest(BaseModel):
     plant: str = Field(..., description="Plant description")
     tech_name: str = Field(..., description="Technician name")
     work_date: str = Field(..., description="Work date")
-    wo_status_and_notes_with_hours_table: str = Field(..., description="Table of work status and notes with hours")
-    follow_up_questions_answers_table: str = Field(..., description="Table of previous follow-up questions and answers")
+    wo_status_and_notes_with_time_allocation_table: str = Field(..., description="Table of work status and notes with time allocation")
+    follow_up_questions_answers_table: list[dict] = Field(..., description="List of conversation messages with role and content")
 
 
 class HoldReasonValidationRequest(BaseModel):
@@ -125,8 +125,8 @@ class HoldReasonValidationRequest(BaseModel):
     work_order_type: str = Field(..., description="Work order type")
     work_order_description: str = Field(..., description="Work order description")
     plant: str = Field(..., description="Plant description")
-    wo_status_and_notes_with_hours_table: str = Field(..., description="Table of work status and notes with hours")
-    follow_up_questions_answers_table: str = Field(..., description="Previous follow-up questions and answers")
+    wo_status_and_notes_with_time_allocation_table: str = Field(..., description="Table of work status and notes with time allocation")
+    follow_up_questions_answers_table: list[dict] = Field(..., description="List of conversation messages with role and content")
 
 
 class WorkStatusSubmissionRequest(BaseModel):
@@ -156,7 +156,7 @@ class WorkStatusLogs(BaseModel):
 class ChatSubmissionRequest(BaseModel):
     """Request model for chat submissions"""
     work_order_id: Optional[str] = Field(default=None, description="Work order ID")
-    conversation_tech_ai_client_table: Optional[str] = Field(default=None, description="Conversation table")
+    conversation_tech_ai_client_table: Optional[list[dict]] = Field(default=None, description="List of conversation messages with role and content")
     work_status: Optional[str] = Field(default=None, description="Work status")
 
 
@@ -173,4 +173,4 @@ class CompletionNotesRequest(BaseModel):
 
 class ClientSummaryRequest(BaseModel):
     """Legacy request model for client summary (kept for compatibility)"""
-    conversation_tech_ai_client_table: str = Field(..., description="Table of conversation between tech, AI, and client")
+    conversation_tech_ai_client_table: list[dict] = Field(..., description="List of conversation messages with role and content")

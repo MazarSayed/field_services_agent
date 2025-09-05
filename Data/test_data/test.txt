@@ -25,3 +25,23 @@ we then installed the new contactor. After contactor replacement we removed LOTO
 
 Follow ups:
 Performed visual inspection and electrical tests to confirm contactor failure. Verified wiring and conducted functional testing after replacement to ensure proper operation.
+
+WO-1062226
+Spc off line, reconnected mc4 connector tracked spc to charge, spc operational. 
+Eric Bowen and Jacob Collins found block 38C SPC324 not tracking and stowed in the west. 
+After walking to SPC they found that the SPC light was not flashing, 
+after troubleshooting they found that the MC4 from the charging module was not connected properly. 
+they then reconnected the MC4 and used the row turner to track row to the east so SPC battery could charge. 
+after waiting around 10 minutes for battery to charge they returned SPC to service and it was working properly.
+
+The MC4 connector issue was documented as a potential warranty-related concern. Photos and findings were recorded and submitted to Origis for review, but no parts were replaced during this visit.
+
+WO-1052496
+Confirmed the Ford Lightning truck was fully charged with a 230-mile range and identified four charging stations in advance to support the delivery.
+Drove the truck from the GTII site to Harvest Gold, ensuring safe operation and adherence to range limitations.
+
+Drove back from Harvest Gold while managing battery range, conserving energy by not using the A/C under hot and humid conditions.
+Attempted to charge the truck at multiple stations; the first fast-charger was offline and caused the charging cord to lock, requiring remote support, the second charger was offline, and additional Tesla chargers were incompatible, requiring ongoing troubleshooting and support calls.
+
+Contacted Ford Roadside Assistance for towing, coordinated payment after company credit cards were declined, and arranged for the truck to be picked up by the tow service.
+Oversaw the truck being towed back to site, unloaded it, and plugged it into the on-site charger to begin full recharge.

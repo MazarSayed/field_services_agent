@@ -77,16 +77,30 @@ def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
             error_message=str(e)
         )
 
-def validate_work_status_log(operational_log: str, work_status: Union[str, dict], work_order_description: str, plant: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> WorkStatusValidationResponse:
+def format_conversation_history(messages: list[dict]) -> str:
+    """Convert conversation messages list to string format for prompt."""
+    if not messages:
+        return ""
+    
+    formatted_lines = []
+    for message in messages:
+        role = message.get("role", "unknown")
+        content = message.get("content", "")
+        formatted_lines.append(f"{role} | {content}")
+    
+    return "\n".join(formatted_lines)
+
+def validate_work_status_log(operational_log: str, work_order_type: str, work_status: Union[str, dict], work_order_description: str, plant: str, wo_status_and_notes_with_time_allocation_table: str, follow_up_questions_answers_table: list[dict]) -> WorkStatusValidationResponse:
     """
     Validate operational log against work status requirements and generate follow-up questions if needed
     
     Args:
         openai_client: OpenAI client instance
         operational_log: The operational log to validate
+        work_order_type: The work order type
         work_status: The work status types and along with their percentage of occurance
         work_order_description: Description of the work order for context
-        wo_status_and_notes_with_hours_table: Table of work status and notes with hours
+        wo_status_and_notes_with_time_allocation_table: Table of work status and notes with time allocation
         follow_up_questions_answers_table: Previous follow-up questions and answers
         
     Returns:
@@ -98,43 +112,59 @@ def validate_work_status_log(operational_log: str, work_status: Union[str, dict]
             work_status = {work_status: 100}  
 
         status_requirements = ""
+        work_contribtion = ""
         for work_status_type, values in work_status.items():
             pct = values["percentage"] if isinstance(values, dict) else values
-            status_requirements += (
+            if pct > 10:
+                work_contribtion += f"{work_status_type} - {pct}%\n"
+                status_requirements += (
                 get_prompt(f"work_status.{work_status_type}")
-                + f" Percentage of allocated time for the work status: {pct}%\n"
-            )
+                + f" Percentage of allocated time for the work type: {pct}%\n"
+                )
             
         # Get validation instructions and system prompt
-        validation_instructions = get_prompt("validation_instructions")
         work_status_system_prompt = get_prompt("system_prompts.work_status_system_prompt")
-        log_notes_guidelines=get_prompt("log_notes_guidelines")
+        validation_guidelines=get_prompt("validation_instructions")
+        work_order_type_guidelines=get_prompt(f"work_order_type_guidelines.{work_order_type}")
         
         prompt = f"""
-        You are validating an operational log for work status: {work_status}.
+        You are validating an operational log for Work Contribution: {work_contribtion}.
         The work order description is: "{work_order_description}".
         The plant is: "{plant}".
 
-        User's Previous work status and notes with hours for extra context: 
-        {wo_status_and_notes_with_hours_table}
+        Previous work logs and their respective time allocation, just for extra context,
+        PREVIOUS WORK LOGS:
+        {wo_status_and_notes_with_time_allocation_table}
 
-        Mainly rely on the USER'S LOG NOTES which describes the work done:
-        "{operational_log}"
-        Guidelines for good log notes:
-        {log_notes_guidelines}
-
-        Any previous Follow-up Question and Answers are:
-        {follow_up_questions_answers_table}
-
-        REQUIREMENTS (guidelines, not strict rules):
-        {status_requirements}
+        WORK ORDER TYPE GUIDELINES:
+        {work_order_type_guidelines}
+        Follow the work order type guidelines above to get better notes for the work order type.
         
-        {validation_instructions}
+        
+         WORK CONTRIBUTION BASED GUIDELINES:
+        {status_requirements}
+        Prioritize the work that has higher percentage of allocated time and make the notes meet all the requirements for the works types above.
+        Follow the  WORK CONTRIBUTION BASED GUIDELINES above to get better notes for the work order type.
+
+        Orignal Log Notes from Tech:
+        {operational_log}
+
+        Follow-up questions and answers from you (AI) to get more information:
+        Person | Follow-up questions from you (AI)and answers from tech
+        {format_conversation_history(follow_up_questions_answers_table)}
+
+        Make sure to consider both Orignal Log Notes from Tech and Follow-up questions and answers from you (AI) to get more information on the work done.
+        Validate the work done based on the  WORK CONTRIBUTION BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type.
+        Follow up with the tech if you need more information to validate the work done only if you need to.
+        Avoid repeating the same follow up questions, if the question already listed in the Follow-up questions and answers from you (AI) section.
+        IMPORTANT: Make sure we meet the  WORK CONTRIBUTION BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type.
         """
         
         # Use instructor patched client for Pydantic response model
         patched_client = get_patched_client()
-        
+        print("prompt: ", prompt)
+        print("work status system prompt: ", work_status_system_prompt)
+
         response = patched_client.chat.completions.create(
             model="gpt-4o",
             response_model=WorkStatusValidationResponse,
@@ -174,6 +204,11 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
     """
 
     try:
+        # Get hold reason type requirements
+        print("hold_reason: ", hold_reason)
+        hold_reason_requirements = ""
+        hold_reason_requirements += get_prompt(f"hold_reason_types.{hold_reason}") + "\n"
+        
 
         # Get validation instructions and system prompt
         hold_reason_validation_instructions = get_prompt("hold_reason_validation_instructions")
@@ -187,11 +222,19 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         User's Previous work status and notes with hours for extra context: 
         {wo_status_and_notes_with_hours_table}
 
-        Mainly rely on the hold reason from User's HOLD REASON: "{hold_reason}".
-        The previous follow-up questions and answers are: "{follow_up_questions_answers_table}".
+        SPECIFIC HOLD REASON REQUIREMENTS (use these to guide your validation):
+        {hold_reason_requirements}
 
-        Validation Guidelines:
+        GENERAL VALIDATION GUIDELINES:
         {hold_reason_validation_instructions}
+
+        ANALYZE the hold reason content to identify what hold type was performed:
+        "{hold_reason}"
+
+        Conversation between Tech and You, starting with his hold reason:
+        Person | chat message
+        {follow_up_questions_answers_table}
+
         """
         
         # Use instructor patched client for Pydantic response model
@@ -290,7 +333,7 @@ def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_
         )
 
 
-def convert_to_client_summary(conversation_table: str) -> ClientSummaryResponse:
+def convert_to_client_summary(conversation_table: list[dict]) -> ClientSummaryResponse:
     """
     Convert AI and human messages into a client-friendly summary and notes
     
@@ -312,7 +355,7 @@ def convert_to_client_summary(conversation_table: str) -> ClientSummaryResponse:
 
         Conversation between Tech and AI:
         Person | chat message
-        {conversation_table}
+        {format_conversation_history(conversation_table)}
 
         """
         
