@@ -437,7 +437,7 @@ async def validate_reason_hold(request: HoldReasonValidationRequest):
             work_order_type=request.work_order_type,
             work_order_description=request.work_order_description,
             plant=request.plant,
-            wo_status_and_notes_with_hours_table=request.wo_status_and_notes_with_hours_table,
+            wo_status_and_notes_with_time_allocation_table=request.wo_status_and_notes_with_time_allocation_table,
             follow_up_questions_answers_table=request.follow_up_questions_answers_table
         )
         return result

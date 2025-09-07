@@ -188,7 +188,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         )
 
 
-def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_description: str, plant: str, wo_status_and_notes_with_hours_table: str, follow_up_questions_answers_table: str) -> HoldReasonValidationResponse:
+def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_description: str, plant: str, wo_status_and_notes_with_time_allocation_table: str, follow_up_questions_answers_table: str) -> HoldReasonValidationResponse:
     """
     Validate hold reason against work order requirements and generate follow-up questions if needed
     
@@ -196,7 +196,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         hold_reason: The hold reason to validate
         work_order_type: Work order type
         work_order_description: Description of the work order for context
-        wo_status_and_notes_with_hours_table: Table of work status and notes with hours
+        wo_status_and_notes_with_time_allocation_table: Table of work status and notes with hours
         follow_up_questions_answers_table: Previous follow-up questions and answers
         
     Returns:
@@ -220,7 +220,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         The plant is: "{plant}".
 
         User's Previous work status and notes with hours for extra context: 
-        {wo_status_and_notes_with_hours_table}
+        {wo_status_and_notes_with_time_allocation_table}
 
         SPECIFIC HOLD REASON REQUIREMENTS (use these to guide your validation):
         {hold_reason_requirements}
@@ -303,7 +303,7 @@ def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_
         
         response = patched_client.chat.completions.create(
             model="gpt-4o-mini",
-            response_model=CARFormatResponse,
+            response_model=CARFormatResponse,   
             messages=[
                 {"role": "system", "content": car_system_prompt}, 
                 {"role": "user", "content": prompt}
@@ -311,17 +311,9 @@ def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_
             max_tokens=800,
             temperature=0.3
         )
-        response_obj = CARFormatResponse(
-            cause=response.cause or "",
-            action=response.action or "",
-            result=response.result or "",
-            success=True,  
-            error_message=None
-        )
 
-        return response_obj
+        return response
 
-                
     except Exception as e:
         st.error(f"Error converting to CAR format: {e}")
         return CARFormatResponse(

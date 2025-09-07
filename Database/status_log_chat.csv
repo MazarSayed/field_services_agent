@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-work_order_id,work_status,conversation
-=======
 work_order_id,work_status,conversation
 WO-1067573,Pending,"{""Tech"": [""done"", ""not sure"", ""i dont know""], ""AI"": [""Could you provide details on the issue observed and the steps you took to troubleshoot or repair it?"", ""Can you describe any specific issues or abnormalities you noticed during the inverter's 6-month preventive maintenance?""]}"
 WO-1060136,Pending,"{""Tech"": [""done"", ""no""], ""AI"": [""Could you provide more details on what specific tasks were completed for both 'Vegetation' and 'Equipment Maintenance' during this work period?""]}"
@@ -17,4 +14,3 @@ WO-1062957,Pending,"{""Tech"": [""Did some repairs on site, should be better now
 WO-1062957,Pending,"{""Tech"": [""done""]}"
 WO-1053005,Pending,"{""AI"": [""Could you provide a bit more detail on what was done during the maintenance? For example, any issues you noticed or actions you took?"", ""Could you share a brief summary of any issues you encountered or actions you took during the maintenance?""], ""Tech"": [""no"", ""no""]}"
 WO-1053005,Pending,"{""Tech"": [""Did some repairs on site, should be better now.""]}"
->>>>>>> 2ef24ad0dc531b949c0857fbdf7391b7a8ae3a4a
