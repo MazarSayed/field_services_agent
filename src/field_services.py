@@ -104,16 +104,17 @@ class FieldServicesService:
         self.data_access.update_work_order(work_order)
         return True
 
-    def validate_work_status(self, operational_log: str, work_status: dict, 
+    def validate_work_status(self, operational_log: str, work_order_type: str, work_status: dict, 
                            work_order_description: str, tech_name: str, 
                            work_date: str, follow_up_questions_answers: str = "") -> Dict[str, Any]:
         """Validate work status log using AI"""
         
         return validate_work_status_log(
             operational_log=operational_log,
+            work_order_type=work_order_type,
             work_status=work_status,
             work_order_description=work_order_description,
-            wo_status_and_notes_with_hours_table=follow_up_questions_answers,
+            wo_status_and_notes_with_time_allocation_table=follow_up_questions_answers,
             follow_up_questions_answers_table=follow_up_questions_answers
         )
     

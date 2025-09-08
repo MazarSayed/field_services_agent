@@ -131,7 +131,7 @@ def get_first_user_input(messages: list[dict]) -> str:
 
 def get_conversation_history(messages: list[dict]) -> list[dict]:
     """Get all messages except the first user input."""
-    if not messages:
+    if not messages or len(messages) <= 1:
         return []
     return messages[1:]  # Skip first message
 
@@ -406,8 +406,11 @@ async def validate_work_status(request: WorkStatusValidationRequest):
         existing_logs = get_existing_work_logs(request.work_order_id)
         
         # Extract operational log and follow-up conversation
-        operational_log = get_first_user_input(request.follow_up_questions_answers_table)
-        follow_up_conversation = get_conversation_history(request.follow_up_questions_answers_table)
+        if request.follow_up_questions_answers_table and len(request.follow_up_questions_answers_table) > 0:
+            operational_log = request.follow_up_questions_answers_table[0].get('content', '')
+        else:
+            operational_log = request.operational_log
+        follow_up_conversation = request.follow_up_questions_answers_table
         
         result = validate_work_status_log(
             operational_log=operational_log,

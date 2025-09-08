@@ -119,7 +119,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
                 work_contribtion += f"{work_status_type} - {pct}%\n"
                 status_requirements += (
                 get_prompt(f"work_status.{work_status_type}")
-                + f" Percentage of allocated time for the work type: {pct}%\n"
+                + f" Percentage of allocated time for the work type: {pct}%\n\n"
                 )
             
         # Get validation instructions and system prompt
@@ -128,36 +128,43 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         work_order_type_guidelines=get_prompt(f"work_order_type_guidelines.{work_order_type}")
         
         prompt = f"""
+        ## Work Order:
         You are validating an operational log for Work Contribution: {work_contribtion}.
         The work order description is: "{work_order_description}".
         The plant is: "{plant}".
 
         Previous work logs and their respective time allocation, just for extra context,
-        PREVIOUS WORK LOGS:
+        ## PREVIOUS WORK LOGS:
         {wo_status_and_notes_with_time_allocation_table}
 
-        WORK ORDER TYPE GUIDELINES:
+        ## WORK ORDER TYPE GUIDELINES FOR GOOD NOTES:
         {work_order_type_guidelines}
-        Follow the work order type guidelines above to get better notes for the work order type.
+        Follow the work order type based guidelines above to get better notes for the work order type.
         
         
-         WORK CONTRIBUTION BASED GUIDELINES:
+        ## WORK BASED GUIDELINES:
         {status_requirements}
         Prioritize the work that has higher percentage of allocated time and make the notes meet all the requirements for the works types above.
-        Follow the  WORK CONTRIBUTION BASED GUIDELINES above to get better notes for the work order type.
+        Follow the  WORK BASED GUIDELINES above to get better notes for the work order type.
 
-        Orignal Log Notes from Tech:
+        ## VALIDATION INSTRUCTIONS:
+        - Consider both Orignal Log Notes from Tech and Follow-up questions and answers from you (AI) to get more information on the work done
+        - Use PREVIOUS WORK LOGS for extra context to understand work progression
+        - Validate the work done based on the WORK BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type
+        - Mark as VALID if log content supports the claimed work types and time allocation through direct or implied evidence
+        - The log must contain evidence of each claimed work type mentioned (can be implied, inferred, or context-based)
+        - Only mark as invalid if work is completely unclear or unrelated
+        - Follow up with the tech if you need more information to validate the work done only if you need to
+        - Avoid repeating the same follow up questions if already listed in the Follow-up questions section
+        - IMPORTANT: Make sure we meet atleast 90% of the WORK BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type
+
+        ## Orignal Log Notes from Tech:
         {operational_log}
 
-        Follow-up questions and answers from you (AI) to get more information:
-        Person | Follow-up questions from you (AI)and answers from tech
+        ## Follow-up questions and answers from you (assistant) to get more information:
+        Person | Follow-up questions from you (assistant) and answers from tech
         {format_conversation_history(follow_up_questions_answers_table)}
 
-        Make sure to consider both Orignal Log Notes from Tech and Follow-up questions and answers from you (AI) to get more information on the work done.
-        Validate the work done based on the  WORK CONTRIBUTION BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type.
-        Follow up with the tech if you need more information to validate the work done only if you need to.
-        Avoid repeating the same follow up questions, if the question already listed in the Follow-up questions and answers from you (AI) section.
-        IMPORTANT: Make sure we meet the  WORK CONTRIBUTION BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type.
         """
         
         # Use instructor patched client for Pydantic response model
@@ -196,7 +203,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         hold_reason: The hold reason to validate
         work_order_type: Work order type
         work_order_description: Description of the work order for context
-        wo_status_and_notes_with_time_allocation_table: Table of work status and notes with hours
+        wo_status_and_notes_with_time_allocation_table: Table of work status and notes with time allocation
         follow_up_questions_answers_table: Previous follow-up questions and answers
         
     Returns:
@@ -231,7 +238,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         ANALYZE the hold reason content to identify what hold type was performed:
         "{hold_reason}"
 
-        Conversation between Tech and You, starting with his hold reason:
+        Conversation between Tech and You (assistant), starting with his hold reason:
         Person | chat message
         {follow_up_questions_answers_table}
 
@@ -345,10 +352,13 @@ def convert_to_client_summary(conversation_table: list[dict]) -> ClientSummaryRe
         
         {user_prompt}
 
-        Conversation between Tech and AI:
+        Conversation between Tech and You (assistant):
         Person | chat message
         {format_conversation_history(conversation_table)}
 
+
+        Do not use Markdown formatting in the summary and notes..
+        Use simple and clear language.
         """
         
         # Use instructor patched client for Pydantic response model

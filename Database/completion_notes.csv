@@ -1,16 +1,13 @@
 id,completion_notes,wo_type,time_type,work_order_id,tech_name,work_date,plant,hours,status,car_flag,day_name,is_weekend,created_at
-1,A snow stow fault appeared on NCU's 61 & 62 located at inverter 28. All SPC’s were stuck to the east. RES discovered that the snow sensor was dirty from vegetation management and construction. RES cleaned the snow sensor. The fault cleared on the NCU and all SPC's returned to normal operation.,Corrective,Work,WO-1052439,nan,2024-06-14,MS6 - Golden Triangle II (PV/BESS),0.5,Completed,,,,2024-06-14 08:00:00
-2,Inspected all enclosers and cleaned all sensors at Met 2. no issues found and all POAs were leveled,Preventive,Work,WO-1053001,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),4.75,Completed,,,,2024-06-30 08:00:00
-3,"Completed block inspection  on 2A1, all steps completed and no issues found.",Preventive,Work,WO-1055815,nan,2024-09-20,Escalante,16.0,Completed,,,,2024-09-20 08:00:00
-4,Inspected all enclosers and cleaned all sensors at Met 1. no issues found and all POAs were leveled,Preventive,Work,WO-1053000,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),5.0,Completed,,,,2024-06-30 08:00:00
-5,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Preventive,Work,WO-1053002,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),4.75,Completed,,,,2024-06-30 08:00:00
-6,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Preventive,Work,WO-1053004,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),2.75,Completed,,,,2024-06-30 08:00:00
-7,Monthly MET Station PM is complete. All equipment was in correct working condition. See inspection form for details.,Preventive,Work,WO-1053005,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),2.75,Completed,,,,2024-06-30 08:00:00
-8,all steps of inspection sheet are completed,Preventive,Work,WO-1054251,nan,2024-08-07,Escalante,7.0,Completed,,,,2024-08-07 08:00:00
-9,all steps completed for site inverter pm photos uploaded,Preventive,Work,WO-1054254,nan,2024-08-07,Escalante,8.0,Completed,,,,2024-08-07 08:00:00
-10,"Performed 6 month PM on inverter 4A7. Took inverter offline, notified ROC, applied LOTO, Cleaned and inspected inverter, removed LOTO, brought inverter back online.",Preventive,Work,WO-1058811,William Boyd,2024-12-03,Escalante,12.0,Completed,,,,2024-12-03 08:00:00
-11,Performed 6 month PM on inverter 3B6.,Preventive,Work,WO-1058819,Jackie Torrez,2024-12-03,Escalante,6.0,Completed,,,,2024-12-03 08:00:00
-12,Annual PM completed.,Preventive,Work,WO-1064721,nan,2025-04-04,MS6 - Golden Triangle II (PV/BESS),4.5,Completed,,,,2025-04-04 08:00:00
-13,Annual PM completed.,Preventive,Work,WO-1064722,nan,2025-04-04,MS6 - Golden Triangle II (PV/BESS),4.5,Completed,,,,2025-04-04 08:00:00
-14,Annual PM completed.,Preventive,Work,WO-1064723,nan,2025-04-04,MS6 - Golden Triangle II (PV/BESS),5.5,Completed,,,,2025-04-04 08:00:00
-15,"After checking tracker, we found that the battery was dead on the SPC. We replaced the battery and that fixed the issue.",Corrective,Work,WO-1061588,nan,2025-02-04,MS6 - Golden Triangle II (PV/BESS),2.0,Completed,,,,2025-02-04 08:00:00
+1,Inspected all enclosers and cleaned all sensors at Met 2. no issues found and all POAs were leveled,Preventive,Work,WO-1053001,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),4.75,Completed,,,,2024-06-30 08:00:00
+2,"Completed block inspection  on 2A1, all steps completed and no issues found.",Preventive,Work,WO-1055815,nan,2024-09-20,Escalante,16.0,Completed,,,,2024-09-20 08:00:00
+3,Inspected all enclosers and cleaned all sensors at Met 1. no issues found and all POAs were leveled,Preventive,Work,WO-1053000,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),5.0,Completed,,,,2024-06-30 08:00:00
+4,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Preventive,Work,WO-1053002,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),4.75,Completed,,,,2024-06-30 08:00:00
+5,Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled,Preventive,Work,WO-1053003,nan,2024-06-30,MS6 - Golden Triangle II (PV/BESS),2.75,Completed,,,,2024-06-30 08:00:00
+6,all steps of inspection sheet are completed,Preventive,Work,WO-1054251,nan,2024-08-07,Escalante,7.0,Completed,,,,2024-08-07 08:00:00
+7,all steps completed for site inverter pm photos uploaded,Preventive,Work,WO-1054254,nan,2024-08-07,Escalante,8.0,Completed,,,,2024-08-07 08:00:00
+8,"Performed 6 month PM on inverter 4A7. Took inverter offline, notified ROC, applied LOTO, Cleaned and inspected inverter, removed LOTO, brought inverter back online.",Preventive,Work,WO-1058811,William Boyd,2024-12-03,Escalante,12.0,Completed,,,,2024-12-03 08:00:00
+9,Performed 6 month PM on inverter 3B6.,Preventive,Work,WO-1058819,Jackie Torrez,2024-12-03,Escalante,6.0,Completed,,,,2024-12-03 08:00:00
+10,Annual PM completed.,Preventive,Work,WO-1064721,nan,2025-04-04,MS6 - Golden Triangle II (PV/BESS),4.5,Completed,,,,2025-04-04 08:00:00
+11,Annual PM completed.,Preventive,Work,WO-1064722,nan,2025-04-04,MS6 - Golden Triangle II (PV/BESS),4.5,Completed,,,,2025-04-04 08:00:00
+12,Annual PM completed.,Preventive,Work,WO-1064723,nan,2025-04-04,MS6 - Golden Triangle II (PV/BESS),5.5,Completed,,,,2025-04-04 08:00:00

@@ -119,11 +119,11 @@ def select_work_orders_per_employee(work_orders_df: pd.DataFrame, operating_logs
         for wo_type in ['Preventive', 'Corrective', 'Ad Hoc', 'Project', 'OEM Repair Work']:
             type_orders = tech_wo_details[tech_wo_details['pffsm__WO_Type__c'] == wo_type]
             
-            if len(type_orders) >= 5:
-                # Randomly select 5
-                selected = type_orders.sample(n=5, random_state=42)
+            if len(type_orders) >= 10:
+                # Randomly select 10
+                selected = type_orders.sample(n=10, random_state=42)
                 selected_orders.extend(selected.to_dict('records'))
-                print(f"    Selected 5 {wo_type} work orders")
+                print(f"    Selected 10 {wo_type} work orders")
             elif len(type_orders) > 0:
                 # Take all available
                 selected_orders.extend(type_orders.to_dict('records'))
@@ -148,7 +148,7 @@ def split_work_orders_by_status(employee_work_orders: Dict[str, List[Dict]]) -> 
         
         if total_orders > 0:
             # Calculate 50/50 split
-            completed_count = total_orders // 2
+            completed_count = int(total_orders // 4)
             pending_count = total_orders - completed_count
             
             # Split the work orders
