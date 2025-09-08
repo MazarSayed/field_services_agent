@@ -13,7 +13,7 @@ from models.models import (
     WorkOrderResponse, WorkStatusValidationRequest, WorkStatusValidationResponse, CARFormatResponse, 
     ClientSummaryResponse, WorkStatusLogRequest, WorkStatusSubmissionRequest,
     CompletionNotesRequest, ClientSummaryRequest, WorkStatusLogs, WorkOrderUpdateResponse, 
-    ChatSubmissionRequest, HoldReasonValidationRequest, HoldReasonValidationResponse
+    ChatSubmissionRequest, HoldReasonValidationRequest, HoldReasonValidationResponse, HoldNotesSubmissionRequest, HoldNotes
 )
 from src.ai_classifier import validate_work_status_log, validate_reason_for_hold, convert_to_car_format, convert_to_client_summary
 from src.data_access import get_data_access
@@ -253,6 +253,70 @@ def get_all_work_status_logs(tech_name):
     
     return {"work_status_logs": filtered_status_logs}
 
+def submit_hold_notes(hold_reason:str,hold_date:str,notes:str,summary:str,work_order_id:str):
+    """Submit hold notes to database"""
+    # Validate date format
+    try:
+        datetime.strptime(hold_date, "%Y-%m-%d")
+    except ValueError:
+        raise ValueError("Invalid date format. Use YYYY-MM-DD")
+    
+    # Get next ID
+    next_id = data_access.get_next_id(data_access.csv_files['hold_notes'])
+    
+    # Prepare data - match current database schema
+    hold_notes_data = {
+        'id': next_id,
+        'hold_reason':hold_reason,
+        'hold_date':hold_date,
+        'notes':notes,
+        'summary':summary,
+        'work_order_id':work_order_id,
+        'created_at': datetime.now().isoformat(),
+        'updated_at': datetime.now().isoformat()
+    }
+
+    # Define fieldnames to match current database schema
+    fieldnames = [
+        'id', 'hold_reason', 'hold_date', 'notes', 'summary', 'work_order_id',
+        'created_at', 'updated_at'
+    ]
+    
+    # Save to database
+    success = data_access.append_to_csv_file(
+        data_access.csv_files['hold_notes'], 
+        hold_notes_data, 
+        fieldnames
+    )
+    
+    if not success:
+        raise RuntimeError("Failed to save hold notes to database")
+    
+    return {
+        "message": "Hold notes submitted successfully",
+        "log_id": next_id,
+        "hold_date": hold_date
+    }
+
+def get_hold_notes(work_order_id: str):
+    """Get hold notes for a specific work order"""
+    hold_notes = data_access.load_hold_notes()
+    
+    if not hold_notes:
+        return {"hold_notes": []}
+    
+    # Filter by work order ID
+    filtered_hold_notes = [
+        log for log in hold_notes
+        if log.get('work_order_id') == work_order_id
+    ]
+    
+    if not filtered_hold_notes:
+        return {"hold_notes": []}
+    
+    return {
+        "hold_notes": filtered_hold_notes
+    }
 
 def save_conversation(conversation_table: list[dict], work_order_id: str, work_status: str):
     """Save conversation to CSV database"""
@@ -448,7 +512,7 @@ async def validate_reason_hold(request: HoldReasonValidationRequest):
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error validating hold reason: {str(e)}")
-
+    
 
 @app.put("/work-orders/{work_order_id}/hold", response_model=WorkOrderUpdateResponse)
 async def hold_work_order(work_order_id: str):
@@ -566,6 +630,36 @@ async def convert_conversation_to_summary(request: ClientSummaryRequest):
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error converting to client summary: {str(e)}")
+    
+@app.post("/save-hold-notes")
+async def save_hold_notes(request: HoldNotesSubmissionRequest):
+    """Submit work status details to CSV database"""
+    try:
+        result = submit_hold_notes(
+            hold_reason=request.hold_reason,
+            hold_date=request.hold_date,
+            notes=request.notes,
+            summary=request.summary,
+            work_order_id=request.work_order_id,
+        )
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except RuntimeError as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error submitting work status: {str(e)}")
+
+@app.get("/hold-notes/{work_order_id}", response_model=HoldNotes)
+async def get_work_status_logs_endpoint(work_order_id: str):
+    try:
+        result = get_hold_notes(work_order_id)
+        return HoldNotes(**result)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error extracting hold notes: {str(e)}")
+    
 
 # Endpoint 6: Get all technicians
 @app.get("/technicians")

@@ -144,10 +144,22 @@ class WorkStatusSubmissionRequest(BaseModel):
     complete_flag: Optional[bool] = Field(default=None, description="Whether work is complete")
 
 
+
+class HoldNotesSubmissionRequest(BaseModel):
+    """Request model for hold notes submissions"""
+    hold_reason: str = Field(..., description="Reason for hold")
+    hold_date: str = Field(..., description="Hold date")
+    notes: str = Field(..., description="Hold notes")
+    summary: str = Field(..., description="PHold summary")
+    work_order_id: str = Field(default=None, description="Work order ID")
+
 class WorkStatusLogs(BaseModel):
     """Response model for work status logs queries"""
     work_status_logs: List[Dict[str, Any]] = Field(..., description="List of work status logs")
 
+class HoldNotes(BaseModel):
+    """Response model for hold notes queries"""
+    hold_notes: List[Dict[str, Any]] = Field(..., description="List of hold_notes")
 
 # ============================================================================
 # Chat and Conversation Models

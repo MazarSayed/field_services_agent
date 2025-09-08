@@ -27,7 +27,8 @@ class DataAccessLayer:
             'completion_notes': 'Database/completion_notes.csv',
             'technicians': 'Database/technicians.csv',
             'work_status_types': 'Database/work_status_types.csv',
-            'status_log_chat': 'Database/status_log_chat.csv'
+            'status_log_chat': 'Database/status_log_chat.csv',
+            'hold_notes': 'Database/hold_notes.csv'
         }
     
     def _load_config(self, config_path: str) -> Dict:
@@ -113,6 +114,10 @@ class DataAccessLayer:
     def load_work_status_logs(self) -> List[Dict[str, Any]]:
         """Load work status logs from CSV"""
         return self.read_csv_file(self.csv_files['work_status_logs'])
+    
+    def load_hold_notes(self) -> List[Dict[str, Any]]:
+        """Load hold notes from CSV"""
+        return self.read_csv_file(self.csv_files['hold_notes'])
     
     def get_openai_client(self):
         """Get OpenAI client instance"""
