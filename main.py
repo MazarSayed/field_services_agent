@@ -108,14 +108,20 @@ def get_existing_work_logs(work_order_id: str) -> str:
         if not filtered_logs:
             return "No previous work logs found for this work order."
         
-        # Format the logs as a table with correct column names
-        log_table = "Tech Name | Time allocation | Notes | Summary\n"
+        # Format the logs as a table with correct column names including dates
+        log_table = "Date | Tech Name | Time allocation | Notes | Summary\n"
         for log in filtered_logs:
+            # Extract date from created_at timestamp (format: "2024-07-01 13:30:00" -> "2024-07-01")
+            created_at = log.get('created_at', '')
+            if created_at and ' ' in created_at:
+                work_date = created_at.split(' ')[0]  # Extract just the date part
+            else:
+                work_date = created_at
             tech_name = log.get('tech_name', '')
             time_allocation = log.get('work_status', '')
             notes = log.get('notes', '')
             summary = log.get('summary', '')
-            log_table += f"{tech_name} | {time_allocation} | {notes} | {summary}\n"
+            log_table += f"{work_date} | {tech_name} | {time_allocation} | {notes} | {summary}\n"
         
         return log_table
     except Exception as e:
@@ -604,10 +610,19 @@ async def submit_chat(request: ChatSubmissionRequest):
 async def convert_completion_notes_to_car(request: CompletionNotesRequest):
     """Convert completion notes to CAR format"""
     try:
+
+        work_status_table = get_existing_work_logs(request.work_order_id)
+        work_order_type = request.work_order_type
+        
+        # If no work status logs found, use a default message
+        if work_status_table == "No work logs found for this work order.":
+            work_status_table = f"No work logs found for work order {request.work_order_id}."
+        
+        
         result = convert_to_car_format(
-            work_order_type="",  # Default empty string since not provided in current interface
+            work_order_type=work_order_type or "",
             final_completion_notes=request.completion_notes,
-            wo_status_and_notes_with_hours_table=request.wo_status_and_notes_table,
+            wo_status_and_notes_with_time_allocation_table=work_status_table,
             work_order_description=request.work_order_description
         )
         return result
@@ -623,7 +638,11 @@ async def convert_conversation_to_summary(request: ClientSummaryRequest):
     """Convert conversation to client-friendly summary"""
     try:
         result = convert_to_client_summary(
-            conversation_table=request.conversation_tech_ai_client_table
+            conversation_table=request.conversation_tech_ai_client_table,
+            work_order_description=request.work_order_description,
+            work_status=request.work_status,
+            plant=request.plant,
+            work_order_type=request.work_order_type
         )
         return result
     except ValueError as e:

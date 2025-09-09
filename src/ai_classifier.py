@@ -5,12 +5,9 @@ Handles OpenAI integration and work type classification
 
 import os
 import openai
-import streamlit as st
 from dotenv import load_dotenv
 from typing import Optional, Union
-import io
 import tempfile
-import json
 import instructor
 from src.utils import get_prompt
 from models.models import (
@@ -32,13 +29,10 @@ def get_patched_client():
 def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
     """
     Transcribe audio file using OpenAI Whisper (Speech-to-Text)
-    
-    Note: Uses Whisper-1 model for audio transcription (STT)
-    This is different from TTS (Text-to-Speech) - we need STT to convert voice to text
-    
+        
     Args:
         openai_client: OpenAI client instance
-        audio_file: Audio file from st.audio_input (UploadedFile object)
+        audio_file: Audio file from audio input (UploadedFile object)
         
     Returns:
         TranscriptionResponse object with transcript and status
@@ -70,7 +64,7 @@ def transcribe_audio(openai_client, audio_file) -> TranscriptionResponse:
         )
         
     except Exception as e:
-        st.error(f"Error transcribing audio: {e}")
+        print(f"Error transcribing audio: {e}")
         return TranscriptionResponse(
             transcript="",
             success=False,
@@ -126,24 +120,24 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         validation_guidelines=get_prompt("validation_instructions")
         work_order_type_guidelines=get_prompt(f"work_order_type_guidelines.{work_order_type}")
         
-        prompt = f"""
-        ## Work Order:
+        # Combine everything into a comprehensive system prompt
+        full_system_prompt = f"""
+        {work_status_system_prompt}
+
+        ## WORK ORDER CONTEXT:
+        Work Order Type: "{work_order_type}".
         You are validating an operational log for Work Contribution: {work_contribtion}.
-        The work order description is: "{work_order_description}".
+        The cause of work: "{work_order_description}".
         The plant is: "{plant}".
 
-        Previous work logs and their respective time allocation, just for extra context,
-        ## PREVIOUS WORK LOGS:
+        ## PREVIOUS LOGS FOR THE SAME WORK ORDER FOR EXTRA CONTEXT:
         {wo_status_and_notes_with_time_allocation_table}
 
-        ## WORK ORDER TYPE GUIDELINES FOR GOOD NOTES:
+        ## WORK ORDER TYPE GUIDELINES:
         {work_order_type_guidelines}
-        Follow the work order type based guidelines above to get better notes for the work order type.
-        
+
         ## WORK BASED GUIDELINES:
         {status_requirements}
-        Prioritize the work that has higher percentage of allocated time and make the notes meet all the requirements for the works types above.
-        Follow the  WORK BASED GUIDELINES above to get better notes for the work order type.
 
         ## VALIDATION INSTRUCTIONS:
         {validation_guidelines}
@@ -151,7 +145,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         
         # Prepare messages for OpenAI API
         messages_list = [
-            {"role": "system", "content": work_status_system_prompt+prompt},
+            {"role": "system", "content": full_system_prompt},
             {"role": "user", "content": operational_log}
         ]
         
@@ -161,7 +155,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         
         # Use instructor patched client for Pydanticresponse model
         patched_client = get_patched_client()
-        print("prompt: ", prompt)
+        print("full_system_prompt: ", full_system_prompt)
         print("work status system prompt: ", work_status_system_prompt)
 
         response = patched_client.chat.completions.create(
@@ -177,7 +171,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
 
             
     except Exception as e:
-        st.error(f"Error validating work status log: {e}")
+        print(f"Error validating work status log: {e}")
         return WorkStatusValidationResponse(
             valid=False, 
             missing=f"Error: {str(e)}", 
@@ -211,26 +205,28 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         hold_reason_validation_instructions = get_prompt("hold_reason_validation_instructions")
         hold_reason_system_prompt = get_prompt("system_prompts.hold_reason_system_prompt")
         
-        prompt = f"""
+        # Combine everything into a comprehensive system prompt
+        full_system_prompt = f"""
+        {hold_reason_system_prompt}
+
+        ## WORK ORDER CONTEXT:
         Work Order Type: "{work_order_type}".
-        The work order description is: "{work_order_description}".
+        The cause of work: "{work_order_description}".
         The plant is: "{plant}".
 
-        User's Previous work status and notes with hours for extra context: 
+        ## PREVIOUS WORK LOGS FOR THE SAME WORK ORDER FOR EXTRA CONTEXT:
         {wo_status_and_notes_with_time_allocation_table}
 
-        SPECIFIC HOLD REASON REQUIREMENTS (use these to guide your validation):
+        ## HOLD REASON REQUIREMENTS:
         {hold_reason_requirements}
 
-        GENERAL VALIDATION GUIDELINES:
+        ## VALIDATION INSTRUCTIONS:
         {hold_reason_validation_instructions}
-
-        Make sure to validate the hold reason based on the CORE VALIDATION REQUIREMENTS - FOCUS ON THESE THREE MAINLY.
         """
         
         # Prepare messages for OpenAI API
         messages_list = [
-            {"role": "system", "content": hold_reason_system_prompt+prompt},
+            {"role": "system", "content": full_system_prompt},
             {"role": "user", "content": hold_reason}
         ]
         
@@ -253,7 +249,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         return response
             
     except Exception as e:
-        st.error(f"Error validating work status log: {e}")
+        print(f"Error validating work status log: {e}")
         return HoldReasonValidationResponse(
             valid=False,
             missing=f"Error: {str(e)}",
@@ -263,14 +259,14 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         )
 
 
-def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_status_and_notes_with_hours_table: str, work_order_description: str) -> CARFormatResponse:
+def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_status_and_notes_with_time_allocation_table: str, work_order_description: str) -> CARFormatResponse:
     """
     Convert completion notes to CAR (Cause, Action, Result) format using gpt-4o-mini
     
     Args:
         work_order_type: Work order type
         final_completion_notes: Original completion notes from field tech
-        wo_status_and_notes_with_hours_table: Table of work status and notes for each task with hours
+        wo_status_and_notes_with_time_allocation_table: Table of work status and notes for each task with time allocation
         work_order_description: Work order description for context
         
     Returns:
@@ -285,14 +281,15 @@ def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_
         prompt = f"""
        
         Work Order Type: {work_order_type}
-        Work Order Description: {work_order_description}
+        The cause of work: {work_order_description}
 
-        Work Status | Work Status Notes with hours
-        {wo_status_and_notes_with_hours_table}
+        ## WORK STATUS | WORK STATUS NOTES WITH TIME ALLOCATION (includes dates):
+        {wo_status_and_notes_with_time_allocation_table}
 
+        ## INSTRUCTIONS:
         {car_prompt}
 
-        Final Completion Notes from Field Tech:
+        ## FINAL COMPLETION NOTES FROM FIELD TECH:
         {final_completion_notes}
         """
         
@@ -313,7 +310,7 @@ def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_
         return response
 
     except Exception as e:
-        st.error(f"Error converting to CAR format: {e}")
+        print(f"Error converting to CAR format: {e}")
         return CARFormatResponse(
             cause="",
             action="",
@@ -323,31 +320,48 @@ def convert_to_car_format(work_order_type: str, final_completion_notes: str, wo_
         )
 
 
-def convert_to_client_summary(conversation_table: list[dict]) -> ClientSummaryResponse:
+def convert_to_client_summary(conversation_table: list[dict], work_order_description: str, work_status: dict, plant: str, work_order_type: str) -> ClientSummaryResponse:
     """
     Convert AI and human messages into a client-friendly summary and notes
     
     Args:
         conversation_table: Conversation between Tech and AI
+        work_order_description: Description of the work order for context
+        work_status: Work status types and their percentage allocation
+        plant: Plant location for context
+        work_order_type: Type of work order (Project, OEM, Preventive, etc.)
         
     Returns:
         ClientSummaryResponse object with summary and notes
     """
 
     try:
+        status_requirements = ""
+        work_contribtion = ""
+        for work_status_type, values in work_status.items():
+            pct = values["percentage"] if isinstance(values, dict) else values
+            if pct > 10:
+                work_contribtion += f"{work_status_type} - {pct}%\n"
+                
         # Get client summary conversion prompt and system prompt
         user_prompt = get_prompt("client_summary_conversion")
         client_summary_system_prompt = get_prompt("system_prompts.client_summary_system_prompt")
         
         prompt = f"""
-        
+        ## WORK ORDER CONTEXT:
+        Work Order Type: "{work_order_type}".
+        You are summarizing a conversation between a field technician and a client for Work Contribution: {work_contribtion}.
+        The cause of work: "{work_order_description}".
+        The plant is: "{plant}".
+
+        ## INSTRUCTIONS ON SUMMARIZING THE CONVERSATION:
         {user_prompt}
 
-        Conversation between Tech and You (assistant):
+        ## CONVERSATION BETWEEN TECH AND YOU (ASSISTANT):
         Person | chat message
         {format_conversation_history(conversation_table)}
 
-
+        Focus mainly on CONVERSATION BETWEEN TECH AND YOU (ASSISTANT) section for the summary and notes.
         Do not use Markdown formatting in the summary and notes..
         Use simple and clear language.
         """
@@ -370,7 +384,7 @@ def convert_to_client_summary(conversation_table: list[dict]) -> ClientSummaryRe
         return response
         
     except Exception as e:
-        st.error(f"Error converting to client summary: {e}")
+        print(f"Error converting to client summary: {e}")
         return ClientSummaryResponse(
             summary="Unable to process request",
             notes="There was an error processing your request. Please try again or contact support.",

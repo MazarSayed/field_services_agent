@@ -5,10 +5,8 @@ Handles HTTP requests to the Field Services Agent FastAPI backend
 
 import requests
 import yaml
-import streamlit as st
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Dict, List, Any, Optional
 from datetime import datetime
-import pandas as pd
 
 class FieldServicesAPIClient:
     """Client for interacting with Field Services Agent API"""
@@ -32,7 +30,7 @@ class FieldServicesAPIClient:
                         host = "localhost"
                     self.base_url = f"http://{host}:{port}"
             except Exception as e:
-                st.warning(f"Could not load config: {e}. Using default API URL.")
+                print(f"Could not load config: {e}. Using default API URL.")
                 self.base_url = "http://localhost:8000"
         else:
             self.base_url = base_url
@@ -64,16 +62,16 @@ class FieldServicesAPIClient:
             return response.json()
             
         except requests.exceptions.ConnectionError:
-            st.error(f"❌ Could not connect to API at {self.base_url}. Make sure the API server is running.")
+            print(f"❌ Could not connect to API at {self.base_url}. Make sure the API server is running.")
             return None
         except requests.exceptions.Timeout:
-            st.error("⏱️ Request timed out. The API server may be overloaded.")
+            print("⏱️ Request timed out. The API server may be overloaded.")
             return None
         except requests.exceptions.HTTPError as e:
-            st.error(f"❌ API request failed: {e.response.status_code} - {e.response.text}")
+            print(f"❌ API request failed: {e.response.status_code} - {e.response.text}")
             return None
         except Exception as e:
-            st.error(f"❌ Unexpected error: {str(e)}")
+            print(f"❌ Unexpected error: {str(e)}")
             return None
     
     def health_check(self) -> bool:
@@ -175,15 +173,15 @@ class FieldServicesAPIClient:
         }
         return self._make_request("POST", "/submit-work-status", data)
     
-    def convert_to_car(self, completion_notes: str, work_order_description: str,
-                      wo_status_and_notes_table: str) -> Optional[Dict]:
+    def convert_to_car(self, completion_notes: str, work_order_description: str, work_order_id: str, work_order_type: str = None) -> Optional[Dict]:
         """
         Convert completion notes to CAR format
         
         Args:
             completion_notes: Completion notes text
             work_order_description: Work order description
-            wo_status_and_notes_table: Work status and notes table
+            work_order_id: Work order ID to fetch work status logs with dates
+            work_order_type: Work order type for validation (optional)
             
         Returns:
             CAR format response or None if failed
@@ -191,7 +189,8 @@ class FieldServicesAPIClient:
         data = {
             "completion_notes": completion_notes,
             "work_order_description": work_order_description,
-            "wo_status_and_notes_table": wo_status_and_notes_table
+            "work_order_id": work_order_id,
+            "work_order_type": work_order_type
         }
         return self._make_request("POST", "/convert-to-car", data)
     
@@ -240,7 +239,7 @@ class FieldServicesAPIClient:
         return self._make_request("GET", "/config")
 
     def validate_reason_for_hold(self, hold_reason: str, work_order_type: str, 
-                               work_order_description: str, wo_status_and_notes_with_hours_table: str, 
+                               work_order_description: str, wo_status_and_notes_with_time_allocation_table: str, 
                                follow_up_questions_answers_table: str) -> Optional[Dict]:
         """
         Validate hold reason
@@ -249,7 +248,7 @@ class FieldServicesAPIClient:
             hold_reason: The hold reason to validate
             work_order_type: Work order type
             work_order_description: Work order description
-            wo_status_and_notes_with_hours_table: Table of work status and notes with hours
+            wo_status_and_notes_with_time_allocation_table: Table of work status and notes with time allocation
             follow_up_questions_answers_table: Previous follow-up questions and answers
             
         Returns:
@@ -259,16 +258,44 @@ class FieldServicesAPIClient:
             "hold_reason": hold_reason,
             "work_order_type": work_order_type,
             "work_order_description": work_order_description,
-            "wo_status_and_notes_with_hours_table": wo_status_and_notes_with_hours_table,
+            "wo_status_and_notes_with_time_allocation_table": wo_status_and_notes_with_time_allocation_table,
             "follow_up_questions_answers_table": follow_up_questions_answers_table
         }
         return self._make_request("POST", "/validate-reason-for-hold", data)
+    
+    def update_work_order_status(self, work_order_id: str, new_status: str) -> Optional[Dict]:
+        """
+        Update work order status
+        
+        Args:
+            work_order_id: Work order ID to update
+            new_status: New status for the work order
+            
+        Returns:
+            Update response or None if failed
+        """
+        data = {
+            "work_order_id": work_order_id,
+            "new_status": new_status
+        }
+        return self._make_request("POST", f"/work-orders/{work_order_id}/status", data)
+    
+    def get_work_status_logs(self, work_order_id: str) -> Optional[Dict]:
+        """
+        Get work status logs for a work order
+        
+        Args:
+            work_order_id: Work order ID
+            
+        Returns:
+            Work status logs response or None if failed
+        """
+        return self._make_request("GET", f"/work-orders/{work_order_id}/logs")
 
 # Global API client instance
-@st.cache_resource
 def get_api_client() -> FieldServicesAPIClient:
     """
-    Get cached API client instance
+    Get API client instance
     
     Returns:
         FieldServicesAPIClient instance

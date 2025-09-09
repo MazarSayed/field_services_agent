@@ -8,7 +8,7 @@ from datetime import datetime
 
 class TranscriptionRequest(BaseModel):
     """Request model for audio transcription"""
-    audio_file: Any = Field(..., description="Audio file from st.audio_input (UploadedFile object)")
+    audio_file: Any = Field(..., description="Audio file from audio input (UploadedFile object)")
 
 
 class WorkStatusValidationRequest(BaseModel):
@@ -180,9 +180,15 @@ class CompletionNotesRequest(BaseModel):
     """Legacy request model for completion notes (kept for compatibility)"""
     completion_notes: str = Field(..., description="Completion notes text")
     work_order_description: str = Field(..., description="Work order description")
-    wo_status_and_notes_table: str = Field(..., description="Table of work status and notes for each task")
+    wo_status_and_notes_table: Optional[str] = Field(default=None, description="Table of work status and notes for each task (optional if work_order_id provided)")
+    work_order_id: str = Field(..., description="Work order ID to fetch work status logs with dates")
+    work_order_type: Optional[str] = Field(default=None, description="Work order type for validation")
 
 
 class ClientSummaryRequest(BaseModel):
-    """Legacy request model for client summary (kept for compatibility)"""
+    """Request model for client summary conversion"""
     conversation_tech_ai_client_table: list[dict] = Field(..., description="List of conversation messages with role and content")
+    work_order_description: str = Field(..., description="Description of the work order for context")
+    work_status: dict = Field(..., description="Work status types and their percentage allocation")
+    plant: str = Field(..., description="Plant location for context")
+    work_order_type: str = Field(..., description="Type of work order (Project, OEM, Preventive, etc.)")
