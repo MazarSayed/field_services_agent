@@ -90,18 +90,17 @@ def format_conversation_history(messages: list[dict]) -> str:
     
     return "\n".join(formatted_lines)
 
-def validate_work_status_log(operational_log: str, work_order_type: str, work_status: Union[str, dict], work_order_description: str, plant: str, wo_status_and_notes_with_time_allocation_table: str, follow_up_questions_answers_table: list[dict]) -> WorkStatusValidationResponse:
+def validate_work_status_log(operational_log: str, work_order_type: str, work_status: Union[str, dict], work_order_description: str, plant: str, wo_status_and_notes_with_time_allocation_table: str, messages: list[dict]) -> WorkStatusValidationResponse:
     """
     Validate operational log against work status requirements and generate follow-up questions if needed
     
     Args:
-        openai_client: OpenAI client instance
         operational_log: The operational log to validate
         work_order_type: The work order type
         work_status: The work status types and along with their percentage of occurance
         work_order_description: Description of the work order for context
         wo_status_and_notes_with_time_allocation_table: Table of work status and notes with time allocation
-        follow_up_questions_answers_table: Previous follow-up questions and answers
+        messages: List of conversation messages to pass directly to OpenAI API
         
     Returns:
         WorkStatusValidationResponse object with validation result and follow-up questions
@@ -141,33 +140,26 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         {work_order_type_guidelines}
         Follow the work order type based guidelines above to get better notes for the work order type.
         
-        
         ## WORK BASED GUIDELINES:
         {status_requirements}
         Prioritize the work that has higher percentage of allocated time and make the notes meet all the requirements for the works types above.
         Follow the  WORK BASED GUIDELINES above to get better notes for the work order type.
 
         ## VALIDATION INSTRUCTIONS:
-        - Consider both Orignal Log Notes from Tech and Follow-up questions and answers from you (AI) to get more information on the work done
-        - Use PREVIOUS WORK LOGS for extra context to understand work progression
-        - Validate the work done based on the WORK BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type
-        - Mark as VALID if log content supports the claimed work types and time allocation through direct or implied evidence
-        - The log must contain evidence of each claimed work type mentioned (can be implied, inferred, or context-based)
-        - Only mark as invalid if work is completely unclear or unrelated
-        - Follow up with the tech if you need more information to validate the work done only if you need to
-        - Avoid repeating the same follow up questions if already listed in the Follow-up questions section
-        - IMPORTANT: Make sure we meet atleast 90% of the WORK BASED GUIDELINES and WORK ORDER TYPE GUIDELINES for each work type
-
-        ## Orignal Log Notes from Tech:
-        {operational_log}
-
-        ## Follow-up questions and answers from you (assistant) to get more information:
-        Person | Follow-up questions from you (assistant) and answers from tech
-        {format_conversation_history(follow_up_questions_answers_table)}
-
+        {validation_guidelines}
         """
         
-        # Use instructor patched client for Pydantic response model
+        # Prepare messages for OpenAI API
+        messages_list = [
+            {"role": "system", "content": work_status_system_prompt+prompt},
+            {"role": "user", "content": operational_log}
+        ]
+        
+        # Add conversation messages if provided
+        if messages:
+            messages_list.extend(messages[1:])
+        
+        # Use instructor patched client for Pydanticresponse model
         patched_client = get_patched_client()
         print("prompt: ", prompt)
         print("work status system prompt: ", work_status_system_prompt)
@@ -175,16 +167,14 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         response = patched_client.chat.completions.create(
             model="gpt-4o",
             response_model=WorkStatusValidationResponse,
-            messages=[
-                {"role": "system", "content": work_status_system_prompt}, 
-                {"role": "user", "content": prompt}
-            ],
+            messages=messages_list,
             max_tokens=300,
             temperature=0.1
         )
-        
+        print("messages_list: ", messages_list)
         # Return the validated Pydantic model directly
         return response
+
             
     except Exception as e:
         st.error(f"Error validating work status log: {e}")
@@ -195,7 +185,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         )
 
 
-def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_description: str, plant: str, wo_status_and_notes_with_time_allocation_table: str, follow_up_questions_answers_table: str) -> HoldReasonValidationResponse:
+def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_description: str, plant: str, wo_status_and_notes_with_time_allocation_table: str, messages: list[dict]) -> HoldReasonValidationResponse:
     """
     Validate hold reason against work order requirements and generate follow-up questions if needed
     
@@ -204,7 +194,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         work_order_type: Work order type
         work_order_description: Description of the work order for context
         wo_status_and_notes_with_time_allocation_table: Table of work status and notes with time allocation
-        follow_up_questions_answers_table: Previous follow-up questions and answers
+        messages: List of conversation messages to pass directly to OpenAI API
         
     Returns:
         HoldReasonValidationResponse object with validation result and follow-up questions
@@ -235,14 +225,18 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         GENERAL VALIDATION GUIDELINES:
         {hold_reason_validation_instructions}
 
-        ANALYZE the hold reason content to identify what hold type was performed:
-        "{hold_reason}"
-
-        Conversation between Tech and You (assistant), starting with his hold reason:
-        Person | chat message
-        {follow_up_questions_answers_table}
-
+        Make sure to validate the hold reason based on the CORE VALIDATION REQUIREMENTS - FOCUS ON THESE THREE MAINLY.
         """
+        
+        # Prepare messages for OpenAI API
+        messages_list = [
+            {"role": "system", "content": hold_reason_system_prompt+prompt},
+            {"role": "user", "content": hold_reason}
+        ]
+        
+        # Add conversation messages if provided
+        if messages:
+            messages_list.extend(messages[1:])
         
         # Use instructor patched client for Pydantic response model
         patched_client = get_patched_client()
@@ -250,10 +244,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         response = patched_client.chat.completions.create(
             model="gpt-4o",
             response_model=HoldReasonValidationResponse,
-            messages=[
-                {"role": "system", "content": hold_reason_system_prompt}, 
-                {"role": "user", "content": prompt}
-            ],
+            messages=messages_list,
             max_tokens=300,
             temperature=0.1
         )

@@ -483,7 +483,7 @@ async def validate_work_status(request: WorkStatusValidationRequest):
             work_order_description=work_order_description,
             plant=plant,
             wo_status_and_notes_with_time_allocation_table=existing_logs,
-            follow_up_questions_answers_table=follow_up_conversation
+            messages=follow_up_conversation
         )
         return result
     except HTTPException:
@@ -505,7 +505,7 @@ async def validate_reason_hold(request: HoldReasonValidationRequest):
             work_order_description=request.work_order_description,
             plant=request.plant,
             wo_status_and_notes_with_time_allocation_table=request.wo_status_and_notes_with_time_allocation_table,
-            follow_up_questions_answers_table=request.follow_up_questions_answers_table
+            messages=request.follow_up_questions_answers_table
         )
         return result
     except ValueError as e:

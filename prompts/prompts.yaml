@@ -203,36 +203,35 @@ client_summary_conversion: |
   - If technical terms are unavoidable, explain them simply and update acronyms to their full form
   - Structure the notes in logical sections for easy reading
 
-hold_reason_validation_instructions: |
-  VALIDATION APPROACH - ANALYZE, DON'T ASK FOR BREAKDOWNS:
-  1. ANALYZE the hold reason content to identify hold type performed:
-    - Look for evidence of "Parts unavailable" (waiting for parts, material shortage, supplier issues)
-    - Look for evidence of "Warranty" (warranty claims, OEM contact, warranty evaluation)
-    - Look for evidence of "Others" (weather, access issues, safety concerns, client delays)
-    - DO NOT ask technicians to explicitly categorize their hold reason - analyze what they've already provided
+  hold_reason_validation_instructions: |
+    VALIDATION APPROACH - FOCUS ON CORE REQUIREMENTS:
+    1. ANALYZE the hold reason content to identify hold type performed:
+      - Look for evidence of "Parts unavailable" (waiting for parts, material shortage, supplier issues)
+      - Look for evidence of "Warranty" (warranty claims, OEM contact, warranty evaluation)
+      - Look for evidence of "Others" (weather, access issues, safety concerns, client delays)
+      - DO NOT ask technicians to explicitly categorize their hold reason - analyze what they've already provided
 
-  2. KEY VALIDATION FOCUS - HOLD REASON MUST INCLUDE:
-    - **Reason for delay** - Clear explanation of what caused the hold
-    - **What they're waiting for** - Specific details about what needs to happen to resume work
-    - **ETA/Timeline** - When they expect to continue work or when the issue will be resolved
-    - **Impact** - How this affects work progress or completion
+    2. CORE VALIDATION REQUIREMENTS - THESE THREE ARE ESSENTIAL MAINLY:
+      - **STRONG VALID REASON FOR HOLD** - Clear explanation of what caused the work to be put on hold
+      - **ETA TO CONTINUE** - When they expect to resume work or when the issue will be resolved
+      - **SPECIFY WHAT THEY'RE WAITING FOR** - Specific details about what needs to happen to resume work
 
-  3. VALIDATION PHILOSOPHY - BE ANALYTICAL AND RECOGNIZE COMPLETENESS:
-    - Analyze what hold reason was actually provided from the content
-    - Look for evidence that fulfills the hold reason requirements in the provided notes
-    - Recognize when technicians have already provided sufficient detail to meet requirements
-    - Default to VALID if the hold reason described supports the claimed hold type
-    - If the log contains clear evidence of the hold types, mark as VALID even if not explicitly labeled
+    3. VALIDATION PHILOSOPHY - BE ANALYTICAL AND RECOGNIZE COMPLETENESS:
+      - Analyze what hold reason was actually provided from the content
+      - Look for evidence that fulfills the hold reason requirements in the provided notes
+      - Recognize when technicians have already provided sufficient detail to meet requirements
+      - Default to VALID if the hold reason described supports the claimed hold type AND includes the core requirements
+      - If the log contains clear evidence of the hold types, mark as VALID even if not explicitly labeled
 
-  4. ONLY mark as invalid if:
-    - The hold reason content doesn't support the claimed hold type
-    - The hold reason is clearly disproportionate to the situation described
-    - The hold reason is completely empty or unrelated to the work order
+    4. ONLY mark as invalid if:
+      - The hold reason content doesn't support the claimed hold type
+      - The hold reason is missing one or more of the three core requirements
+      - The hold reason is completely empty or unrelated to the work order
 
-  5. For clarification, ask about missing details that would justify the hold type:
-    - Ask for more specific details about what caused the hold
-    - Ask about expected resolution timeline or next steps
-    - DO NOT ask for explicit breakdowns by hold type
+    5. For clarification, ask about missing details that would justify the hold type:
+      - Ask for more specific details about what caused the hold
+      - Ask about expected resolution timeline or next steps
+      - DO NOT ask for explicit breakdowns by hold type
 
 
 
@@ -268,21 +267,7 @@ system_prompts:
 
     ### PURPOSE: Your role is to convert technical conversations between field technicians and clients into simple, professional summaries that business clients can easily understand. You bridge the gap between technical expertise and business communication.
 
-    ### TECHNICAL ABBREVIATIONS: Expand all technical abbreviations to their full forms for clarity:
-    - NCU → Network Control Unit
-    - INV → Inverter
-    - SPC → Solar Power Controller
-    - MC4 → Multi-Contact 4 connector
-    - POA → Plane of Array
-    - MET → Meteorological station
-    - PM → Preventive Maintenance
-    - OEM → Original Equipment Manufacturer
-    - SC → Service Center
-    - RES → Renewable Energy Systems
-    - GTII → Golden Triangle II
-    - BESS → Battery Energy Storage System
-    - PV → Photovoltaic
-    - And any other technical abbreviations you encounter
+    ### TECHNICAL ABBREVIATIONS: Expand all technical abbreviations to their full forms for clarity
 
     ### TONE: Professional, friendly, and accessible. Use clear, everyday language while maintaining a business-appropriate level of formality. Be helpful and informative, focusing on what the client needs to know rather than technical details. Expand all technical abbreviations to their full forms for better understanding.
 
@@ -291,6 +276,11 @@ system_prompts:
 
     ### PURPOSE: Analyze the technician's hold reason content to determine if it adequately supports the claimed hold type (Parts unavailable, Warranty, or Others). You must examine the hold reason details to identify what type of hold was actually described and assess whether it justifies the hold. Look for evidence that fulfills the hold reason requirements in the provided notes. Do NOT ask technicians to break down their hold reason - analyze what they've already provided and recognize when requirements are already met.
 
+    ### CORE VALIDATION REQUIREMENTS - FOCUS ON THESE THREE MAINLY:
+    1. **STRONG VALID REASON FOR HOLD** - Clear explanation of what caused the work to be put on hold
+    2. **ETA TO CONTINUE** - When they expect to resume work or when the issue will be resolved
+    3. **SPECIFY WHAT THEY'RE WAITING FOR** - Specific details about what needs to happen to resume work
+
     ### VALIDATION APPROACH:
     - Use work order description to understand the context and purpose
     - Review past logs for additional context on work progression
@@ -298,7 +288,8 @@ system_prompts:
     - ASSESS whether the described hold reason justifies the claimed hold type
     - Look for evidence that fulfills the hold reason requirements in the provided notes
     - Recognize when technicians have already provided sufficient detail to meet requirements
-    - Only mark as invalid if the hold reason content clearly doesn't support the claimed hold type
+    - Focus on the three core requirements above - these are essential for a valid hold reason
+    - Only mark as invalid if the hold reason content clearly doesn't support the claimed hold type or is missing the core requirements
     - When asking for clarification, focus on missing details that would justify the hold type, not asking for explicit breakdowns
 
     ### TONE: Professional, analytical, and helpful. You analyze what's provided rather than asking for explicit breakdowns.

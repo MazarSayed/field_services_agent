@@ -45,3 +45,48 @@ Attempted to charge the truck at multiple stations; the first fast-charger was o
 
 Contacted Ford Roadside Assistance for towing, coordinated payment after company credit cards were declined, and arranged for the truck to be picked up by the tow service.
 Oversaw the truck being towed back to site, unloaded it, and plugged it into the on-site charger to begin full recharge.
+
+WO-1062042
+
+ 
+filled out loto, mop, and JSA before shutting down inverter. 
+once LOTO mop and JSA were completed they completed LDL. 
+After completing LDL they began removing the Defective fan. 
+They removed the fan and installed the new fan. 
+The defective fan was placed back in the box and the claim # and WO# was written on the box. 
+Box was placed in Inverter conex  
+
+No specific troubleshooting steps, fan was identified as defective and replaced. Warranty claim jsut submitted.
+
+Warranty hold: The defective fan was placed back in the box and the claim # and WO# was written on the box. 
+Box was placed in Inverter conex 
+
+
+WO-1052439
+
+NCU snow stow - NEXTracker warranty claim- RES, 
+RES is overseeing the warranty claim. Claim was submitted before SC (5/31/2024). 
+Waiting on a response from NEXTracker
+
+Troubleshooting included identifying NCUs stuck in snow stow.
+The NCU units are the specific components covered under the warranty claim.
+
+WO-1052113
+Andrew Perez with SMA reported to GTII on 06/25/24 to replace Inverter 39 comm board. 
+After the Comm Board was replaced, communications were restored and Inverter 39 is back in service. 
+Warranty Claim - 407030446 with SMA has been closed. 
+
+
+WO-1052248
+
+Completed Desiccant change out at GT1 Bess yard in the inverters. also inspected inverters for moister intrusion and door seals and door mechanical parts   
+Changed out desiccants in all inverters at BESS yard for GT1. found several inverters having oil or coolant liquid in side of the top left hand side of the inverters the inverters with issues are listed as;  Bess inverter water intrusion left side F4-4-3 water intrusion left side</p><p>F4-4-1 water intrusion left side </p><p>F4-3-3 water intrusion left side</p><p>F4-3-1 liquid intrusion </p><p>F3-1-1 rust spots left slid back</p><p>F3-2-1 liquid left side </p><p>F3-2-2 liquid intrusion </p><p>F3-2-3 liquid intrusion </p><p>F3-7-1 liquid intrusion </p><p>All photos added to the workorder notes and attachments
+BESS Desiccant change out and inspection of GT1 bess inverters all pics and forms on workorder attachments 
+BESS Desiccant change out and inspection of GT1 bess inverters 
+Changed Desiccant in inverters at GT1 BESS yard. all photos and forms are uploaded to the workorder 
+GT1 Desiccant change out and inverter inspection 
+GT1 Desiccant change out and inverter inspection , We also cleaned out all inverters so there would be no previous liquid intrusion.
+
+
+WO-1053004,
+Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled 
