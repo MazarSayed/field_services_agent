@@ -121,9 +121,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         work_order_type_guidelines=get_prompt(f"work_order_type_guidelines.{work_order_type}")
         
         # Combine everything into a comprehensive system prompt
-        full_system_prompt = f"""
-        {work_status_system_prompt}
-
+        prompt = f"""
         ## WORK ORDER CONTEXT:
         Work Order Type: "{work_order_type}".
         You are validating an operational log for Work Contribution: {work_contribtion}.
@@ -141,12 +139,17 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
 
         ## VALIDATION INSTRUCTIONS:
         {validation_guidelines}
+
+        ## Intial User Log Notes:
+        {operational_log}
+
+        If the log is valid, return the follow-up question based on "Intial User Log Notes"
         """
         
         # Prepare messages for OpenAI API
         messages_list = [
-            {"role": "system", "content": full_system_prompt},
-            {"role": "user", "content": operational_log}
+            {"role": "system", "content": work_status_system_prompt},
+            {"role": "user", "content": prompt}
         ]
         
         # Add conversation messages if provided
@@ -155,7 +158,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         
         # Use instructor patched client for Pydanticresponse model
         patched_client = get_patched_client()
-        print("full_system_prompt: ", full_system_prompt)
+        print("user_prompt: ", prompt)
         print("work status system prompt: ", work_status_system_prompt)
 
         response = patched_client.chat.completions.create(
@@ -206,8 +209,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         hold_reason_system_prompt = get_prompt("system_prompts.hold_reason_system_prompt")
         
         # Combine everything into a comprehensive system prompt
-        full_system_prompt = f"""
-        {hold_reason_system_prompt}
+        prompt = f"""
 
         ## WORK ORDER CONTEXT:
         Work Order Type: "{work_order_type}".
@@ -222,12 +224,17 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
 
         ## VALIDATION INSTRUCTIONS:
         {hold_reason_validation_instructions}
+
+        ## Intial User Hold Reason:
+        {hold_reason}
+
+        If the hold reason is valid, return the follow-up question based on "Intial User Hold Reason"
         """
         
         # Prepare messages for OpenAI API
         messages_list = [
-            {"role": "system", "content": full_system_prompt},
-            {"role": "user", "content": hold_reason}
+            {"role": "system", "content": hold_reason_system_prompt},
+            {"role": "user", "content": prompt}
         ]
         
         # Add conversation messages if provided
@@ -377,7 +384,7 @@ def convert_to_client_summary(conversation_table: list[dict], work_order_descrip
                 {"role": "user", "content": prompt}
             ],
             max_tokens=400,
-            temperature=0.3
+            temperature=0.1
         )
         
         # Return the validated Pydantic model directly

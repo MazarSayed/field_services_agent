@@ -38,17 +38,13 @@ class ClientSummaryConversionRequest(BaseModel):
 class WorkStatusValidationResponse(BaseModel):
     """Response model for work status log validation"""
     valid: bool = Field(description="Whether the operational log meets all guidlines provided")
-    missing: str = Field(description="Specific missing requirements if validation fails the guidlines provided")
-    follow_up_question: str = Field(description="A single specific follow-up question to gather missing information based on log notes provided")
+    follow_up_question: str = Field(description="A single specific follow-up question to gather information based on user log notes provided")
 
 
 class HoldReasonValidationResponse(BaseModel):
     """Response model for hold reason validation"""
     valid: bool = Field(description="Whether the hold reason meets all requirements")
-    missing: str = Field(description="Specific missing requirements if validation fails")
-    follow_up_question: str = Field(description="A single specific follow-up question to gather missing information based on log notes provided")
-    hold_reason_analysis: str = Field(description="Analysis of the hold reason and its validity")
-    recommended_actions: str = Field(description="Recommended actions to resolve the hold")
+    follow_up_question: str = Field(description="A single specific follow-up question to gather information based on user hold reason provided")
 
 
 class TranscriptionResponse(BaseModel):

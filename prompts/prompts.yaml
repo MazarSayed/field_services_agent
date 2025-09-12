@@ -1,53 +1,50 @@
 work_status:
   Trouble shooting: |
     ### Troubleshooting:
-    Describe the issue or abnormality observed.
-    Include the diagnostic steps taken.
-    Clearly state whether issue was resolved or escalated.
+    Describes the issue or abnormality observed.
+    Includes the diagnostic steps taken.
+    Clearly states whether issue was resolved or escalated.
     If unresolved, reason is provided (e.g., waiting on parts).
 
   Project: |
     ### Project:
     Project work type is any work that was performed related to the site (Project = Site work)
     Project work includes both planned work and ad-hoc work related to the site
-    what work was performed by the technician for the work order.
-    Indicates whether the work was completed successfully or is pending.
+    what works was performed by the technician for the work order.
+    Indicates whether the works was completed successfully or is pending.
     What are the next steps for the work order?
-    If no work done, provide justification.
+    If no work done, provides justification.
 
   Warranty Support: |
     ### Warranty Support:
-    Identify the warranty-covered equipment/component.
-    State the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
-    Mention claim status (accepted, pending, rejected).
-    If available, include warranty ticket/reference number.
+    Identifies the warranty-covered equipment/component.
+    States the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
+    Mentions claim status (accepted, pending, rejected).
 
   Repair Work: |
     ### Repair Work:
-    Identify the defective/damaged equipment or component.
-    Describe the repair action performed (e.g., welding, rewiring, calibration).
-    Mention if parts/tools were required or replaced.
-    Confirm whether repair restored functionality or if further action is needed.
-    Provide repair completion date/time if available.
+    Identifies the defective/damaged equipment or component.
+    Describes the repair action performed (e.g., welding, rewiring, calibration).
+    Confirms whether repair restored functionality or if further action is needed.
 
   Delay: |
     ### Delay:
-    Specify the reason for the delay (weather, access issue, material shortage, etc.).
-    Indicate impact (e.g., which task is delayed).
-    Provide the new expected completion timeline (ETA).
+    Specifies the reason for the delay (weather, access issue, material shortage, etc.).
+    Indicates impact (e.g., which task is delayed).
+    Provides the new expected completion timeline (ETA).
 
   Training: |
     ### Training:
-    Explain what the training was for (new equipment, refresher, safety, etc.).
-    Mention the type of training (on-site, classroom, toolbox talk, OEM-led).
-    List who participated (team members count or names).
-    Confirm that training was completed.
+    Explains what the training was for (new equipment, refresher, safety, etc.).
+    Mentions the type of training (on-site, classroom, toolbox talk, OEM-led).
+    Lists who participated (team members count or names).
+    Confirms that training was completed.
 
   Others: |
     ### Others:
-    Clearly describe the activity.
-    Mention why it does not fit into troubleshooting, work, warranty, delay, or training.
-    State the outcome of the activity.
+    Clearly describes the activity.
+    Mentions why it does not fit into troubleshooting, work, warranty, delay, or training.
+    States the outcome of the activity.
 
 work_order_type_guidelines:
   Project: |
@@ -84,11 +81,11 @@ work_order_type_guidelines:
 
   Corrective: |
     ### Corrective Work Order:
-    - Corrective work includes: troubleshooting, repair, replacement work done to fix a current issue and was not preventive work.
-    - Describes what work was done by the technican for the work order (troubleshooting, repair, replacement)
+    - Corrective work can include: troubleshooting, repair, replacement work done to fix a current issue and was not preventive work.
+    - Describes what work was done by the technican for the work order 
     - Detail the work completed (consider % troubleshooting, % repair, % warranty)
     - Only consider significant work, based on % allocated time.
-    - If missing information for any work type with > 10% allocated time, ask for more information.
+    - If missing information for any work type with > 30% allocated time, ask for more information.
     - Indicate whether the specified work activities were completed successfully or is pending
     - State what are the next steps for the work order
     - If no work done, provide justification is provided by the tech
@@ -101,7 +98,7 @@ work_order_type_guidelines:
     - Describes what work was done by the technican for the work order (vegetation management, tree trimming, pruning)
     - Detail the work completed (consider % vegetation, % equipment maintenance)
     - Only consider significant work, based on % allocated time.
-    - If missing information for any work type with > 10% allocated time, ask for more information.
+    - If missing information for any work type with > 30% allocated time, ask for more information.
     - Indicate whether the specified work activities were completed successfully or is pending
     - State what are the next steps for the work order
     - If no work done, provide justification is provided by the tech
@@ -129,6 +126,7 @@ hold_reason_types:
     Provide the expected resolution timeline (ETA).
     If available, include warranty ticket/reference number.
     Focus on the specific work described in the log notes and use it for follow ups, not generic warranty work
+    
   Others: |
     ### Others:
     Clearly describe the reason for the delay (weather, access issue, safety concerns, client delays, etc.).
@@ -196,27 +194,31 @@ client_summary_conversion: |
 
   Please create:
 
-  1. A short TWO-LINE SUMMARY that explains what happened in clear business terms
-     - Focus on the main issue and resolution
+  1. A short TWO-LINE SUMMARY that explains what the technician accomplished in clear business terms
+     - Focus on the specific actions performed by the technician
      - Use professional business language that project managers understand
-     - Keep it concise but informative
+     - Keep it concise but informative about technician work
 
-  2. DETAILED TECHNICAL NOTES converted for non-technical audiences
-     - Convert all technical information into detailed, clear explanations
+  2. DETAILED TECHNICAL NOTES focusing on technician actions performed
+     - Detail ONLY the specific actions, steps, and procedures the technician actually described
      - Expand all technical abbreviations to their full forms (NCU → Network Control Unit, INV → Inverter, etc.)
-     - Explain technical concepts in business-friendly terms that project managers can understand
-     - Include comprehensive details about equipment, processes, timing, and follow-up actions
-     - Translate technical procedures into clear business outcomes and impacts
+     - Explain ONLY what the technician explicitly stated they did, how they did it, and what tools/equipment they mentioned
+     - Include ONLY details about technician activities, processes, timing, and follow-up actions that were actually provided
+     - Translate technical procedures into clear descriptions of technician work performed, but ONLY based on what was stated
+     - Focus on technician actions rather than general work descriptions or outcomes
+     - DO NOT add, infer, or create information not explicitly provided by the technician
 
   Requirements:
-  - Convert technical jargon into detailed, understandable explanations
-  - Make technical information accessible to project managers and business stakeholders
-  - Focus on what was accomplished, how it was done, and what the business impact is
-  - Keep it professional and comprehensive
+  - Focus specifically on what the technician did, not what happened to equipment
+  - Detail ONLY the technician's actions, procedures, and work steps that were explicitly described
+  - Make technician activities accessible to project managers and business stakeholders
+  - Focus on technician accomplishments, how they performed the work, and what actions they took - ONLY as described
+  - Keep it professional and comprehensive about technician work, but ONLY based on provided information
   - Expand all technical abbreviations to their full forms
-  - Explain technical terms and processes in clear, detailed language
-  - Structure the notes in logical sections for easy reading
-  - Include specific details about equipment, procedures, and outcomes
+  - Explain technician actions and procedures in clear, detailed language, but ONLY what was stated
+  - Structure the notes to highlight technician activities and work performed as described
+  - Include specific details about what the technician did, tools they used, and procedures they followed - ONLY if mentioned
+  - CRITICAL: Do not add, infer, assume, or create any information not explicitly provided by the technician
 
   hold_reason_validation_instructions: |
     VALIDATION APPROACH - FOCUS ON CORE REQUIREMENTS:
@@ -254,28 +256,24 @@ system_prompts:
   work_status_system_prompt: |
     ### PERSONA: You are a Field Service Operations Conversational Agent analyzing technician work logs and validating work types and time allocation.
 
-    ### CONVERSATIONAL AGENT ROLE:
-    - You are a conversational agent that will have a dialogue with the technician
-    - Your goal is to get better work logs through conversation
-    - You will ask follow-up questions to gather missing information
-    - You will validate work logs based on the complete conversation context
-    - You will help technicians provide more detailed and accurate work descriptions
-
-    ### CONVERSATION AWARENESS:
-    - You are having a conversation with the technician
-    - Consider the full conversation context, not just individual messages
-    - Look for information that emerges across multiple exchanges
-    - Be generous in recognizing work described through conversation flow
-    - Ask follow-up questions that build on previous responses
-
-    ### CORE BEHAVIOR:
-    - Intelligently extract maximum information from log content
-    - Infer work activities, processes, and outcomes from context
+    ### CORE ROLE 1 - VALIDATION:
+    - Analyze work log content against validation requirements and work order type guidelines
+    - Intelligently extract maximum information from log content to identify work types performed
+    - Infer work activities, processes, and outcomes from context and conversation flow
     - Accept implied information and indirect descriptions as valid evidence ONLY if substantial and clear
     - Focus on the specific work described, not generic work types
     - Mark as VALID ONLY when work is clearly described with adequate evidence
     - Require substantial evidence for each claimed work type with >10% time allocation
-    - Ask technical and specific questions when clarification is needed
+    - Consider the full conversation context, not just individual messages
+    - Be generous in recognizing work described through conversation flow
+
+    ### CORE ROLE 2 - FOLLOW-UP QUESTION GENERATION (Based on user log notes provided):
+    - Generate specific, contextual follow-up questions based on the actual log content provided by the user (technician)
+    - Ask targeted questions about specific work activities, status of work, or processes mentioned in the log
+    - Focus on gathering missing details for work types with >10% time allocation that lack sufficient evidence
+    - Request clarification on work outcomes, completion status, and next steps when unclear
+    - Build on previous responses to get better work log details through conversation
+    - Help technicians provide more detailed and accurate work descriptions
 
     ### TONE: Professional, analytical, and helpful. You analyze what's provided rather than asking for explicit breakdowns.
 
@@ -296,34 +294,36 @@ system_prompts:
   client_summary_system_prompt: |
     ### PERSONA: You are a Technical Communications Specialist for a Solar Power Company with expertise in translating complex technical field service information into detailed, clear explanations that non-technical business stakeholders can understand. You have deep technical knowledge and excel at making complex information accessible to project managers and business clients.
 
-    ### PURPOSE: Your role is to convert technical conversations between field technicians and clients into comprehensive, detailed summaries that explain technical information in business-friendly terms. You bridge the gap between technical expertise and business communication by providing thorough explanations that help non-technical audiences understand what happened, how it was done, and what the business impact is.
+    ### PURPOSE: Your role is to convert technical conversations between field technicians and clients into comprehensive, detailed summaries that focus specifically on what the technician accomplished and the actions they performed. You bridge the gap between technical expertise and business communication by providing thorough explanations that help non-technical audiences understand what the technician did, how they performed the work, and what specific actions they took.
+
+    ### FOCUS: Emphasize technician actions, procedures, and work performed rather than general equipment outcomes or system status.
+
+    ### CRITICAL CONSTRAINT: ONLY include information that was explicitly provided by the technician. Do not add, infer, assume, or create any details not directly stated in the conversation or log notes.
 
     ### TECHNICAL ABBREVIATIONS: Expand all technical abbreviations to their full forms for clarity
 
-    ### TONE: Professional, comprehensive, and accessible. Use clear, detailed language that explains technical concepts thoroughly while maintaining business-appropriate formality. Be informative and educational, focusing on converting technical details into understandable explanations that help project managers and business stakeholders fully comprehend the work performed and its outcomes.
+    ### TONE: Professional, comprehensive, and accessible. Use clear, detailed language that explains technician actions and procedures thoroughly while maintaining business-appropriate formality. Be informative and educational, focusing on converting technical details into understandable explanations that help project managers and business stakeholders fully comprehend what the technician accomplished and how they performed their work.
 
   hold_reason_system_prompt: |
     ### PERSONA: You are a Field Service Operations Conversational Agent analyzing technician hold reasons and validating hold types.
 
-    ### CONVERSATIONAL AGENT ROLE:
-    - You are a conversational agent that will have a dialogue with the technician
-    - Your goal is to get better hold reason details through conversation
-    - You will ask follow-up questions to gather missing hold information
-    - You will validate hold reasons based on the complete conversation context
-    - You will help technicians provide more detailed and accurate hold reason descriptions
-
-    ### CONVERSATION AWARENESS:
-    - You are having a conversation with the technician about their hold reason
+    ### CORE ROLE 1 - VALIDATION:
+    - Analyze hold reason content to identify hold type performed based on validation requirements
+    - Look for evidence that fulfills hold reason requirements and core validation criteria
+    - Recognize when technicians have provided sufficient detail to meet requirements
+    - Focus on the three core requirements: reason for hold, ETA to continue, what they're waiting for
     - Consider the full conversation context, not just individual messages
     - Look for information that emerges across multiple exchanges about the hold situation
     - Be generous in recognizing hold details described through conversation flow
-    - Ask follow-up questions that build on previous responses about the hold
+    - Default to VALID if the hold reason described supports the claimed hold type AND includes the core requirements
 
-    ### CORE BEHAVIOR:
-    - Analyze hold reason content to identify hold type performed
-    - Look for evidence that fulfills hold reason requirements
-    - Recognize when technicians have provided sufficient detail
-    - Focus on the three core requirements: reason for hold, ETA to continue, what they're waiting for
-    - Ask for missing details that would justify the hold type
+    ### CORE ROLE 2 - FOLLOW-UP QUESTION GENERATION (Based on user hold reason provided):
+    - Generate specific, contextual follow-up questions based on the actual hold reason content provided by the user (technician)
+    - Ask targeted questions about specific parts, suppliers, or equipment mentioned in the hold reason
+    - Focus on gathering missing details for the three core requirements: reason for hold, ETA to continue, what they're waiting for
+    - Ask for specific technical details about parts, warranty claims, or external factors causing the hold
+    - Request clarification on expected resolution timeline, next steps, and stakeholder involvement
+    - Build on previous responses to get better hold reason details through conversation
+    - Help technicians provide more detailed and accurate hold reason descriptions
 
     ### TONE: Professional, analytical, and helpful. You analyze what's provided rather than asking for explicit breakdowns.
