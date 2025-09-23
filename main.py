@@ -5,15 +5,19 @@ FastAPI application for managing solar work orders and field services
 
 from datetime import datetime, date
 from fastapi import FastAPI, HTTPException
+from fastapi import Body, Response
 from fastapi.middleware.cors import CORSMiddleware
 import json
+import os
+import requests
 
 # Import models and AI functions directly
 from models.models import (
     WorkOrderResponse, WorkStatusValidationRequest, WorkStatusValidationResponse, CARFormatResponse, 
     ClientSummaryResponse, WorkStatusLogRequest, WorkStatusSubmissionRequest,
     CompletionNotesRequest, ClientSummaryRequest, WorkStatusLogs, WorkOrderUpdateResponse, 
-    ChatSubmissionRequest, HoldReasonValidationRequest, HoldReasonValidationResponse, HoldNotesSubmissionRequest, HoldNotes
+    ChatSubmissionRequest, HoldReasonValidationRequest, HoldReasonValidationResponse, HoldNotesSubmissionRequest, HoldNotes,
+    WorkStatusLogUpdate, HoldNoteUpdate, WorkStatusLogResponse, HoldNoteResponse
 )
 from src.ai_classifier import validate_work_status_log, validate_reason_for_hold, convert_to_car_format, convert_to_client_summary
 from src.data_access import get_data_access
@@ -108,20 +112,17 @@ def get_existing_work_logs(work_order_id: str) -> str:
         if not filtered_logs:
             return "No previous work logs found for this work order."
         
-        # Format the logs as a table with correct column names including dates
-        log_table = "Date | Tech Name | Time allocation | Notes | Summary\n"
+        # Format the logs as a table with correct column names including dates and time
+        log_table = "Date | Time EST | Tech Name | Time allocation | Notes | Summary\n"
         for log in filtered_logs:
-            # Extract date from created_at timestamp (format: "2024-07-01 13:30:00" -> "2024-07-01")
-            created_at = log.get('created_at', '')
-            if created_at and ' ' in created_at:
-                work_date = created_at.split(' ')[0]  # Extract just the date part
-            else:
-                work_date = created_at
+            # Use work_date and time_EST from the log
+            work_date = log.get('work_date', '')
+            time_est = log.get('time_EST', '')
             tech_name = log.get('tech_name', '')
             time_allocation = log.get('work_status', '')
             notes = log.get('notes', '')
             summary = log.get('summary', '')
-            log_table += f"{work_date} | {tech_name} | {time_allocation} | {notes} | {summary}\n"
+            log_table += f"{work_date} | {time_est} | {tech_name} | {time_allocation} | {notes} | {summary}\n"
         
         return log_table
     except Exception as e:
@@ -159,6 +160,7 @@ def submit_work_status(tech_name: str, work_date: str, work_status: dict, plant:
         'id': next_id,
         'tech_name': tech_name,
         'work_date': work_date,
+        'time_EST': end_time,  # Use start_time as time_EST
         'work_status': work_status,
         'time_spent': time_spent,
         'notes': notes,
@@ -180,7 +182,7 @@ def submit_work_status(tech_name: str, work_date: str, work_status: dict, plant:
 
     # Define fieldnames to match current database schema
     fieldnames = [
-        'id', 'tech_name', 'work_date', 'work_status', 'time_spent', 'notes', 'summary', 
+        'id', 'tech_name', 'work_date', 'time_EST', 'work_status', 'time_spent', 'notes', 'summary', 
         'work_order_id', 'email', 'plant_description', 'day_name', 'operating_log_id', 
         'car_flag', 'is_weekend', 'wo_status', 'wo_type', 'user_resource', 'user_fsm_email', 
         'created_at', 'updated_at'
@@ -323,6 +325,56 @@ def get_hold_notes(work_order_id: str):
     return {
         "hold_notes": filtered_hold_notes
     }
+
+def update_work_status_log_notes(log_id: int, notes: str):
+    """Update notes for a specific work status log"""
+    work_logs = data_access.load_work_status_logs()
+    
+    # Find the work status log by ID
+    work_log = None
+    for log in work_logs:
+        if int(log.get('id', 0)) == log_id:
+            work_log = log
+            break
+    
+    if not work_log:
+        return None
+    
+    # Update the notes
+    work_log['notes'] = notes
+    work_log['updated_at'] = datetime.now().isoformat()
+    
+    # Save back to CSV
+    success = data_access.update_work_status_log(work_log)
+    if not success:
+        return None
+    
+    return work_log
+
+def update_hold_note_notes(note_id: int, notes: str):
+    """Update notes for a specific hold note"""
+    hold_notes = data_access.load_hold_notes()
+    
+    # Find the hold note by ID
+    hold_note = None
+    for note in hold_notes:
+        if int(note.get('id', 0)) == note_id:
+            hold_note = note
+            break
+    
+    if not hold_note:
+        return None
+    
+    # Update the notes
+    hold_note['notes'] = notes
+    hold_note['updated_at'] = datetime.now().isoformat()
+    
+    # Save back to CSV
+    success = data_access.update_hold_note(hold_note)
+    if not success:
+        return None
+    
+    return hold_note
 
 def save_conversation(conversation_table: list[dict], work_order_id: str, work_status: str):
     """Save conversation to CSV database"""
@@ -504,6 +556,7 @@ async def validate_work_status(request: WorkStatusValidationRequest):
 @app.post("/validate-reason-for-hold", response_model=HoldReasonValidationResponse)
 async def validate_reason_hold(request: HoldReasonValidationRequest):
     """Validate hold reason against work order requirements"""
+    print("QA: ", request.follow_up_questions_answers_table)
     try:
         result = validate_reason_for_hold(
             hold_reason=request.hold_reason,
@@ -678,6 +731,70 @@ async def get_work_status_logs_endpoint(work_order_id: str):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting hold notes: {str(e)}")
+
+# Update work status log notes
+@app.put("/work-status-logs/{log_id}", response_model=WorkStatusLogResponse)
+async def update_work_status_log_notes_endpoint(
+    log_id: int,
+    log_update: WorkStatusLogUpdate
+):
+    """
+    Update notes for a specific work status log
+    """
+    try:
+        # Find and update the work status log
+        updated_log = update_work_status_log_notes(log_id, log_update.notes)
+        
+        if not updated_log:
+            raise HTTPException(status_code=404, detail="Work status log not found")
+        
+        # Convert to response model
+        return WorkStatusLogResponse(
+            id=int(updated_log.get('id', 0)),
+            tech_name=updated_log.get('tech_name', ''),
+            work_date=updated_log.get('work_date', ''),
+            work_status=updated_log.get('work_status', {}),
+            time_spent=float(updated_log.get('time_spent', 0)),
+            notes=updated_log.get('notes', ''),
+            summary=updated_log.get('summary', ''),
+            work_order_id=updated_log.get('work_order_id', ''),
+            updated_at=updated_log.get('updated_at', '')
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to update work status log: {str(e)}")
+
+# Update hold note notes
+@app.put("/hold-notes/{note_id}", response_model=HoldNoteResponse)
+async def update_hold_note_notes_endpoint(
+    note_id: int,
+    note_update: HoldNoteUpdate
+):
+    """
+    Update notes for a specific hold note
+    """
+    try:
+        # Find and update the hold note
+        updated_note = update_hold_note_notes(note_id, note_update.notes)
+        
+        if not updated_note:
+            raise HTTPException(status_code=404, detail="Hold note not found")
+        
+        # Convert to response model
+        return HoldNoteResponse(
+            id=int(updated_note.get('id', 0)),
+            hold_reason=updated_note.get('hold_reason', ''),
+            hold_date=updated_note.get('hold_date', ''),
+            notes=updated_note.get('notes', ''),
+            summary=updated_note.get('summary', ''),
+            work_order_id=updated_note.get('work_order_id', ''),
+            updated_at=updated_note.get('updated_at', '')
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to update hold note: {str(e)}")
     
 
 # Endpoint 6: Get all technicians
@@ -719,6 +836,38 @@ async def get_config():
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading configuration: {str(e)}")
+
+# Realtime Transcription: Ephemeral session creation (per OpenAI docs)
+@app.post("/realtime/ephemeral")
+async def create_ephemeral_session():
+    try:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise HTTPException(status_code=500, detail="OPENAI_API_KEY not configured")
+
+        model = config.get("openai", {}).get("model") or "gpt-4o-realtime-preview-2024-12-17"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+            "OpenAI-Beta": "realtime=v1",
+        }
+        payload = {
+            "model": model
+        }
+        r = requests.post(
+            "https://api.openai.com/v1/realtime/sessions",
+            headers=headers,
+            json=payload,
+            timeout=30,
+        )
+        if r.status_code >= 400:
+            raise HTTPException(status_code=r.status_code, detail=r.text)
+        return r.json()
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 if __name__ == "__main__":
     import uvicorn

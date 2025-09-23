@@ -157,6 +157,40 @@ class DataAccessLayer:
             return self.write_csv_file(filename, data, fieldnames)
         return False
 
+    def update_work_status_log(self, updated_log: dict) -> bool:
+        """Update an existing work status log in the CSV by id"""
+        filename = self.csv_files['work_status_logs']
+        data = self.read_csv_file(filename)
+        updated = False
+
+        for i, row in enumerate(data):
+            if int(row.get("id", 0)) == int(updated_log.get("id", 0)):
+                data[i] = updated_log
+                updated = True
+                break
+
+        if updated:
+            fieldnames = data[0].keys() if data else updated_log.keys()
+            return self.write_csv_file(filename, data, fieldnames)
+        return False
+
+    def update_hold_note(self, updated_note: dict) -> bool:
+        """Update an existing hold note in the CSV by id"""
+        filename = self.csv_files['hold_notes']
+        data = self.read_csv_file(filename)
+        updated = False
+
+        for i, row in enumerate(data):
+            if int(row.get("id", 0)) == int(updated_note.get("id", 0)):
+                data[i] = updated_note
+                updated = True
+                break
+
+        if updated:
+            fieldnames = data[0].keys() if data else updated_note.keys()
+            return self.write_csv_file(filename, data, fieldnames)
+        return False
+
 
 # Global instance
 _data_access_instance = None

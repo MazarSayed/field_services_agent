@@ -112,7 +112,7 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
                 work_contribtion += f"{work_status_type} - {pct}%\n"
                 status_requirements += (
                 get_prompt(f"work_status.{work_status_type}")
-                + f" Percentage of allocated time for the work type: {pct}%\n\n"
+                + f" Percentage of allocated time for the work type: {pct}%\n"
                 )
             
         # Get validation instructions and system prompt
@@ -120,30 +120,40 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         validation_guidelines=get_prompt("validation_instructions")
         work_order_type_guidelines=get_prompt(f"work_order_type_guidelines.{work_order_type}")
         
+        # Format conversation history for inclusion in prompt
+        conversation_context = ""
+        if messages and len(messages) > 1:
+            conversation_context = "\n\n## CONVERSATION HISTORY:\n"
+            for i, msg in enumerate(messages[1:], 1):
+                role = "Assistant" if msg["role"] == "assistant" else "Technician"
+                conversation_context += f"Turn {i} - {role}: {msg['content']}\n"
+
         # Combine everything into a comprehensive system prompt
         prompt = f"""
         ## WORK ORDER CONTEXT:
-        Work Order Type: "{work_order_type}".
-        You are validating an operational log for Work Contribution: {work_contribtion}.
-        The cause of work: "{work_order_description}".
-        The plant is: "{plant}".
+        Work Order Type: "{work_order_type}".\n
+        You are validating an operational log for Work Contribution: {work_contribtion}.\n
+        The cause of work: "{work_order_description}".\n
+        The plant is: "{plant}".\n
 
         ## PREVIOUS LOGS FOR THE SAME WORK ORDER FOR EXTRA CONTEXT:
-        {wo_status_and_notes_with_time_allocation_table}
+        {wo_status_and_notes_with_time_allocation_table}\n
 
         ## WORK ORDER TYPE GUIDELINES:
-        {work_order_type_guidelines}
+        {work_order_type_guidelines}\n
 
         ## WORK BASED GUIDELINES:
-        {status_requirements}
+        {status_requirements}\n
 
         ## VALIDATION INSTRUCTIONS:
-        {validation_guidelines}
+        {validation_guidelines}\n
 
-        ## Intial User Log Notes:
-        {operational_log}
-
-        If the log is valid, return the follow-up question based on "Intial User Log Notes"
+        If the log is invalid, return the follow-up question based on "Intial User Log Notes" and follow up answers from the conversation history.\n
+        ## Intial User Log Notes:\n
+        {operational_log}\n
+        
+        Your Previous Follow Up Questions and Answers:\n
+        {conversation_context}
         """
         
         # Prepare messages for OpenAI API
@@ -151,10 +161,6 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
             {"role": "system", "content": work_status_system_prompt},
             {"role": "user", "content": prompt}
         ]
-        
-        # Add conversation messages if provided
-        if messages:
-            messages_list.extend(messages[1:])
         
         # Use instructor patched client for Pydanticresponse model
         patched_client = get_patched_client()
@@ -199,15 +205,22 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
 
     try:
         # Get hold reason type requirements
-        print("hold_reason: ", hold_reason)
         hold_reason_requirements = ""
         hold_reason_requirements += get_prompt(f"hold_reason_types.{hold_reason}") + "\n"
-        
+        hold_reason = hold_reason+"-"+messages[0]["content"]
 
         # Get validation instructions and system prompt
         hold_reason_validation_instructions = get_prompt("hold_reason_validation_instructions")
         hold_reason_system_prompt = get_prompt("system_prompts.hold_reason_system_prompt")
         
+        # Format conversation history for inclusion in prompt
+        conversation_context = ""
+        if messages and len(messages) > 1:
+            conversation_context = "\n\n## CONVERSATION HISTORY:\n"
+            for i, msg in enumerate(messages[1:], 1):
+                role = "Assistant" if msg["role"] == "assistant" else "Technician"
+                conversation_context += f"Turn {i} - {role}: {msg['content']}\n"
+
         # Combine everything into a comprehensive system prompt
         prompt = f"""
 
@@ -225,10 +238,13 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
         ## VALIDATION INSTRUCTIONS:
         {hold_reason_validation_instructions}
 
-        ## Intial User Hold Reason:
+        If the hold reason is invalid, return the follow-up question based on "Reason for Hold" and follow up answers from the conversation history.
+        ## Reason for Hold:
         {hold_reason}
+        
+        Your Previous Follow Up Questions and Answers:\n
+        {conversation_context}
 
-        If the hold reason is valid, return the follow-up question based on "Intial User Hold Reason"
         """
         
         # Prepare messages for OpenAI API
@@ -236,10 +252,8 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
             {"role": "system", "content": hold_reason_system_prompt},
             {"role": "user", "content": prompt}
         ]
-        
-        # Add conversation messages if provided
-        if messages:
-            messages_list.extend(messages[1:])
+        print("user_prompt: ", prompt)
+        print("hold reason system prompt: ", hold_reason_system_prompt)
         
         # Use instructor patched client for Pydantic response model
         patched_client = get_patched_client()
@@ -251,7 +265,7 @@ def validate_reason_for_hold(hold_reason: str, work_order_type: str, work_order_
             max_tokens=300,
             temperature=0.1
         )
-        
+        print("messages_list: ", messages_list)
         # Return the validated Pydantic model directly
         return response
             

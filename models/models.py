@@ -50,7 +50,6 @@ class HoldReasonValidationResponse(BaseModel):
 class TranscriptionResponse(BaseModel):
     """Response model for audio transcription"""
     transcript: str = Field(description="Transcribed text from audio file")
-    success: bool = Field(description="Whether transcription was successful")
     error_message: Optional[str] = Field(default=None, description="Error message if transcription failed")
 
 
@@ -59,7 +58,6 @@ class CARFormatResponse(BaseModel):
     cause: str = Field(description="What caused the need for this work")
     action: str = Field(description="What specific actions were taken")
     result: str = Field(description="What was the outcome of the work")
-    success: bool = Field(description="Whether conversion was successful")
     error_message: Optional[str] = Field(default=None, description="Error message if conversion failed")
 
 
@@ -67,7 +65,6 @@ class ClientSummaryResponse(BaseModel):
     """Response model for client summary conversion"""
     summary: str = Field(description="One-line summary in plain language under 10 words")
     notes: str = Field(description="Simplified notes for basic clients between 60 to 70 words")
-    success: bool = Field(description="Whether conversion was successful")
     error_message: Optional[str] = Field(default=None, description="Error message if conversion failed")
 
 
@@ -188,3 +185,41 @@ class ClientSummaryRequest(BaseModel):
     work_status: dict = Field(..., description="Work status types and their percentage allocation")
     plant: str = Field(..., description="Plant location for context")
     work_order_type: str = Field(..., description="Type of work order (Project, OEM, Preventive, etc.)")
+
+
+# ============================================================================
+# Update Models
+# ============================================================================
+
+class WorkStatusLogUpdate(BaseModel):
+    """Request model for updating work status log notes"""
+    notes: str = Field(..., description="Updated notes for the work status log")
+
+
+class HoldNoteUpdate(BaseModel):
+    """Request model for updating hold note notes"""
+    notes: str = Field(..., description="Updated notes for the hold note")
+
+
+class WorkStatusLogResponse(BaseModel):
+    """Response model for work status log update"""
+    id: int = Field(..., description="Work status log ID")
+    tech_name: str = Field(..., description="Technician name")
+    work_date: str = Field(..., description="Work date")
+    work_status: dict = Field(..., description="Work status")
+    time_spent: float = Field(..., description="Time spent")
+    notes: str = Field(..., description="Updated notes")
+    summary: str = Field(..., description="Summary")
+    work_order_id: str = Field(..., description="Work order ID")
+    updated_at: str = Field(..., description="Last updated timestamp")
+
+
+class HoldNoteResponse(BaseModel):
+    """Response model for hold note update"""
+    id: int = Field(..., description="Hold note ID")
+    hold_reason: str = Field(..., description="Hold reason")
+    hold_date: str = Field(..., description="Hold date")
+    notes: str = Field(..., description="Updated notes")
+    summary: str = Field(..., description="Summary")
+    work_order_id: str = Field(..., description="Work order ID")
+    updated_at: str = Field(..., description="Last updated timestamp")

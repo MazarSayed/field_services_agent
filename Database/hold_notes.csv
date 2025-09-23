@@ -1,2 +1,1 @@
 id,hold_reason,hold_date,notes,summary,work_order_id,created_at,updated_at
-1,Parts Unavailable,2025-09-08,"The technician is currently unable to proceed with the work because they are waiting for a replacement part called the Insulated Gate Bipolar Transistor module for Inverter 14. Unfortunately, there is no estimated time for when this part will be available. We will keep you updated as soon as we receive more information.",Waiting for part replacement to continue work.,WO-1053004,2025-09-08T16:55:30.659853,2025-09-08T16:55:30.659867

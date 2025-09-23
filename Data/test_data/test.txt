@@ -27,12 +27,14 @@ Follow ups:
 Performed visual inspection and electrical tests to confirm contactor failure. Verified wiring and conducted functional testing after replacement to ensure proper operation.
 
 WO-1062226
-Spc off line, reconnected mc4 connector tracked spc to charge, spc operational. 
 Eric Bowen and Jacob Collins found block 38C SPC324 not tracking and stowed in the west. 
 After walking to SPC they found that the SPC light was not flashing, 
-after troubleshooting they found that the MC4 from the charging module was not connected properly. 
-they then reconnected the MC4 and used the row turner to track row to the east so SPC battery could charge. 
+after troubleshooting they found that the MC4 from the charging module was not connected properly.
+Next is to reconnected the MC4.
+
+We reconnected the MC4 and used the row turner to track row to the east so SPC battery could charge. 
 after waiting around 10 minutes for battery to charge they returned SPC to service and it was working properly.
+Issue is resolved now.
 
 The MC4 connector issue was documented as a potential warranty-related concern. Photos and findings were recorded and submitted to Origis for review, but no parts were replaced during this visit.
 
@@ -62,25 +64,32 @@ Warranty hold: The defective fan was placed back in the box and the claim # and 
 Box was placed in Inverter conex 
 
 
-WO-1052439
+WO-1052439- INV 28 NCUs 61 and 62 indicate stuck eastwards
+Trouble shooted the issue, found the issue is with NCU. Applied for NEXTracker warranty claim and waiting for response 
 
-NCU snow stow - NEXTracker warranty claim- RES, 
+Inspected and confirmed the NCU is stuck in snow stow,verified connections and error logs. 
+Documented findings and applied for NEXTracker warranty claim - Res, 
 RES is overseeing the warranty claim. Claim was submitted before SC (5/31/2024). 
-Waiting on a response from NEXTracker
+Waiting on a response from NEXTracker. Issue is not yet resolved.
 
 Troubleshooting included identifying NCUs stuck in snow stow.
 The NCU units are the specific components covered under the warranty claim.
 
 WO-1052113
-Andrew Perez with SMA reported to GTII on 06/25/24 to replace Inverter 39 comm board. 
-After the Comm Board was replaced, communications were restored and Inverter 39 is back in service. 
-Warranty Claim - 407030446 with SMA has been closed. 
+Andrew Perez with SMA reported to GTII on 06/25/24 to replace the Inverter 39 comm board. 
+The technician replaced the comm board, secured all connections, and verified that communications were fully restored. 
+Inverter 39 is now fully operational. Warranty Claim 407030446 with SMA has been closed.
 
 
 WO-1052248
 
-Completed Desiccant change out at GT1 Bess yard in the inverters. also inspected inverters for moister intrusion and door seals and door mechanical parts   
-Changed out desiccants in all inverters at BESS yard for GT1. found several inverters having oil or coolant liquid in side of the top left hand side of the inverters the inverters with issues are listed as;  Bess inverter water intrusion left side F4-4-3 water intrusion left side</p><p>F4-4-1 water intrusion left side </p><p>F4-3-3 water intrusion left side</p><p>F4-3-1 liquid intrusion </p><p>F3-1-1 rust spots left slid back</p><p>F3-2-1 liquid left side </p><p>F3-2-2 liquid intrusion </p><p>F3-2-3 liquid intrusion </p><p>F3-7-1 liquid intrusion </p><p>All photos added to the workorder notes and attachments
+Completed Desiccant change out at GT1 Bess yard in the inverters. 
+also inspected inverters for moister intrusion and door seals and door mechanical parts   
+
+Changed out desiccants in all inverters at BESS yard for GT1. 
+found several inverters having oil or coolant liquid in side of the top left hand side of the inverters the inverters with issues are listed as;  
+Bess inverter water intrusion left side F4-4-3 water intrusion left side</p><p>F4-4-1 water intrusion left side </p><p>F4-3-3 water intrusion left side</p><p>F4-3-1 liquid intrusion </p><p>F3-1-1 rust spots left slid back</p><p>F3-2-1 liquid left side </p><p>F3-2-2 liquid intrusion </p><p>F3-2-3 liquid intrusion </p><p>F3-7-1 liquid intrusion </p><p>All photos added to the workorder notes and attachments
+
 BESS Desiccant change out and inspection of GT1 bess inverters all pics and forms on workorder attachments 
 BESS Desiccant change out and inspection of GT1 bess inverters 
 Changed Desiccant in inverters at GT1 BESS yard. all photos and forms are uploaded to the workorder 
@@ -90,3 +99,26 @@ GT1 Desiccant change out and inverter inspection , We also cleaned out all inve
 
 WO-1053004,
 Inspected all enclosers and cleaned all sensors at Met. no issues found and all POAs were leveled 
+
+WO-1060314
+
+Average:
+LBD 6-4 was reading 228 amperages after trouble shooting the LBD.
+I and Eric Bowen trouble shot LBD 6-4 
+we Amped clamped the LBD and received 228 amps, I and Eric  came to a conclusion that LBD 6-4 is good.
+
+Good:
+Technicians Kyle Foley and Eric Bowen performed troubleshooting and repair on LBD 6-4. 
+They began with a visual inspection of the unit, then tightened and secured electrical connections to rule out loose contacts. 
+After this, they applied an amp clamp to measure the load current, which read 228 amps. 
+Following the inspection, connection checks, and current testing, they confirmed that LBD 6-4 is operating properly and no further repair action is required.
+
+
+
+
+WO-1068545
+Technicians inspected block 22A and visually identified two broken modules, which were tagged for replacement. 
+No repairs have been performed yet. Next Step is to Replace the marked modules during scheduled maintenance.
+
+WO-1071336
+Viewed sideview to locate module, checked module and module is good.

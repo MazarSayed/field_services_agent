@@ -1,0 +1,25 @@
+id,conversation_id,work_order_id,tech_name,wo_type,plant,description,tech_notes_type,completion_notes
+1,16,WO-1052113,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 39 Comm loss,Bad,work completed
+2,17,WO-1052113,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 39 Comm loss,Average,Inverter 39 lost communications. Comm board was replaced and communications restored.
+3,18,WO-1052113,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 39 Comm loss,Good,"Inverter (#39) Lost communications on (05/31/24). RES submitted warranty claim on (06/04/24). SMA replaced the comm board on (06/25/24). Communications were restored and Inverter (#39) is back in service."
+4,7,WO-1052439,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 28 NCUs 61 and 62 indicate stuck eastwards,Bad,NCU issue fixed
+5,8,WO-1052439,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 28 NCUs 61 and 62 indicate stuck eastwards,Average,Snow stow fault on NCUs 61 & 62. Snow sensor was dirty and cleaned. Fault cleared and SPCs returned to normal.
+6,9,WO-1052439,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 28 NCUs 61 and 62 indicate stuck eastwards,Good,"A snow stow fault appeared on NCU's 61 & 62 located at inverter 28. All SPC's were stuck to the east. RES discovered that the snow sensor was dirty from vegetation management and construction. RES cleaned the snow sensor. The fault cleared on the NCU and all SPC's returned to normal operation."
+7,4,WO-1053004,Kyle Foley,Preventive,MS6 - Golden Triangle II (PV/BESS),GT 2 - Monthly MET station PM,Bad,PM done
+8,5,WO-1053004,Kyle Foley,Preventive,MS6 - Golden Triangle II (PV/BESS),GT 2 - Monthly MET station PM,Average,Inspected all enclosures and cleaned all sensors at Met. No issues found and all POAs were leveled.
+9,6,WO-1053004,Kyle Foley,Preventive,MS6 - Golden Triangle II (PV/BESS),GT 2 - Monthly MET station PM,Good,Inspected all enclosures and cleaned all sensors at Met. no issues found and all POAs were leveled
+10,22,WO-1053518,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 34 has entered an Error Fault state,Bad,board replaced
+11,23,WO-1053518,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 34 has entered an Error Fault state,Average,Inverter 34 faulted with hardware fault. DST Board was replaced and inverter restored to full production.
+12,24,WO-1053518,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 34 has entered an Error Fault state,Good,"On 7/22/2024 Inverter 34 faulted offline with an unspecified hardware fault (6422). MRES replaced the Power Stack 3 DST Board on 7/26/2024. After DST Board was replaced, Inverter 34 was restored and is in full production."
+13,25,WO-1058377,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 40 Faulted with GFDI ground fault,Bad,contactor replaced
+14,26,WO-1058377,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 40 Faulted with GFDI ground fault,Average,Site technicians replaced DC Contactor 3. After the new contactor was installed the inverter started with no faults or errors.
+15,27,WO-1058377,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 40 Faulted with GFDI ground fault,Good,Site technicians replaced DC Contactor 3. After the new contactor was installed the inverter started with no faults or errors. Inverter 40 is back in service
+16,1,WO-1060314,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 6 LBD 4 - 10/21 strings offline,Bad,LBD checked
+17,2,WO-1060314,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 6 LBD 4 - 10/21 strings offline,Average,LBD 6-4 is reading 228 amps
+18,3,WO-1060314,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 6 LBD 4 - 10/21 strings offline,Good,LBD 6-4 is reading 228 amps
+19,10,WO-1062226,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),Block 38C SPC 324 not tracking,Bad,SPC fixed
+20,11,WO-1062226,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),Block 38C SPC 324 not tracking,Average,SPC was offline. Reconnected MC4 connector
+21,12,WO-1062226,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),Block 38C SPC 324 not tracking,Good,"Found SPC not tracking. no light on spc, reconnected MC4 for SPC to charging module. tracked row to east to charge and returned inverter to service"
+22,19,WO-1068545,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 22 faulted offline,Bad,modules found
+23,20,WO-1068545,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 22 faulted offline,Average,Techs walked block 22A and found 2 broken modules. Modules have been marked for replacement.
+24,21,WO-1068545,Kyle Foley,Corrective,MS6 - Golden Triangle II (PV/BESS),INV 22 faulted offline,Good,"Techs walked block 22A and found 2 broken modules. modules have been marked for replacement"
