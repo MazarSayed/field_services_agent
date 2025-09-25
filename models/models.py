@@ -10,6 +10,9 @@ class TranscriptionRequest(BaseModel):
     """Request model for audio transcription"""
     audio_file: Any = Field(..., description="Audio file from audio input (UploadedFile object)")
 
+class OfferRequest(BaseModel):
+    sdp: str
+    ephemeral_key: str
 
 class WorkStatusValidationRequest(BaseModel):
     """Request model for work status log validation"""
@@ -66,6 +69,9 @@ class ClientSummaryResponse(BaseModel):
     summary: str = Field(description="One-line summary in plain language under 10 words")
     notes: str = Field(description="Simplified notes for basic clients between 60 to 70 words")
     error_message: Optional[str] = Field(default=None, description="Error message if conversion failed")
+
+class GeminiTranscriptionResponse(BaseModel):
+    transcript: str
 
 
 # ============================================================================

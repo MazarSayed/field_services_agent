@@ -4,12 +4,19 @@ FastAPI application for managing solar work orders and field services
 """
 
 from datetime import datetime, date
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, WebSocket, File, UploadFile
+from fastapi.responses import PlainTextResponse
 from fastapi import Body, Response
 from fastapi.middleware.cors import CORSMiddleware
 import json
 import os
 import requests
+import asyncio
+import websockets
+import sys
+from google import genai
+from google.genai import types
+from fastapi import Form
 
 # Import models and AI functions directly
 from models.models import (
@@ -17,10 +24,14 @@ from models.models import (
     ClientSummaryResponse, WorkStatusLogRequest, WorkStatusSubmissionRequest,
     CompletionNotesRequest, ClientSummaryRequest, WorkStatusLogs, WorkOrderUpdateResponse, 
     ChatSubmissionRequest, HoldReasonValidationRequest, HoldReasonValidationResponse, HoldNotesSubmissionRequest, HoldNotes,
-    WorkStatusLogUpdate, HoldNoteUpdate, WorkStatusLogResponse, HoldNoteResponse
+    WorkStatusLogUpdate, HoldNoteUpdate, WorkStatusLogResponse, HoldNoteResponse, OfferRequest, GeminiTranscriptionResponse
 )
 from src.ai_classifier import validate_work_status_log, validate_reason_for_hold, convert_to_car_format, convert_to_client_summary
 from src.data_access import get_data_access
+import httpx
+
+if sys.platform.startswith("win"):
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 # Initialize data access layer
 data_access = get_data_access()
@@ -867,6 +878,144 @@ async def create_ephemeral_session():
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/realtime/offer")
+async def create_offer(offer_req: OfferRequest):
+    headers = {
+        "Authorization": f"Bearer {offer_req.ephemeral_key}",
+        "Content-Type": "application/sdp",
+        "OpenAI-Beta": "realtime=v1",
+    }
+
+    resp = requests.post(
+        "https://api.openai.com/v1/realtime?model=gpt-4o-mini-transcribe",
+        headers=headers,
+        data=offer_req.sdp,
+        timeout=30,
+    )
+
+    if resp.status_code >= 400:
+        raise HTTPException(status_code=resp.status_code, detail=resp.text)
+
+    return PlainTextResponse(resp.text, media_type="application/sdp")
+
+
+@app.get("/ephemeral_token")
+async def ephemeral_token():
+    session_config = {
+        "session": {
+            "type": "realtime",
+            "model": "gpt-4o-transcribe",
+            "audio": {
+                "input": {}  # input-only for transcription
+            }
+        }
+    }
+
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+    async with httpx.AsyncClient(timeout=10.0) as client:
+        response = await client.post(
+            "https://api.openai.com/v1/realtime/client_secrets",
+            headers={
+                "Authorization": f"Bearer {OPENAI_API_KEY}",
+                "Content-Type": "application/json"
+            },
+            json=session_config
+        )
+        response.raise_for_status()
+        data = response.json()
+
+        # Return the ephemeral token directly for the client
+        return {"value": data.get("client_secret", {}).get("value")}
+
+
+@app.websocket("/ws/transcribe")
+async def transcribe(websocket: WebSocket):
+    await websocket.accept()
+    print("Frontend connected")
+
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    OPENAI_WS_URL = "wss://api.openai.com/v1/realtime?model=gpt-4o-transcribe"
+
+    headers = ["Authorization: Bearer " + OPENAI_API_KEY]
+
+    async with websockets.connect(OPENAI_WS_URL, extra_headers=headers) as ws_openai:
+
+        async def frontend_to_openai():
+            try:
+                while True:
+                    msg = await websocket.receive_text()
+                    await ws_openai.send(msg)
+            except Exception as e:
+                print("Frontend -> OpenAI closed:", e)
+
+        async def openai_to_frontend():
+            try:
+                async for msg in ws_openai:
+                    # OpenAI sends JSON events plus possible pings/binary audio
+                    try:
+                        data = json.loads(msg)
+                    except json.JSONDecodeError:
+                        continue  # skip non-JSON messages
+
+                    if data.get("type") in [
+                        "conversation.item.input_audio_transcription.delta",
+                        "conversation.item.input_audio_transcription.completed"
+                    ]:
+                        await websocket.send_json(data)
+            except Exception as e:
+                print("OpenAI -> Frontend closed:", e)
+
+        await asyncio.gather(frontend_to_openai(), openai_to_frontend())
+
+
+@app.post("/gemini/transcribe", response_model=GeminiTranscriptionResponse)
+async def transcribe_audio(
+    file: UploadFile = File(...),
+    description: str = Form(...),
+    plant: str = Form(...),
+    work_type: str = Form(...),
+    hold_reason: str = Form(...),  
+):
+    audio_bytes = await file.read()
+    model_name = "gemini-2.5-flash"
+
+    try:
+        client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+        part = types.Part.from_bytes(data=audio_bytes, mime_type=file.content_type)
+
+        # Context-aware prompt for hold reason
+        system_prompt = f"""
+        You are assisting a field technician who is placing a work order on hold.
+
+        Work Order Context:
+        - Type: {work_type}
+        - Plant: {plant}
+        - Existing Description: {description}
+
+        Task:
+        Transcribe the technician’s spoken explanation for *why* the work order 
+        is being placed on hold. If the speech is messy, unclear, or informal, 
+        rephrase it into a clear, professional, and concise hold reason that 
+        aligns with the work order context.
+
+        Output only the polished hold reason text. Do not include annotations, 
+        descriptions of sounds, or anything unrelated to the actual reason.
+        """
+
+        contents = [system_prompt, part]
+
+        response = client.models.generate_content(
+            model=model_name,
+            contents=contents,
+        )
+
+        text = response.text.strip()
+        return {"transcript": text}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 
 if __name__ == "__main__":
