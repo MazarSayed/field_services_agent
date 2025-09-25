@@ -133,6 +133,9 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
         ## WORK ORDER CONTEXT:
         Work Order Type: "{work_order_type}".\n
         You are validating an operational log for Work Contribution: {work_contribtion}.\n
+        The Work contribution provides you the type of work that the technician has performed, tailor your follow up questions based on the work contribution.
+        Example: Troubleshooting alone mentioned doesn't require any fix, so no need for them. and So on and so forth.
+
         The cause of work: "{work_order_description}".\n
         The plant is: "{plant}".\n
 
@@ -171,8 +174,8 @@ def validate_work_status_log(operational_log: str, work_order_type: str, work_st
             model="gpt-4o",
             response_model=WorkStatusValidationResponse,
             messages=messages_list,
-            max_tokens=300,
-            temperature=0.1
+            max_tokens=1000,
+            temperature=0.001
         )
         print("messages_list: ", messages_list)
         # Return the validated Pydantic model directly

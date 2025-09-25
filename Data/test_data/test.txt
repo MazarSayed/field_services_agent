@@ -122,3 +122,18 @@ No repairs have been performed yet. Next Step is to Replace the marked modules d
 
 WO-1071336
 Viewed sideview to locate module, checked module and module is good.
+
+WO-1053518
+A fault error was reported on Inverter 34 and its power stack. 
+The DST Board on power stack #3 was replaced by first shutting down and isolating the inverter, removing the faulty DST Board, installing the new board, and securing all connections. 
+After replacement, the inverter was restarted, and functionality was verified to confirm the repair was successful.
+
+
+Fault error inverter 34 and power stack.
+Inverter 34 DST Board replacement on power stack #3 was completed.
+
+
+WO-1058377
+Site technicians replaced DC Contactor 3. 
+After the new contactor was installed the inverter started with no faults or errors. 
+Inverter 40 is back in service
