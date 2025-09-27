@@ -940,7 +940,7 @@ async def transcribe(websocket: WebSocket):
 
     headers = ["Authorization: Bearer " + OPENAI_API_KEY]
 
-    async with websockets.connect(OPENAI_WS_URL, extra_headers=headers) as ws_openai:
+    async with websockets.connect(OPENAI_WS_URL, additional_headers=headers) as ws_openai:
 
         async def frontend_to_openai():
             try:
