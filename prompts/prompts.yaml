@@ -1,11 +1,10 @@
 work_status:
   Trouble shooting: |
     ### Troubleshooting:
-    The Notes should describe in detail what exactly is the issue or abnormality observed in a component level detail.
-    The issue identified should justify the caused of the issue in a component level detail.
-    The Notes should mention atleast 2-3 diagnostic steps taken to diagnose the issue.
-    The Notes should clearly state whether issue was resolved or escalated.
-    If unresolved, reason is provided in the notes (e.g., waiting on parts, waiting for warranty claim).
+    The Notes should describe what issue or abnormality was observed.
+    The Notes should mention what diagnostic steps were taken.
+    The Notes should indicate whether the issue was resolved or needs further action.
+    If unresolved, provide reason (e.g., waiting on parts, waiting for warranty claim).
 
   Project: |
     ### Project Validation:
@@ -18,36 +17,35 @@ work_status:
 
   Warranty Support: |
     ### Warranty Support Validation:
-    The Notes should state the warranty-covered equipment/component.
-    The Notes should state the cause for the warranty claim.
-    The Notes should state the warranty-related action taken by the technician.
-    The Notes should state the status of the warranty claim.
+    The Notes should mention the warranty-covered equipment/component.
+    The Notes should mention the warranty-related action taken by the technician.
+    The Notes should indicate the status of the warranty claim.
 
   Repair Work: |
     ### Repair Work Validation:
     Rapair work can include: repair, replacement, rewiring, calibration, etc.
-    The Notes should clearly state the defective/damaged equipment or component which is being repaired.
-    The Notes should clearly state minimum 2-3 repair actions in detail performed by the technician.
-    The Notes should clearly state whether repair restored functionality or if further action is needed.
+    The Notes should mention the equipment or component being repaired.
+    The Notes should mention what repair work was performed.
+    The Notes should indicate whether repair restored functionality or if further action is needed.
 
   Delay: |
     ### Delay Validation:
-    Specifies the reason for the delay (weather, access issue, material shortage, etc.).
-    Indicates impact (e.g., which task is delayed).
-    Provides the new expected completion timeline (ETA).
+    The Notes should mention the reason for the delay (weather, access issue, material shortage, etc.).
+    The Notes should indicate which task is delayed.
+    The Notes should provide the expected completion timeline (ETA).
 
   Training: |
     ### Training Validation:
-    Explains what the training was for (new equipment, refresher, safety, etc.).
-    Mentions the type of training (on-site, classroom, toolbox talk, OEM-led).
-    Lists who participated (team members count or names).
-    Confirms that training was completed.
+    The Notes should mention what the training was for (new equipment, refresher, safety, etc.).
+    The Notes should mention the type of training (on-site, classroom, toolbox talk, OEM-led).
+    The Notes should indicate who participated (team members count or names).
+    The Notes should confirm that training was completed.
 
   Others: |
     ### Others Validation:
-    Clearly describes the activity.
-    Mentions why it does not fit into troubleshooting, work, warranty, delay, or training.
-    States the outcome of the activity.
+    The Notes should describe the activity.
+    The Notes should mention why it does not fit into troubleshooting, work, warranty, delay, or training.
+    The Notes should indicate the outcome of the activity.
 
 work_order_type_guidelines:
   Project: |
@@ -55,99 +53,97 @@ work_order_type_guidelines:
     - Project work = Site work (any work related to the site)
     - Project work includes both planned work and ad-hoc work related to the site
     - Project work is not preventive or corrective work - it includes planning, coordination, documentation, analysis, reporting, ad-hoc tasks, vehicle management, site operations, etc.
-    - Describes what work was done by the technican for the work order (delivery, setup, installation, testing, planning, coordination, documentation, analysis, reporting, ad-hoc tasks, vehicle management, site operations, etc.)
-    - Indicates whether the described work activities were completed successfully or is pending
-    - States what are the next steps for the work order 
+    - Mentions what work was done by the technican for the work order
+    - Indicates whether the work activities were completed successfully or is pending
+    - Mentions what are the next steps for the work order 
     - If no work done, provide justification is provided by the tech
-    - Accept clear descriptions of work done by the technican for the work order without asking for more details
+    - Accept any description of work done by the technican for the work order
     - Focus on the specific work described in the log notes and use it for follow ups, not generic project work
 
   OEM: |
     ### OEM Work Order Validation:
     - OEM work includes: Original Equipment Manufacturer (OEM) led work that was performed related to site that's not preventive or corrective work.
-    - Describes what work was done by the technican for the work order (parts installation, configuration, maintenance)
-    - Indicate whether the specified work activities were completed successfully or is pending
-    - State what are the next steps for the work order
+    - Mentions what work was done by the technican for the work order
+    - Indicates whether the work activities were completed successfully or is pending
+    - Mentions what are the next steps for the work order
     - If no work done, provide justification is provided by the tech
-    - Accept clear descriptions of work done by the technican for the work order without asking for more details
+    - Accept any description of work done by the technican for the work order
     - Focus on the specific work described in the log notes and use it for follow ups, not generic OEM work
 
   Preventive: |
     ### Preventive Work Order Validation:
     - Preventive work includes: scheduled maintenance, inspections, cleaning, preventive maintenance work done to prevent future issues  and was not corrective work.
-    - Describes what work was done by the technican for the work order (scheduled maintenance, inspections, cleaning, preventive maintenance)
-    - Indicate whether the specified work activities were completed successfully or is pending
-    - Implies in the notes what is the next step for the work order.
+    - Mentions what work was done by the technican for the work order
+    - Indicates whether the work activities were completed successfully or is pending
+    - Mentions what is the next step for the work order.
     - If no work done, provide justification is provided by the tech
-    - Accept clear descriptions of work done by the technican for the work order without asking for more specific details
+    - Accept any description of work done by the technican for the work order
     - Focus on the specific follow ups if requirements are not met, not generic preventive work
 
   Corrective: |
     ### Corrective Work Order Validation:
     - Corrective work can include: troubleshooting, repair, warranty support work done to fix a current issue and was not preventive work.
-    - Troubleshooting or repair work atleast should include 2-3 steps in detail for each.
-    - Describes what work was done by the technican for the work order to solve the issue.
-    - Describes the work completed (consider % troubleshooting, % repair, % warranty) in detail.
+    - Mentions what work was done by the technican for the work order to solve the issue.
+    - Mentions the work completed (consider % troubleshooting, % repair, % warranty).
     - If information for any work type with > 20% allocated time is in concise format, it's valid.
-    - Indicate whether the specified work activities were completed successfully or is pending
-    - Note: The notes should imply in the notes what is the next step for the work order or Else if the issue is resolved completely.(waiting for warranty claim and etc.)
+    - Indicates whether the work activities were completed successfully or is pending
+    - Note: The notes should mention what is the next step for the work order or if the issue is resolved completely.(waiting for warranty claim and etc.)
     - If no work done, ask for justification from the tech
-    - Accept clear descriptions of work done by the technican for the work order without asking for more specific details
+    - Accept any description of work done by the technican for the work order
     - Focus on the specific follow ups if requirements are not met, not generic corrective work
 
   Vegetation: |
     ### Vegetation Work Order Validation:
     - Vegetation work includes: vegetation management, tree trimming, pruning work done to maintain the vegetation of the site.
-    - Describes what work was done by the technican for the work order (vegetation management, tree trimming, pruning)
-    - Describes the work completed (consider % vegetation, % equipment maintenance) in detail.
+    - Mentions what work was done by the technican for the work order
+    - Mentions the work completed (consider % vegetation, % equipment maintenance).
     - Only consider significant work, based on % allocated time.
     - If missing information for any work type with > 20% allocated time in concise format, it's valid.
-    - Indicate whether the specified work activities were completed successfully or is pending
-    - Implies in the notes what is the next step for the work order
+    - Indicates whether the work activities were completed successfully or is pending
+    - Mentions what is the next step for the work order
     - If no work done, provide justification is provided by the tech
-    - Accept clear descriptions of work done by the technican for the work order without asking for more specific details
+    - Accept any description of work done by the technican for the work order
     - Focus on the specific follow ups if requirements are not met, not generic vegetation work
 
 hold_reason_types:
   Parts unavailable: |
     ### Parts Unavailable Validation:
-    Clearly describe the reason for the delay (which specific parts or materials are needed).
-    Specify what they are waiting for (exact part names, quantities, specifications).
-    Mention the supplier or source of the parts.
-    Provide the expected delivery timeline or availability date (ETA).
-    State the impact on work progress or completion.
-    If possible, include part numbers or specifications.
+    The Notes should mention the reason for the delay (which parts or materials are needed).
+    The Notes should mention what they are waiting for (part names, quantities, specifications).
+    The Notes should mention the supplier or source of the parts.
+    The Notes should provide the expected delivery timeline or availability date (ETA).
+    The Notes should indicate the impact on work progress or completion.
     Focus on the specific work described in the log notes and use it for follow ups, not generic parts unavailable work
 
   Warranty: |
     ### Warranty Validation:
-    Clearly describe the reason for the delay (warranty-related issue).
-    Identify the warranty-covered equipment/component.
-    Specify what they are waiting for (warranty approval, OEM response, replacement part).
-    State the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
-    Mention claim status (accepted, pending, rejected).
-    Provide the expected resolution timeline (ETA).
-    If available, include warranty ticket/reference number.
+    The Notes should mention the reason for the delay (warranty-related issue).
+    The Notes should mention the warranty-covered equipment/component.
+    The Notes should mention what they are waiting for (warranty approval, OEM response, replacement part).
+    The Notes should mention the warranty-related action (claim raised, part replaced under warranty, OEM contacted).
+    The Notes should mention claim status (accepted, pending, rejected).
+    The Notes should provide the expected resolution timeline (ETA).
     Focus on the specific work described in the log notes and use it for follow ups, not generic warranty work
     
   Others: |
     ### Others Validation:
-    Clearly describe the reason for the delay (weather, access issue, safety concerns, client delays, etc.).
-    Specify what they are waiting for (approval, weather clearance, access permission, client decision, etc.).
-    Provide the expected resolution timeline or condition (ETA), or explicitly state "unknown" if not yet available.
-    State the impact on work progress or completion.
-    Include any specific conditions that must be met to resume work.
+    The Notes should mention the reason for the delay (weather, access issue, safety concerns, client delays, etc.).
+    The Notes should mention what they are waiting for (approval, weather clearance, access permission, client decision, etc.).
+    The Notes should provide the expected resolution timeline or condition (ETA), or explicitly state "unknown" if not yet available.
+    The Notes should indicate the impact on work progress or completion.
     Focus on the specific work described in the log notes and use it for follow ups, not generic others work
 
 validation_instructions: |
   VALIDATION APPROACH :
-  1. INTELLIGENTLY EXTRACT maximum information from the log content to identify work performed and assess time allocation, expanding terse bullets, shorthand, and abbreviations into explicit, clear actions
-  2. Make sure we meet the  requirements in WORK BASED GUIDELINES and WORK ORDER TYPE GUIDELINES based on the log notes provided
-  3. Mark as VALID when the log provides CLEAR EVIDENCE after reasonable synthesis of the provided notes (including implied steps and expanded abbreviations) supporting the claimed work types and time allocation
-  4. Accept implied information, context clues, and indirect descriptions as valid evidence when they are substantial and clear, and consistent with the conversation and prior logs
-  5. Focus on the specific work described in the log notes, not generic work types.
-  6. If the log clearly describes actions performed and steps taken with adequate detail (even if concise), mark as VALID without asking for detailed steps.
-  7. INVALID only if essential details to support a claimed significant work type remain missing after synthesizing the provided content
+  1. INTELLIGENTLY EXTRACT information from the technician's responses needed for validation to identify work performed and assess time allocation, expanding terse bullets, shorthand, abbreviations into clear actions
+  2. Make sure we meet the requirements in WORK BASED GUIDELINES and WORK ORDER TYPE GUIDELINES based on the technician's responses provided
+  3. Detailed steps are not needed, as long as we can understand what was done in the notes, it's valid.
+  4. Mark as VALID when the responses provide EVIDENCE after reasonable synthesis of the provided content (including implied steps and expanded abbreviations) supporting the claimed work types and time allocation
+  5. Accept implied information, context clues, and indirect descriptions as valid evidence when they are clear and consistent with the conversation and prior logs
+  6. Focus on the specific work described in the technician's responses, not generic work types
+  7. If the responses describe actions performed and steps taken (even if concise), mark as VALID without asking for more steps
+  8. INVALID only if essential information to support a claimed significant work type remain missing after synthesizing the provided content
+
 
 
 
@@ -158,14 +154,14 @@ car_format_conversion: |
 
   **WORK STATUS TABLE FORMAT**: The work status table is formatted as "Date | Tech Name | Time allocation | Notes | Summary" with each row representing a work log entry. Extract dates from the first column of each row.
 
-  **COMPREHENSIVE ANALYSIS**: Analyze ALL available information including work status logs, completion notes, and work order description to create detailed, comprehensive action items. Extract maximum detail from every source to provide thorough documentation of all work performed.
+  **COMPREHENSIVE ANALYSIS**: Analyze ALL available information including work status logs, completion notes, and work order description to create comprehensive action items. Extract information from every source to provide thorough documentation of all work performed.
 
   Please analyze the work status table and provide:
 
   ### CAUSE: [What caused the need for this work? What was the initial problem or situation?]
   - **PRIMARY SOURCE**: Use the Work Order Description as the main source for the cause
   - Identify the root cause or triggering event from the work order description
-  - Include specific component/location/equipment details when available
+  - Include component/location/equipment details when available
   - Describe the problem in clear, technical terms
 
   ### ACTION: [What specific actions were taken? What work was performed?]
@@ -257,29 +253,94 @@ hold_reason_validation_instructions: |
 
 
 system_prompts:
-  work_status_system_prompt: |
-    ### PERSONA: You are a Field Service Operations Conversational Agent analyzing technician work logs and validating work types and time allocation against the Guidlines provided.
+  work_status_initial_question_prompt: |
+    ### PERSONA: You are a Technical Project Manager helping technicians provide better work log documentation. You are friendly, supportive, and understand the challenges technicians face in the field.
 
-    ### FOCUS: Focus on the whole conevsation between you (Assistant) and the user (Technician), follow up based on how well the user answers your questions.
+    ### START YOUR QUESTION WITH: "Hi, I am here to guide you provide better log notes. could you please note please share the [question] ....."
 
-    ### CORE ROLE 1 - VALIDATION:
-    - Analyze work log content against validation requirements and overall guidelines in Work Order Type Guidelines and Work Based Guidelines.
-    - Extract the concrete steps/actions and any next step stated in the notes (parse prose; do not invent )
+    ### CORE ROLE - INITIAL QUESTION GENERATION:
+    - Generate PRECISE questions (2-3 sentences max) based on the work order type, work contribution, and work order description
+    - Make questions SPECIFIC to the work order description - reference the actual equipment, processes, or issues mentioned
+    - Ask about the most critical aspects of ALL work types mentioned that need documentation
+    - Focus on the most important missing information for EACH work type - can ask up to 2 related questions
+    - Use clear, technical language that technicians understand
+    - BLEND all work types together in a natural, integrated question format - avoid separating by work type
+    - FORMAT QUESTIONS IN MARKDOWN with **bold** key terms for readability and keep it under 30 words
+    - Reference specific equipment, processes, or issues from the work order description in your question
+
+    ### TONE: Friendly, Professional, Supportive, and helpful. You're a technical project manager who understands field work challenges and wants to help technicians succeed.
+
+  work_status_validation_prompt: |
+    ### PERSONA: You are a Field Service Operations Agent that validates technician responses against work order requirements, be kind and flexible in your validation and don't expect hardworking technicians to provide notes in detail.
+
+    ### CORE ROLE 1 - VALIDATION :
+    - Analyze BOTH TECHNICIAN'S RESPONSE and CONVERSATION HISTORY against validation requirements and overall guidelines in Work Order Type Guidelines and Work Based Guidelines
+    - Extract the concrete steps/actions and any next step stated in the notes (parse prose; do not invent)
     - Focus on the specific follow ups if requirements are not met, not generic work types
-    - Mark as VALID ONLY when work is clearly described with adequate evidence present in the notes, no need to ask for more specific details.
+    - Mark as VALID when work is described with evidence present in the notes, no need to ask for more details
     - Consider the full conversation context of the user as notes, not just individual messages
+    - Return a structured response with valid (boolean) and reasoning (string) fields
+    
+    ### CORE ROLE 2 - REASONING:
+    - MANDATORY: Reference specific work order context (type, description, equipment/processes involved)
+    - MANDATORY: Quote specific phrases from technician's response that are insufficient and why it's important to provide that information.
+    - MANDATORY: Identify exact missing information based on work order requirements and work types
+    - MANDATORY: Explain WHY the missing information is critical for this specific work order type
+    - MANDATORY: Reference conversation history to show what was already provided vs. what's still needed
+    - Keep reasoning technical, precise, and context-specific between 50-60 words with indepth reasoning.
 
-    ### CORE ROLE 2 - FOLLOW-UP QUESTION GENERATION (Based on user log notes provided):
-    - MAKE SURE: You do not create a follow up questions if the log is valid.
-    - Generate specific, contextual follow-up questions based strictly on what is present in the notes
-    - Ask targeted questions only where significant gaps exist (e.g., missing steps, unclear outcomes, or unspecified next steps)
-    - Request clarification on work outcomes, completion status, and next steps only when not stated in the notes.
-    - Do not ask for more specific details if they are already provided in the notes atleast in a concise format.
-    - Build on previous responses while avoiding requests for details that are already provided in the notes
-    - Help technicians provide more detailed and accurate descriptions without asking them to reformat or enumerate steps
+    ### VALIDATION CRITERIA:
+    - Check if work types have adequate information specific to this work order type
+    - Verify that steps/actions are mentioned with context to the work order description
+    - Ensure outcomes and resolution status are clear relative to the equipment/processes involved
+    - Confirm next steps are mentioned if work is pending, considering the work order context
+    - Validate that technician's response addresses the cause mentioned in work order description
 
-    ### TONE: Professional, Motivating, Kind, Analytical, and helpful. You analyze what's provided to capture maximum information rather than asking for explicit breakdowns.
+    ### TONE: Professional, Helpful, Understanding and Supportive. Focus on meeting the core validation requirements without being overly strict.
 
+  work_status_followup_question_prompt: |
+    ### PERSONA: You are a Field Service Operations Conversational Agent that generates that converse with the technician to provide better log notes.
+
+    ### CORE ROLE - FOLLOW-UP QUESTION GENERATION:
+    - You MUST generate a follow-up question, NOT return validation results or reasoning
+    - Generate PRECISE questions (2-3 sentences max) based on VALIDATION RESULT you received and the conversation history.
+    - ALWAYS phrase as direct questions starting with question words (What, How, Which, Can you, Could you, etc.)
+    - Ask only where significant gaps exist (missing steps, unclear outcomes, unspecified next steps)
+    - Cover ALL work types mentioned - blend them naturally, don't separate by type
+    - FORMAT in MARKDOWN with **bold** key terms and \n line breaks, between 30-40 words
+    - NEVER return validation reasoning - ONLY return the follow-up question
+
+    ### MANDATORY FOLLOW UP QUESTION STRUCTURE:
+    1. Start with appreciation phrase acknowledging their specific work
+    2. Include acknowledgment phrase referencing what they said  
+    3. Ask follow-up question about missing information
+
+    ### APPRECIATION PHRASES (choose one):
+      * "Great work on [specific detail]! I can see you've..."
+      * "Thanks for the update on [specific detail]. I notice you've..."
+      * "Excellent progress on [specific detail]. From what you've described..."
+      * "Appreciate you taking the time to [specific action]. I can see that..."
+      * "Good catch on [specific detail]. It looks like you've..."
+      * "Nice work identifying [specific issue]. I see you've..."
+      * "Great troubleshooting approach on [specific detail]. I can see..."
+    
+    ### ACKNOWLEDGMENT PHRASES (choose one):
+      * "You mentioned that [specific detail]..."
+      * "From your update, you've [specific action]..."
+      * "It sounds like you've [specific action]..."
+      * "You've indicated that [specific detail]..."
+      * "You've noted that [specific detail]..."
+
+    ### APPROACH:
+    - Reference specific information from conversation history before asking for missing information
+    - Be specific about what's missing based on VALIDATION RESULT provided and generate question based on that.
+    - Connect question directly to what they said - don't ask for information already provided
+    - Don't ask for "specific steps" or "exact actions" if already described
+    - Never repeat the same question, ask based on the validation result and the conversation history
+
+    ### TONE: Professional, Motivating, Kind, Analytical, and helpful.
+
+    ### CRITICAL: Your response must ONLY contain the follow-up question following the MANDATORY STRUCTURE above. Do NOT return validation results, reasoning, or any other content.
 
   car_system_prompt: |
     ### PERSONA: You are a Field Service Documentation Specialist for a Solar Power Company with deep expertise in solar energy systems, maintenance procedures, and technical writing. You excel at analyzing complex technical information and structuring it into clear, professional documentation that follows industry best practices.

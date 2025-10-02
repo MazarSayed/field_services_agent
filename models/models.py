@@ -15,12 +15,10 @@ class OfferRequest(BaseModel):
     ephemeral_key: str
 
 class WorkStatusValidationRequest(BaseModel):
-    """Request model for work status log validation"""
-    operational_log: str = Field(..., description="Operational log text to validate")
+    """Request model for work status validation"""
     work_status: Union[str, dict] = Field(..., description="Work status type (string) or type/percentage/hours mapping (dict)")
     work_order_id: str = Field(..., description="Work order ID to fetch tech name and plant info")
     follow_up_questions_answers_table: list[dict] = Field(..., description="List of conversation messages with role and content")
-
 
 class CARFormatConversionRequest(BaseModel):
     """Request model for CAR format conversion"""
@@ -39,9 +37,14 @@ class ClientSummaryConversionRequest(BaseModel):
 # ============================================================================
 
 class WorkStatusValidationResponse(BaseModel):
-    """Response model for work status log validation"""
-    valid: bool = Field(description="Whether the operational log meets all guidlines provided")
-    follow_up_question: str = Field(description="A single specific follow-up question to gather information based on user log notes provided")
+    """Response model for work status validation"""
+    valid: bool = Field(description="Whether the work status meets all guidelines provided")
+    follow_up_question: Optional[str] = Field(description="Question to ask the technician based on work order info or their responses")
+
+class WorkStatusValidationOnlyResponse(BaseModel):
+    """Response model for work status validation only (no question generation)"""
+    valid: bool = Field(description="Whether the work status meets all guidelines provided")
+    reasoning: str = Field(description="Brief reasoning for the validation result")
 
 
 class HoldReasonValidationResponse(BaseModel):
@@ -197,6 +200,19 @@ class ClientSummaryRequest(BaseModel):
 # Update Models
 # ============================================================================
 
+class UpdateNotesRequest(BaseModel):
+    """Simple request model for updating notes"""
+    notes: str = Field(..., description="Updated notes content")
+
+
+class UpdateNotesResponse(BaseModel):
+    """Simple response model for note updates"""
+    success: bool = Field(..., description="Whether the update was successful")
+    message: str = Field(..., description="Success or error message")
+    updated_at: str = Field(..., description="Last updated timestamp")
+
+
+# Legacy models for backward compatibility
 class WorkStatusLogUpdate(BaseModel):
     """Request model for updating work status log notes"""
     notes: str = Field(..., description="Updated notes for the work status log")

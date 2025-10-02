@@ -14,8 +14,6 @@ import requests
 import asyncio
 import websockets
 import sys
-from google import genai
-from google.genai import types
 from fastapi import Form
 
 # Import models and AI functions directly
@@ -24,7 +22,8 @@ from models.models import (
     ClientSummaryResponse, WorkStatusLogRequest, WorkStatusSubmissionRequest,
     CompletionNotesRequest, ClientSummaryRequest, WorkStatusLogs, WorkOrderUpdateResponse, 
     ChatSubmissionRequest, HoldReasonValidationRequest, HoldReasonValidationResponse, HoldNotesSubmissionRequest, HoldNotes,
-    WorkStatusLogUpdate, HoldNoteUpdate, WorkStatusLogResponse, HoldNoteResponse, OfferRequest, GeminiTranscriptionResponse
+    WorkStatusLogUpdate, HoldNoteUpdate, WorkStatusLogResponse, HoldNoteResponse, OfferRequest, 
+    UpdateNotesRequest, UpdateNotesResponse
 )
 from src.ai_classifier import validate_work_status_log, validate_reason_for_hold, convert_to_car_format, convert_to_client_summary
 from src.data_access import get_data_access
@@ -524,6 +523,7 @@ async def complete_work_order(work_order_id: str):
 async def validate_work_status(request: WorkStatusValidationRequest):
     """Validate operational log against work status requirements"""
     try:
+        print("request: ", request)
         # Fetch work order details from database
         work_order = data_access.get_work_order_by_id(request.work_order_id)
         if not work_order:
@@ -531,29 +531,23 @@ async def validate_work_status(request: WorkStatusValidationRequest):
         
         # Extract tech name and plant from work order
         tech_name = work_order.get('tech_name', '')
-        plant = work_order.get('plant', '')
         work_order_description = work_order.get('description', '')
         work_order_type = work_order.get('wo_type', '')
         
         # Get existing work logs for context
         existing_logs = get_existing_work_logs(request.work_order_id)
         
-        # Extract operational log and follow-up conversation
-        if request.follow_up_questions_answers_table and len(request.follow_up_questions_answers_table) > 0:
-            operational_log = request.follow_up_questions_answers_table[0].get('content', '')
-        else:
-            operational_log = request.operational_log
+        # Extract follow-up conversation
         follow_up_conversation = request.follow_up_questions_answers_table
         
         result = validate_work_status_log(
-            operational_log=operational_log,
             work_order_type=work_order_type,
             work_status=request.work_status,
             work_order_description=work_order_description,
-            plant=plant,
             wo_status_and_notes_with_time_allocation_table=existing_logs,
             messages=follow_up_conversation
         )
+        print("result: ", result)
         return result
     except HTTPException:
         raise
@@ -744,10 +738,10 @@ async def get_work_status_logs_endpoint(work_order_id: str):
         raise HTTPException(status_code=500, detail=f"Error extracting hold notes: {str(e)}")
 
 # Update work status log notes
-@app.put("/work-status-logs/{log_id}", response_model=WorkStatusLogResponse)
+@app.put("/work-status-logs/{log_id}", response_model=UpdateNotesResponse)
 async def update_work_status_log_notes_endpoint(
     log_id: int,
-    log_update: WorkStatusLogUpdate
+    log_update: UpdateNotesRequest
 ):
     """
     Update notes for a specific work status log
@@ -759,16 +753,10 @@ async def update_work_status_log_notes_endpoint(
         if not updated_log:
             raise HTTPException(status_code=404, detail="Work status log not found")
         
-        # Convert to response model
-        return WorkStatusLogResponse(
-            id=int(updated_log.get('id', 0)),
-            tech_name=updated_log.get('tech_name', ''),
-            work_date=updated_log.get('work_date', ''),
-            work_status=updated_log.get('work_status', {}),
-            time_spent=float(updated_log.get('time_spent', 0)),
-            notes=updated_log.get('notes', ''),
-            summary=updated_log.get('summary', ''),
-            work_order_id=updated_log.get('work_order_id', ''),
+        # Return simple response
+        return UpdateNotesResponse(
+            success=True,
+            message="Work status log notes updated successfully",
             updated_at=updated_log.get('updated_at', '')
         )
     except ValueError as e:
@@ -777,10 +765,10 @@ async def update_work_status_log_notes_endpoint(
         raise HTTPException(status_code=500, detail=f"Failed to update work status log: {str(e)}")
 
 # Update hold note notes
-@app.put("/hold-notes/{note_id}", response_model=HoldNoteResponse)
+@app.put("/hold-notes/{note_id}", response_model=UpdateNotesResponse)
 async def update_hold_note_notes_endpoint(
     note_id: int,
-    note_update: HoldNoteUpdate
+    note_update: UpdateNotesRequest
 ):
     """
     Update notes for a specific hold note
@@ -792,14 +780,10 @@ async def update_hold_note_notes_endpoint(
         if not updated_note:
             raise HTTPException(status_code=404, detail="Hold note not found")
         
-        # Convert to response model
-        return HoldNoteResponse(
-            id=int(updated_note.get('id', 0)),
-            hold_reason=updated_note.get('hold_reason', ''),
-            hold_date=updated_note.get('hold_date', ''),
-            notes=updated_note.get('notes', ''),
-            summary=updated_note.get('summary', ''),
-            work_order_id=updated_note.get('work_order_id', ''),
+        # Return simple response
+        return UpdateNotesResponse(
+            success=True,
+            message="Hold note notes updated successfully",
             updated_at=updated_note.get('updated_at', '')
         )
     except ValueError as e:
@@ -968,54 +952,6 @@ async def transcribe(websocket: WebSocket):
                 print("OpenAI -> Frontend closed:", e)
 
         await asyncio.gather(frontend_to_openai(), openai_to_frontend())
-
-
-@app.post("/gemini/transcribe", response_model=GeminiTranscriptionResponse)
-async def transcribe_audio(
-    file: UploadFile = File(...),
-    description: str = Form(...),
-    plant: str = Form(...),
-    work_type: str = Form(...),
-    hold_reason: str = Form(...),  
-):
-    audio_bytes = await file.read()
-    model_name = "gemini-2.5-flash"
-
-    try:
-        client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
-        part = types.Part.from_bytes(data=audio_bytes, mime_type=file.content_type)
-
-        # Context-aware prompt for hold reason
-        system_prompt = f"""
-        You are assisting a field technician who is placing a work order on hold.
-
-        Work Order Context:
-        - Type: {work_type}
-        - Plant: {plant}
-        - Existing Description: {description}
-
-        Task:
-        Transcribe the technician’s spoken explanation for *why* the work order 
-        is being placed on hold. If the speech is messy, unclear, or informal, 
-        rephrase it into a clear, professional, and concise hold reason that 
-        aligns with the work order context.
-
-        Output only the polished hold reason text. Do not include annotations, 
-        descriptions of sounds, or anything unrelated to the actual reason.
-        """
-
-        contents = [system_prompt, part]
-
-        response = client.models.generate_content(
-            model=model_name,
-            contents=contents,
-        )
-
-        text = response.text.strip()
-        return {"transcript": text}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
 
 
 if __name__ == "__main__":
